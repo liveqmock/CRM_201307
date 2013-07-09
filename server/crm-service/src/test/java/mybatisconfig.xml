@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<!-- 设置一个时限，以决定让驱动器等待数据库回应的多长时间为超时. 正整数 -->
+		<setting name="defaultStatementTimeout" value="1000"/>
+	</settings>
+</configuration> 

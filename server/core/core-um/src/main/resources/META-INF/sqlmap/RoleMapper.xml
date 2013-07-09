@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oasis.tmsv5.dao.role.RoleDAO">
+	<resultMap type="com.oasis.tmsv5.common.vo.security.RoleVO" id="RoleMap">
+        <result property="netAuthority" column="NET_AUTHORITY"/>
+        <result property="domainId" column="domain_id"/>
+        <result property="creatorId" column="CREATOR_ID"/>
+        <result property="updatorId" column="UPDATOR_ID"/>
+    </resultMap> 
+
+    <insert id="insert" parameterType="Role">
+        <selectKey keyProperty="id" resultType="long" order="BEFORE">
+            select GT_ROLE_SEQUENCE.nextval from dual
+        </selectKey>
+        insert into GT_ROLES(
+        <!-- 0-->id,
+        <!-- 1-->code,
+        <!-- 2-->name,
+        <!-- 3-->roleType,
+        <!-- 4-->dataLevel,
+        <!-- 5-->description,
+        <!-- 6-->net_authority,
+        <!-- 7-->domain_id,
+        <!-- 8-->createdtime,
+        <!-- 9-->updatedtime,
+        <!-- 10-->creator_id,
+        <!-- 11-->updator_id,
+        <!-- 12-->lockversion
+        )
+        values(
+        <!-- 0-->#{id:NUMERIC},
+        <!-- 1-->#{code:VARCHAR},
+        <!-- 2-->#{name:VARCHAR},
+        <!-- 3-->#{roleType:VARCHAR},
+        <!-- 4-->#{dataLevel:VARCHAR},
+        <!-- 5-->#{description:VARCHAR},
+        <!-- 6-->#{netAuthority:VARCHAR},
+        <!-- 7-->#{domainId:NUMERIC},
+        <!-- 8-->#{createdTime:TIMESTAMP},
+        <!-- 9-->#{updatedTime:TIMESTAMP},
+        <!-- 10-->#{creatorId:NUMERIC},
+        <!-- 11-->#{updatorId:NUMERIC},
+        <!-- 12-->#{lockVersion:NUMERIC}
+        )
+    </insert>
+
+    <update id="update" parameterType="Role">
+        update GT_ROLES set
+            code=#{code:VARCHAR},
+            name=#{name:VARCHAR},
+            roleType=#{roleType:VARCHAR},
+            dataLevel=#{dataLevel:VARCHAR},
+            description=#{description:VARCHAR},
+            net_authority=#{netAuthority:VARCHAR},
+            domain_id=#{domainId:NUMERIC},
+            createdtime=#{createdTime:TIMESTAMP},
+            updatedtime=#{updatedTime:TIMESTAMP},
+            creator_id=#{creatorId:NUMERIC},
+            updator_id=#{updatorId:NUMERIC},
+            LOCKVERSION = LOCKVERSION+1 
+            where ID=#{id} and LOCKVERSION=#{lockVersion} 
+    </update>
+	
+	<select id="find" resultType="Role">
+		<include refid="sqlmap.common.model.find" />
+	</select>
+	
+	<select id="findVO" parameterType="long" resultMap="RoleMap">
+        <include refid="sqlmap.common.model.find" />
+    </select>
+	
+	<sql id="pageListClause">
+		where 1=1 
+<!-- 		and t.domain_id = #{domainId} -->
+		<if test="name!=null and name!='' ">
+		and t.name like '%'||#{name}||'%'
+		</if>
+		<if test="description!=null and description!='' ">
+		and t.description like '%'||#{description}||'%'
+		</if>
+	</sql>
+	
+	<select id="selectPageList" resultMap="RoleMap" parameterType="com.oasis.tmsv5.common.so.security.RolePremissionSO">
+		select * from gt_roles t
+		<include refid="pageListClause"/>
+	</select>
+	
+	<select id="selectCount" resultType="int" parameterType="com.oasis.tmsv5.common.so.security.RolePremissionSO">
+		select count(1) from gt_roles t
+		<include refid="pageListClause"/>
+	</select>
+	
+	<delete id="deleteByIds" parameterType="map">
+		<include refid="sqlmap.common.model.deleteByIds"/>
+	</delete>
+	
+	<select id="getAllRole" resultMap="RoleMap" parameterType="map">
+		select * from gt_roles t where t.domain_id = '60000' order by t.code
+	</select>
+
+	<select id="getAsocRoleByAccount" resultType="Role">
+		select r.*
+			  from gt_roles r, gt_account_role ar
+			 	where ar.role_id = r.id
+			   	and ar.account_id = #{id}
+	</select>
+	
+	<select id="checkDuplication" resultMap="RoleMap" parameterType="map">
+		select * from gt_roles r where 
+            1=1
+               and r.domain_id = #{domainId}
+            <if test="name!=null and name!=''">
+              and  r.name = #{name}
+            </if>
+            <if test="id!=null and id!=0">
+            	<![CDATA[
+               and r.id <> #{id}
+                ]]>
+            </if>
+	</select>
+	
+</mapper>

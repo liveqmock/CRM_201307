@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oasis.tmsv5.dao.organization.OrganizationDAO">
+	
+	<resultMap type="com.oasis.tmsv5.common.vo.orgnization.OrganizationVO" id="OrgMap">
+		<result property="desc" column="description" />
+		<result property="addressId" column="address_id" />
+		<result property="contactPersonName" column="CONNACT_PERSON" />
+		<result property="contactPhone" column="CONNACT_PHONE" />
+		<result property="parentId" column="PARENT_ID" />
+		<result property="domainId" column="domain_id" />
+		<result property="creatorId" column="CREATOR_ID" />
+		<result property="updatorId" column="UPDATOR_ID" />
+	</resultMap> 
+	
+    <insert id="insert" parameterType="Organization">
+        <selectKey keyProperty="id" resultType="long" order="BEFORE">
+            select GT_ORGANIZATION_SEQ.nextval from dual
+        </selectKey>
+        insert into GT_ORGANIZATION(
+        <!-- 0-->id,
+        <!-- 1-->treePath,
+        <!-- 2-->namePath,
+        <!-- 3-->status,
+        <!-- 4-->code,
+        <!-- 5-->description,
+        <!-- 6-->name,
+        <!-- 7-->address_id,
+        <!-- 8-->connact_person,
+        <!-- 9-->connact_phone,
+        <!-- 10-->parent_id,
+        <!-- 11-->domain_id,
+        <!-- 12-->createdtime,
+        <!-- 13-->updatedtime,
+        <!-- 14-->creator_id,
+        <!-- 15-->updator_id,
+        <!-- 10-->lockVersion
+        )
+        values(
+        <!-- 0-->#{id:NUMERIC},
+        <!-- 1-->#{treePath:VARCHAR},
+        <!-- 2-->#{namePath:VARCHAR},
+        <!-- 3-->#{status:VARCHAR},
+        <!-- 4-->#{code:VARCHAR},
+        <!-- 5-->#{desc:VARCHAR},
+        <!-- 6-->#{name:VARCHAR},
+        <!-- 7-->#{addressId:NUMERIC},
+        <!-- 8-->#{contactPersonName:VARCHAR},
+        <!-- 9-->#{contactPhone:VARCHAR},
+        <!-- 10-->#{parentId:NUMERIC},
+        <!-- 11-->#{domainId:NUMERIC},
+        <!-- 12-->#{createdTime:TIMESTAMP},
+        <!-- 13-->#{updatedTime:TIMESTAMP},
+        <!-- 14-->#{creatorId:NUMERIC},
+        <!-- 15-->#{updatorId:NUMERIC},
+        <!-- 16-->#{lockVersion:NUMERIC}
+        )
+    </insert>
+
+    <update id="update" parameterType="Organization">
+        update GT_ORGANIZATION set
+            treePath=#{treePath:VARCHAR},
+            namePath=#{namePath:VARCHAR},
+            status=#{status:VARCHAR},
+            code=#{code:VARCHAR},
+            description=#{desc:VARCHAR},
+            name=#{name:VARCHAR},
+            address_id=#{addressId:NUMERIC},
+            connact_person=#{contactPersonName:VARCHAR},
+            connact_phone=#{contactPhone:VARCHAR},
+            parent_id=#{parentId:NUMERIC},
+            domain_id=#{domainId:NUMERIC},
+            createdtime=#{createdTime:TIMESTAMP},
+            updatedtime=#{updatedTime:TIMESTAMP},
+            creator_id=#{creatorId:NUMERIC},
+            updator_id=#{updatorId:NUMERIC},
+            LOCKVERSION = LOCKVERSION+1
+            where ID=#{id} and LOCKVERSION=#{lockVersion} 
+    </update>
+	
+	<select id="find" resultType="Organization">
+		<include refid="sqlmap.common.model.find" />
+	</select>
+	
+	<select id="findVO" resultMap="OrgMap">
+		<include refid="sqlmap.common.model.find" />
+	</select>
+	
+	<delete id="delete">
+		<include refid="sqlmap.common.model.delete" />
+	</delete>
+	
+<!-- 			and t.domain_id = #{domainId} -->
+	<sql id="pageListClause">
+		<where>
+			1=1 
+			<if test="name!=null and name!='' ">
+			and t.name like '%'||#{name}||'%'
+			</if>
+		</where>
+	</sql>
+	
+	<sql id="exactPageListClause">
+		<where>
+			1=1 
+			<if test="name!=null and name!='' ">
+			and t.name = #{name}
+			</if>
+		</where>
+	</sql>
+	
+	<select id="selectPageList" resultMap="OrgMap" parameterType="com.oasis.tmsv5.common.so.security.OrganizationSO">
+		select * from gt_organization t
+		<include refid="pageListClause"/>
+		and t.status = 'ACTIVE'
+	</select>
+	
+	<select id="selectCount" resultType="int" parameterType="com.oasis.tmsv5.common.so.security.OrganizationSO">
+		select count(1) from gt_organization t
+		<include refid="pageListClause"/>
+		and t.status = 'ACTIVE'
+	</select>
+	
+	<select id="selectExactList" resultMap="OrgMap" parameterType="com.oasis.tmsv5.common.so.security.OrganizationSO">
+		select * from gt_organization t
+		<include refid="exactPageListClause"/>
+	</select>
+	
+	<select id="getAllOrg" resultMap="OrgMap">
+		select *
+  			from gt_organization o
+				where 1=1<!--   and o.domain_id = #{domainId} -->
+ 				<if test="condition != null and condition !='' ">
+ 					and (o.name like '%'||#{condition}||'%' or o.code like '%'||#{condition}||'%')
+ 				</if>
+	</select>
+	
+	<select id="getBelowOrg" resultMap="OrgMap">
+		select *
+  			from gt_organization o
+				where 1=1<!--   and o.domain_id = #{domainId} -->
+ 				<if test="treePath != null and treePath !='' ">
+ 					and o.treePath like '%'||#{treePath}||'%' 
+ 				</if>
+	</select>
+	
+	<select id="getRootOrg" resultMap="OrgMap" >
+		select *
+  			from gt_organization o
+ 				where o.domain_id = #{domainId}
+   			and o.parent_id = 0
+	</select>
+	
+	<select id="getAsocOrgByAccount" resultMap="OrgMap" parameterType="map">
+		select r.*
+			  from gt_organization r, gt_account_org_assoc ar
+			 	where ar.org_id = r.id
+			   	and ar.account_id = #{id}
+			   	and r.domain_id = #{domainId}
+	</select>
+	
+	<select id="checkDuplication" resultMap="OrgMap" parameterType="map">
+		select * from gt_organization o where  1=1 
+		<if test="domainId!=null and domainId!=''">
+		and domain_id = #{domainId}
+		</if>
+		<if test="name!=null and name!=''">
+		and o.name = #{name}
+        </if>
+        <if test="code!=null and code!=''">
+        and o.code = #{code}
+        </if>
+		<if test="id!=null and id!=0">
+			<![CDATA[
+				and id <> #{id}
+				]]>
+		</if>
+	</select>
+	
+	<select id="getNameByAccount" resultType="string" parameterType="map">
+	<![CDATA[
+		select case
+                when count(org.id) <= 1 then
+                 max(org.name)
+                else
+                 max((select max(parentName)
+                       from (select case
+                                      when count(org1Name) <= 1 then
+                                       max(org1Name)
+                                      else
+                                       '汇通快运'
+                                    end as parentName
+                               from (select max(org1.name) as org1Name,
+                                            count(org1.name)
+                                       from gt_account_org_assoc acc,
+                                            gt_organization      org,
+                                            gt_organization      org1
+                                      where acc.account_id =#{accountId}
+                                        and org.id = acc.org_id
+                                        and org.parent_id = org1.id
+                                      group by org1.name))
+                      group by parentName))
+              end as orgName
+         from gt_account_org_assoc acc, gt_organization org
+        where acc.account_id = #{accountId}
+          and org.id = acc.org_id
+          and org.domain_id = #{domainId}
+			           ]]>
+	</select>
+	
+	<select id="findByTreepath" resultMap="OrgMap" parameterType="String">
+		SELECT o.id, o.treepath, o.code, o.name, o.namepath 
+		FROM gt_organization o
+		WHERE o.treepath = #{treepath:VARCHAR}
+	</select>
+</mapper>

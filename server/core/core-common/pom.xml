@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<project>
+	<parent>
+		<artifactId>core</artifactId>
+		<groupId>beyond.crm</groupId>
+		<version>1.0</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>beyond.crm</groupId>
+	<artifactId>core-common</artifactId>
+	<name>core common</name>
+	<version>1.0</version>
+	<url>http://maven.apache.org</url>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>beyond.crm</groupId>
+			<artifactId>core-utils</artifactId>
+			<version>1.0</version>
+		</dependency>
+	</dependencies>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+</project>

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oasis.spiderman.dao.erf.ExpReportDAO">
+
+    <resultMap type="com.oasis.spiderman.common.vo.erf.ExpReportFormVO" id="ExpReportFormMap">
+        <result property="siteName" column="site_name"/>
+		<result property="siteCode" column="site_code"/>
+		<result property="belongPOS" column="belong_pos"/>
+		<result property="registerTime" column="register_time"/>
+		<result property="transOrderNumber" column="trans_order_number"/>
+		<result property="phoneNumber" column="phone_number"/>
+		<result property="problemType" column="problem_type"/>
+		<result property="sendSite" column="send_site"/>
+		<result property="sendArea" column="send_area"/>
+		<result property="orgName" column="org_name"/>
+		<result property="orgId" column="org_id"/>
+        <result property="domainId" column="domain_id"/>
+        <result property="creatorId" column="CREATOR_ID"/>
+        <result property="updatorId" column="UPDATOR_ID"/>
+        <result property="orgTreepath" column="org_treepath"/>
+    </resultMap>   
+
+	<insert id="insert" parameterType="ExpReportForm">
+		<selectKey keyProperty="id" resultType="long" order="BEFORE">
+			select WL_EXP_REPORT_FORM_SEQUENCE.nextval from dual
+        </selectKey>
+
+		INSERT INTO WL_EXP_REPORT_FORM 
+		(
+	    <!-- 0-->id,
+        <!-- 1-->site_name,
+        <!-- 2-->site_code,
+        <!-- 3-->belong_pos,
+        <!-- 4-->register_time,
+        <!-- 5-->trans_order_number,
+        <!-- 6-->problem_type,
+        <!-- 7-->amount,
+        <!-- 8-->weight,
+        <!-- 9-->send_site,
+        <!-- 10-->problem,
+        <!-- 11-->send_area,
+        <!-- 12-->status,
+        <!-- 13-->org_name,
+        <!-- 14-->org_id,
+        <!-- 15-->domain_id,
+        <!-- 16-->createdtime,
+        <!-- 17-->updatedtime,
+        <!-- 18-->creator_id,
+        <!-- 19-->updator_id,
+        <!-- 20-->lockversion,
+        <!-- 21-->phone_number,
+        <!-- 22-->org_Treepath
+        )
+        values(
+        <!-- 0-->#{id:NUMERIC},
+        <!-- 1-->#{siteName:VARCHAR},
+        <!-- 2-->#{siteCode:VARCHAR},
+        <!-- 3-->#{belongPOS:VARCHAR},
+        <!-- 4-->#{registerTime:TIMESTAMP},
+        <!-- 5-->#{transOrderNumber:VARCHAR},
+        <!-- 6-->#{problemType:VARCHAR},
+        <!-- 7-->#{amount:VARCHAR},
+        <!-- 8-->#{weight:VARCHAR},
+        <!-- 9-->#{sendSite:VARCHAR},
+        <!-- 10-->#{problem:VARCHAR},
+        <!-- 11-->#{sendArea:VARCHAR},
+        <!-- 12-->#{status:VARCHAR},
+        <!-- 13-->#{orgName:VARCHAR},
+        <!-- 14-->#{orgId:NUMERIC},
+        <!-- 15-->#{domainId:NUMERIC},
+        <!-- 16-->#{createdTime:TIMESTAMP},
+        <!-- 17-->#{updatedTime:TIMESTAMP},
+        <!-- 18-->#{creatorId:NUMERIC},
+        <!-- 19-->#{updatorId:NUMERIC},
+        <!-- 20-->#{lockVersion:NUMERIC},
+        <!-- 21-->#{phoneNumber:VARCHAR},
+        <!-- 22-->#{orgTreepath:VARCHAR}
+        )
+	</insert>
+	
+	<update id="update" parameterType="ExpReportForm">
+		UPDATE WL_EXP_REPORT_FORM 
+        SET 
+	        site_name=#{siteName:VARCHAR},
+            site_code=#{siteCode:VARCHAR},
+            belong_pos=#{belongPOS:VARCHAR},
+            register_time=#{registerTime:TIMESTAMP},
+            trans_order_number=#{transOrderNumber:VARCHAR},
+            problem_type=#{problemType:VARCHAR},
+            amount=#{amount:VARCHAR},
+            weight=#{weight:VARCHAR},
+            send_site=#{sendSite:VARCHAR},
+            problem=#{problem:VARCHAR},
+            send_area=#{sendArea:VARCHAR},
+            status=#{status:VARCHAR},
+            org_name=#{orgName:VARCHAR},
+            org_id=#{orgId:NUMERIC},
+            domain_id=#{domainId:NUMERIC},
+            createdtime=#{createdTime:TIMESTAMP},
+            updatedtime=#{updatedTime:TIMESTAMP},
+            creator_id=#{creatorId:NUMERIC},
+            updator_id=#{updatorId:NUMERIC},
+            phone_number=#{phoneNumber:VARCHAR},
+            org_treepath=#{orgTreepath:VARCHAR},
+            LOCKVERSION = LOCKVERSION+1
+            where ID=#{id} and LOCKVERSION=#{lockVersion} 
+	</update>
+	
+	<select id="find" parameterType="long" resultType="ExpReportForm">
+        <include refid="sqlmap.common.model.find" />
+	</select>
+	
+	<select id="findVO" parameterType="long" resultMap="ExpReportFormMap">
+        select * from WL_EXP_REPORT_FORM t where t.id = #{i:NUMERIC}
+    </select>
+    
+     <select id="selectPageList" resultMap="ExpReportFormMap" parameterType="com.oasis.spiderman.common.so.erf.ExpReportFormSO">
+        select * from WL_EXP_REPORT_FORM t
+        <include refid="pageListClause" />
+    </select>
+
+    <select id="selectCount" resultType="int" parameterType="com.oasis.spiderman.common.so.erf.ExpReportFormSO">
+        select count(1) from WL_EXP_REPORT_FORM t
+        <include refid="pageListClause" />
+    </select>
+
+    <sql id="pageListClause">
+        where 1=1
+        <if test="siteName!=null and siteName!='' ">
+        and t.site_name like '%'|| #{siteName}||'%'
+        </if>
+        <if test="siteCode!=null and siteCode!='' ">
+        and t.site_code like '%'|| #{siteCode}||'%'
+        </if>
+        <if test="belongPOS!=null and belongPOS!='' ">
+        and t.belong_pos like '%'|| #{belongPOS}||'%'
+        </if>
+        <if test="transOrderNumber!=null and transOrderNumber!='' ">
+        and t.trans_order_number like '%'|| #{transOrderNumber}||'%'
+        </if>
+         <if test="phoneNumber!=null and phoneNumber!='' ">
+        and t.phone_number like '%'|| #{phoneNumber}||'%'
+        </if>
+        <if test="problemType!=null and problemType!='' ">
+        and t.problem_type like '%'|| #{problemType}||'%'
+        </if>
+        <if test="amount!=null and amount!='' ">
+        and t.amount like '%'|| #{amount}||'%'
+        </if>
+        <if test="weight!=null and weight!='' ">
+        and t.weight like '%'|| #{weight}||'%'
+        </if>
+        <if test="sendSite!=null and sendSite!='' ">
+        and t.send_site like '%'|| #{sendSite}||'%'
+        </if>
+        <if test="problem!=null and problem!='' ">
+        and t.problem like '%'|| #{problem}||'%'
+        </if>
+        <if test="sendArea!=null and sendArea!='' ">
+        and t.send_area like '%'|| #{sendArea}||'%'
+        </if>
+        <if test="status!=null and status!='' ">
+        and t.status = #{status}
+        </if>
+        <if test="orgName!=null and orgName!='' ">
+        and t.org_name like '%'|| #{orgName}||'%'
+        </if>
+        <if test="orgId!=null and orgId!=0 ">
+        and t.org_id = #{orgId}
+        </if>
+        <if test="statusList !=null and statusList.size() > 0">
+            and t.status in
+            <foreach collection="statusList" index="dex" item="item" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        
+        <if test="fb != null and fb =='NFB' ">
+	        <if test="orgTreepath != null and orgTreepath !='' ">
+	        and t.org_treepath like #{orgTreepath}||'%'
+	        </if>
+        </if>
+        
+        <if test="startTime != null">
+            <![CDATA[
+            AND t.register_time >= trunc(#{startTime} )
+            ]]>
+        </if>
+        <if test="endTime != null">
+            <![CDATA[
+            AND t.register_time < trunc(#{endTime})+1 
+            ]]>
+        </if>
+    </sql>
+	
+	<update id="updateStatus" parameterType="map" >
+        update WL_EXP_REPORT_FORM t set t.status=#{status} where id=#{id}
+    </update>
+    
+    <delete id="delete">
+        <include refid="sqlmap.common.model.delete" />
+    </delete>
+	
+</mapper>

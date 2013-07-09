@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oasis.tmsv5.dao.asso.AssociateDAO">
+	
+	<insert id="insert" parameterType="map">
+		insert into ${table} (${insertField}) values(#{assocCol},#{inverseCol})
+	</insert>
+	
+	<delete id="deleteByAssoc" parameterType="map">
+		delete from ${table} where ${clause}
+	</delete>
+	
+	<delete id="deleteByAssocIds" parameterType="map">
+		delete from ${table} where ${assocCol} in
+		<foreach item="item" index="index" collection="ids" 
+			open="(" separator="," close=")"> 
+			#{item}
+		</foreach>
+	</delete>
+	
+	<select id="selectList" parameterType="map" resultType="hashMap">
+  		select ${cols} from ${table} where ${clause}
+  </select>
+</mapper>

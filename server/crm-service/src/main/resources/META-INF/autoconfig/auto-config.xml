@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <group>
+        <property name="spiderman.logLevel"
+                    defaultValue="warn"
+                    description="日志文件级别"> 
+            <validator name="choice"
+                         choice="trace, debug, info, warn, error" /> 
+        </property>
+    </group>
+    <script>
+        <generate template="META-INF/autoconfig/log4j.properties" destfile="log4j.properties"/> 
+    </script>
+</config>

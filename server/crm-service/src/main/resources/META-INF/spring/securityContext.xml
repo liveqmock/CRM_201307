@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:security="http://www.springframework.org/schema/security"
+	xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-2.0.1.xsd">
+
+	<!-- This bean points at the embedded directory server created by the ldap-server 
+		element above -->
+	<bean id="contextSource"
+		class="org.springframework.security.ldap.DefaultSpringSecurityContextSource">
+		<constructor-arg
+			value="ldap://besthz1.800best.net:389/ou=BTR,dc=800best,dc=net ldap://besthz3.800best.net:389/ou=BTR,dc=800best,dc=net" />
+		<property name="userDn" value="sm" />
+		<property name="password" value="sm800best" />
+
+		<property name="baseEnvironmentProperties">
+			<map>
+				<entry key="java.naming.referral">
+					<value>follow</value>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	<bean id="ldapTemplate" class="org.springframework.ldap.core.LdapTemplate">
+		<property name="ignorePartialResultException" value="true" />
+		<constructor-arg ref="contextSource" />
+	</bean>
+
+	<bean id="userSearch"
+		class="org.springframework.security.ldap.search.FilterBasedLdapUserSearch">
+		<constructor-arg index="0" value="" />
+		<constructor-arg index="1" value="(sAMAccountName={0})" />
+		<constructor-arg index="2" ref="contextSource" />
+		<property name="searchSubtree" value="true" />
+	</bean>
+
+</beans>         

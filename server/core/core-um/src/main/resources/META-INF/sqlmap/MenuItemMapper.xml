@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oasis.tmsv5.dao.menuItem.MenuItemDAO">	
+
+<resultMap type="com.oasis.tmsv5.common.vo.menuItem.MenuItemVO" id="MenuItemMap">
+<result property="netAuthority" column="NET_AUTHORITY"/>
+<result property="domainId" column="domain_id"/>
+<result property="creatorId" column="CREATOR_ID"/>
+<result property="updatorId" column="UPDATOR_ID"/>
+</resultMap> 
+
+    <insert id="insert" parameterType="MenuItem">
+        <selectKey keyProperty="id" resultType="long" order="BEFORE">
+            select GT_MENU_ITEM_SEQ.nextval from dual
+        </selectKey>
+        insert into GT_MENU_ITEM(
+        <!-- 0-->id,
+        <!-- 1-->action,
+        <!-- 2-->sortIndex,
+        <!-- 3-->location,
+        <!-- 4-->name,
+        <!-- 5-->parentId,
+        <!-- 6-->title,
+        <!-- 7-->titleen,
+        <!-- 8-->type,
+        <!-- 9-->count,
+        <!-- 10-->net_authority,
+        <!-- 11-->domain_id,
+        <!-- 12-->createdtime,
+        <!-- 13-->updatedtime,
+        <!-- 14-->creator_id,
+        <!-- 15-->updator_id,
+        <!-- 16-->lockversion
+        )
+        values(
+        <!-- 0-->#{id:NUMERIC},
+        <!-- 1-->#{action:VARCHAR},
+        <!-- 2-->#{sortIndex:NUMERIC},
+        <!-- 3-->#{location:VARCHAR},
+        <!-- 4-->#{name:VARCHAR},
+        <!-- 5-->#{parentId:NUMERIC},
+        <!-- 6-->#{title:VARCHAR},
+        <!-- 7-->#{titleen:VARCHAR},
+        <!-- 8-->#{type:VARCHAR},
+        <!-- 9-->#{count:NUMERIC},
+        <!-- 10-->#{netAuthority:VARCHAR},
+        <!-- 11-->#{domainId:NUMERIC},
+        <!-- 12-->#{createdTime:TIMESTAMP},
+        <!-- 13-->#{updatedTime:TIMESTAMP},
+        <!-- 14-->#{creatorId:NUMERIC},
+        <!-- 15-->#{updatorId:NUMERIC},
+        <!-- 16-->#{lockVersion:NUMERIC}
+        )
+    </insert>
+
+    <update id="update" parameterType="MenuItem">
+        update GT_MENU_ITEM set
+            action=#{action:VARCHAR},
+            sortIndex=#{sortIndex:NUMERIC},
+            location=#{location:VARCHAR},
+            name=#{name:VARCHAR},
+            parentId=#{parentId:NUMERIC},
+            title=#{title:VARCHAR},
+            titleen=#{titleen:VARCHAR},
+            type=#{type:VARCHAR},
+            count=#{count:NUMERIC},
+            net_authority=#{netAuthority:VARCHAR},
+            domain_id=#{domainId:NUMERIC},
+            createdtime=#{createdTime:TIMESTAMP},
+            updatedtime=#{updatedTime:TIMESTAMP},
+            creator_id=#{creatorId:NUMERIC},
+            updator_id=#{updatorId:NUMERIC},
+            LOCKVERSION = LOCKVERSION+1
+            where ID=#{id} and LOCKVERSION=#{lockVersion} 
+    </update>
+
+	<select id="getMenuItemByAccount" resultType="MenuItem">
+        
+         <![CDATA[
+         select distinct me.* 
+		  from gt_accounts      a,
+		       gt_roles         r,
+		       gt_account_role  ar,
+		       gt_role_menuitem rm,
+		       gt_menu_item     me
+		 where a.id = ar.account_id
+		   and r.id = ar.role_id
+		   and r.id = rm.role
+		   and me.id = rm.menuitem
+		   and a.id=#{id}
+		   ]]>
+    </select>
+	
+	<select id="find" resultType="MenuItem">
+		<include refid="sqlmap.common.model.find" />
+	</select>
+    
+	<select id="getParentMenuItemByAccount" resultType="MenuItem">
+         <![CDATA[
+         select distinct *
+			  from gt_menu_item m
+			  where m.id in (select me.parentid
+							  from gt_accounts      a,
+							       gt_roles         r,
+							       gt_account_role  ar,
+							       gt_role_menuitem rm,
+							       gt_menu_item     me
+							 where a.id = ar.account_id
+							   and r.id = ar.role_id
+							   and r.id = rm.role
+							   and me.id = rm.menuitem
+							   and a.id=#{id} and me.type <> 'PERMISSION')
+		 ]]>
+    </select>
+    
+    <select id="getRootMenuItem" resultType="MenuItem">
+         select * from gt_menu_item mi where mi.parentid is null
+    </select>
+    
+    <select id="getMenuItemsByRole" resultType="MenuItem">
+         <![CDATA[
+         select me.*
+		  from  gt_roles         r,
+		        gt_role_menuitem rm,
+		        gt_menu_item     me
+		 where r.id = rm.role
+		   and me.id = rm.menuitem
+		   and r.id=#{id} and not exists (select 1 from gt_menu_item m where me.id = m.parentid and m.type <> 'PERMISSION')
+		 ]]>
+    </select>
+    
+    <select id="getAllMenuItem" resultType="MenuItem">
+         select * from gt_menu_item mi
+    </select>
+    
+    <select id="getAllPreMenuItemByAccount" resultType="MenuItem">
+         select distinct me.* 
+		  from gt_accounts      a,
+		       gt_roles         r,
+		       gt_account_role  ar,
+		       gt_role_menuitem rm,
+		       gt_menu_item     me
+		 where a.id = ar.account_id
+		   and r.id = ar.role_id
+		   and r.id = rm.role
+		   and me.id = rm.menuitem
+		   and a.id=#{id} and me.type='PERMISSION'
+    </select>
+    
+    <select id="getModelListByPara" resultType="MenuItem">
+		<include refid="sqlmap.common.model.searchListByPara" />
+	</select>
+	
+	<select id="checkDuplication" resultType="MenuItem" parameterType="map">
+		select * from gt_menu_item o 
+			<where>
+				
+				<if test="name!=null and name!='' ">
+					o.name = #{name}
+				</if>
+				<if test="parentid!=null">
+					and o.parentid = #{parentid}
+				</if>
+				
+				<if test="id!=null and id!='' ">
+					and id != #{id}
+				</if>
+			</where>
+	</select>
+	
+</mapper>

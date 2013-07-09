@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context    
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+	
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="hzsmtp1.800best.com" />
+	</bean>
+
+	<bean id="mailHelper" class="com.oasis.tmsv5.util.helper.MailHelper">
+		<property name="resource" value="classpath:mail-config.properties" />
+	</bean>
+
+	<bean id="phoneTextSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="sms.800best.com" />
+		<property name="username" value="Genitrans" />
+		<property name="password" value="GenitransPwd" />
+	</bean>
+</beans>

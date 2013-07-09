@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oasis.tmsv5.dao.account.AccountDAO">
+
+	  <resultMap type="com.oasis.tmsv5.common.vo.security.AccountVO" id="AccountMap">
+        <result property="domainId" column="domain_id"/>
+        <result property="creatorId" column="CREATOR_ID"/>
+        <result property="updatorId" column="UPDATOR_ID"/>
+        <result property="netAuthority" column="net_Authority"/>
+      </resultMap>    
+
+    <insert id="insert" parameterType="Account">
+        <selectKey keyProperty="id" resultType="long" order="BEFORE">
+            select GT_ACCOUNT_SEQUENCE.nextval from dual
+        </selectKey>
+        
+        insert into GT_ACCOUNTS(
+        <!-- 0...-->id,
+        <!-- 1-->loginname,
+        <!-- 2-->login_token,
+        <!-- 3-->password,
+        <!-- 4-->nameCn,
+        <!-- 5-->nameEn,
+        <!-- 6-->email,
+        <!-- 7-->phoneCode,
+        <!-- 8-->expiredDate,
+        <!-- 9-->passwordExpiredDate,
+        <!-- 10-->locked,
+        <!-- 11-->disabled,
+        <!-- 12-->net_authority,
+        <!-- 13-->domain_id,
+        <!-- 14-->createdtime,
+        <!-- 15-->updatedtime,
+        <!-- 16-->creator_id,
+        <!-- 17-->updator_id,
+        <!-- 18-->lockversion
+        )
+        values(
+        <!-- 0-->#{id:NUMERIC},
+        <!-- 1-->#{loginName:VARCHAR},
+        <!-- 2-->#{loginToken:VARCHAR},
+        <!-- 3-->#{password:VARCHAR},
+        <!-- 4-->#{nameCn:VARCHAR},
+        <!-- 5-->#{nameEn:VARCHAR},
+        <!-- 6-->#{email:VARCHAR},
+        <!-- 7-->#{phoneCode:VARCHAR},
+        <!-- 8-->#{expiredDate:TIMESTAMP},
+        <!-- 9-->#{passwordExpiredDate:TIMESTAMP},
+        <!-- 10-->#{locked:BIT},
+        <!-- 11-->#{disabled:BIT},
+        <!-- 12-->#{netAuthority:VARCHAR},
+        <!-- 13-->#{domainId:NUMERIC},
+        <!-- 14-->#{createdTime:TIMESTAMP},
+        <!-- 15-->#{updatedTime:TIMESTAMP},
+        <!-- 16-->#{creatorId:NUMERIC},
+        <!-- 17-->#{updatorId:NUMERIC},
+        <!-- 18-->#{lockVersion:NUMERIC}
+        )
+    </insert>	
+    
+    <update id="update" parameterType="Account" statementType="PREPARED" timeout="20000">
+        update GT_ACCOUNTS set
+            loginname=#{loginName:VARCHAR},
+            login_token=#{loginToken:VARCHAR},
+            password=#{password:VARCHAR},
+            nameCn=#{nameCn:VARCHAR},
+            nameEn=#{nameEn:VARCHAR},
+            email=#{email:VARCHAR},
+            phoneCode=#{phoneCode:VARCHAR},
+            expiredDate=#{expiredDate:TIMESTAMP},
+            passwordExpiredDate=#{passwordExpiredDate:TIMESTAMP},
+            locked=#{locked:BIT},
+            disabled=#{disabled:BIT},
+            net_authority=#{netAuthority:VARCHAR},
+            domain_id=#{domainId:NUMERIC},
+            createdtime=#{createdTime:TIMESTAMP},
+            updatedtime=#{updatedTime:TIMESTAMP},
+            creator_id=#{creatorId:NUMERIC},
+            updator_id=#{updatorId:NUMERIC},
+            LOCKVERSION = LOCKVERSION+1
+            where ID=#{id} and LOCKVERSION=#{lockVersion} 
+    </update>
+	
+	<select id="getModelListByPara" resultType="Account">
+		<include refid="sqlmap.common.model.searchListByPara" />
+	</select>
+
+	<select id="find" resultType="Account">
+		<include refid="sqlmap.common.model.find" />
+	</select>
+
+	<delete id="delete">
+		<include refid="sqlmap.common.model.delete" />
+	</delete>
+
+	<select id="getAccountByLoginNameAndDomainCode" resultType="Account">
+		select ac.*
+		from gt_accounts ac, gt_domains d
+		where ac.domain_id = d.id and ac.loginname =#{loginname} and d.id=#{id}
+	</select>
+	
+	<select id="getAccountByLoginNameNew" parameterType="map" resultMap="AccountMap">
+		select * from gt_accounts ac 
+		where 1=1 
+		<if test="loginName!=null and loginName!='' ">
+		and ac.loginname =#{loginName}
+		</if>
+		and ac.domain_id = #{domainId}
+	</select>
+	
+	<sql id="pageListClause">
+		<where> 
+             t.domain_id = a.id and a.id = #{domainId}
+			<if test="loginName!=null and loginName!='' ">
+				and t.loginName like UPPER('%'||#{loginName}||'%')
+			</if>
+			<if test="disabled != null ">
+				and t.disabled = #{disabled}
+			</if>
+		</where>
+	</sql>
+	
+	<select id="selectPageList" resultMap="AccountMap" parameterType="com.oasis.tmsv5.common.so.security.AccountSO">
+		select t.* from gt_accounts t,gt_domains a
+		<include refid="pageListClause"/>
+	</select>
+	
+	<select id="selectCount" resultType="int" parameterType="com.oasis.tmsv5.common.so.security.AccountSO">
+		select count(1) from gt_accounts t,gt_domains a
+		<include refid="pageListClause"/>
+	</select>
+	
+	<select id="checkDuplication" resultType="Account" parameterType="map">
+		select * from gt_accounts ac where 
+		1=1  
+        and ac.domain_id = #{domainId} 
+		<if test="loginName!=null and loginName!=''">
+              and  ac.loginname = #{loginName}
+            </if>
+            <if test="accountId!=null and accountId!=0">
+            	<![CDATA[
+               and ac.id <> #{accountId}
+                ]]>
+            </if>
+	</select>
+	
+	<delete id="deleteByIds" parameterType="map">
+		<include refid="sqlmap.common.model.deleteByIds"/>
+	</delete>
+	<select id="selectByIds" resultType="Account" parameterType="map">
+		<include refid="sqlmap.common.model.selectListByIds"/>
+	</select>
+	
+	<select id="findAccountByRoleAndTreepath" parameterType="map" resultType="Account">
+		 select distinct a.id, a.email, a.loginname
+		 from gt_accounts a, gt_account_role ar, gt_account_org_assoc ao, gt_organization o
+ 		 where ar.account_id = ao.account_id and ao.org_id = o.id and a.id = ar.account_id 
+ 		 and a.disabled = 0 and instr(#{treepath:VARCHAR}, o.treepath) = 1 
+		<if test="roles != null and roles.size > 0">
+			and ar.role_id in
+			<foreach collection="roles" item="item" open="(" separator="," close=")">
+				#{item:NUMERIC}
+			</foreach>
+		</if>
+	</select>
+	
+</mapper>

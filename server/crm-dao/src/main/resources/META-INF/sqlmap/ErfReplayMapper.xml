@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oasis.spiderman.dao.erf.ErfReplayDAO">
+
+     <resultMap type="com.oasis.spiderman.common.vo.erf.ErfReplayVO" id="ErfReplayMap">
+        <result property="domainId" column="domain_id"/>
+        <result property="creatorId" column="CREATOR_ID"/>
+        <result property="updatorId" column="UPDATOR_ID"/>
+      </resultMap>    
+
+	<insert id="insert" parameterType="ErfReplay">
+		<selectKey keyProperty="id" resultType="long" order="BEFORE">
+			select WL_ERF_REPLAY_SEQUENCE.nextval from dual
+        </selectKey>
+
+		insert into WL_ERF_REPLAY(
+        <!-- 0-->id,
+        <!-- 1-->erfid,
+        <!-- 2-->replay,
+        <!-- 3-->status,
+        <!-- 4-->domain_id,
+        <!-- 5-->createdtime,
+        <!-- 6-->updatedtime,
+        <!-- 7-->creator_id,
+        <!-- 8-->updator_id,
+        <!-- 9-->lockversion
+        )
+        values(
+        <!-- 0-->#{id:NUMERIC},
+        <!-- 1-->#{erfId:NUMERIC},
+        <!-- 2-->#{replay:VARCHAR},
+        <!-- 3-->#{status:VARCHAR},
+        <!-- 4-->#{domainId:NUMERIC},
+        <!-- 5-->#{createdTime:TIMESTAMP},
+        <!-- 6-->#{updatedTime:TIMESTAMP},
+        <!-- 7-->#{creatorId:NUMERIC},
+        <!-- 8-->#{updatorId:NUMERIC},
+        <!-- 9-->#{lockVersion:NUMERIC}
+        )
+	</insert>
+	
+	<update id="update" parameterType="ErfReplay">
+		 update WL_ERF_REPLAY set
+            erfid=#{erfId:NUMERIC},
+            replay=#{replay:VARCHAR},
+            status=#{status:VARCHAR},
+            domain_id=#{domainId:NUMERIC},
+            createdtime=#{createdTime:TIMESTAMP},
+            updatedtime=#{updatedTime:TIMESTAMP},
+            creator_id=#{creatorId:NUMERIC},
+            updator_id=#{updatorId:NUMERIC},
+            LOCKVERSION = LOCKVERSION+1
+            where ID=#{id} and LOCKVERSION=#{lockVersion} 
+	</update>
+	
+	<select id="find" parameterType="long" resultType="ErfReplay">
+        <include refid="sqlmap.common.model.find" />
+    </select>
+	
+	<select id="findVO" parameterType="long" resultMap="ErfReplayMap">
+         <include refid="sqlmap.common.model.find" />
+    </select>
+    
+    
+    <select id="selectPageList" resultMap="ErfReplayMap" parameterType="com.oasis.spiderman.common.so.erf.ErfReplaySO">
+        select * from WL_ERF_REPLAY t
+        <include refid="pageListClause" />
+    </select>
+
+    <select id="selectCount" resultType="int" parameterType="com.oasis.spiderman.common.so.erf.ErfReplaySO">
+        select count(1) from WL_ERF_REPLAY t
+        <include refid="pageListClause" />
+    </select>
+
+    <sql id="pageListClause">
+        where 1=1
+        <if test="erfId!=null and erfId!=0 ">
+        and t.erfid = #{erfId}
+        </if>
+        <if test="replay!=null and replay!='' ">
+        and t.replay like '%'|| #{replay}||'%'
+        </if>
+        <if test="status!=null and status!='' ">
+        and t.status like '%'|| #{status}||'%'
+        </if>
+        <if test="domainId!=null and domainId!=0 ">
+        and t.domain_id = #{domainId}
+        </if>
+        <if test="creatorId!=null and creatorId!=0 ">
+        and t.creator_id = #{creatorId}
+        </if>
+        <if test="updatorId!=null and updatorId!=0 ">
+        and t.updator_id = #{updatorId}
+        </if>
+    </sql>
+    
+    
+    <select id="getByErfId" parameterType="map" resultMap="ErfReplayMap">
+        select * from WL_ERF_REPLAY t where t.erfid = #{erfid}
+    </select>	
+    
+    <update id="updateStatus" parameterType="map" >
+        update WL_ERF_REPLAY t set t.status=#{status} where id=#{id}
+    </update>
+	
+</mapper>

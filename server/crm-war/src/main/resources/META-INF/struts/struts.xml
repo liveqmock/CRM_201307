@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<constant name="struts.i18n.reload" value="false" />
+	<constant name="struts.action.extension" value="jhtml" />
+	<constant name="struts.objectFactory" value="spring" />
+	<constant name="struts.custom.i18n.resources" value="ApplicationResources,errors" />
+	<constant name="struts.multipart.maxSize" value="2097152" />
+	<constant name="struts.ui.theme" value="css_xhtml" />
+	<constant name="struts.codebehind.pathPrefix" value="/bo/" />
+	<constant name="struts.enable.SlashesInActionNames" value="true" />
+	<constant name="struts.configuration.xml.reload" value="false" />
+	<constant name="struts.action.extension" value="action,," />
+	<constant name="struts.codebehind.defaultPackage" value="test" />
+	<constant name="struts.serve.static" value="true" />
+	<constant name="struts.serve.static.browserCache" value="false" />
+	<constant name="struts.freemarker.templatesCache" value="false" />
+	<constant name="struts.ognl.allowStaticMethodAccess" value="true"></constant>
+
+	<!-- include struts2 config fire like this :<include file="struts/struts-index.xml" /> -->
+
+	<!-- test package -->
+	<package name="test" extends="struts-default" namespace="/test">
+		<action name="index">
+			<result>/index.jsp</result>
+		</action>
+		<action name="users" class="userAction" method="findAllUsers">
+			<result name="success" type="freemarker">/users.ftl</result>
+		</action>
+	</package>
+</struts>

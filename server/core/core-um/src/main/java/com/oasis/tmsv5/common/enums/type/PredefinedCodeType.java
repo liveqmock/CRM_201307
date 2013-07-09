@@ -1,0 +1,7 @@
+package com.oasis.tmsv5.common.enums.type;
+
+public enum PredefinedCodeType {
+
+    MAIN_RECEIVABLE_BILL ,OTHER_RECEIVABLE_BILL, TAX_RATE ,PAYMENT_BILL,TRUCK_TYPE,TRUCK_BRAND,JOB_TRIGGER,PROBLEM_TYPE,APPROVAL_FORM_TYPE;
+
+}

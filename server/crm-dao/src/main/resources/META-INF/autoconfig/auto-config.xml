@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<group>
+		<property name="spiderman.datasource" defaultValue="dataSource_dev"
+			description="数据源" />
+	</group>
+	<script>
+		<generate template="META-INF/autoconfig/datasourceContext.xml"
+			destfile="META-INF/spring/datasourceContext.xml" />
+		<generate template="META-INF/autoconfig/jdbc.properties" destfile="jdbc.properties"/> 
+	</script>
+</config>
