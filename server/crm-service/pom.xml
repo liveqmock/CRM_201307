@@ -33,10 +33,6 @@
 			<artifactId>bestorika</artifactId>
 			<version>0.9.1</version>
 		</dependency>
-		<dependency>
-			<groupId>ojdbc</groupId>
-			<artifactId>ojdbc</artifactId>
-		</dependency>
 		<!-- aspect -->
 		<dependency>
 			<groupId>org.aspectj</groupId>

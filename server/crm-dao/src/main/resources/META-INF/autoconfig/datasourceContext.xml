@@ -31,13 +31,6 @@
 		<property name="removeAbandonedTimeout" value="${D}{jdbc.removeAbandonedTimeout}" />
 	</bean>
 
-	<!-- If use jndi, replace datasource -->
-	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
-		<property name="jndiName">
-			<value>java:comp/env/jdbc/GeniMAX/SPIDERMAN</value>
-		</property>
-	</bean> 
-
 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="${spiderman_datasource}" />
