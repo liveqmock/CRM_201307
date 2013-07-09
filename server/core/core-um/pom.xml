@@ -19,7 +19,7 @@
 		</dependency>
 		<dependency>
 			<artifactId>core-common</artifactId>
-			<groupId>oasis.spiderman</groupId>
+			<groupId>beyond.crm</groupId>
 			<version>1.0</version>
 		</dependency>
 		<dependency>
@@ -178,29 +178,23 @@
 			<version>1.0</version>
 		</dependency>
 		<!-- ldap end -->
-		
 		<dependency>
-			<groupId>com.google</groupId>
-			<artifactId>gson</artifactId>
-			<version>1.7.1-release</version>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.4</version>
 		</dependency>
-		
-		<dependency>
-		    <groupId>javax.mail</groupId>
-		    <artifactId>mail</artifactId>
-		    <version>1.4.4</version>
-		</dependency>
-		
+
 		<dependency>
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>
 			<version>1.2.2</version>
 		</dependency>
-		
+
 		<dependency>
-			<groupId>ojdbc</groupId>
-			<artifactId>ojdbc</artifactId>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
+
 	</dependencies>
 	<build>
 		<testResources>
