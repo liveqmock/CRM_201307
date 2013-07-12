@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hsdoc version="1.1.0">
+  <Windows>
+    <control-MainWindow height="506" name="MainWin" templatePath="window.ftl" width="581">
+      <layout-fit>
+        <control-Panel border="false" height="200" name="cep" width="300">
+          <Top/>
+          <Bottom/>
+          <Left/>
+          
+          <Right/>
+          <layout-fit>
+            <control-TabPanel x="182" border="false" y="68" name="TabPanel1" width="300" activeTab="0">
+              <layout-tab>
+                <control-Panel title="CEPPlugVersion" border="false" height="200" name="CEPPlugVersionPanel" width="300">
+                  <Top/>
+                  <Bottom/>
+                  <Left/>
+                  <Right/>
+                  <layout-fit>
+                    <control-Grid x="97" title="本地通道与CEP核心" y="64" height="200" name="Grid1" width="300">
+                      <layout-GridToolbar>
+                        <control-GridItem title="插件名称" align="left" name="GridItem1" width="100" sortable="true"/>
+                        <control-GridItem title="版本" align="left" name="GridItem2" width="100" sortable="true"/>
+                      </layout-GridToolbar>
+                      <Top/>
+                      <Bottom/>
+                      <Left/>
+                      <Right/>
+                    </control-Grid>
+                  </layout-fit>
+                </control-Panel>
+              </layout-tab>
+              <Top/>
+              <Bottom/>
+              <Left/>
+              <Right/>
+            </control-TabPanel>
+          </layout-fit>
+        </control-Panel>
+      </layout-fit>
+    </control-MainWindow>
+  </Windows>
+  <Accessory/>
+  <WindowScripts>
+    <WindowScript window="MainWin"><![CDATA[]]></WindowScript>
+  </WindowScripts>
+</hsdoc>

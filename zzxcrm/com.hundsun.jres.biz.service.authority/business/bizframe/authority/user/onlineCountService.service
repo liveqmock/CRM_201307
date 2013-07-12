@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ASCII"?>
+<service2:ServiceModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:flow2="http://www.hundsun.com/ares/studio/jres/flow2" xmlns:service2="http://www.hundsun.com/ares/studio/jres/service2" name="&#x5728;&#x7ebf;&#x4eba;&#x6570;&#x7edf;&#x8ba1;">
+  <inputDefines id="resCode" javaType="String">
+    <defaultValue2/>
+  </inputDefines>
+  <inputDefines id="opCode" javaType="String">
+    <defaultValue2/>
+  </inputDefines>
+  <outputDefines id="onlineCount" javaType="String" name="&#x5728;&#x7ebf;&#x4eba;&#x6570;">
+    <defaultValue2/>
+  </outputDefines>
+  <unit>
+    <info xsi:type="flow2:LogicUnitInfo"/>
+    <children id="componentMethod1" name="&#x6784;&#x4ef6;&#x65b9;&#x6cd5;">
+      <info xsi:type="flow2:ComponentMethodInfo" fullyQualifiedName="bizframe.authority.user._userComponent" methodName="action"/>
+    </children>
+    <children id="resultAssignment1" name="&#x7ed3;&#x679c;&#x8d4b;&#x503c;">
+      <info xsi:type="flow2:ResultAssignmentInfo" resultSet="true" resultType="com.hundsun.jres.interfaces.share.dataset.IDataset" expression="Result:componentMethod1.action_result"/>
+    </children>
+  </unit>
+</service2:ServiceModel>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service2:ServiceModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:flow2="http://www.hundsun.com/ares/studio/jres/flow2" xmlns:service2="http://www.hundsun.com/ares/studio/jres/service2" name="获取字典项编码" outputCollection="true" outputCollectionID="def_">
+  <inputDefines id="resCode" javaType="String">
+    <defaultValue2 userValue="&quot;cache&quot;"/>
+  </inputDefines>
+  <inputDefines id="opCode" javaType="String">
+    <defaultValue2 userValue="&quot;getdictitemcode&quot;"/>
+  </inputDefines>
+  <unit>
+    <info xsi:type="flow2:LogicUnitInfo"/>
+    <children id="action1" name="action" desc="action">
+      <info xsi:type="flow2:ComponentMethodInfo" fullyQualifiedName="bizframe.cache.sysdictcache" methodName="action">
+        <inputParameters id="context" javaType="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext" name="context"/>
+      </info>
+    </children>
+    <children id="resultAssignment1" name="结果赋值">
+      <info xsi:type="flow2:ResultAssignmentInfo" assignmentType="REFERENCE" resultType="com.hundsun.jres.interfaces.share.dataset.IDataset" expression="Result:action1.action_result"/>
+    </children>
+  </unit>
+</service2:ServiceModel>

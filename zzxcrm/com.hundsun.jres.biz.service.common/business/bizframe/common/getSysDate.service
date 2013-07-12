@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service2:ServiceModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:flow2="http://www.hundsun.com/ares/studio/jres/flow2" xmlns:service2="http://www.hundsun.com/ares/studio/jres/service2" xmi:id="_sbzPYKqeEd-E9O-ihdIKYg" name="查询系统时间">
+  <outputDefines id="service_time" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <unit xmi:id="_sbzPYaqeEd-E9O-ihdIKYg" id="322">
+    <info xsi:type="flow2:LogicUnitInfo" xmi:id="_sbzPYqqeEd-E9O-ihdIKYg"/>
+    <children id="getSysDate1" name="getSysDate" desc="getSysDate">
+      <info xsi:type="flow2:ComponentMethodInfo" fullyQualifiedName="bizframe.common.BizCommon" methodName="getSysDate">
+        <inputParameters id="context" javaType="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext" name="context"/>
+      </info>
+    </children>
+    <children id="resultAssignment1" name="结果赋值">
+      <info xsi:type="flow2:ResultAssignmentInfo" resultSet="true" resultType="com.hundsun.jres.interfaces.share.dataset.IDataset" expression="Result:getSysDate1.getSysDate_result"/>
+    </children>
+  </unit>
+</service2:ServiceModel>

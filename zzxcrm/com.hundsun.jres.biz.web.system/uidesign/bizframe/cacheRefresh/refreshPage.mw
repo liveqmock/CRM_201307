@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hsdoc version="1.1.0">
+  <Windows>
+    <control-MainWindow height="350" name="MainWin" templatePath="window.ftl" width="729">
+      <layout-fit>
+        <control-Grid hasCheckColumn="true" autoload="false" enableCellTip="true" width="300" height="200" dataSet="CachedPageDS" name="pageCacheGrid" hasCustomPageSize="true" hasPagingBar="true">
+          <layout-GridToolbar>
+            <control-GridItem title="路径" align="left" dataIndex="path" name="GridItem1" width="433" sortable="true"/>
+          </layout-GridToolbar>
+          <Top>
+            <control-Toolbar name="Toolbar1">
+              <layout-toolbar>
+                <control-Button name="Button1" text="刷新所有页面缓存" width="100" tabIndex="2" icon="bizframe/images/icons/arrow_refresh.png"/>
+                <control-Button name="Button2" text="刷新选定页面缓存" width="100" tabIndex="3" icon="bizframe/images/icons/page_refresh.png"/>
+                <control-Button name="Button3" displayModeRender="hidden" text="获得缓存页面" width="87" tabIndex="4"/>
+              </layout-toolbar>
+            </control-Toolbar>
+          </Top>
+          <Bottom/>
+          <Left/>
+          <Right/>
+        </control-Grid>
+      </layout-fit>
+    </control-MainWindow>
+  </Windows>
+  <Accessory>
+    <control-DataSet name="CachedPageDS" service="com.hundsun.jres.manage" usingServiceName="true" window="MainWin">
+      <params>
+        <param name="commandName"><![CDATA["getCachedPageByPage"]]></param>
+        <param name="pluginId"><![CDATA["jres.uiengine.engineservice"]]></param>
+        <param name="start"><![CDATA[1]]></param>
+        <param name="limit"><![CDATA[10]]></param>
+        <param name="resCode"><![CDATA["bizPageCacheSet"]]></param>
+        <param name="opCode"><![CDATA["pageCacheSet"]]></param>
+      </params>
+      <fields>
+        <field name="path" type="String"/>
+        <field name="error" type="String"/>
+      </fields>
+    </control-DataSet>
+    <control-DataSet name="ClearAllCachedPageDS" service="com.hundsun.jres.manage" usingServiceName="true" window="MainWin">
+      <params>
+        <param name="commandName"><![CDATA["clearAllCachedPage"]]></param>
+        <param name="pluginId"><![CDATA["jres.uiengine.engineservice"]]></param>
+        <param name="engineType"><![CDATA["ext3.0"]]></param>
+        <param name="ctxPath"><![CDATA[ctxPath]]></param>
+        <param name="resCode"><![CDATA["bizPageCacheSet"]]></param>
+        <param name="opCode"><![CDATA["pageCacheSet"]]></param>
+      </params>
+      <fields>
+        <field name="boolean" type="String"/>
+        <field name="error" type="String"/>
+      </fields>
+    </control-DataSet>
+    <control-DataSet name="ClearCachePagesDS" service="com.hundsun.jres.manage" usingServiceName="true" window="MainWin">
+      <params>
+        <param name="commandName"><![CDATA["clearCachePages"]]></param>
+        <param name="pluginId"><![CDATA["jres.uiengine.engineservice"]]></param>
+        <param name="engineType"><![CDATA["ext3.0"]]></param>
+        <param name="ctxPath"><![CDATA[ctxPath]]></param>
+        <param name="paths"><![CDATA[]]></param>
+        <param name="resCode"><![CDATA["bizPageCacheSet"]]></param>
+        <param name="opCode"><![CDATA["pageCacheSet"]]></param>
+      </params>
+      <fields>
+        <field name="boolean" type="String"/>
+        <field name="error" type="String"/>
+      </fields>
+    </control-DataSet>
+    <control-DataSet start="start" name="isCache" limit="limit" service="com.hundsun.jres.manage" usingServiceName="true" window="MainWin">
+      <params>
+        <param name="commandName"><![CDATA["isCacheable"]]></param>
+        <param name="pluginId"><![CDATA["jres.uiengine.engineservice"]]></param>
+        <param name="resCode"><![CDATA["bizPageCacheSet"]]></param>
+        <param name="opCode"><![CDATA["pageCacheSet"]]></param>
+      </params>
+      <fields>
+        <field name="isCache" type="String"/>
+      </fields>
+    </control-DataSet>
+  </Accessory>
+  <WindowScripts>
+    <WindowScript window="MainWin"><![CDATA[
+event Button1_click(Button thisComp, Ext.EventObject e) {
+	ClearAllCachedPageDS.load();
+}
+event ClearAllCachedPageDS_loadfailure(Hs.HsDataSet dataSet) {
+	var result =  dataSet.getResultData() ;
+	var errorNo =  result.errorNo;
+	var errorInfo = result.errorInfo ;
+	Ext.Msg.show({
+                    title:'错误',
+                    msg: '错误号：'+errorNo+'<br>错误信息：'+errorInfo,
+                    buttons: Ext.Msg.OK,
+                    icon: Ext.MessageBox.ERROR
+                });
+}
+event ClearAllCachedPageDS_loadsuccess(Hs.HsDataSet dataSet) {
+/*
+	var isCleared = true ;
+	var result =  dataSet.getResultData() ;
+	var errorNo =  result.errorNo;
+	var errorInfo = result.errorInfo ;
+	try{
+		isCleared = dataSet.getResultData().dataSetResult[0].data[0].boolean;
+	}catch (e) {
+		
+	}
+	if(!isCleared){
+		Ext.Msg.show({
+                    title:'刷新全部页面失败',
+                    msg: '错误号：'+errorNo+'<br>错误信息：'+errorInfo,
+                    buttons: Ext.Msg.OK,
+                    icon: Ext.MessageBox.ERROR
+                });
+	}
+	*/
+	var error = dataSet.getResultData().dataSetResult[0].data[0].error;
+	if(!Ext.isEmpty(error)){
+		Ext.Msg.show({
+                    title:'刷新全部页面失败',
+                    msg: '错误信息：'+error,
+                    buttons: Ext.Msg.OK,
+                    icon: Ext.MessageBox.ERROR,
+                    fn:onClickOK
+                });
+	}else{
+		//20120518 xujin BUG #2949::页面缓存后，没有成功提示 begin
+		Ext.Msg.show({
+	                    title:'提示',
+	                    msg: '刷新全部页面成功',
+	                    buttons: Ext.Msg.OK,
+	                    icon: Ext.MessageBox.INFO
+	                });
+	    //20120518 xujin BUG #2949::页面缓存后，没有成功提示 end
+	}
+}
+event Button2_click(Button thisComp, Ext.EventObject e) {
+	
+	var mwPaths = getSelectionsPath();
+	if(null==mwPaths||""==mwPaths){
+	   Ext.Msg.alert('提示','请选择至少一条页面路径进行刷新');
+	   return;
+	}
+	ClearCachePagesDS.setParams({paths : mwPaths});
+	ClearCachePagesDS.load();
+}
+
+private function getSelectionsPath(){
+	var records = pageCacheGrid.getSelectionDatas();
+	var paths = "";
+	for(var i=0;i<records.length;i++){
+		var mwPath = records[i].get('path');
+		if(0 == i){
+			paths +=mwPath
+		}else {
+			paths +=';'+mwPath
+		}
+	}
+	return paths;
+}
+event ClearCachePagesDS_loadsuccess(Hs.HsDataSet dataSet) {
+/*
+	var isCleared = true ;
+	var result =  dataSet.getResultData() ;
+	var errorNo =  result.errorNo;
+	var errorInfo = result.errorInfo ;
+	try{
+		isCleared = dataSet.getResultData().dataSetResult[0].data[0].boolean;
+	}catch (e) {
+		
+	}
+	if(!isCleared){
+		Ext.Msg.show({
+                    title:'刷新指定页面失败',
+                    msg: '错误号：'+errorNo+'<br>错误信息：'+errorInfo,
+                    buttons: Ext.Msg.OK,
+                    icon: Ext.MessageBox.ERROR
+                });
+	}
+	*/
+	var error = dataSet.getResultData().dataSetResult[0].data[0].error;
+	if(!Ext.isEmpty(error)){
+		Ext.Msg.show({
+                    title:'刷新指定页面失败',
+                    msg: '错误信息：'+error,
+                    buttons: Ext.Msg.OK,
+                    icon: Ext.MessageBox.ERROR,
+                    fn:onClickOK
+                });
+	}else{
+		//20120518 xujin BUG #2949::页面缓存后，没有成功提示 begin
+		Ext.Msg.show({
+	                    title:'提示',
+	                    msg: '刷新指定页面成功',
+	                    buttons: Ext.Msg.OK,
+	                    icon: Ext.MessageBox.INFO
+	                });
+	    //20120518 xujin BUG #2949::页面缓存后，没有成功提示 end
+	}
+	
+}
+
+function onClickOK(_buttonId){
+	pageCacheGrid.refresh();
+}
+
+event ClearCachePagesDS_loadfailure(Hs.HsDataSet dataSet) {
+	var result =  dataSet.getResultData() ;
+	var errorNo =  result.errorNo;
+	var errorInfo = result.errorInfo ;
+	Ext.Msg.show({
+                    title:'错误',
+                    msg: '错误号：'+errorNo+'<br>错误信息：'+errorInfo,
+                    buttons: Ext.Msg.OK,
+                    icon: Ext.MessageBox.ERROR
+                });
+}
+
+//检验有没有开启ui缓存，没有开启则按钮不可用，开启按钮才可用
+event MainWin_complete() {
+	isCache.load();
+}
+event isCache_loadsuccess(Hs.HsDataSet dataSet) {
+	var result = dataSet.getResultData();
+	//alert(Ext.encode(result));
+	var _isCacheAble = result.dataSetResult[0].data[0].isCache;
+	if(_isCacheAble === "false"){
+		Button1.setEnabled(false);
+		Button2.setEnabled(false);
+		Button3.setEnabled(false);
+		Ext.Msg.show({
+			   title:'出错',
+			   msg: 'ui引擎，页面缓存没有开启',
+			   buttons: Ext.Msg.OK,
+			   icon: Ext.MessageBox.WARNING
+		});
+		
+	}else {
+		CachedPageDS.load();
+	}
+}
+
+event isCache_loadfailure(Hs.HsDataSet dataSet) {
+	Ext.Msg.show({
+			   title:'出错',
+			   msg: 'isCacheDataset加载出错',
+			   buttons: Ext.Msg.OK,
+			   icon: Ext.MessageBox.WARNING
+		});
+	
+}
+event Button3_click(Button thisComp, Ext.EventObject e) {
+	CachedPageDS.load();
+}]]></WindowScript>
+  </WindowScripts>
+</hsdoc>

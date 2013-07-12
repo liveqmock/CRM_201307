@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hsdoc version="1.1.0">
+  <Windows>
+    <control-Window title="添加监控" maximized="true" name="Window1" draggable="true" width="600">
+      <Top/>
+      <Bottom/>
+      <Left/>
+      <Right/>
+      <layout-border>
+        <control-Grid region="center" hasCheckColumn="true" enableCellTip="true" width="300" height="200" dataSet="queryBizServiceDs" name="serviceGrid">
+          <layout-GridToolbar>
+            <control-GridItem align="left" width="200" title="ID" dataIndex="id" sortable="true" tipText="ID" name="GridItem1"/>
+            <control-GridItem align="left" width="100" title="名称" dataIndex="name" sortable="true" tipText="名称" name="GridItem2"/>
+            <control-GridItem align="left" width="80" title="状态" dataIndex="state" sortable="true" tipText="状态" name="GridItem3"/>
+            <control-GridItem align="left" width="150" title="描述" dataIndex="description" sortable="true" tipText="描述" name="GridItem4"/>
+          </layout-GridToolbar>
+          <Top>
+            <control-Toolbar name="Toolbar1">
+              <layout-toolbar>
+                <control-Button name="Button1" text="刷新" width="100" icon="bizframe/images/icons/refresh.png" tabIndex="1"/>
+              </layout-toolbar>
+            </control-Toolbar>
+          </Top>
+          <Bottom>
+            <control-ButtonGroup name="ButtonGroup1">
+              <layout-buttonGroup>
+                <control-Button name="submitBtn" text="添加" width="100" tabIndex="1" icon="bizframe/images/icons/add.png"/>
+                <control-Button name="closeBtn" text="关闭" width="100" tabIndex="1" icon="bizframe/images/close.png"/>
+              </layout-buttonGroup>
+            </control-ButtonGroup>
+          </Bottom>
+          <Left/>
+          <Right/>
+        </control-Grid>
+        <control-FormPanel region="north" height="30" name="FormPanel1">
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+          <layout-table columns="1" fullWidth="true">
+            <control-LabelField fieldLabel="业务逻辑类型" name="typeGroup" labelWidth="80" width="250"/>
+          </layout-table>
+        </control-FormPanel>
+      </layout-border>
+    </control-Window>
+  </Windows>
+  <Accessory>
+    <control-DataSet name="queryBizServiceDs" service="com.hundsun.jres.manage" usingServiceName="true" window="Window1">
+      <params>
+        <param name="type"><![CDATA[_stype]]></param>
+        <param name="resCode"><![CDATA["bizSysStatus"]]></param>
+        <param name="opCode"><![CDATA["queryBizService"]]></param>
+        <param name="pluginId"><![CDATA["jres.bizkernel_plugin"]]></param>
+        <param name="commandName"><![CDATA["queryBizServiceByType"]]></param>
+        <param name="nodeName"><![CDATA[_nodeName]]></param>
+      </params>
+      <fields>
+        <field name="id" type="String"/>
+        <field name="name" type="String"/>
+        <field name="version" type="String"/>
+        <field name="alias" type="String"/>
+        <field name="description" type="String"/>
+        <field name="type" type="String"/>
+        <field name="modifyTime" type="String"/>
+        <field name="state" type="String"/>
+      </fields>
+    </control-DataSet>
+    <control-DataSet name="serviceTypeDataset" usingServiceName="true" window="Window1">
+      <params/>
+      <fields>
+        <field name="typeName" type="String"/>
+        <field name="typeValue" type="String"/>
+      </fields>
+    </control-DataSet>
+  </Accessory>
+  <WindowScripts>
+    <WindowScript window="Window1"><![CDATA[service com.hundsun.jres.manage as startM;
+private _params = {};
+private _nodeName = ParentWin.getNodeName();
+private  _stype = ParentWin.typeGroup2.getValue();
+public function _call(params){
+  _params = params;
+  queryBizServiceDs.setParams({
+       type:_params.type.getValue()
+  })
+  queryBizServiceDs.load();
+}
+
+event GridItem3_renderer(Object value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store) {
+  
+  if(value == 'runable'){
+     return '<span style="color:green;" >运行</span>'
+  }else if(value == 'pause'){
+     return '<span style="color:red;" >暂停</span>'
+  }
+}
+
+event submitBtn_click(Button thisComp, Ext.EventObject e) {
+   var submitParams = {};   
+   submitParams.type = _stype;
+   var records = serviceGrid.getSelectionDatas(); 
+   submitParams.resCode = 'bizSysStatus';
+   submitParams.opCode = 'StartMonitorT';
+   submitParams.pluginId = "jres.bizkernel_plugin";
+   submitParams.nodeName = _nodeName;
+   if(records.length == 0){
+     Ext.Msg.alert("提示","请选择要监控的对象");
+     return;
+   }else{       
+      var ids = [];
+      for(var i =0;i<records.length;i++){
+         ids.push(records[i].data.id);
+      }
+      ids = ids.join(";");
+      submitParams.ids = ids;
+      submitParams.commandName = "startMonitorByServiceList";   
+   }
+    startM.asynExecute(
+                   submitParams,
+                   function(_response,opt){
+                      if(_response.returnCode == 0 && _response.dataSetResult[0].data!=null && _response.dataSetResult[0].data.length > 0){
+                          MainWin.monitorInfoDataSet.setParams({type : _stype});
+                         MainWin.monitorInfoDataSet.load();
+                         MainWin.typeGroup2.setValue(_stype);
+                         close();
+                      } else if(_response.returnCode != 0){
+                         Ext.Msg.alert("错误",_response.errorInfo); 
+                      }
+                      
+                   },
+                function(_response,opt){
+                   
+                   }
+   );
+}
+event serviceTypeDataset_beforedispensedata(Hs.HsDataSet dataSet) {
+      dataSet.resultData = { dataSetResult : [
+{"data":[{"typeName":"服务","typeValue":"service"},
+         {"typeName":"构件","typeValue":"component"},
+         {"typeName":"构件方法","typeValue":"componentMethod"},
+         {"typeName":"子流程","typeValue":"subFlow"}]}
+],
+returnCode : 0,
+errorNo : "0",
+errorInfo : null
+};
+}
+event typeGroup_select(Hs.HsCheckCombo combo, Ext.data.Record record, Number index) {
+    queryBizServiceDs.setParams({
+        type : typeGroup.getValue(),
+        commandName:"queryBizServiceByType",
+        nodeName : _nodeName
+     });
+    queryBizServiceDs.load(); 
+}
+event closeBtn_click(Button thisComp, Ext.EventObject e) {
+   close();
+}
+event Window1_complete() {
+    var  type = ParentWin.typeGroup2.getSelectedDisplayValue();
+    typeGroup.setValue(type);
+}
+event Button1_click(Button thisComp, Ext.EventObject e) {
+   queryBizServiceDs.load();
+}]]></WindowScript>
+  </WindowScripts>
+</hsdoc>

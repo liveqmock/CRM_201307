@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.hundsun.ares.studio.jres.component:HSComponent_EMF xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:com.hundsun.ares.studio.jres.component="http://com.hundsun.ares.studio.jres.hsobject" name="机构缓存服务构件"
+    constructCode="com.hundsun.jres.bizframe.core.authority.cache.BranchCache.getInstance()"
+    className="com.hundsun.jres.bizframe.core.authority.cache.BranchCache">
+  <methodList methodName="refresh" alias="refresh" desc="refresh">
+    <result/>
+  </methodList>
+  <methodList methodName="getBranchByBranchPath" alias="getBranchByBranchPath" desc="getBranchByBranchPath">
+    <paramList id="branchPath" name="branchPath" type="String"/>
+    <result id="getBranchByBranchPath_result" type="com.hundsun.jres.bizframe.core.authority.bean.SysBranch"/>
+    <resultDescList id="branchCode" type="String"/>
+    <resultDescList id="branchLevel" type="String"/>
+    <resultDescList id="branchName" type="String"/>
+    <resultDescList id="shortName" type="String"/>
+    <resultDescList id="parentCode" type="String"/>
+    <resultDescList id="branchPath" type="String"/>
+    <resultDescList id="remark" type="String"/>
+    <resultDescList id="extField1" type="String"/>
+    <resultDescList id="extField2" type="String"/>
+    <resultDescList id="extField3" type="String"/>
+    <resultDescList id="name" type="String"/>
+    <resultDescList id="indexLocation" type="String"/>
+    <resultDescList id="parentId" type="String"/>
+    <resultDescList id="id" type="String"/>
+    <resultDescList id="type" type="String"/>
+    <resultDescList id="belongGroup" type="com.hundsun.jres.bizframe.service.protocal.UserGroupDTP"/>
+    <resultDescList id="management" type="com.hundsun.jres.bizframe.service.protocal.UserGroupDTP"/>
+    <resultDescList id="responsible" type="com.hundsun.jres.bizframe.service.protocal.UserGroupDTP"/>
+  </methodList>
+  <methodList methodName="getAllSubBranch" alias="getAllSubBranch" desc="getAllSubBranch">
+    <paramList id="branchCode" name="branchCode" type="String" rename="branchCode"/>
+    <result id="getAllSubBranch_result" type="java.util.List&lt;com.hundsun.jres.bizframe.core.authority.bean.SysBranch>"/>
+    <resultDescList id="branchCode" type="String" rename="branchCode"/>
+    <resultDescList id="branchLevel" type="String" rename="branchLevel"/>
+    <resultDescList id="branchName" type="String" rename="branchName"/>
+    <resultDescList id="shortName" type="String" rename="shortName"/>
+    <resultDescList id="parentCode" type="String" rename="parentCode"/>
+    <resultDescList id="branchPath" type="String" rename="branchPath"/>
+    <resultDescList id="remark" type="String" rename="remark"/>
+    <resultDescList id="extField1" type="String" rename="extField1"/>
+    <resultDescList id="extField2" type="String" rename="extField2"/>
+    <resultDescList id="extField3" type="String" rename="extField3"/>
+    <resultDescList id="name" type="String" rename="name"/>
+    <resultDescList id="indexLocation" type="String" rename="indexLocation"/>
+    <resultDescList id="parentId" type="String" rename="parentId"/>
+    <resultDescList id="id" type="String" rename="id"/>
+    <resultDescList id="type" type="String" rename="type"/>
+    <resultDescList id="belongGroup" type="com.hundsun.jres.bizframe.service.protocal.UserGroupDTP"
+        rename="belongGroup"/>
+    <resultDescList id="management" type="com.hundsun.jres.bizframe.service.protocal.UserGroupDTP"
+        rename="management"/>
+    <resultDescList id="responsible" type="com.hundsun.jres.bizframe.service.protocal.UserGroupDTP"
+        rename="responsible"/>
+  </methodList>
+  <methodList methodName="getAllSubBranchByBranchPath" alias="getAllSubBranchByBranchPath"
+      desc="getAllSubBranchByBranchPath">
+    <paramList id="branchPath" name="branchPath" type="String"/>
+    <result id="getAllSubBranchByBranchPath_result" type="java.util.List&lt;com.hundsun.jres.bizframe.core.authority.bean.SysBranch>"/>
+    <resultDescList id="branchCode" type="String"/>
+    <resultDescList id="branchLevel" type="String"/>
+    <resultDescList id="branchName" type="String"/>
+    <resultDescList id="shortName" type="String"/>
+    <resultDescList id="parentCode" type="String"/>
+    <resultDescList id="branchPath" type="String"/>
+    <resultDescList id="remark" type="String"/>
+    <resultDescList id="extField1" type="String"/>
+    <resultDescList id="extField2" type="String"/>
+    <resultDescList id="extField3" type="String"/>
+    <resultDescList id="name" type="String"/>
+    <resultDescList id="indexLocation" type="String"/>
+    <resultDescList id="parentId" type="String"/>
+    <resultDescList id="id" type="String"/>
+    <resultDescList id="type" type="String"/>
+    <resultDescList id="belongGroup" type="com.hundsun.jres.bizframe.service.protocal.UserGroupDTP"/>
+    <resultDescList id="management" type="com.hundsun.jres.bizframe.service.protocal.UserGroupDTP"/>
+    <resultDescList id="responsible" type="com.hundsun.jres.bizframe.service.protocal.UserGroupDTP"/>
+  </methodList>
+</com.hundsun.ares.studio.jres.component:HSComponent_EMF>

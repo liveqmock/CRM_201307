@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hsdoc version="1.1.0">
+  <Windows>
+    <control-Window width="354" height="188" title="授权" name="authWindow" resizable="false" border="false" closeAction="hide">
+      <Top/>
+      <Bottom>
+        <control-ButtonGroup name="ButtonGroup53">
+          <layout-buttonGroup>
+            <control-Button name="commitButton" text="确定" width="75" icon="bizframe/images/icons/accept.png"/>
+            <control-Button name="cancelButton" text="取消" width="75" icon="bizframe/images/icons/cross.gif"/>
+          </layout-buttonGroup>
+        </control-ButtonGroup>
+      </Bottom>
+      <Left/>
+      <Right/>
+      <layout-border>
+        <control-FormPanel region="center" margins="{top:20,left:20}" width="300" height="120" name="authForm" frame="true" submitService="ifm.pub.auth.TransAuth">
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+          <layout-table columns="1" fullWidth="true">
+            <control-TextField labelAlign="right" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" regexText="非法输入，请输入长度4-32位的数字或英文字母" fieldName="warrantUser" width="280" height="22" regex="/^[a-zA-Z0-9]{4,32}$/" fieldLabel="用户名" name="warrantUser" allowBlank="false"/>
+            <control-Password labelAlign="right" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" regexText="非法输入，请输入6到32位 由数字 字母 或特殊字符" fieldName="warrantPass" width="281" height="22" regex="/^[\w!@#$%\^&amp;\*\(\)_]{6,32}$/" fieldLabel="密   码" name="warrantPass" allowBlank="false"/>
+          </layout-table>
+        </control-FormPanel>
+      </layout-border>
+    </control-Window>
+  </Windows>
+  <Accessory/>
+  <WindowScripts>
+    <WindowScript window="authWindow"><![CDATA[remote bizframe.authority.right.TransAuth as tauth;
+private  funcRef = null;//回调函数
+public function setFuncRef(ref){
+	if(ref != null){
+        funcRef = ref;
+     }
+}
+
+public function needAuth(win,authRsCode,authOpCode,MainWin,calFun){
+	var result = tauth.synExecute({resCode:'bizSetSubTrans',opCode:'bizAuthneedAuth',authRsCode:authRsCode,authOpCode:authOpCode});
+	//alert(Ext.encode(result));
+		if(result.returnCode==-1){
+			//alert(result.errorInfo);
+			return;
+		}else if(result.dataSetResult[0].data[0].needAuth=='0'){//原来是'0'
+			calFun();
+		}else{
+			win.setFuncRef(calFun);
+			win.show();
+		}
+}
+
+
+event commitButton_click(Button thisComp, Ext.EventObject e) {
+   if(authForm.getForm().isValid()){
+		var result = tauth.synExecute({resCode:"bizSetSubTrans",opCode:"bizAuthAuth",warrantUser:warrantUser.getValue(),warrantPass:warrantPass.getValue()});
+		if(result.returnCode=='-1'){//原来是'-1'
+			Ext.Msg.alert('提示','授权失败<br>原因：'+result.errorInfo);
+			return;
+		}else{
+			funcRef();
+   			close();
+		}
+	}else{
+		Ext.Msg.alert('提示', '发现有输入项不符合规范');
+	}	
+   
+}
+
+event cancelButton_click(Button thisComp, Ext.EventObject e) {
+	close();
+}
+
+
+]]></WindowScript>
+  </WindowScripts>
+</hsdoc>

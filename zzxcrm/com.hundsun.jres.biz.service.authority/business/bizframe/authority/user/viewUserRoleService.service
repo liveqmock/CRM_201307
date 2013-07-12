@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service2:ServiceModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:flow2="http://www.hundsun.com/ares/studio/jres/flow2" xmlns:service2="http://www.hundsun.com/ares/studio/jres/service2" name="viewUserRoleService">
+  <inputDefines id="opCode" javaType="String">
+    <defaultValue2/>
+  </inputDefines>
+  <inputDefines id="resCode" javaType="String">
+    <defaultValue2/>
+  </inputDefines>
+  <outputDefines id="right_flag" type="TDict" javaType="String" name="授权标志" description="用于表示该授权的操作授权标志&#xA;取数据字典[sys_biz_right_flag]&#xA;0-禁止&#xA;1-操作&#xA;2-授权&#xA;3-全部">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="role_name" type="TName" javaType="String" name="角色名称">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="role_code" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="right_flag_name" javaType="String" name="授权标志">
+    <defaultValue2/>
+  </outputDefines>
+  <unit>
+    <info xsi:type="flow2:LogicUnitInfo"/>
+    <children id="action1" name="action" desc="action">
+      <info xsi:type="flow2:ComponentMethodInfo" fullyQualifiedName="bizframe.authority.user._userComponent" methodName="action">
+        <inputParameters id="context" javaType="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext" name="context"/>
+      </info>
+    </children>
+    <children id="resultAssignment1" name="结果赋值">
+      <info xsi:type="flow2:ResultAssignmentInfo" assignmentType="REFERENCE" resultType="com.hundsun.jres.interfaces.share.dataset.IDataset" expression="Result:action1.action_result"/>
+    </children>
+  </unit>
+</service2:ServiceModel>

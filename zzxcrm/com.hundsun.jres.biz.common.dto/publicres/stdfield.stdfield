@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata:StandardFieldList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:metadata="http://www.hundsun.com/ares/studio/jres/metadata/1.0.0" name="stdfield">
+  <root>
+    <children name="dict" items="//@items.0 //@items.1 //@items.2 //@items.3 //@items.4 //@items.5 //@items.6 //@items.7 //@items.8 //@items.9 //@items.10"/>
+    <children name="authority" items="//@items.11 //@items.12 //@items.13 //@items.14 //@items.15 //@items.16 //@items.17 //@items.18 //@items.19 //@items.20 //@items.21 //@items.22 //@items.23 //@items.24 //@items.25 //@items.26 //@items.27 //@items.28 //@items.29 //@items.30 //@items.31 //@items.32 //@items.33 //@items.34 //@items.35 //@items.36 //@items.37 //@items.38 //@items.39 //@items.40 //@items.41 //@items.42 //@items.43 //@items.44 //@items.45 //@items.46 //@items.47 //@items.48 //@items.49 //@items.50 //@items.51 //@items.52 //@items.53 //@items.54 //@items.55 //@items.56 //@items.57 //@items.58 //@items.59 //@items.60 //@items.61 //@items.62 //@items.63 //@items.64 //@items.65 //@items.66 //@items.67 //@items.68 //@items.69 //@items.70 //@items.71 //@items.72 //@items.73 //@items.74 //@items.75 //@items.76 //@items.77 //@items.78 //@items.79 //@items.80 //@items.109"/>
+    <children name="parament" items="//@items.81 //@items.82 //@items.83 //@items.84 //@items.85 //@items.86"/>
+    <children name="system" items="//@items.87 //@items.88 //@items.89 //@items.90 //@items.91 //@items.106 //@items.92 //@items.93 //@items.94 //@items.95 //@items.96 //@items.97 //@items.98 //@items.99 //@items.100 //@items.101 //@items.102 //@items.107 //@items.108"/>
+    <children name="kind" items="//@items.103 //@items.104 //@items.105"/>
+  </root>
+  <items xsi:type="metadata:StandardField" name="platform" chineseName="平台标志" dataType="TDict"/>
+  <items xsi:type="metadata:StandardField" name="lifecycle" chineseName="生命周期" dataType="TDict"/>
+  <items xsi:type="metadata:StandardField" name="dict_entry_code" chineseName="字典条目编号" description="条目代码" dataType="TCode"/>
+  <items xsi:type="metadata:StandardField" name="rel_code" chineseName="关联代码" dataType="TLongName"/>
+  <items xsi:type="metadata:StandardField" name="dict_item_order" chineseName="序号" dataType="TInt"/>
+  <items xsi:type="metadata:StandardField" name="kind_code" chineseName="分类编号" dataType="TCode"/>
+  <items xsi:type="metadata:StandardField" name="ctrl_flag" chineseName="控制标志" dataType="TDict"/>
+  <items xsi:type="metadata:StandardField" name="dict_item_name" chineseName="字典项名称" dataType="TName"/>
+  <items xsi:type="metadata:StandardField" name="dict_entry_name" chineseName="字典条目名称" description="条目名称" dataType="TName"/>
+  <items xsi:type="metadata:StandardField" name="dict_item_code" chineseName="字典项编号" dataType="TDesc"/>
+  <items xsi:type="metadata:StandardField" name="remark" chineseName="备注" dataType="TDesc"/>
+  <items xsi:type="metadata:StandardField" name="org_id" chineseName="所属组织" dataType="TOrgCode"/>
+  <items xsi:type="metadata:StandardField" name="user_id" chineseName="授权用户" dataType="TLongCode"/>
+  <items xsi:type="metadata:StandardField" name="create_date" chineseName="分配时间" dataType="TIntDateTime"/>
+  <items xsi:type="metadata:StandardField" name="trans_name" chineseName="交易名称" dataType="TName"/>
+  <items xsi:type="metadata:StandardField" name="trans_code" chineseName="交易编号" dataType="TLongCode"/>
+  <items xsi:type="metadata:StandardField" name="ext_flag" chineseName="扩展标志" dataType="TDict"/>
+  <items xsi:type="metadata:StandardField" name="menu_arg" chineseName="菜单参数" dataType="TDesc"/>
+  <items xsi:type="metadata:StandardField" name="last_login_time" chineseName="上次成功登录时" dataType="TIntDateTime"/>
+  <items xsi:type="metadata:StandardField" name="role_path" chineseName="角色索引" dataType="TDesc"/>
+  <items xsi:type="metadata:StandardField" name="menu_code" chineseName="菜单编号" description="用于表示菜单英文代码,代码与生命周期组成唯一索引&#xA;studio需显示文本输入" dataType="TLongCode"/>
+  <items xsi:type="metadata:StandardField" name="right_flag" chineseName="授权标志" description="0-操作角色&#xA;1-授权角色" dataType="TDict"/>
+  <items xsi:type="metadata:StandardField" name="menu_name" chineseName="菜单名称" description="用于表示菜单中文名称&#xA;studio需显示文本输入" dataType="TName"/>
+  <items xsi:type="metadata:StandardField" name="last_login_date" chineseName="上次成功登录日" dataType="TIntDateTime"/>
+  <items xsi:type="metadata:StandardField" name="lock_status" chineseName="锁定状态" description="用于表示此用户是否被锁定&#xA;字典[sys_biz_lock_status]&#xA;0-签退&#xA;1-登录&#xA;2-非正常签退&#xA;3-锁定" dataType="TDict"/>
+  <items xsi:type="metadata:StandardField" name="ext_field_3" chineseName="扩展字段3" dataType="TDesc"/>
+  <items xsi:type="metadata:StandardField" name="order_no" chineseName="序号" description="用于表示同级菜单下的顺序排列&#xA;studio需显示" dataType="TInt"/>
+  <items xsi:type="metadata:StandardField" name="menu_url" chineseName="菜单url" description="一个来源url&#xA;实体模型、关联模型、视图模型、查询模型、单一查询模板、操作模型、工作流模型的入口地址、用户自定义url、js入口" dataType="TDesc"/>
+  <items xsi:type="metadata:StandardField" name="sub_trans_code" chineseName="子交易编号" description="一个来源url&#xA;实体模型、关联模型、视图模型、查询模型、单一查询模板、操作模型、工作流模型的入口地址、用户自定义url、js入口" dataType="TLongCode"/>
+  <items xsi:type="metadata:StandardField" name="user_pwd" chineseName="用户密码" dataType="TName"/>
+  <items xsi:type="metadata:StandardField" name="role_code" chineseName="授权角色" dataType="TCode"/>
+  <items xsi:type="metadata:StandardField" name="user_name" chineseName="用户名称" dataType="TName"/>
+  <items xsi:type="metadata:StandardField" name="login_flag" chineseName="登录标志" description="0-否&#xA;1-是" dataType="TDict"/>
+  <items xsi:type="metadata:StandardField" name="right_enable" chineseName="禁用标志" description="用于表示该授权的是否禁止标志&#xA;字典[sys_biz_right_enable]&#xA;0-禁止&#xA;1-可用" dataType="TDict"/>
+  <items xsi:type="metadata:StandardField" name="rel_url" chineseName="映射url" description="&#xA;" dataType="TDesc"/>
+  <items xsi:type="metadata:StandardField" name="org_code" chineseName="组织机构编码" dataType="TLongName"/>
+  <items xsi:type="metadata:StandardField" name="begin_date" chineseName="生效时间" dataType="TIntDateTime"/>
+  <items xsi:type="metadata:StandardField" name="user_status" chineseName="用户状态" description="用于表示此用户状态&#xA;字典[sys_biz_user_status]&#xA;0-正常&#xA;1-注销&#xA;2-禁用" dataType="TDict"/>
+  <items xsi:type="metadata:StandardField" name="sso_org_code" chineseName="sso组织编码" dataType="TLongCode"/>
+  <items xsi:type="metadata:StandardField" name="menu_icon" chineseName="菜单图标" description="名称之前icon图标或者菜单的背景图片" dataType="TDesc"/>
+  <items xsi:type="metadata:StandardField" name="tip" chineseName="提示信息" description="对菜单功能的简单描述，鼠标悬停在菜单名称上时可做相应的提示" dataType="TDesc"/>
+  <items xsi:type="metadata:StandardField" name="position_code" chineseName="岗位编号" dataType="TLongName"/>
+  <items xsi:type="metadata:StandardField" name="parent_code" chineseName="上级岗位编号" dataType="TLongName"/>
+  <items xsi:type="metadata:StandardField" name="rel_serv" chineseName="映射服务" dataType="TDesc"/>
+  <items xsi:type="metadata:StandardField" name="ext_field" chineseName="扩展字段" dataType="TCode"/>
+  <items xsi:type="metadata:StandardField" name="position_name" chineseName="岗位名称" dataType="TLongName"/>
+  <items xsi:type="metadata:StandardField" name="last_login_ip" chineseName="最近登录操作ip" dataType="TCode"/>
+  <items xsi:type="metadata:StandardField" name="tree_idx" chineseName="树索引码" description="用于表示菜单各级之间关系,取各级菜单id前后加'#'号&#xA;e.g. #grandfather#father#children#" dataType="TDesc"/>
+  <items xsi:type="metadata:StandardField" name="org_level" chineseName="组织级别" dataType="TDesc"/>
+  <items xsi:type="metadata:StandardField" name="last_fail_date" chineseName="最后登录失败日" dataType="TIntDateTime"/>
+  <items xsi:type="metadata:StandardField" name="mobile" chineseName="手机号码" dataType="TCode"/>
+  <items xsi:type="metadata:StandardField" name="ext_id" chineseName="扩展标识" dataType="TFlag"/>
+  <items xsi:type="metadata:StandardField" name="position_path" chineseName="岗位内码" dataType="TLongDesc"/>
+  <items xsi:type="metadata:StandardField" name="manage_id" chineseName="主管组织标识" dataType="TDesc"/>
+  <items xsi:type="metadata:StandardField" name="hot_key" chineseName="快捷键" dataType="TDict"/>
+  <items xsi:type="metadata:StandardField" name="ext_field_2" chineseName="扩展字段2" dataType="TDesc"/>
+  <items xsi:type="metadata:StandardField" name="dimension" chineseName="维度" description="用于表示此组织的分类&#xA;取数据字典[sys_biz_org_level]&#xA;0-总部 &#xA;1-分行&#xA;2-支行    &#xA;3-网点" dataType="TDict"/>
+  <items xsi:type="metadata:StandardField" name="ext_field_1" chineseName="扩展字段1" dataType="TDesc"/>
+  <items xsi:type="metadata:StandardField" name="email" chineseName="email" dataType="TDesc"/>
+  <items xsi:type="metadata:StandardField" name="ext_field_5" chineseName="扩展字段5" dataType="TDesc"/>
+  <items xsi:type="metadata:StandardField" name="creator" chineseName="创建者" dataType="TLongCode"/>
+  <items xsi:type="metadata:StandardField" name="window_type" chineseName="窗口类型" description="用于表示点击菜单后展现页面的显示方式&#xA;字典[sys_biz_window_cate]&#xA;0-工作区tab页&#xA;1-弹出窗口" dataType="TDict"/>
+  <items xsi:type="metadata:StandardField" name="open_flag" chineseName="展开标志" description="用于表示该菜单是否默认展开&#xA;字典[sys_biz_yes_or_no]&#xA;0-否&#xA;1-是" dataType="TDict"/>
+  <items xsi:type="metadata:StandardField" name="parent_id" chineseName="角色父节点标识" dataType="TCode"/>
+  <items xsi:type="metadata:StandardField" name="create_by" chineseName="分配人" dataType="TLongCode"/>
+  <items xsi:type="metadata:StandardField" name="org_name" chineseName="组织机构名称" dataType="TName"/>
+  <items xsi:type="metadata:StandardField" name="pass_modify_date" chineseName="密码修改时间" dataType="TIntDateTime"/>
+  <items xsi:type="metadata:StandardField" name="end_date" chineseName="失效时间" dataType="TIntDateTime"/>
+  <items xsi:type="metadata:StandardField" name="ext_field_4" chineseName="扩展字段4" dataType="TDesc"/>
+  <items xsi:type="metadata:StandardField" name="org_cate" chineseName="组织分类" dataType="TDesc"/>
+  <items xsi:type="metadata:StandardField" name="org_path" chineseName="组织索引" dataType="TLongDesc"/>
+  <items xsi:type="metadata:StandardField" name="sub_trans_name" chineseName="子交易名称" dataType="TDesc"/>
+  <items xsi:type="metadata:StandardField" name="user_type" chineseName="用户分类" description="用户分类&#xA;字典[sys_biz_user_cate]&#xA;0-柜员&#xA;1-用户" dataType="TDict"/>
+  <items xsi:type="metadata:StandardField" name="model_code" chineseName="模块编号" dataType="TLongCode"/>
+  <items xsi:type="metadata:StandardField" name="modify_date" chineseName="最后修改时间" dataType="TIntDateTime"/>
+  <items xsi:type="metadata:StandardField" name="org_order" chineseName="组织序号" dataType="TDesc"/>
+  <items xsi:type="metadata:StandardField" name="user_code" chineseName="用户代码" dataType="TLongCode"/>
+  <items xsi:type="metadata:StandardField" name="window_model" chineseName="窗口模式" description="用于表示单例窗口\每次打开新窗口模式" dataType="TDict"/>
+  <items xsi:type="metadata:StandardField" name="login_fail_times" chineseName="登录累计失败次数" dataType="TInt"/>
+  <items xsi:type="metadata:StandardField" name="sso_parent_code" chineseName="sso上级组织编码" dataType="TLongCode"/>
+  <items xsi:type="metadata:StandardField" name="role_name" chineseName="角色名称" dataType="TName"/>
+  <items xsi:type="metadata:StandardField" name="param_name" chineseName="参数名称" dataType="TName"/>
+  <items xsi:type="metadata:StandardField" name="param_desc" chineseName="摘要" dataType="TDesc"/>
+  <items xsi:type="metadata:StandardField" name="param_value" chineseName="参数值" dataType="TLongDesc"/>
+  <items xsi:type="metadata:StandardField" name="param_regex" chineseName="正则验证规则" dataType="TLongName"/>
+  <items xsi:type="metadata:StandardField" name="rel_org" chineseName="关联组织" dataType="TLongName"/>
+  <items xsi:type="metadata:StandardField" name="param_code" chineseName="参数编号" dataType="TCode"/>
+  <items xsi:type="metadata:StandardField" name="log_id" chineseName="业务日志编号" dataType="TLongCode"/>
+  <items xsi:type="metadata:StandardField" name="host_name" chineseName="主机名称" dataType="TLongName"/>
+  <items xsi:type="metadata:StandardField" name="send_date" chineseName="消息发送日期时间" dataType="TIntDateTime"/>
+  <items xsi:type="metadata:StandardField" name="send_user_id" chineseName="发送者id" dataType="TLongCode"/>
+  <items xsi:type="metadata:StandardField" name="begin_time" chineseName="开始日期" dataType="TDate"/>
+  <items xsi:type="metadata:StandardField" name="msg_type" chineseName="消息类型" description="站内消息类型&#xA;字典[biz_msg_type]&#xA;     1-站内邮件&#xA;     2-站内消息" dataType="TDict"/>
+  <items xsi:type="metadata:StandardField" name="msg_id" chineseName="消息代码" dataType="TLongCode"/>
+  <items xsi:type="metadata:StandardField" name="trace_info" chineseName="追踪信息" dataType="TObject"/>
+  <items xsi:type="metadata:StandardField" name="oper_contents" chineseName="业务操作详细描述" dataType="TLongDesc"/>
+  <items xsi:type="metadata:StandardField" name="subsystem_ver" chineseName="子系统版本号" dataType="TLongCode"/>
+  <items xsi:type="metadata:StandardField" name="ip_add" chineseName="操作者ip地址" dataType="TLongName"/>
+  <items xsi:type="metadata:StandardField" name="subsystem_name" chineseName="子系统名称" dataType="TName"/>
+  <items xsi:type="metadata:StandardField" name="access_date" chineseName="操作日期" dataType="TIntDateTime"/>
+  <items xsi:type="metadata:StandardField" name="access_time" chineseName="操作时间" dataType="TIntDateTime"/>
+  <items xsi:type="metadata:StandardField" name="receive_user_id" chineseName="接收者id" dataType="TLongCode"/>
+  <items xsi:type="metadata:StandardField" name="msg_isred" chineseName="消息是否已读取" description="站内消息是否已读取&#xA;字典[biz_is_read]&#xA;     0-未读&#xA;     1-已读&#xA;" dataType="TDict"/>
+  <items xsi:type="metadata:StandardField" name="kind_type" chineseName="分类类型" description="分类类型&#xA;字典[sys_biz_kind_type]&#xA;0-数据字典&#xA;1-系统参数&#xA;2-标准字段&#xA;3-系统资源&#xA;4-系统菜单" dataType="TDict"/>
+  <items xsi:type="metadata:StandardField" name="mnemonic" chineseName="助记符" dataType="TCode"/>
+  <items xsi:type="metadata:StandardField" name="kind_name" chineseName="分类名称" dataType="TName"/>
+  <items xsi:type="metadata:StandardField" name="end_time" chineseName="结束日期" dataType="TDate"/>
+  <items xsi:type="metadata:StandardField" name="msg_title" chineseName="消息标题" dataType="TLongName"/>
+  <items xsi:type="metadata:StandardField" name="msg_content" chineseName="消息内容" dataType="TLongDesc"/>
+  <items xsi:type="metadata:StandardField" name="user_order" chineseName="用户排序字段" dataType="TInt"/>
+</metadata:StandardFieldList>

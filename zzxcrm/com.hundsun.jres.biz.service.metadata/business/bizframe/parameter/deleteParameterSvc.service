@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:flow2="http://www.hundsun.com/ares/studio/jres/flow2" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.1/notation" xmlns:service2="http://www.hundsun.com/ares/studio/jres/service2">
+  <service2:ServiceModel xmi:id="_spNZRaqeEd-E9O-ihdIKYg" name="删除系统参数">
+    <inputDefines xmi:type="flow2:InputParameterDefine" xmi:id="_spNZRqqeEd-E9O-ihdIKYg" id="paramIdString" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_vZ0ecv5KEd-oo_B_Zk5lIQ"/>
+    </inputDefines>
+    <unit xmi:type="flow2:LogicUnit" xmi:id="_spNZR6qeEd-E9O-ihdIKYg" id="404">
+      <info xmi:type="flow2:LogicUnitInfo" xmi:id="_spNZSKqeEd-E9O-ihdIKYg"/>
+      <children xmi:type="flow2:FlowNode" xmi:id="_spNZSaqeEd-E9O-ihdIKYg" id="componentMethod159" name="componentMethod159" desc="Component Method Info bizframe.parameter.parameterService">
+        <info xmi:type="flow2:ComponentMethodInfo" xmi:id="_spNZSqqeEd-E9O-ihdIKYg" fullyQualifiedName="bizframe.parameter.parameterService" methodName="batchDeleteParameter">
+          <inputParameters xmi:type="flow2:InputParameter" xmi:id="_spNZS6qeEd-E9O-ihdIKYg" id="arg0" javaType="String" userValue="Input:paramIdString"/>
+          <outputParameters xmi:type="flow2:OutputParameter" xmi:id="_spNZTKqeEd-E9O-ihdIKYg" javaType="void"/>
+        </info>
+      </children>
+      <children xmi:type="flow2:FlowNode" xmi:id="_spNZTaqeEd-E9O-ihdIKYg" id="componentMethod143" name="componentMethod143" desc="Component Method Info bizframe.utils.cache.parameterCache">
+        <info xmi:type="flow2:ComponentMethodInfo" xmi:id="_spNZTqqeEd-E9O-ihdIKYg" fullyQualifiedName="bizframe.utils.cache.parameterCache" methodName="flush">
+          <outputParameters xmi:type="flow2:OutputParameter" xmi:id="_spNZT6qeEd-E9O-ihdIKYg" javaType="void"/>
+        </info>
+      </children>
+    </unit>
+  </service2:ServiceModel>
+  <notation:Diagram xmi:id="_vZ-Pcf5KEd-oo_B_Zk5lIQ" type="Flow2" element="_spNZRaqeEd-E9O-ihdIKYg" measurementUnit="Pixel">
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_vZ-Pcv5KEd-oo_B_Zk5lIQ"/>
+  </notation:Diagram>
+</xmi:XMI>

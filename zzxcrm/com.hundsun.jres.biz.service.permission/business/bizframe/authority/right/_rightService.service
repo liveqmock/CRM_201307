@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:flow2="http://www.hundsun.com/ares/studio/jres/flow2" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.1/notation" xmlns:service2="http://www.hundsun.com/ares/studio/jres/service2">
+  <service2:ServiceModel xmi:id="_0T86sL8TEd-uvPnK8fc4Nw" name="权限验证" outputCollection="true" outputCollectionID="def_action">
+    <inputDefines xmi:type="flow2:InputParameterDefine" xmi:id="_75a3QL8TEd-uvPnK8fc4Nw" id="resCode" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_75a3Qb8TEd-uvPnK8fc4Nw"/>
+    </inputDefines>
+    <inputDefines xmi:type="flow2:InputParameterDefine" xmi:id="_86iWAL8TEd-uvPnK8fc4Nw" id="opCode" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_86iWAb8TEd-uvPnK8fc4Nw"/>
+    </inputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_DJ4NIL8UEd-uvPnK8fc4Nw" id="ctrlFlag" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_DJ4NIb8UEd-uvPnK8fc4Nw"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_GgTWYL8UEd-uvPnK8fc4Nw" id="subTransName" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_GgTWYb8UEd-uvPnK8fc4Nw"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_SOkUUL8UEd-uvPnK8fc4Nw" id="createBy" type="TStringID" javaType="String" name="创建者" description="创建者">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_SOkUUb8UEd-uvPnK8fc4Nw"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_io4VML8VEd-uvPnK8fc4Nw" id="userId" type="TStringID" javaType="String" name="用户标识">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_io4VMb8VEd-uvPnK8fc4Nw"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_2tViAL8VEd-uvPnK8fc4Nw" id="transCode" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_2tViAb8VEd-uvPnK8fc4Nw"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_4xzUIL8VEd-uvPnK8fc4Nw" id="subTransCode" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_4xzUIb8VEd-uvPnK8fc4Nw"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_WSyFwL8WEd-uvPnK8fc4Nw" id="transName" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_WSyFwb8WEd-uvPnK8fc4Nw"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_Zyd4sL8WEd-uvPnK8fc4Nw" id="modelName" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_Zyd4sb8WEd-uvPnK8fc4Nw"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_cQcXAL8WEd-uvPnK8fc4Nw" id="modelCode" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_cQcXAb8WEd-uvPnK8fc4Nw"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_Ig42oL8rEd-uvPnK8fc4Nw" id="kindName" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_Ig42ob8rEd-uvPnK8fc4Nw"/>
+    </outputDefines>
+    <unit xmi:type="flow2:LogicUnit" xmi:id="_0T86sb8TEd-uvPnK8fc4Nw">
+      <info xmi:type="flow2:LogicUnitInfo" xmi:id="_0T86sr8TEd-uvPnK8fc4Nw"/>
+      <children xmi:type="flow2:FlowNode" xmi:id="_1iUyUL8TEd-uvPnK8fc4Nw" id="action" name="action">
+        <info xmi:type="flow2:ComponentMethodInfo" xmi:id="_1iejUL8TEd-uvPnK8fc4Nw" fullyQualifiedName="bizframe.authority.right._rightComponent" methodName="action">
+          <inputParameters xmi:type="flow2:InputParameter" xmi:id="_1iejUb8TEd-uvPnK8fc4Nw" id="context" javaType="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext" name="context"/>
+          <outputParameters xmi:type="flow2:OutputParameter" xmi:id="_1iejUr8TEd-uvPnK8fc4Nw" id="action_result" javaType="com.hundsun.jres.interfaces.share.dataset.IDataset"/>
+        </info>
+      </children>
+      <children xmi:type="flow2:FlowNode" xmi:id="_2TDrsL8TEd-uvPnK8fc4Nw" id="resultAssignment1" name="resultAssignment1">
+        <info xmi:type="flow2:ResultAssignmentInfo" xmi:id="_2TDrsb8TEd-uvPnK8fc4Nw" resultSet="true" resultType="com.hundsun.jres.interfaces.share.dataset.IDataset" expression="Result:action.action_result"/>
+      </children>
+    </unit>
+  </service2:ServiceModel>
+  <notation:Diagram xmi:id="_0VvDYL8TEd-uvPnK8fc4Nw" type="Flow2" element="_0T86sL8TEd-uvPnK8fc4Nw" measurementUnit="Pixel">
+    <children xmi:type="notation:Node" xmi:id="_0cJNYL8TEd-uvPnK8fc4Nw" type="1001" element="_0T86sb8TEd-uvPnK8fc4Nw">
+      <children xmi:type="notation:Node" xmi:id="_0cJNY78TEd-uvPnK8fc4Nw" type="5001">
+        <children xmi:type="notation:Node" xmi:id="_1iejU78TEd-uvPnK8fc4Nw" type="2001" element="_1iUyUL8TEd-uvPnK8fc4Nw">
+          <children xmi:type="notation:Node" xmi:id="_1iejVr8TEd-uvPnK8fc4Nw" type="4001"/>
+          <children xmi:type="notation:Node" xmi:id="_1iejV78TEd-uvPnK8fc4Nw" type="5002">
+            <styles xmi:type="notation:DrawerStyle" xmi:id="_1iejWL8TEd-uvPnK8fc4Nw"/>
+            <styles xmi:type="notation:SortingStyle" xmi:id="_1iejWb8TEd-uvPnK8fc4Nw"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_1iejWr8TEd-uvPnK8fc4Nw"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_1iejVL8TEd-uvPnK8fc4Nw" fontName="宋体"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1iejVb8TEd-uvPnK8fc4Nw"/>
+        </children>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_0cJNZL8TEd-uvPnK8fc4Nw"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_0cJNZb8TEd-uvPnK8fc4Nw"/>
+      </children>
+      <styles xmi:type="notation:ShapeStyle" xmi:id="_0cJNYb8TEd-uvPnK8fc4Nw" fontName="宋体"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0cJNYr8TEd-uvPnK8fc4Nw"/>
+    </children>
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_0VvDYb8TEd-uvPnK8fc4Nw"/>
+  </notation:Diagram>
+</xmi:XMI>

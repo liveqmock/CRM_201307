@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service2:ServiceModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:flow2="http://www.hundsun.com/ares/studio/jres/flow2" xmlns:service2="http://www.hundsun.com/ares/studio/jres/service2" xmi:id="_0K8aYMFdEd-flKqEy5gXZQ" outputCollection="true" outputCollectionID="def_action" name="查询参数服务">
+  <inputDefines xmi:id="_OsRH4G8AEeCJV989yO6hEA" id="resCode" javaType="String">
+    <defaultValue2 xmi:id="_OsRH4W8AEeCJV989yO6hEA"/>
+  </inputDefines>
+  <inputDefines xmi:id="_QIlU4G8AEeCJV989yO6hEA" id="opCode" javaType="String">
+    <defaultValue2 xmi:id="_QIlU4W8AEeCJV989yO6hEA"/>
+  </inputDefines>
+  <outputDefines xmi:id="_FXmekG8AEeCJV989yO6hEA" id="param_code" type="TCode" javaType="String" name="参数代码" stdField="true">
+    <defaultValue2 xmi:id="_FXmekW8AEeCJV989yO6hEA"/>
+  </outputDefines>
+  <outputDefines xmi:id="_HNMHMG8AEeCJV989yO6hEA" id="rel_org" javaType="String" name="关联机构">
+    <defaultValue2 xmi:id="_HNMHMW8AEeCJV989yO6hEA"/>
+  </outputDefines>
+  <outputDefines xmi:id="_Yv5wAG8AEeCJV989yO6hEA" id="kind_code" type="TCode" javaType="String" name="类别代码" stdField="true">
+    <defaultValue2 xmi:id="_Yv5wAW8AEeCJV989yO6hEA"/>
+  </outputDefines>
+  <outputDefines xmi:id="_ZzDPEG8AEeCJV989yO6hEA" id="param_name" type="TName" javaType="String" name="参数名称" stdField="true">
+    <defaultValue2 xmi:id="_ZzDPEW8AEeCJV989yO6hEA"/>
+  </outputDefines>
+  <outputDefines xmi:id="_auOd4G8AEeCJV989yO6hEA" id="param_value" type="TLongDesc" javaType="String" name="参数值" stdField="true">
+    <defaultValue2 xmi:id="_auOd4W8AEeCJV989yO6hEA"/>
+  </outputDefines>
+  <outputDefines xmi:id="_bi6qMG8AEeCJV989yO6hEA" id="param_desc" javaType="String" name="参数说明">
+    <defaultValue2 xmi:id="_bi6qMW8AEeCJV989yO6hEA"/>
+  </outputDefines>
+  <outputDefines xmi:id="_eX4sMG8AEeCJV989yO6hEA" id="kind_name" type="TName" javaType="String" name="类别名称" stdField="true">
+    <defaultValue2 xmi:id="_eX4sMW8AEeCJV989yO6hEA"/>
+  </outputDefines>
+  <outputDefines xmi:id="_fa7dkG8AEeCJV989yO6hEA" id="org_name" type="TName" javaType="String" name="组织名称" stdField="true">
+    <defaultValue2 xmi:id="_fa7dkW8AEeCJV989yO6hEA"/>
+  </outputDefines>
+  <outputDefines id="platform" type="TDict" javaType="String" name="平台标志" stdField="true" description="用于表示此记录是否平台设置&#xA;取数据字典[sys_biz_platform]&#xA;0-应用&#xA;1-平台">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="platform_name" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="param_regex" javaType="String" name="验证正则式">
+    <defaultValue2/>
+  </outputDefines>
+  <unit xmi:id="_0K8aYcFdEd-flKqEy5gXZQ">
+    <info xsi:type="flow2:LogicUnitInfo" xmi:id="_0K8aYsFdEd-flKqEy5gXZQ"/>
+    <children xmi:id="_6izUUMFdEd-flKqEy5gXZQ" id="action" name="action">
+      <info xsi:type="flow2:ComponentMethodInfo" xmi:id="_6izUUsFdEd-flKqEy5gXZQ" fullyQualifiedName="bizframe.parameter.ParamService" methodName="action">
+        <inputParameters xmi:id="_6izUU8FdEd-flKqEy5gXZQ" id="context" javaType="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext" name="context"/>
+        <outputParameters xmi:id="_6i8eQMFdEd-flKqEy5gXZQ" id="action_result" javaType="com.hundsun.jres.interfaces.share.dataset.IDataset"/>
+      </info>
+    </children>
+    <children xmi:id="_7IVqUMFdEd-flKqEy5gXZQ" id="resultAssignment1" name="resultAssignment1">
+      <info xsi:type="flow2:ResultAssignmentInfo" xmi:id="_7IVqUcFdEd-flKqEy5gXZQ" resultSet="true" resultType="com.hundsun.jres.interfaces.share.dataset.IDataset" expression="Result:action.action_result"/>
+    </children>
+  </unit>
+</service2:ServiceModel>

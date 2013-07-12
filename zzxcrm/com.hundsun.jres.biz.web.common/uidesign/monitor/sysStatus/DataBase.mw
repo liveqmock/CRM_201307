@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hsdoc version="1.1.0">
+  <Windows>
+    <control-MainWindow height="463" name="MainWin" templatePath="window.ftl" width="831">
+      <layout-fit>
+        <control-Panel border="false" height="200" name="databasePanel" width="300">
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+          <layout-fit>
+            <control-TabPanel border="false" name="TabPanel1" width="300" activeTab="0">
+              <layout-tab>
+                <control-Panel title="所有数据源信息" border="false" height="200" name="allDataSourcePanel" width="300">
+                  <Top/>
+                  <Bottom/>
+                  <Left/>
+                  <Right/>
+                  <layout-border>
+                    <control-Panel region="center" border="false" height="200" name="enableDatasourcePanel" width="300">
+                      <Top/>
+                      <Bottom/>
+                      <Left/>
+                      <Right/>
+                      <layout-border>
+                        <control-Grid region="center" singleSelect="true" enableCellTip="true" width="300" height="200" numberColumnWidth="33" dataSet="allDataSourceDataset" name="allDataSourceGrid" border="false" autoScroll="true">
+                          <layout-GridToolbar>
+                            <control-GridItem align="left" width="100" title="名称" dataIndex="name" sortable="true" tipText="名称" name="GridItem1"/>
+                            <control-GridItem align="center" width="100" title="启用状态" dataIndex="enable" sortable="true" tipText="启用状态" name="GridItem2"/>
+                            <control-GridItem align="right" width="100" title="最大连接数" dataIndex="max" sortable="true" tipText="最大连接数" name="GridItem5"/>
+                            <control-GridItem align="right" width="100" title="最小连接数" dataIndex="min" sortable="true" tipText="最小连接数" name="GridItem6"/>
+                            <control-GridItem align="right" width="100" title="等待时间" dataIndex="wait" sortable="true" tipText="等待时间" name="GridItem7"/>
+                            <control-GridItem align="center" width="100" title="是否默认数据源" dataIndex="default" sortable="true" tipText="是否默认数据源" name="GridItem9"/>
+                            <control-GridItem align="center" width="100" title="类型" dataIndex="type" sortable="true" tipText="类型" name="GridItem3"/>
+                            <control-GridItem align="left" width="100" title="url" dataIndex="jdbcurl" sortable="true" tipText="url" name="GridItem4"/>
+                            <control-GridItem align="left" width="100" title="驱动" dataIndex="driver" sortable="true" tipText="驱动" name="GridItem8"/>
+                            <control-GridItem align="left" width="100" title="方言" dataIndex="dialect" sortable="true" tipText="方言" name="GridItem10"/>
+                          </layout-GridToolbar>
+                          <Top/>
+                          <Bottom/>
+                          <Left/>
+                          <Right/>
+                        </control-Grid>
+                      </layout-border>
+                    </control-Panel>
+                    <control-Panel region="south" width="300" height="350" title="所有活动连接详细信息" split="true" name="activeThreadPanel" border="false" autoScroll="true">
+                      <Top/>
+                      <Bottom/>
+                      <Left/>
+                      <Right/>
+                      <layout-fit>
+                        <control-Grid autoload="false" enableCellTip="true" width="300" height="200" numberColumnWidth="33" dataSet="allActiveThreadDataset" name="allActiveThreadGrid" border="false">
+                          <layout-GridToolbar>
+                            <control-GridItem align="left" width="150" title="线程号" dataIndex="threadId" sortable="true" tipText="建立连接的线程号" name="GridItem12"/>
+                            <control-GridItem align="left" width="150" title="连接时间" dataIndex="createDate" sortable="true" tipText="建立连接时间" name="GridItem13"/>
+                            <control-GridItem align="left" width="150" title="数据源名称" dataIndex="dataSourceName" sortable="true" tipText="连接对应的数据源名称" name="GridItem14"/>
+                          </layout-GridToolbar>
+                          <Top>
+                            <control-Toolbar name="Toolbar1">
+                              <layout-toolbar>
+                                <control-Button name="testConnButton" text="测试连接" width="100" tabIndex="2" icon="bizframe/images/icons/connect.png"/>
+                                <control-Button name="refreshButton" text="刷新" width="100" tabIndex="3" icon="bizframe/images/icons/refresh.png"/>
+                              </layout-toolbar>
+                            </control-Toolbar>
+                          </Top>
+                          <Bottom/>
+                          <Left/>
+                          <Right/>
+                        </control-Grid>
+                      </layout-fit>
+                    </control-Panel>
+                  </layout-border>
+                </control-Panel>
+              </layout-tab>
+              <Top/>
+              <Bottom/>
+              <Left/>
+              <Right/>
+            </control-TabPanel>
+          </layout-fit>
+        </control-Panel>
+      </layout-fit>
+    </control-MainWindow>
+  </Windows>
+  <Accessory>
+    <control-DataSet name="allDataSourceDataset" service="com.hundsun.jres.manage" usingServiceName="true" window="MainWin">
+      <params>
+        <param name="resCode"><![CDATA["bizSysStatus"]]></param>
+        <param name="opCode"><![CDATA["getAllDataSourceInfo"]]></param>
+        <param name="pluginId"><![CDATA["jres.dbSessionFactory"]]></param>
+        <param name="commandName"><![CDATA["getAllEnableDataSourceInfo"]]></param>
+        <param name="nodeName"><![CDATA[nodeName]]></param>
+      </params>
+      <fields>
+        <field name="name" type="String"/>
+        <field name="type" type="String"/>
+        <field name="enable" type="boolean"/>
+        <field name="jdbcurl" type="String"/>
+        <field name="max" type="String"/>
+        <field name="min" type="String"/>
+        <field name="wait" type="String"/>
+        <field name="driver" type="String"/>
+        <field name="default" type="String"/>
+        <field name="dialect" type="String"/>
+        <field name="current" type="String"/>
+      </fields>
+    </control-DataSet>
+    <control-DataSet name="allActiveThreadDataset" service="com.hundsun.jres.manage" usingServiceName="true" window="MainWin">
+      <params>
+        <param name="resCode"><![CDATA["bizSysStatus"]]></param>
+        <param name="opCode"><![CDATA["queryAllActiveConnect"]]></param>
+        <param name="pluginId"><![CDATA["jres.dbSessionFactory"]]></param>
+        <param name="commandName"><![CDATA["queryActiveConnect"]]></param>
+        <param name="nodeName"><![CDATA[nodeName]]></param>
+      </params>
+      <fields>
+        <field name="threadId" type="String"/>
+        <field name="createDate" type="String"/>
+        <field name="dataSourceName" type="String"/>
+      </fields>
+    </control-DataSet>
+  </Accessory>
+  <WindowScripts>
+    <WindowScript window="MainWin"><![CDATA[service com.hundsun.jres.manage as Mg;
+//当前节点(text)
+private nodeName = getStringFromURLPath("nodeName");
+private rightMenu = null;
+
+private tplMarkup = [
+        '<div>',
+        '<table width="100%" border="0" cellspacing="10" cellpadding="4">',
+        '<tbody>',
+        '<tr>',
+        '<td>数据源名称: {name}</td>',
+        '<td>启用状态:',
+        '<tpl if="enable==true">',
+           '<font style="color:green">启用</font>',
+        '</tpl>',
+        '</td>',
+        '<td>当前连接数: {current}</td>',
+        '<td>最大连接数: {max}</td>',
+        '<td>最小连接数: {min}</td>',        
+        '</tr>',
+        '<tr>',        
+        '<td>等待时间: {wait}ms</td>',
+        '<td>是否默认数据源: {default}</td>',
+        '<td>数据源类型: {type}</td>',
+        '<td>驱动: {driver}</td>',
+        '<td>url: {jdbcurl}</td>',
+        '</tr>',
+        '<tr>',
+        '<td>方言: {dialect}</td>',
+        '<td><a href id = "connect_test_button">测试数据库连接</a></td>', 
+        '</tr>',
+        '</tbody>',
+        '</table>',
+        '</div>'
+	];
+private dataSourceTpl = new Ext.Template(tplMarkup);
+					
+event GridItem2_renderer(Object value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store) {
+     if(value == true){
+        return "启用"
+     }else if(value == false){
+        return "未启用";
+     }else{
+       return value;
+     }
+}
+event GridItem7_renderer(Object value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store) {
+     if(value != ""){
+       return  value + "ms";
+     }else{
+       return value;
+     }  
+}
+event GridItem9_renderer(Object value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store) {
+     if(value == "true"){
+        return "是";
+     }else if(value == "false"){
+       return "否";
+     }else{
+       return value;
+     }
+}
+
+
+event GridItem13_renderer(Object value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store) {
+   var date = new Date(value);
+   return date.format('Y-m-d H:i:s');
+}
+
+/*
+event allDataSourceGrid_rowdblclick(Hs.HsGrid thisComp, Number rowIndex, Ext.EventObject e) {
+   var data = allDataSourceGrid.getSelectionData().data;
+   allActiveThreadDataset.setParams({dataSourceName : data.name});
+   allActiveThreadDataset.load(); 
+}*/
+event testConnButton_click(Button thisComp, Ext.EventObject e) {
+    if(allDataSourceGrid.getSelectionData()){
+          var _data = allDataSourceGrid.getSelectionData().data;
+          if(_data){
+                            Mg.asynExecute({
+                               dataSourceName :_data.name,
+                               resCode:"bizSysStatus",
+                               opCode:"getAllDataSourceInfo",
+                               pluginId : "jres.dbSessionFactory",
+                               commandName:"testConnection",
+                               nodeName : nodeName
+                            },function(response,opt){
+                               if(response.returnCode == 0){
+                                  if(response.dataSetResult[0].data[0].isConnection){
+                                    Ext.Msg.alert("测试结果","链接成功");  
+                                  }
+                               }
+                            },function(response,opt){
+                            
+                            });
+                        }
+    }else{
+          Ext.Msg.show({
+          title:'提示',
+          msg: '请先选择一行再操作',
+          buttons: Ext.Msg.OK,
+          icon: Ext.MessageBox.WARNING
+     });  
+    }
+    
+}
+event refreshButton_click(Button thisComp, Ext.EventObject e) {
+  allActiveThreadDataset.load(); 
+}
+event allDataSourceGrid_dblclick(Ext.EventObject e) {
+   var data = allDataSourceGrid.getSelectionData().data;
+   allActiveThreadDataset.setParams({dataSourceName : data.name});
+   allActiveThreadDataset.load();
+}]]></WindowScript>
+  </WindowScripts>
+</hsdoc>

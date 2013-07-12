@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hsdoc version="1.1.0">
+  <Windows>
+    <control-MainWindow height="450" name="MainWin" templatePath="window.ftl" width="915">
+      <layout-fit>
+        <control-Panel height="200" name="Panel1" width="300">
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+          <layout-border>
+            <control-Panel region="center" height="200" name="Panel2" width="300">
+              <Top/>
+              <Bottom/>
+              <Left/>
+              <Right/>
+              <layout-border>
+                <control-Grid region="center" hasCheckColumn="true" singleSelect="true" remoteSort="true" enableCellTip="true" width="300" height="200" numberColumnWidth="30" dataSet="findLogsDataSet" name="Grid1" hasCustomPageSize="true" hasPagingBar="true">
+                  <layout-GridToolbar>
+                    <control-GridItem align="left" width="100" title="日志编号" dataIndex="log_id" sortable="true" hidden="true" name="log_id"/>
+                    <control-GridItem title="用户名" align="left" dataIndex="user_name" name="user_name" width="100" sortable="true"/>
+                    <control-GridItem title="用户编号" align="left" dataIndex="user_id" name="GridItem9" width="100" sortable="true"/>
+                    <control-GridItem title="操作日期" align="left" dataIndex="access_date" name="access_dttm" width="116" sortable="true"/>
+                    <control-GridItem title="操作时间" align="left" dataIndex="access_time" name="GridItem6" width="100" sortable="true"/>
+                    <control-GridItem title="日志详细" align="left" dataIndex="oper_contents" name="oper_contents" width="196" sortable="true"/>
+                    <control-GridItem align="left" width="100" title="交易码" dataIndex="trans_code" sortable="true" hidden="true" name="trans_code"/>
+                    <control-GridItem align="left" width="100" title="子交易码" dataIndex="sub_trans_code" sortable="true" hidden="true" name="sub_trans_code"/>
+                    <control-GridItem title="组织名称" align="left" dataIndex="org_name" name="org_name" width="100" sortable="true"/>
+                    <control-GridItem title="IP地址" align="left" dataIndex="ip_add" name="ip_add" width="100" sortable="true"/>
+                    <control-GridItem align="left" width="100" title="组织编号" dataIndex="org_id" sortable="true" hidden="true" name="GridItem10"/>
+                  </layout-GridToolbar>
+                  <Top/>
+                  <Bottom/>
+                  <Left/>
+                  <Right/>
+                </control-Grid>
+                <control-FormPanel collapseMode="mini" region="north" width="300" height="180" hideCollapseTool="true" collapsible="true" split="true" name="searchFormPanel">
+                  <Top>
+                    <control-Toolbar name="Toolbar1">
+                      <layout-toolbar>
+                        <control-Button name="viewButton" text="查看" width="75" tabIndex="2" icon="bizframe/images/icons/eye.png"/>
+                        <control-Button name="setLogButton" text="服务日志设置" width="121" tabIndex="3" icon="bizframe/images/icons/edit.png"/>
+                      </layout-toolbar>
+                    </control-Toolbar>
+                  </Top>
+                  <Bottom>
+                    <control-ButtonGroup name="ButtonGroup1">
+                      <layout-buttonGroup>
+                        <control-Button name="searchButton" text="查询" width="75" tabIndex="4" icon="bizframe/images/icons/search.png"/>
+                        <control-Button name="resetButton" text="重置" width="75" tabIndex="5" icon="bizframe/images/icons/refresh.png"/>
+                      </layout-buttonGroup>
+                    </control-ButtonGroup>
+                  </Bottom>
+                  <Left/>
+                  <Right/>
+                  <layout-table columns="2" fullWidth="true">
+                    <control-TextField labelAlign="right" fieldName="user_name" width="250" height="22" fieldLabel="用户名" name="userName" tabIndex="6"/>
+                    <control-TextField labelAlign="right" fieldName="user_id" width="250" height="22" fieldLabel="用户编号" name="userId" tabIndex="7"/>
+                    <control-TextField labelAlign="right" fieldName="ip_add" width="250" height="22" fieldLabel="IP地址" name="ipAdd" tabIndex="8"/>
+                    <control-TargetSelect labelAlign="right" targetWindow="orgSelector" msgTarget="qtip" fieldName="org_name" params="['searchOrgId','searchOrgName',true]" callFunction="rec" width="250" minLength="1" fieldLabel="所属组织" name="searchOrgName" tabIndex="9"/>
+                    <control-DateField labelAlign="right" fieldName="access_date" width="250" height="22" fieldLabel="操作日期" name="accessDate" tabIndex="10"/>
+                    <control-TimeField labelAlign="right" editable="true" fieldName="access_time" width="250" height="22" fieldLabel="操作时间" name="accessTime" tabIndex="11"/>
+                    <control-TargetSelect dataField="trans_code" labelAlign="right" targetWindow="resCodeSelector" visible="false" fieldName="trans_code" params="['transCodeField','subTransCodeField']" callFunction="rec" width="250" showLabel="false" fieldLabel="交易码" name="transCodeField" tabIndex="12" blankSuffixLabel=""/>
+                    <control-HiddenField fieldName="org_id" name="searchOrgId"/>
+                    <control-TargetSelect dataField="sub_trans_code" labelAlign="right" targetWindow="resCodeSelector" visible="false" fieldName="sub_trans_code" params="['transCodeField','subTransCodeField']" callFunction="rec" width="250" showLabel="false" fieldLabel="子交易码" name="subTransCodeField" tabIndex="13" blankSuffixLabel=""/>
+                  </layout-table>
+                </control-FormPanel>
+              </layout-border>
+            </control-Panel>
+          </layout-border>
+        </control-Panel>
+      </layout-fit>
+    </control-MainWindow>
+    <control-Window title="服务日志设置" height="411" maximizable="true" name="setLogWin" width="812">
+      <Top/>
+      <Bottom/>
+      <Left/>
+      <Right/>
+      <layout-border>
+        <control-Panel region="center" height="223" name="Panel3" width="300">
+          <Top>
+            <control-Toolbar name="Toolbar2">
+              <layout-toolbar>
+                <control-Button name="Button1" text="查询" width="75" tabIndex="14" icon="bizframe/images/icons/search.png"/>
+                <control-Button name="Button2" text="重置" width="75" tabIndex="15" icon="bizframe/images/icons/refresh.png"/>
+                <control-Button name="startButton" text="开启日志" width="75" tabIndex="16" icon="bizframe/images/icons/start.png"/>
+                <control-Button name="stopButton" text="关闭日志" width="75" tabIndex="17" icon="bizframe/images/icons/stop.png"/>
+              </layout-toolbar>
+            </control-Toolbar>
+          </Top>
+          <Bottom/>
+          <Left/>
+          <Right/>
+          <layout-border>
+            <control-Grid hasCheckColumn="true" region="center" remoteSort="true" width="300" height="200" dataSet="DataSet1" name="Grid2" hasCustomPageSize="true" hasPagingBar="true">
+              <layout-GridToolbar>
+                <control-GridItem title="交易名" align="left" dataIndex="trans_name" name="GridItem1" width="100" sortable="true"/>
+                <control-GridItem title="子交易名" align="left" dataIndex="sub_trans_name" name="GridItem2" width="100" sortable="true"/>
+                <control-GridItem title="服务编号" align="left" dataIndex="rel_serv" name="GridItem3" width="258" sortable="true"/>
+                <control-GridItem title="开闭标识" align="center" dataIndex="start_log" name="GridItem4" width="100" sortable="true"/>
+                <control-GridItem title="系统分类" align="left" dataIndex="kind_name" name="GridItem8" width="100" sortable="true"/>
+                <control-GridItem title="模块名称" align="left" dataIndex="model_name" name="GridItem7" width="100" sortable="true"/>
+                <control-GridItem align="left" width="100" title="trans_code" dataIndex="trans_code" sortable="true" hidden="true" name="trans_code"/>
+                <control-GridItem align="left" width="100" title="sub_trans_code" dataIndex="sub_trans_code" sortable="true" hidden="true" name="sub_trans_code"/>
+                <control-GridItem align="left" width="100" title="has_start_log" dataIndex="has_start_log" sortable="true" hidden="true" name="GridItem5"/>
+              </layout-GridToolbar>
+              <Top/>
+              <Bottom/>
+              <Left/>
+              <Right/>
+            </control-Grid>
+          </layout-border>
+        </control-Panel>
+        <control-FormPanel region="north" height="103" name="FormPanel2" width="300">
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+          <layout-table columns="2" fullWidth="true">
+            <control-TextField labelAlign="right" fieldName="trans_name" width="250" height="22" fieldLabel="交易名" name="transName" tabIndex="18"/>
+            <control-TextField labelAlign="right" fieldName="sub_trans_name" width="250" height="22" fieldLabel="子交易名" name="subTransName" tabIndex="19"/>
+            <control-DictComboBox labelAlign="right" editable="true" fieldName="kind_code" displayMode="true" width="250" emptyText="请选择..." fieldLabel="系统分类" comboListWidth="150" name="kindCodeCombo" tabIndex="20" group="BIZ_SUB_SYSTEM"/>
+            <control-DictComboBox labelAlign="right" editable="true" fieldName="model_code" displayMode="true" width="250" emptyText="请选择..." fieldLabel="模块名称" comboListWidth="150" name="modelCodeCombo" tabIndex="21" group="BIZ_MODEL"/>
+            <control-DictComboBox labelAlign="right" editable="true" fieldName="start_log" displayMode="true" width="250" emptyText="请选择..." fieldLabel="开闭标识" comboListWidth="230" name="DictComboBox1" tabIndex="22" group="BIZ_LONG_ENABLE"/>
+          </layout-table>
+        </control-FormPanel>
+      </layout-border>
+    </control-Window>
+    <control-Window title="查看日志详细" height="390" name="viewWin" draggable="true" width="818" resizable="false">
+      <Top/>
+      <Bottom/>
+      <Left/>
+      <Right/>
+      <layout-border>
+        <control-Panel region="north" height="119" name="Panel4" width="300">
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+          <layout-table columns="3" fullWidth="true">
+            <control-TextField labelAlign="right" labelWidth="80" editable="false" width="250" height="22" fieldLabel="日志编号" name="logIdField" tabIndex="23"/>
+            <control-TextField labelAlign="right" labelWidth="80" editable="false" width="250" height="22" fieldLabel="操作日期" name="accessDateField" tabIndex="24"/>
+            <control-TextField labelAlign="right" labelWidth="80" editable="false" width="250" height="22" fieldLabel="操作时间" name="accessTimeField" tabIndex="25"/>
+            <control-TextField labelAlign="right" labelWidth="80" editable="false" width="250" height="22" fieldLabel="操作人" name="userNameField" tabIndex="26"/>
+            <control-TextField labelAlign="right" labelWidth="80" editable="false" width="250" height="22" fieldLabel="人员编号" name="userIdField" tabIndex="27"/>
+            <control-TextField labelAlign="right" labelWidth="80" editable="false" width="250" height="22" fieldLabel="所属机构" name="orgNameField" tabIndex="28"/>
+            <control-TextField labelAlign="right" labelWidth="80" editable="false" width="250" height="22" fieldLabel="操作地址" name="ipAddField" tabIndex="29"/>
+            <control-TextField labelAlign="right" visible="false" labelWidth="80" editable="false" width="250" height="22" fieldLabel="交易号" name="transCodeField" tabIndex="30"/>
+            <control-TextField labelAlign="right" visible="false" labelWidth="80" editable="false" width="250" height="22" fieldLabel="子交易号" name="subTransCodeField" tabIndex="31"/>
+          </layout-table>
+        </control-Panel>
+        <control-Panel region="center" height="200" name="Panel5" width="300">
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+          <layout-fit>
+            <control-TextArea editable="false" fieldName="oper_contents" width="729" height="204" showLabel="false" fieldLabel="TextArea1" name="oper_contents" tabIndex="32"/>
+          </layout-fit>
+        </control-Panel>
+      </layout-border>
+    </control-Window>
+  </Windows>
+  <Accessory>
+    <control-DataSet start="start" name="findLogsDataSet" limit="limit" service="bizframe.businessLog.logsFind" usingServiceName="true" window="MainWin">
+      <params>
+        <param name="resCode"><![CDATA["bizSetLog"]]></param>
+        <param name="opCode"><![CDATA["bizSetLogFind"]]></param>
+      </params>
+      <fields>
+        <field name="log_id" type="String"/>
+        <field name="org_id" type="String"/>
+        <field name="org_name" type="String"/>
+        <field name="user_id" type="String"/>
+        <field name="user_name" type="String"/>
+        <field name="access_date" type="String"/>
+        <field name="access_time" type="String"/>
+        <field name="trans_code" type="String"/>
+        <field name="sub_trans_code" type="String"/>
+        <field name="oper_contents" type="String"/>
+        <field name="ip_add" type="String"/>
+        <field name="sub_trans_name" type="String"/>
+        <field name="service_id" type="String"/>
+        <field name="date_time" type="String"/>
+      </fields>
+    </control-DataSet>
+    <control-DataSet start="start" name="DataSet1" service="bizframe.businessLog.bizServicesFind" limit="limit" usingServiceName="true" window="setLogWin">
+      <params>
+        <param name="opCode"><![CDATA["bizSetLogSubTransFind"]]></param>
+        <param name="resCode"><![CDATA["bizSetLog"]]></param>
+      </params>
+      <fields>
+        <field name="login_flag_name" type="String"/>
+        <field name="ctrl_flag_name" type="String"/>
+        <field name="model_name" type="String"/>
+        <field name="kind_name" type="String"/>
+        <field name="trans_name" type="String"/>
+        <field name="sub_trans_name" type="String"/>
+        <field name="remark" type="String"/>
+        <field name="login_flag" type="String"/>
+        <field name="ctrl_flag" type="String"/>
+        <field name="rel_url" type="String"/>
+        <field name="rel_serv" type="String"/>
+        <field name="sub_trans_code" type="String"/>
+        <field name="trans_code" type="String"/>
+        <field name="has_start_log" type="String"/>
+        <field name="start_log" type="String"/>
+      </fields>
+    </control-DataSet>
+  </Accessory>
+  <WindowScripts>
+    <WindowScript window="MainWin"><![CDATA[include bizframe.js.checkRight;
+include bizframe.js.commonUtil;		//引入公共工具包js文件
+
+import bizframe.authority.resCodeSelector;
+import bizframe.authority.auth;
+import bizframe.authority.branchSelector;
+import bizframe.authority.orgSelector;
+
+
+event setLogButton_click(Button thisComp, Ext.EventObject e) {
+ 	var win=new setLogWin();
+ 	win.show();
+}
+event viewButton_click(Button thisComp, Ext.EventObject e) {
+	if (Grid1.getSelectionModel().getSelections().length == 1) {
+		var win = new viewWin();
+		win.show();		
+	} else {
+		Ext.Msg.alert('提示','请选择一条日志信息');
+	}
+}
+event searchButton_click(Button thisComp, Ext.EventObject e) {
+	if(searchFormPanel.getForm().isValid()){
+		var values =  searchFormPanel.getValues();
+		findLogsDataSet.setParams(values);
+		findLogsDataSet.load();
+	}else
+		Ext.Msg.alert('提示', '发现有输入项不符合规范');
+}
+
+event resetButton_click(Button thisComp, Ext.EventObject e) {
+	searchFormPanel.getForm().reset();
+}
+event MainWin_complete() {
+	//searchFormPanel.collapse();
+}
+event access_dttm_renderer(Object value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store) {
+      //return value;
+      value=value+'';
+      return value.substring(0,4) + "-" + value.substring(4, 6) + "-" + value.substring(6, 8);
+
+}
+event GridItem6_renderer(Object value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store) {
+  	  //return value;
+  	  value=value+'';
+  	  var complex=6-value.length;
+  	  for(var i=0;i<complex;i++){
+  	  	value='0'+value;
+  	  }
+  	  return value.substring(0, 2) + ":" + value.substring(2, 4) + ":" + value.substring(4, 6);
+}
+
+event Grid1_rowdblclick(Hs.HsGrid thisComp, Number rowIndex, Ext.EventObject e) {
+	if (Grid1.getSelectionModel().getSelections().length == 1) {
+		var win = new viewWin();
+		win.show();		
+	} else {
+		Ext.Msg.alert('提示','请选择一条日志信息');
+	}
+}]]></WindowScript>
+    <WindowScript window="setLogWin"><![CDATA[remote bizframe.businessLog.logsStart as startSvc;
+remote bizframe.businessLog.logsStop as stopSvc;
+
+
+event Button1_click(Button thisComp, Ext.EventObject e) {
+	if(FormPanel2.getForm().isValid()){
+		var values =  FormPanel2.getValues();
+		DataSet1.clearParamsByKey(['start','limit'])
+		Ext.apply(values,{start:1, limit:Grid2.pageSize});
+		DataSet1.setParams(values);
+		//Grid2.refresh();
+		DataSet1.load();
+	}else
+		Ext.Msg.alert('提示', '发现有输入项不符合规范');
+}
+event Button2_click(Button thisComp, Ext.EventObject e) {
+	FormPanel2.getForm().reset();
+}
+
+event startButton_click(Button thisComp, Ext.EventObject e) {
+	if (Grid2.getSelectionModel().getSelected() != null) {
+		var selectionDatas = Grid2.getSelectionDatas();
+		var transCodes='';
+		var subTransCodes='';
+		for(var i=0;i<selectionDatas.length;i++){
+			var data=selectionDatas[i];
+			var hasStartLog=data.get("has_start_log");
+			if("1"==hasStartLog){
+				var serv=data.get("rel_serv");
+				Ext.Msg.alert('提示','服务： '+serv+' 已经开启了无需开启');
+				return;
+			}
+			var transCode=data.get("trans_code");
+			var subTransCode=data.get("sub_trans_code");
+			transCodes+=transCode;
+			subTransCodes+=subTransCode;
+			if(i<selectionDatas.length-1){
+				transCodes+=',';
+				subTransCodes+=',';
+			}
+		}
+		var authWin = new auth(MainWin).window;
+		authWin.needAuth(authWin,'bizSetLog','bizSetLogStart',MainWin, function(){
+		            var param={transCodes : transCodes , subTransCodes : subTransCodes , resCode:"bizSetLog",opCode:"bizSetLogStart"};
+					var result = stopSvc.synExecute(param);
+					if(!(result.returnCode == 0)){
+						Ext.Msg.alert('错误',result.errorInfo);
+					}else{
+						Ext.Msg.alert('提示','开启服务业务日志成功');
+						setDateSetCurrentPage(DataSet1,Grid2);
+						//DataSet1.load();
+						Grid2.refresh();
+					}
+		});
+	}else {
+		Ext.Msg.alert('提示','请选择您需要开启的服务');
+	}
+}
+event stopButton_click(Button thisComp, Ext.EventObject e) {
+	if (Grid2.getSelectionModel().getSelected() != null) {
+		var selectionDatas = Grid2.getSelectionDatas();
+		var transCodes='';
+		var subTransCodes='';
+		for(var i=0;i<selectionDatas.length;i++){
+			var data=selectionDatas[i];
+			var hasStartLog=data.get("has_start_log");
+			if("1"!=hasStartLog){
+				var serv=data.get("rel_serv");
+				Ext.Msg.alert('提示','服务：'+serv+' 已经关闭了无需开启');
+				return;
+			}
+			var transCode=data.get("trans_code");
+			var subTransCode=data.get("sub_trans_code");
+			transCodes+=transCode;
+			subTransCodes+=subTransCode;
+			if(i<selectionDatas.length-1){
+				transCodes+=',';
+				subTransCodes+=',';
+			}
+		}
+		var authWin = new auth(MainWin).window;
+		authWin.needAuth(authWin,'bizSetLog','bizSetLogStop',MainWin, function(){
+		            var param={transCodes : transCodes , subTransCodes : subTransCodes , resCode:"bizSetLog",opCode:"bizSetLogStop"};
+					var result = startSvc.synExecute(param);
+					if(!(result.returnCode == 0)){
+						Ext.Msg.alert('错误',result.errorInfo);
+					}else{
+						Ext.Msg.alert('提示','关闭服务业务日志成功');
+						setDateSetCurrentPage(DataSet1,Grid2);
+						//DataSet1.load();
+						Grid2.refresh();
+					}
+		});
+	}else {
+		Ext.Msg.alert('提示','请选择您需要关闭的服务');
+	}
+}
+event GridItem4_renderer(Object value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store) {
+	if(record.get('has_start_log')!="1"){//开启的
+		 value='<font  color="#FF0000">'+value+'</font>';
+    }else{
+     	 value='<font  color="#008000">'+value+'</font>';
+    }
+    return value;
+}]]></WindowScript>
+    <WindowScript window="viewWin"><![CDATA[
+event viewWin_complete() {
+	var record = MainWin.Grid1.getSelectionModel().getSelected();
+	logIdField.setValue(record.get("log_id"));
+	orgNameField.setValue(record.get("org_name"));
+	var date=record.get("access_date")+'';
+	date=date.substring(0,4) + "-" + date.substring(4, 6) + "-" + date.substring(6, 8);
+	accessDateField.setValue(date);
+	var time=record.get("access_time")+'';
+	time=time.substring(0, 2) + ":" + time.substring(2, 4) + ":" + time.substring(4, 6);
+	accessTimeField.setValue(time);
+	userNameField.setValue(record.get("user_name"));
+	userIdField.setValue(record.get("user_id"));
+	transCodeField.setValue(record.get("trans_code"));
+	subTransCodeField.setValue(record.get("sub_trans_code"));
+	ipAddField.setValue(record.get("ip_add"));
+	oper_contents.setValue(record.get("oper_contents"));
+}]]></WindowScript>
+  </WindowScripts>
+</hsdoc>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.hundsun.ares.studio.jres.component:HSComponent_EMF xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:com.hundsun.ares.studio.jres.component="http://com.hundsun.ares.studio.jres.hsobject" name="业务常用服务"
+    className="com.hundsun.jres.bizframe.core.authority.service.SysCommonService">
+  <methodList methodName="generateUniqueCode" alias="generateUniqueCode" desc="generateUniqueCode">
+    <paramList id="context" name="context" type="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext"
+        rename="context">
+      <children id="globalMap" type="java.util.Map&lt;java.lang.String,java.lang.Object>"/>
+      <children id="flow" type="java.util.Map&lt;java.lang.Object,java.lang.Object>"/>
+    </paramList>
+    <result id="generateUniqueCode_result" type="com.hundsun.jres.interfaces.share.dataset.IDataset"/>
+  </methodList>
+  <methodList methodName="getSysDate" alias="getSysDate" desc="getSysDate">
+    <paramList id="context" name="context" type="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext"
+        rename="context">
+      <children id="globalMap" type="java.util.Map&lt;java.lang.String,java.lang.Object>"/>
+      <children id="flow" type="java.util.Map&lt;java.lang.Object,java.lang.Object>"/>
+    </paramList>
+    <result id="getSysDate_result" type="com.hundsun.jres.interfaces.share.dataset.IDataset"/>
+  </methodList>
+</com.hundsun.ares.studio.jres.component:HSComponent_EMF>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:flow2="http://www.hundsun.com/ares/studio/jres/flow2" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.1/notation" xmlns:service2="http://www.hundsun.com/ares/studio/jres/service2">
+  <service2:ServiceModel xmi:id="_wi1QELidEd-1prai8MMQFQ" name="新增机构" desc="新增机构" inputCollection="true">
+    <inputDefines xmi:type="flow2:InputParameterDefine" xmi:id="_HzbowLieEd-1prai8MMQFQ" id="branchCode" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_f1VSwP3PEd-coM7C16WdFw"/>
+    </inputDefines>
+    <inputDefines xmi:type="flow2:InputParameterDefine" xmi:id="_IxksALieEd-1prai8MMQFQ" id="branchName" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_f1VSwf3PEd-coM7C16WdFw"/>
+    </inputDefines>
+    <inputDefines xmi:type="flow2:InputParameterDefine" xmi:id="_JgDioLieEd-1prai8MMQFQ" id="shortName" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_f1VSwv3PEd-coM7C16WdFw"/>
+    </inputDefines>
+    <inputDefines xmi:type="flow2:InputParameterDefine" xmi:id="_KyA5wLieEd-1prai8MMQFQ" id="parentCode" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_f1VSw_3PEd-coM7C16WdFw"/>
+    </inputDefines>
+    <inputDefines xmi:type="flow2:InputParameterDefine" xmi:id="_QXVjgLieEd-1prai8MMQFQ" id="remark" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_f1VSxP3PEd-coM7C16WdFw"/>
+    </inputDefines>
+    <inputDefines xmi:type="flow2:InputParameterDefine" xmi:id="_XDlZELieEd-1prai8MMQFQ" id="branchLevel" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_f1VSxf3PEd-coM7C16WdFw"/>
+    </inputDefines>
+    <unit xmi:type="flow2:LogicUnit" xmi:id="_wi1QEbidEd-1prai8MMQFQ">
+      <info xmi:type="flow2:LogicUnitInfo" xmi:id="_wi1QEridEd-1prai8MMQFQ"/>
+      <children xmi:type="flow2:FlowNode" xmi:id="_a-0fkLieEd-1prai8MMQFQ" id="addService" name="addService">
+        <info xmi:type="flow2:ComponentMethodInfo" xmi:id="_a-0fkrieEd-1prai8MMQFQ" fullyQualifiedName="bizframe.authority.branch.SysBranchService" methodName="action">
+          <inputParameters xmi:type="flow2:InputParameter" xmi:id="_iG5g0FCREeCZqvmRaLmqww" id="context" javaType="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext" name="context"/>
+          <outputParameters xmi:type="flow2:OutputParameter" xmi:id="_a-0flLieEd-1prai8MMQFQ" javaType="void"/>
+        </info>
+      </children>
+    </unit>
+  </service2:ServiceModel>
+  <notation:Diagram xmi:id="_w57hcLidEd-1prai8MMQFQ" type="Flow2" element="_wi1QELidEd-1prai8MMQFQ" measurementUnit="Pixel">
+    <children xmi:type="notation:Node" xmi:id="_xjD-ALidEd-1prai8MMQFQ" type="1001" element="_wi1QEbidEd-1prai8MMQFQ">
+      <children xmi:type="notation:Node" xmi:id="_xjD-A7idEd-1prai8MMQFQ" type="5001">
+        <children xmi:type="notation:Node" xmi:id="_a_RLgLieEd-1prai8MMQFQ" type="2001" element="_a-0fkLieEd-1prai8MMQFQ">
+          <children xmi:type="notation:Node" xmi:id="_a_RLg7ieEd-1prai8MMQFQ" type="4001"/>
+          <children xmi:type="notation:Node" xmi:id="_a_RLhLieEd-1prai8MMQFQ" type="5002">
+            <styles xmi:type="notation:DrawerStyle" xmi:id="_a_RLhbieEd-1prai8MMQFQ"/>
+            <styles xmi:type="notation:SortingStyle" xmi:id="_a_RLhrieEd-1prai8MMQFQ"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_a_RLh7ieEd-1prai8MMQFQ"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_a_RLgbieEd-1prai8MMQFQ"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_a_RLgrieEd-1prai8MMQFQ"/>
+        </children>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_xjD-BLidEd-1prai8MMQFQ"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_xjD-BbidEd-1prai8MMQFQ"/>
+      </children>
+      <styles xmi:type="notation:ShapeStyle" xmi:id="_xjD-AbidEd-1prai8MMQFQ"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_xjD-AridEd-1prai8MMQFQ"/>
+    </children>
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_w57hcbidEd-1prai8MMQFQ"/>
+  </notation:Diagram>
+</xmi:XMI>

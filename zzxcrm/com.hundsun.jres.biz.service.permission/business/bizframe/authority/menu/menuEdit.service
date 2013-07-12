@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:flow2="http://www.hundsun.com/ares/studio/jres/flow2" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.1/notation" xmlns:service2="http://www.hundsun.com/ares/studio/jres/service2">
+  <service2:ServiceModel xmi:id="_OE1jELvYEd-QvbuVze7XEQ" name="修改菜单" desc="修改菜单">
+    <unit xmi:type="flow2:LogicUnit" xmi:id="_OE1jEbvYEd-QvbuVze7XEQ">
+      <info xmi:type="flow2:LogicUnitInfo" xmi:id="_OE1jErvYEd-QvbuVze7XEQ"/>
+      <children xmi:type="flow2:FlowNode" xmi:id="_RNGUgLvYEd-QvbuVze7XEQ" id="action_15" name="action_15">
+        <info xmi:type="flow2:ComponentMethodInfo" xmi:id="_RNGUgrvYEd-QvbuVze7XEQ" fullyQualifiedName="bizframe.authority.menu.menuService" methodName="action">
+          <inputParameters xmi:type="flow2:InputParameter" xmi:id="_RNGUg7vYEd-QvbuVze7XEQ" id="context" javaType="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext" name="context"/>
+          <outputParameters xmi:type="flow2:OutputParameter" xmi:id="_RNGUhLvYEd-QvbuVze7XEQ" id="action_result" javaType="com.hundsun.jres.interfaces.share.dataset.IDataset"/>
+        </info>
+      </children>
+    </unit>
+  </service2:ServiceModel>
+  <notation:Diagram xmi:id="_OGLm47vYEd-QvbuVze7XEQ" type="Flow2" element="_OE1jELvYEd-QvbuVze7XEQ" measurementUnit="Pixel">
+    <children xmi:type="notation:Node" xmi:id="_OMlJ0LvYEd-QvbuVze7XEQ" type="1001" element="_OE1jEbvYEd-QvbuVze7XEQ">
+      <children xmi:type="notation:Node" xmi:id="_OMlJ07vYEd-QvbuVze7XEQ" type="5001">
+        <children xmi:type="notation:Node" xmi:id="_RNGUhbvYEd-QvbuVze7XEQ" type="2001" element="_RNGUgLvYEd-QvbuVze7XEQ">
+          <children xmi:type="notation:Node" xmi:id="_RNGUiLvYEd-QvbuVze7XEQ" type="4001"/>
+          <children xmi:type="notation:Node" xmi:id="_RNGUibvYEd-QvbuVze7XEQ" type="5002">
+            <styles xmi:type="notation:DrawerStyle" xmi:id="_RNGUirvYEd-QvbuVze7XEQ"/>
+            <styles xmi:type="notation:SortingStyle" xmi:id="_RNGUi7vYEd-QvbuVze7XEQ"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_RNGUjLvYEd-QvbuVze7XEQ"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_RNGUhrvYEd-QvbuVze7XEQ" fontName="宋体"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_RNGUh7vYEd-QvbuVze7XEQ"/>
+        </children>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_OMlJ1LvYEd-QvbuVze7XEQ"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_OMlJ1bvYEd-QvbuVze7XEQ"/>
+      </children>
+      <styles xmi:type="notation:ShapeStyle" xmi:id="_OMlJ0bvYEd-QvbuVze7XEQ" fontName="宋体"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_OMlJ0rvYEd-QvbuVze7XEQ"/>
+    </children>
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_OGLm5LvYEd-QvbuVze7XEQ"/>
+  </notation:Diagram>
+</xmi:XMI>

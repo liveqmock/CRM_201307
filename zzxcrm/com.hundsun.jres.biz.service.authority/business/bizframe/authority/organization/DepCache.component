@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.hundsun.ares.studio.jres.component:HSComponent_EMF xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:com.hundsun.ares.studio.jres.component="http://com.hundsun.ares.studio.jres.hsobject" name="部门缓存服务构件"
+    constructCode="com.hundsun.jres.bizframe.core.authority.cache.DepCache.getInstance()"
+    className="com.hundsun.jres.bizframe.core.authority.cache.DepCache">
+  <methodList methodName="refresh" alias="refresh" desc="refresh">
+    <result/>
+  </methodList>
+  <methodList methodName="getDepListByBranchCode" alias="getDepListByBranchCode" desc="getDepListByBranchCode">
+    <paramList id="branchCode" name="branchCode" type="String" rename="branchCode"/>
+    <result id="getDepListByBranchCode_result" type="java.util.List&lt;com.hundsun.jres.bizframe.core.authority.bean.SysDep>"/>
+    <resultDescList id="depCode" type="String" rename="depCode"/>
+    <resultDescList id="depName" type="String" rename="depName"/>
+    <resultDescList id="shortName" type="String" rename="shortName"/>
+    <resultDescList id="parentCode" type="String" rename="parentCode"/>
+    <resultDescList id="branchCode" type="String" rename="branchCode"/>
+    <resultDescList id="depPath" type="String" rename="depPath"/>
+    <resultDescList id="remark" type="String" rename="remark"/>
+    <resultDescList id="extField1" type="String" rename="extField1"/>
+    <resultDescList id="extField2" type="String" rename="extField2"/>
+    <resultDescList id="extField3" type="String" rename="extField3"/>
+    <resultDescList id="name" type="String" rename="name"/>
+    <resultDescList id="indexLocation" type="String" rename="indexLocation"/>
+    <resultDescList id="parentId" type="String" rename="parentId"/>
+    <resultDescList id="id" type="String" rename="id"/>
+    <resultDescList id="type" type="String" rename="type"/>
+    <resultDescList id="belongGroup" type="com.hundsun.jres.bizframe.service.protocal.UserGroupDTP"
+        rename="belongGroup"/>
+    <resultDescList id="management" type="com.hundsun.jres.bizframe.service.protocal.UserGroupDTP"
+        rename="management"/>
+    <resultDescList id="responsible" type="com.hundsun.jres.bizframe.service.protocal.UserGroupDTP"
+        rename="responsible"/>
+  </methodList>
+</com.hundsun.ares.studio.jres.component:HSComponent_EMF>

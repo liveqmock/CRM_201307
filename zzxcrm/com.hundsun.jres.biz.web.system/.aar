@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<aar>
+  <info>
+    <id>system</id>
+    <name>JRES平台基础业务框架-系统管理表现层模块</name>
+    <version>1.1.1-SNAPSHOT</version>
+    <provider></provider>
+    <contact></contact>
+    <note>此模块包含以下内容：
+系统消息管理
+系统缓存管理
+业务日志管理</note>
+    <publisher>JRES Builder</publisher>
+    <pubtime>2012-5-23 17:35:48</pubtime>
+    <type></type>
+  </info>
+  <respath>
+    <entry kind="src" type="com.hundsun.ares.studio.jres.moduleroot.ui" path="uidesign"/>
+  </respath>
+  <dependencies/>
+  <extended/>
+</aar>

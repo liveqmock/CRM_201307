@@ -1,0 +1,1561 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hsdoc version="1.1.0">
+  <Windows>
+    <control-MainWindow height="648" name="MainWin" templatePath="window.ftl" width="906">
+      <layout-border>
+        <control-Panel region="center" height="200" name="rolePanel" width="300">
+          <layout-border>
+            <control-Grid region="center" hasCheckColumn="true" remoteSort="true" enableCellTip="true" width="300" height="200" dataSet="roleDataSet" name="roleGrid" hasCustomPageSize="true" border="false" hasPagingBar="true">
+              <layout-GridToolbar>
+                <control-GridItem title="角色编号" align="left" dataIndex="role_code" name="role_code" width="178"/>
+                <control-GridItem title="角色名称" align="left" dataIndex="role_name" name="role_name" width="200"/>
+                <control-GridItem title="创建者" align="left" dataIndex="creator_name" name="GridItem5" width="100" sortable="true"/>
+                <control-GridItem title="备注" align="left" dataIndex="remark" name="remark" width="200"/>
+                <control-GridItem align="left" width="100" title="创建者编号" dataIndex="creator" sortable="true" hidden="true" name="GridItem6"/>
+              </layout-GridToolbar>
+            </control-Grid>
+            <control-FormPanel collapseMode="mini" region="north" width="100.0%" height="150" hideCollapseTool="true" collapsible="true" split="true" name="searchRoleFormPanel">
+              <Top>
+                <control-Toolbar name="Toolbar1">
+                  <layout-toolbar>
+                    <control-Button visible="false" name="addRoleBtn" text="新增" width="75" icon="bizframe/images/icons/add.gif" tabIndex="8"/>
+                    <control-Button visible="false" name="updateRoleBtn" text="修改" width="75" icon="bizframe/images/icons/edit.png" tabIndex="9"/>
+                    <control-Button visible="false" name="dltRoleBtn" text="删除" width="75" icon="bizframe/images/icons/delete.gif" tabIndex="10"/>
+                    <control-Button visible="false" name="Button1" text="分配权限" width="75" tabIndex="11" icon="bizframe/images/icons/vcard.png"/>
+                    <control-Button visible="false" width="75" icon="bizframe/images/icons/branchAllot.png" name="allotButton" text="分配用户" tabIndex="12" menu="Menu1"/>
+                    <control-Button name="Button2" displayModeRender="hidden" text="权限复制" width="75" tabIndex="89" icon="bizframe/images/bizDefault.png"/>
+                    <control-Button name="roleDownloadBtn" displayModeRender="hidden" text="权限下载" width="75" tabIndex="92" icon="bizframe/images/icons/export.png"/>
+                  </layout-toolbar>
+                </control-Toolbar>
+              </Top>
+              <Bottom>
+                <control-ButtonGroup name="ButtonGroup2">
+                  <layout-buttonGroup>
+                    <control-Button name="searchRoleBtn" text="查询" width="75" icon="bizframe/images/icons/search.png" tabIndex="2"/>
+                    <control-Button tipText="清空查询条件" name="searchResetBtn" text="重置" width="75" icon="bizframe/images/icons/refresh.png" tabIndex="3"/>
+                  </layout-buttonGroup>
+                </control-ButtonGroup>
+              </Bottom>
+              <Left/>
+              <Right/>
+              <layout-table columns="2" fullWidth="true">
+                <control-TextField labelAlign="right" fieldName="role_code" width="300" height="22" fieldLabel="角色编号" name="roleCodeField" tabIndex="4"/>
+                <control-TextField labelAlign="right" regexText="非法输入，只能输入中文、英文、小括号和下划线" fieldName="remark" width="300" height="22" regex="/^[\w\u4e00-\u9fa5\.\/\,\，\.\。\“\（\）\(\)\-\s]*$/" fieldLabel="备注" name="remarkField" tabIndex="5"/>
+                <control-TextField labelAlign="right" regexText="非法输入，只能输入中文、英文、小括号和下划线" fieldName="role_name" width="300" height="22" regex="/^[\w\u4e00-\u9fa5\.\/\,\，\.\。\“\（\）\(\)\-\s]*$/" fieldLabel="角色名称" name="roleNameField" tabIndex="6"/>
+                <control-TextField visible="false" editable="false" fieldName="roleIdString" width="250" height="22" fieldLabel="roleIdString" name="roleIdStringField" tabIndex="7"/>
+              </layout-table>
+            </control-FormPanel>
+          </layout-border>
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+        </control-Panel>
+      </layout-border>
+    </control-MainWindow>
+    <control-Window width="398" height="232" title="新增角色" name="editRoleWindow" resizable="false" border="false" draggable="true">
+      <layout-fit>
+        <control-FormPanel border="false" height="184" frame="true" name="addRoleFormPanel" width="355">
+          <layout-form labelAlign="right" labelWidth="70">
+            <control-TextField msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" regexText="非法输入，只能输入英文、数字和下划线" fieldName="role_code2" width="320" height="22" regex="/^\w+$/" maxLength="16" fieldLabel="编号" name="aRoleCodeField" allowBlank="false" tabIndex="31"/>
+            <control-TextField msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" regexText="非法输入，只能输入中文、英文、小括号和下划线" fieldName="role_name" width="320" height="22" regex="/^[\w\u4e00-\u9fa5\.\/\,\，\.\。\“\（\）\(\)\-\s]*$/" maxLength="32" fieldLabel="名称" name="aRoleNameField" allowBlank="false" tabIndex="32"/>
+            <control-TextArea msgTarget="qtip" fieldName="remark" width="320" maxLength="256" fieldLabel="备注" name="aRemarkArea" tabIndex="33"/>
+            <control-HiddenField dataField="creator" fieldName="creator" name="creatorId"/>
+            <control-HiddenField dataField="role_code" fieldName="role_code" name="roleIdField"/>
+            <control-HiddenField defaultValue="bizSetRole" fieldName="resCode" name="resCodeField"/>
+            <control-HiddenField fieldName="opCode" name="opCodeField"/>
+          </layout-form>
+        </control-FormPanel>
+      </layout-fit>
+      <Bottom>
+        <control-ButtonGroup name="addRoleButtonGroup">
+          <layout-buttonGroup>
+            <control-Button name="saveRoleBtn" text="确定" width="75" icon="bizframe/images/icons/accept.png" tabIndex="34"/>
+            <control-Button name="resetBtn" text="重置" width="75" icon="bizframe/images/icons/refresh.png" tabIndex="35"/>
+            <control-Button name="cancelBtn" text="取消" width="75" icon="bizframe/images/icons/cross.gif" tabIndex="36"/>
+          </layout-buttonGroup>
+        </control-ButtonGroup>
+      </Bottom>
+    </control-Window>
+    <control-Window title="权限授权" height="484" autoScroll="true" name="Window3" draggable="true" width="850">
+      <layout-border>
+        <control-Panel collapseMode="mini" region="north" width="300" height="124" hideCollapseTool="true" split="true" name="Panel4">
+          <Top/>
+          <Bottom>
+            <control-Toolbar name="Toolbar4">
+              <layout-toolbar>
+                <control-Button name="Button12" text="查询" width="75" icon="bizframe/images/icons/search.png" tabIndex="37"/>
+                <control-Button tipText="清空查询条件" name="Button19" text="重置" width="75" icon="bizframe/images/icons/refresh.png" tabIndex="38"/>
+                <control-Button tipText="增加授权" name="Button14" text="授权" width="75" icon="bizframe/images/icons/addRight.png" tabIndex="39"/>
+                <control-Button tipText="删除授权" name="Button17" text="取消" width="75" icon="bizframe/images/icons/deleteRight.png" tabIndex="40"/>
+              </layout-toolbar>
+            </control-Toolbar>
+          </Bottom>
+          <Left/>
+          <Right/>
+          <layout-table columns="3" fullWidth="true">
+            <control-TextField labelAlign="right" fieldName="trans_name" width="250" height="22" fieldLabel="交易名称" name="TextField10" tabIndex="41"/>
+            <control-TextField labelAlign="right" fieldName="sub_trans_name" width="250" height="22" fieldLabel="子交易名" name="TextField9" tabIndex="42"/>
+            <control-DictCheckCombo labelAlign="right" fieldName="kind_code" displayMode="true" width="250" fieldLabel="子系统" name="kindCodeField" tabIndex="43" group="BIZ_SUB_SYSTEM"/>
+            <control-DictCheckCombo labelAlign="right" fieldName="model_code" displayMode="true" width="250" fieldLabel="系统模块" name="modelCodeField" tabIndex="44" group="BIZ_MODEL"/>
+            <control-StaticRadioGroup labelAlign="right" fieldName="seachRadioGroup" width="250" height="47" fieldLabel="查询目标" name="seachRadioGroup" columns="1" tabIndex="45">
+              <layout-GroupLayout>
+                <control-Radio fieldName="notAuthorized" width="150" inputValue="notAuthorized" checked="true" boxLabel="待授权" name="notAuthorized" tabIndex="46"/>
+                <control-Radio fieldName="hasAuthorized" inputValue="hasAuthorized" name="hasAuthorized" boxLabel="已授权" width="150" tabIndex="47"/>
+              </layout-GroupLayout>
+            </control-StaticRadioGroup>
+          </layout-table>
+        </control-Panel>
+        <control-Panel region="center" height="200" name="Panel5" width="300">
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+          <layout-border>
+            <control-Grid pageSize="200" hasCheckColumn="true" region="west" width="425" height="200" title="待授权" name="Grid4" hasCustomPageSize="true" hasPagingBar="true">
+              <layout-GridToolbar>
+                <control-GridItem title="交易名称" align="left" dataIndex="trans_name" name="GridItem18" width="80"/>
+                <control-GridItem title="子交易名称" align="left" dataIndex="sub_trans_name" name="GridItem14" width="80"/>
+                <control-GridItem title="子系统名" align="left" dataIndex="kind_name" name="GridItem18a" width="80"/>
+                <control-GridItem title="模块名称" align="left" dataIndex="model_name" name="GridItem14a" width="80"/>
+                <control-GridItem align="left" width="53" title="transCode" dataIndex="trans_code" sortable="true" hidden="true" name="GridItem15"/>
+              </layout-GridToolbar>
+            </control-Grid>
+            <control-Panel region="center" height="200" name="Panel6" width="300">
+              <Top/>
+              <Bottom/>
+              <Left/>
+              <Right/>
+              <layout-fit>
+                <control-Grid pageSize="200" hasCheckColumn="true" width="425" height="200" title="已授权" name="Grid5" hasCustomPageSize="true" border="false" hasPagingBar="true">
+                  <layout-GridToolbar>
+                    <control-GridItem title="交易名称" align="left" dataIndex="trans_name" name="GridItem20" width="80"/>
+                    <control-GridItem title="子交易名称" align="left" dataIndex="sub_trans_name" name="GridItem17" width="80"/>
+                    <control-GridItem title="子系统名" align="left" dataIndex="kind_name" name="GridItem18b" width="80"/>
+                    <control-GridItem title="模块名称" align="left" dataIndex="model_name" name="GridItem14b" width="80"/>
+                    <control-GridItem align="left" width="100" title="trans_code" dataIndex="trans_code" sortable="true" hidden="true" name="GridItem16"/>
+                    <control-GridItem align="left" width="100" title="role_code" dataIndex="role_code" sortable="true" hidden="true" name="GridItem1"/>
+                    <control-GridItem align="left" width="100" title="begin_date" dataIndex="begin_date" sortable="true" hidden="true" name="GridItem2"/>
+                    <control-GridItem align="left" width="100" title="end_date" dataIndex="end_date" sortable="true" hidden="true" name="GridItem3"/>
+                    <control-GridItem align="left" width="100" title="right_flag" dataIndex="right_flag" sortable="true" hidden="true" name="GridItem4"/>
+                  </layout-GridToolbar>
+                </control-Grid>
+              </layout-fit>
+            </control-Panel>
+          </layout-border>
+        </control-Panel>
+      </layout-border>
+    </control-Window>
+    <control-Window title="角色权限管理" maximized="true" height="461" name="menuRightWindow" draggable="true" width="826">
+      <Top/>
+      <Bottom/>
+      <Left/>
+      <Right/>
+      <layout-fit>
+        <control-Panel height="200" autoScroll="true" name="permissionTree" width="300">
+          <Top>
+            <control-Toolbar name="Toolbar3">
+              <layout-toolbar>
+                <control-Button name="sureButton" text="提交" width="75" tabIndex="24" icon="bizframe/images/icons/accept.png"/>
+                <control-Button name="exitButton" text="取消" width="75" tabIndex="25" icon="bizframe/images/icons/cross.gif"/>
+                <control-Button name="expandBtn" displayModeRender="hidden" text="展开" width="75" tabIndex="87" icon="bizframe/images/icons/arrow_out.png"/>
+                <control-Button name="closeBtn" displayModeRender="hidden" text="收缩" width="75" tabIndex="88" icon="bizframe/images/icons/arrow_in.png"/>
+                <control-ToolbarFill name="ToolbarFill1"/>
+                <control-Label name="Label1" text="搜索：" width="57"/>
+                <control-TextField height="22" name="searchField" showLabel="false" width="106" tabIndex="84"/>
+                <control-Label name="infoLabel" text="0/0" width="57"/>
+                <control-Button name="prevButton" displayModeRender="hidden" text="上个" width="39" tabIndex="85" icon="bizframe/images/icons/arrow_up.png"/>
+                <control-Button name="nextButton" displayModeRender="hidden" text="下个" width="44" tabIndex="86" icon="bizframe/images/icons/arrow_down.png"/>
+              </layout-toolbar>
+            </control-Toolbar>
+          </Top>
+          <Bottom/>
+          <Left/>
+          <Right/>
+          <layout-fit/>
+        </control-Panel>
+      </layout-fit>
+    </control-Window>
+    <control-Window title="角色用户分配" maximized="true" name="RoleUserWindow2" draggable="true" width="633">
+      <Top>
+        <control-Toolbar name="Toolbar5">
+          <layout-toolbar>
+            <control-Button name="Button4" text="分配" width="75" icon="bizframe/images/icons/table_add.png" tabIndex="22"/>
+            <control-ToolbarSeparator name="ToolbarSeparator1"/>
+            <control-Button height="30" name="Button5" text="取消" width="75" icon="bizframe/images/icons/table_delete.png" tabIndex="23"/>
+          </layout-toolbar>
+        </control-Toolbar>
+      </Top>
+      <Bottom/>
+      <Left/>
+      <Right/>
+      <layout-border>
+        <control-FormPanel collapseMode="mini" region="north" width="100.0%" height="141" hideCollapseTool="true" collapsible="true" split="true" name="FormPanel1">
+          <Top/>
+          <Bottom>
+            <control-ButtonGroup height="29" name="ButtonGroup2">
+              <layout-buttonGroup>
+                <control-Button name="Button7" text="查询" width="75" tabIndex="24"/>
+                <control-Button name="Button8" text="重置" width="75" tabIndex="25"/>
+              </layout-buttonGroup>
+            </control-ButtonGroup>
+          </Bottom>
+          <Left/>
+          <Right/>
+          <layout-table columns="2" fullWidth="true" cellspacing="3">
+            <control-TextField labelAlign="right" fieldName="userId" width="250" height="22" fieldLabel="用户编号" name="userId" tabIndex="26"/>
+            <control-TextField labelAlign="right" fieldName="userName" width="250" height="22" fieldLabel="用户昵称" name="TextField2" tabIndex="27"/>
+            <control-HiddenField fieldName="orgId" name="searchOrgId"/>
+            <control-DictComboBox labelAlign="right" fieldName="userType" displayMode="true" width="250" fieldLabel="用户类别" name="DictComboBox1" tabIndex="28" group="BIZ_USER_CATE"/>
+            <control-TargetSelect labelAlign="right" targetWindow="orgSelector" fieldName="orgName" params="['searchOrgId','searchOrgName',true]" callFunction="rec" width="250" fieldLabel="所属组织" name="searchOrgName" tabIndex="29"/>
+            <control-DictComboBox labelAlign="right" containBlankValue="true" fieldName="auth_type" displayMode="true" width="250" fieldLabel="是否分配" name="DictComboBox2" tabIndex="30" group="BIZ_ALLOT_TYPE"/>
+          </layout-table>
+        </control-FormPanel>
+        <control-Grid region="center" hasCheckColumn="true" remoteSort="true" autoload="false" enableCellTip="true" width="300" height="203" dataSet="DataSet1" name="userGrid" hasCustomPageSize="true" hasPagingBar="true">
+          <layout-GridToolbar>
+            <control-GridItem title="用户昵称" align="left" dataIndex="user_name" name="userNameItem" width="100" sortable="true"/>
+            <control-GridItem title="用户编号" align="left" dataIndex="user_id" name="userIdItem" width="100" sortable="true"/>
+            <control-GridItem title="是否已分配" align="center" dataIndex="auth_type_name" name="GridItem71" width="100" sortable="true"/>
+            <control-GridItem title="用户类别" align="center" dataIndex="user_type_display" name="GridItem6" width="100" sortable="true"/>
+            <control-GridItem title="所属组织" align="left" dataIndex="org_name" name="GridItem9" width="100" sortable="true"/>
+            <control-GridItem align="left" width="100" title="组织编号" dataIndex="org_id" sortable="true" hidden="true" name="GridItem4"/>
+          </layout-GridToolbar>
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+        </control-Grid>
+      </layout-border>
+    </control-Window>
+    <control-Window title="角色权限查看" height="338" name="ViewRoleRightWindow" width="570">
+      <Top/>
+      <Bottom/>
+      <Left/>
+      <Right/>
+      <layout-border/>
+    </control-Window>
+    <control-Window title="角色权限复制" maximized="true" height="508" name="copyRoleWindow" width="592">
+      <Top/>
+      <Bottom/>
+      <Left/>
+      <Right/>
+      <layout-border>
+        <control-FormPanel collapseMode="mini" region="north" width="100.0%" height="107" hideCollapseTool="true" collapsible="true" split="true" name="searchRoleFormPanel">
+          <Top>
+            <control-Toolbar name="Toolbar2">
+              <layout-toolbar>
+                <control-Label name="Label2" text="请选择操作类型:" width="100"/>
+                <control-ComboBox defaultValue="1" staticValues="['1','2']" width="178" height="22" showLabel="false" staticTexts="['权限覆盖','权限追加']" name="opTypeCombo" tabIndex="91"/>
+                <control-Button name="copyButton" displayModeRender="hidden" text="提交" width="75" tabIndex="90" icon="bizframe/images/icons/accept.png"/>
+              </layout-toolbar>
+            </control-Toolbar>
+          </Top>
+          <Bottom>
+            <control-ButtonGroup name="ButtonGroup2">
+              <layout-buttonGroup>
+                <control-Button name="searchRoleBtn" text="查询" width="75" icon="bizframe/images/icons/search.png" tabIndex="2"/>
+                <control-Button tipText="清空查询条件" name="searchResetBtn" text="重置" width="75" icon="bizframe/images/icons/refresh.png" tabIndex="3"/>
+              </layout-buttonGroup>
+            </control-ButtonGroup>
+          </Bottom>
+          <Left/>
+          <Right/>
+          <layout-table columns="2" fullWidth="true">
+            <control-TextField labelAlign="right" fieldName="role_code" width="300" height="22" fieldLabel="角色编号" name="roleCodeField" tabIndex="4"/>
+            <control-TextField labelAlign="right" regexText="非法输入，只能输入中文、英文、小括号和下划线" fieldName="role_name" width="300" height="22" regex="/^[\w\u4e00-\u9fa5\.\/\,\，\.\。\“\（\）\(\)\-\s]*$/" fieldLabel="角色名称" name="roleNameField" tabIndex="6"/>
+            <control-TextField visible="false" editable="false" fieldName="roleIdString" width="250" height="22" fieldLabel="roleIdString" name="roleIdStringField" tabIndex="7"/>
+          </layout-table>
+        </control-FormPanel>
+        <control-Grid region="center" hasCheckColumn="true" singleSelect="true" remoteSort="true" enableCellTip="true" width="300" height="200" dataSet="roleDataSet" name="roleGrid" hasCustomPageSize="true" border="false" hasPagingBar="true">
+          <layout-GridToolbar>
+            <control-GridItem title="角色编号" align="left" dataIndex="role_code" name="role_code" width="178"/>
+            <control-GridItem title="角色名称" align="left" dataIndex="role_name" name="role_name" width="200"/>
+            <control-GridItem title="创建者" align="left" dataIndex="creator_name" name="GridItem5" width="100" sortable="true"/>
+            <control-GridItem title="备注" align="left" dataIndex="remark" name="remark" width="200"/>
+            <control-GridItem align="left" width="100" title="创建者编号" dataIndex="creator" sortable="true" hidden="true" name="GridItem6"/>
+          </layout-GridToolbar>
+        </control-Grid>
+      </layout-border>
+    </control-Window>
+  </Windows>
+  <Accessory>
+    <control-DataSet name="roleDataSet" service="bizframe.authority.role.roleQuery" usingServiceName="true" window="MainWin">
+      <params>
+        <param name="resCode"><![CDATA["bizSetRole"]]></param>
+        <param name="opCode"><![CDATA["bizSetRoleFind"]]></param>
+      </params>
+      <fields>
+        <field name="role_code" type="String"/>
+        <field name="role_name" type="String"/>
+        <field name="right_flag" type="String"/>
+        <field name="rflag_name" type="String"/>
+        <field name="remark" type="String"/>
+        <field name="creator" type="String"/>
+        <field name="creator_name" type="String"/>
+      </fields>
+    </control-DataSet>
+    <control-Menu window="MainWin" name="opRightMenu">
+      <layout-menu>
+        <control-MenuItem name="opRightMenuItem" text="菜单号授权" icon="bizframe/images/menu_auth.png">
+          <layout-menuitem/>
+        </control-MenuItem>
+        <control-MenuItem name="opRightTranceItem" text="功能点授权" icon="bizframe/images/trans_auth.png">
+          <layout-menuitem/>
+        </control-MenuItem>
+      </layout-menu>
+    </control-Menu>
+    <control-Menu window="MainWin" name="authRightMenu">
+      <layout-menu>
+        <control-MenuItem name="authRightMenuItem" text="菜单号授权" icon="bizframe/images/menu_auth.png">
+          <layout-menuitem/>
+        </control-MenuItem>
+        <control-MenuItem name="authRightTranceItem" text="功能点授权" icon="bizframe/images/trans_auth.png">
+          <layout-menuitem/>
+        </control-MenuItem>
+      </layout-menu>
+    </control-Menu>
+    <control-Menu window="MainWin" name="Menu1">
+      <layout-menu>
+        <control-MenuItem name="MenuItem1" text="分配操作角色" icon="bizframe/images/icons/branchAllot.png">
+          <layout-menuitem/>
+        </control-MenuItem>
+        <control-MenuItem name="MenuItem2" text="分配授权角色" icon="bizframe/images/icons/branchAllot.png">
+          <layout-menuitem/>
+        </control-MenuItem>
+        <control-MenuItem visible="false" name="MenuItem3" text="分配整体角色">
+          <layout-menuitem/>
+        </control-MenuItem>
+      </layout-menu>
+    </control-Menu>
+    <control-DataSet name="rightflag_DataSet" service="bizframe.dictionary.findDictItem" window="editRoleWindow">
+      <params>
+        <param name="resCode"><![CDATA["bizSetDict"]]></param>
+        <param name="opCode"><![CDATA["bizDictItemFind"]]></param>
+        <param name="group"><![CDATA["BIZ_RIGHT_FLAG"]]></param>
+      </params>
+      <fields>
+        <field name="dict_item_code" type="String"/>
+        <field name="dict_item_name" type="String"/>
+      </fields>
+    </control-DataSet>
+    <control-DataSet name="DataSet6" service="bizframe.authority.roleright.queryNotAuthorizedOpr" window="Window3">
+      <params>
+        <param name="resCode"><![CDATA["bizSetRight"]]></param>
+        <param name="opCode"><![CDATA["bizRoleURhtFind"]]></param>
+        <param name="trans_code"><![CDATA[]]></param>
+        <param name="sub_trans_code"><![CDATA[]]></param>
+        <param name="role_code"><![CDATA[]]></param>
+        <param name="right_flag"><![CDATA[]]></param>
+      </params>
+      <fields>
+        <field name="trans_code" type="String"/>
+        <field name="sub_trans_code" type="String"/>
+        <field name="trans_name" type="String"/>
+        <field name="sub_trans_name" type="String"/>
+        <field name="kind_name" type="String"/>
+        <field name="model_name" type="String"/>
+      </fields>
+    </control-DataSet>
+    <control-DataSet name="DataSet7" service="bizframe.authority.roleright.queryAuthorizedOpr" window="Window3">
+      <params>
+        <param name="resCode"><![CDATA["bizSetRight"]]></param>
+        <param name="opCode"><![CDATA["bizRoleRightFind"]]></param>
+        <param name="trans_code"><![CDATA[]]></param>
+        <param name="sub_trans_code"><![CDATA[]]></param>
+        <param name="role_code"><![CDATA[]]></param>
+        <param name="right_flag"><![CDATA[]]></param>
+      </params>
+      <fields>
+        <field name="trans_code" type="String"/>
+        <field name="sub_trans_code" type="String"/>
+        <field name="sub_trans_name" type="String"/>
+        <field name="trans_name" type="String"/>
+        <field name="role_code" type="String"/>
+        <field name="begin_date" type="String"/>
+        <field name="end_date" type="String"/>
+        <field name="right_flag" type="String"/>
+        <field name="kind_name" type="String"/>
+        <field name="model_name" type="String"/>
+      </fields>
+    </control-DataSet>
+    <control-DataSet name="DataSet1" service="bizframe.authority.role.roleUserFind" usingServiceName="true" window="RoleUserWindow2">
+      <params>
+        <param name="resCode"><![CDATA["bizSetRole"]]></param>
+        <param name="opCode"><![CDATA["roleUserFind"]]></param>
+      </params>
+      <fields>
+        <field name="auth_type_name" type="String"/>
+        <field name="auth_type" type="String"/>
+        <field name="user_id" type="String"/>
+        <field name="user_name" type="String"/>
+        <field name="user_pwd" type="String"/>
+        <field name="user_type" type="String"/>
+        <field name="user_status" type="String"/>
+        <field name="lock_status" type="String"/>
+        <field name="create_date" type="int"/>
+        <field name="modify_date" type="int"/>
+        <field name="pass_modify_date" type="int"/>
+        <field name="remark" type="String"/>
+        <field name="user_status_display" type="String"/>
+        <field name="lock_status_display" type="String"/>
+        <field name="user_type_display" type="String"/>
+        <field name="ext_field_1" type="String"/>
+        <field name="ext_field_2" type="String"/>
+        <field name="ext_field_3" type="String"/>
+        <field name="ext_field_4" type="String"/>
+        <field name="ext_field_5" type="String"/>
+        <field name="org_id" type="String"/>
+        <field name="org_name" type="String"/>
+      </fields>
+    </control-DataSet>
+    <control-DataSet name="roleDataSet" service="bizframe.authority.role.roleQuery" usingServiceName="true" window="copyRoleWindow">
+      <params>
+        <param name="resCode"><![CDATA["bizSetRole"]]></param>
+        <param name="opCode"><![CDATA["bizSetRoleFind"]]></param>
+      </params>
+      <fields>
+        <field name="role_code" type="String"/>
+        <field name="role_name" type="String"/>
+        <field name="right_flag" type="String"/>
+        <field name="rflag_name" type="String"/>
+        <field name="remark" type="String"/>
+        <field name="creator" type="String"/>
+        <field name="creator_name" type="String"/>
+      </fields>
+    </control-DataSet>
+  </Accessory>
+  <WindowScripts>
+    <WindowScript window="MainWin"><![CDATA[/**
+ *2013-06-21   zhangsu  STORY #5874 【TS:201305060004-JRES2.0-基金与机构理财事业部-王一俊】- 请在“角色设置”中提供角色-菜单权限的导出功能。新增"权限下载"按钮
+ */
+
+include bizframe.js.checkRight;  	//引入公共权限校验js文件
+include bizframe.js.commonUtil;		//引入公共工具包js文件
+import bizframe.authority.auth;
+import bizframe.authority.orgSelector;
+
+public editMod="null";
+public tRoleId="";
+public tRoleName="";
+public tRightFlag="";
+
+public rightFlag='0';
+remote bizframe.authority.role.roleDelete as deleteRoleSvc;
+
+event authBtn_click(Button thisComp, Ext.EventObject e) {	
+}
+event oprAuthBtn_click(Button thisComp, Ext.EventObject e) {	
+
+}
+event relatedUserBtn_click(Button thisComp, Ext.EventObject e) {	
+			editMod = "relateUser";
+
+			var count = roleGrid.getSelectionModel().getSelections().length;
+			if(count != 1){
+				Ext.Msg.alert('提示', '请选择一个角色');
+				return;
+			}
+			var record = roleGrid.getSelectionModel().getSelected();
+			tRoleId=record.get('roleId');
+			tRoleName=record.get('role_name');
+
+			var win = new bizframe_authority_roleUserWindow().window;
+			win.roleIdField1.setValue(tRoleId);
+			win.roleIdField2.setValue(tRoleId);
+			win.show();
+			win.setTitle("角色‘" + tRoleName + "’关联用户");
+}
+event addRoleBtn_click(Button thisComp, Ext.EventObject e) {
+
+				editMod = "add";
+				var addRoleWin = new editRoleWindow();
+				addRoleWin.addRoleFormPanel.setSubmitService('bizframe.authority.role.roleAdd');
+				addRoleWin.show();
+
+}
+event updateRoleBtn_click(Button thisComp, Ext.EventObject e) {
+			//填值
+			var count = roleGrid.getSelectionModel().getSelections().length;
+			if(count != 1){
+				Ext.Msg.alert('提示', '请选择一个角色');
+				return;
+			}
+
+
+			editMod = "edit";
+			var updateRoleWin = new editRoleWindow();
+			updateRoleWin.setTitle("修改角色");
+			updateRoleWin.addRoleFormPanel.setSubmitService('bizframe.authority.role.roleEdit');
+
+			updateRoleWin.show();
+
+
+}
+event searchRoleBtn_click(Button thisComp, Ext.EventObject e) {
+			if(searchRoleFormPanel.getForm().isValid()){
+				var values =  searchRoleFormPanel.getValues();
+				roleDataSet.setParams(values);
+				roleDataSet.load();
+			}else{
+				Ext.Msg.alert('提示', '发现有输入项不符合规范');
+			}
+}
+event dltRoleBtn_click(Button thisComp, Ext.EventObject e) {
+			//var roleIdArray=new Array();
+			if(roleGrid.getSelectionModel().getSelections().length<1){
+				Ext.Msg.alert('提示', '请选择至少一条角色信息进行删除');
+				return;
+			}
+
+			var authWindow = new auth(MainWin).window;
+			authWindow.needAuth(authWindow,'bizSetRole','bizSetRoleDelete',MainWin, 
+				function(){
+					var roleArray = roleGrid.getSelectionModel().getSelections();
+					var count = roleArray.length;
+					var roleCodeString = "";
+					for(var i=0; i<count; i++){
+						var data = roleArray[i];
+						//var obj = {};
+						//obj["role_code"] = data.get('role_code');
+						//roleIdArray[i] = obj;
+						roleCodeString = roleCodeString + data.get('role_code');
+						if(i<count-1)
+							roleCodeString = roleCodeString + ",";
+					}	
+
+					Ext.MessageBox.show({
+						title: '提示',
+						msg: '确认删除吗？',
+						buttons: Ext.MessageBox.YESNO,
+						icon: Ext.MessageBox.QUESTION,
+						fn: function(btn){
+							if(btn == 'yes'){
+								var result = deleteRoleSvc.synExecute({role_code:roleCodeString, resCode:"bizSetRole", opCode:"bizSetRoleDelete"});
+								if(result.returnCode == 0){
+									//setDateSetCurrentPage(roleDataSet,roleGrid);
+									//删除成功
+									roleIdStringField.reset();	
+									//更新列表
+									//roleDataSet.load();
+									//roleGrid.refresh();
+									refreshGrid(roleGrid);
+								}else{
+									Ext.Msg.alert('提示', '操作失败<br>原因：' + result.errorInfo);
+								}
+							 }
+						}
+					   });	
+			});
+
+}
+event searchRoleFormPanel_submitSuccess(object response) {
+			var returnCode = "-1";
+			var errorInfo;
+			if(typeof response == 'object'){
+				returnCode = response.returnCode;
+				errorInfo = response.errorInfo;
+			}
+
+			if(returnCode == "0"){
+				//删除成功
+				roleIdStringField.reset();
+
+				//更新列表
+				roleDataSet.load();
+			}else{
+				Ext.Msg.alert('提示', '操作失败<br>原因：' + errorInfo);
+			}
+}
+event searchRoleFormPanel_submitFailure(object response) {
+			Ext.Msg.alert('提示', '调用服务失败');
+}
+event searchResetBtn_click(Button thisComp, Ext.EventObject e) {
+			searchRoleFormPanel.getForm().reset();
+}
+event MainWin_complete() {
+			//searchRoleFormPanel.collapse();
+			var operationMap ={"bizSetRole.bizSetRoleFind":searchRoleBtn, 
+								"bizSetRole.bizSetRoleAdd":addRoleBtn,
+								"bizSetRole.bizSetRoleEdit":updateRoleBtn,
+								"bizSetRole.bizSetRoleDelete":dltRoleBtn,
+								"bizSetRole.roleMenuRightFind":Button1,
+								"bizSetRole.roleUserFind":allotButton,
+								"bizSetRole.bizRoleRightCopy":Button2,
+								"bizSetRole.bizRoleRightDownlaod":roleDownloadBtn};
+								//"bizSetRole.bizSetRoleARight":authBtn,
+								//"bizSetRole.bizSetRoleORight":oprAuthBtn
+								
+
+			checkRights(operationMap);
+
+}
+
+
+//根据菜单号操作授权
+event opRightMenuItem_click(Ext.menu.BaseItem baseItem, Ext.EventObject e) {
+			var count = roleGrid.getSelectionModel().getSelections().length;
+			if(count != 1){
+				Ext.Msg.alert('提示', '请选择一个角色');
+				return;
+			}
+			var record = roleGrid.getSelectionModel().getSelected();
+			tRoleId=record.get('role_code');
+			tRoleName=record.get('role_name');
+			tRightFlag="1";
+
+			var win = new menuRightWindow();
+			win.show();
+}
+//根据功能点操作授权
+event opRightTranceItem_click(Ext.menu.BaseItem baseItem, Ext.EventObject e) {
+			editMod = "oprAuth";
+
+			var count = roleGrid.getSelectionModel().getSelections().length;
+			if(count != 1){
+				Ext.Msg.alert('提示', '请选择一个角色');
+				return;
+			}
+			var record = roleGrid.getSelectionModel().getSelected();
+			tRoleId=record.get('role_code');
+			tRoleName=record.get('role_name');
+			tRightFlag="1";
+
+			var win = new Window3();
+			win.show();
+			win.setTitle("角色‘" + tRoleName + "’操作授权");
+}
+//根据功能点权限授权
+event authRightTranceItem_click(Ext.menu.BaseItem baseItem, Ext.EventObject e) {
+			editMod = "auth";
+
+			var count = roleGrid.getSelectionModel().getSelections().length;
+			if(count != 1){
+				Ext.Msg.alert('提示', '请选择一个角色');
+				return;
+			}
+			var record = roleGrid.getSelectionModel().getSelected();
+			tRoleId=record.get('role_code');
+			tRoleName=record.get('role_name');
+			tRightFlag="2";
+
+			var win = new Window3();
+			win.show();
+			win.setTitle("角色‘" + tRoleName + "’权限授权");
+}
+//根据菜单号权限授权
+event authRightMenuItem_click(Ext.menu.BaseItem baseItem, Ext.EventObject e) {
+			var count = roleGrid.getSelectionModel().getSelections().length;
+			if(count != 1){
+				Ext.Msg.alert('提示', '请选择一个角色');
+				return;
+			}
+			var record = roleGrid.getSelectionModel().getSelected();
+			tRoleId=record.get('role_code');
+			tRoleName=record.get('role_name');
+			tRightFlag="2";
+
+			var win = new menuRightWindow();
+			win.show();
+}
+
+event Button1_click(Button thisComp, Ext.EventObject e) {
+			var count = roleGrid.getSelectionModel().getSelections().length;
+			if(count != 1){
+				Ext.Msg.alert('提示', '请选择一个角色');
+				return;
+			}
+			var record = roleGrid.getSelectionModel().getSelected();
+			tRoleId=record.get('role_code');
+			tRoleName=record.get('role_name');
+			if(top.currUserId && top.sysUser && top.currUserId!=top.sysUser){
+				if(top.sysRole && top.sysRole==tRoleId){
+					Ext.Msg.alert('提示', '普通用户不能为超级管理员角色分配权限');
+					return ;
+				}
+			}
+			var win = new menuRightWindow();
+			win.setTitle('给角色 【'+tRoleName +'】分配权限');
+			win.show();
+}
+
+
+event MenuItem1_click(Ext.menu.BaseItem baseItem, Ext.EventObject e) {
+			var count = roleGrid.getSelectionModel().getSelections().length;
+			if(count != 1){
+				Ext.Msg.alert('提示', '请选择一个角色');
+				return;
+			}
+			var record = roleGrid.getSelectionModel().getSelected();
+			tRoleId=record.get('role_code');
+			tRoleName=record.get('role_name');
+			if(top.currUserId && top.sysUser && top.currUserId!=top.sysUser){
+				if(top.sysRole && top.sysRole==tRoleId){
+					Ext.Msg.alert('提示', '普通用户不能为超级管理员角色分配用户');
+					return ;
+				}
+			}
+			rightFlag='1';
+			var win = new RoleUserWindow2();
+			win.setTitle('给 操作权限角色【'+tRoleName +'】分配用户');
+			win.show();
+}
+event MenuItem2_click(Ext.menu.BaseItem baseItem, Ext.EventObject e) {
+			var count = roleGrid.getSelectionModel().getSelections().length;
+			if(count != 1){
+				Ext.Msg.alert('提示', '请选择一个角色');
+				return;
+			}
+			var record = roleGrid.getSelectionModel().getSelected();
+			tRoleId=record.get('role_code');
+			tRoleName=record.get('role_name');
+			if(top.currUserId && top.sysUser && top.currUserId!=top.sysUser){
+				if(top.sysRole && top.sysRole==tRoleId){
+					Ext.Msg.alert('提示', '普通用户不能为超级管理员角色分配用户');
+					return ;
+				}
+			}
+			rightFlag='2';
+			var win = new RoleUserWindow2();
+			win.setTitle('给授权权限角色 【'+tRoleName +'】分配用户');
+			win.show();
+}
+event MenuItem3_click(Ext.menu.BaseItem baseItem, Ext.EventObject e) {
+			var count = roleGrid.getSelectionModel().getSelections().length;
+			if(count != 1){
+				Ext.Msg.alert('提示', '请选择一个角色');
+				return;
+			}
+			var record = roleGrid.getSelectionModel().getSelected();
+			tRoleId=record.get('role_code');
+			tRoleName=record.get('role_name');
+			if(top.currUserId && top.sysUser && top.currUserId!=top.sysUser){
+				if(top.sysRole && top.sysRole==tRoleId){
+					Ext.Msg.alert('提示', '普通用户不能为超级管理员角色分配用户');
+					return ;
+				}
+			}
+			rightFlag='3';
+			var win = new RoleUserWindow2();
+			win.setTitle('给角色 【'+tRoleName +'】整体权限分配用户');
+			win.show();
+}
+
+event allotButton_click(Button thisComp, Ext.EventObject e) {
+
+}
+		
+event Button2_click(Button thisComp, Ext.EventObject e) {
+   var selectRoles = roleGrid.getSelectionModel().getSelections();
+   var count = roleGrid.getSelectionModel().getSelections().length;
+   if(count != 1){
+      Ext.Msg.alert("提示","请选择一个角色操作");
+   }else{
+     var roleName = selectRoles[0].data.role_name;
+     var toCopyRoleId = selectRoles[0].data.role_code;
+     var copyWin = new copyRoleWindow();
+     copyWin.setTitle("给【"+roleName+"】复制权限");
+     copyWin.setToCopyRole({"roleName":roleName,"toCopyRoleId":toCopyRoleId})
+     copyWin.show();
+   }
+}
+event roleDownloadBtn_click(Button thisComp, Ext.EventObject e) {
+    var selectRoles = roleGrid.getSelectionModel().getSelections();
+    var count = roleGrid.getSelectionModel().getSelections().length;
+    if(count == 0){
+        Ext.Msg.alert('提示', '请选择一个角色下载');
+		return;
+    }else{
+       var records = roleGrid.getSelectionDatas();
+       var roleCodes = "";
+       var roleNames = "";
+       for(var i=0;i<records.length;i++){
+           roleCodes  +=","+records[i].data.role_code;
+           roleNames  +=","+records[i].data.role_name;
+       }
+       roleCodes = roleCodes.substring(1,roleCodes.length);
+       roleNames = roleNames.substring(1,roleNames.length);
+       //下载
+       var action = ctxPath+'/downloadExcel?resCode=bizSetRole&opCode=bizRoleRightDownlaod&roleNames='+roleNames+'&roleCodes='+roleCodes;
+       searchRoleFormPanel.getForm().getEl().dom.action = action;
+       searchRoleFormPanel.getForm().getEl().dom.method = 'post';
+       searchRoleFormPanel.getForm().getEl().dom.submit();
+    }
+    
+    
+}]]></WindowScript>
+    <WindowScript window="editRoleWindow"><![CDATA[remote bizframe.authority.role.roleQuery as GETROLE;
+public function checkRoleCode(newValue){
+			var param = {role_code:newValue,start:'0',limit:'0', resCode:"bizSetRole", opCode:"bizSetRoleFind"};
+			var result = GETROLE.synExecute(param);
+
+			if(result.dataSetResult.length > 0 && result.dataSetResult[0].data!=null)
+				return false;
+			else
+				return true;
+}
+
+public function verifyAddRoleForm(){
+			var result = "";
+			if(fieldEditable(aRoleCodeField) && !checkRoleCode(aRoleCodeField.getValue())){
+				result="编号已存在,请重新输入";
+				aRoleCodeField.setValue("");
+			}
+
+			return result;
+}
+
+public function fieldEditable(field){
+			if(field.isEditable() && field.isEnabled())
+				return true;
+			else
+				return false;
+}
+
+event editRoleWindow_complete() {
+			if(MainWin.editMod=="edit"){
+				var record = MainWin.roleGrid.getSelectionModel().getSelected();
+				aRoleNameField.defaultValue = record.get('role_name');
+				aRoleNameField.setValue(record.get('role_name'));
+
+				aRoleCodeField.defaultValue = record.get('role_code');
+				aRoleCodeField.setValue(record.get('role_code'));
+
+				aRemarkArea.defaultValue = record.get('remark');
+				aRemarkArea.setValue(record.get('remark'));
+
+				roleIdField.defaultValue = record.get('role_code');
+				roleIdField.setValue(record.get('role_code'));
+
+				creatorId.defaultValue = record.get('creator');
+				creatorId.setValue(record.get('creator'));
+				aRoleCodeField.setEnabled(false);
+			}
+}
+event resetBtn_click(Button thisComp, Ext.EventObject e) {
+			addRoleFormPanel.getForm().reset();
+}
+event cancelBtn_click(Button thisComp, Ext.EventObject e) {
+			addRoleFormPanel.getForm().reset();
+			hide();
+}
+event saveRoleBtn_click(Button thisComp, Ext.EventObject e) {
+			if(addRoleFormPanel.getForm().isValid()){
+				var check = verifyAddRoleForm();
+				if(check != ""){
+					Ext.Msg.alert('提示', check);
+					return;
+				}
+			}else{
+				Ext.Msg.alert('提示', '发现有输入项不符合规范');
+				return;
+			}
+
+			var authWindow = new auth(MainWin).window;
+			if(MainWin.editMod == "edit"){
+				authWindow.needAuth(authWindow,'bizSetRole','bizSetRoleEdit',MainWin, 
+				function(){
+					Ext.MessageBox.show({
+						title: '提示',
+						msg: '确认修改吗？',
+							buttons: Ext.MessageBox.YESNO,
+						icon: Ext.MessageBox.QUESTION,
+						fn: function(btn){
+							if(btn == 'yes'){
+								opCodeField.setValue("bizSetRoleEdit");	        		      	
+								addRoleFormPanel.commSubmit();
+							 }
+						}
+					   });
+				});
+			}else{
+				authWindow.needAuth(authWindow,'bizSetRole','bizSetRoleAdd',MainWin, 
+				function(){
+					opCodeField.setValue("bizSetRoleAdd");	
+					roleIdField.setValue(aRoleCodeField.getValue());
+					addRoleFormPanel.commSubmit();
+				});
+			}
+}
+event addRoleFormPanel_submitSuccess(object response) {
+			var returnCode = "-1";
+			var errorInfo;
+			if(typeof response == 'object'){
+				returnCode = response.returnCode;
+				errorInfo = response.errorInfo;
+			}
+
+			if(returnCode == "0"){
+				//更新成功
+				hide();
+				addRoleFormPanel.getForm().reset();
+				//更新列表
+				MainWin.roleGrid.refresh();
+				MainWin.editMod="";
+			}else{
+				Ext.Msg.alert('提示', '操作失败<br>原因：' + errorInfo);
+			}
+}
+event addRoleFormPanel_submitFailure(object response) {
+			Ext.Msg.alert('提示', '调用服务失败');
+}
+		]]></WindowScript>
+    <WindowScript window="Window3"><![CDATA[
+remote bizframe.authority.roleright.deleteRoleRight as cancelResoOperRightService;
+remote bizframe.authority.roleright.addRoleRight as resoOperRightService;
+
+var authorizedBy = MainWin.tRoleId;
+
+event Button14_click(Button thisComp, Ext.EventObject e) {
+			var opCode = "";
+
+			if(MainWin.editMod == "auth")
+				opCode = "bizRoleARightAdd";
+			if(MainWin.editMod == "oprAuth")
+				opCode = "bizRoleRightAdd";
+
+			var record = Grid4.getSelectionModel().getSelected();
+			if (record == null) {
+				Ext.Msg.alert('提示', '请选择待授权记录');
+				return;
+			}
+
+			var authWindow = new auth(MainWin).window;
+			authWindow.needAuth(authWindow,'bizSetRight',opCode,MainWin, 
+				function(){
+					var cacheKeys = Grid4.getSelectionDatas();
+					var cacheKeysArray = new Array(cacheKeys.length);
+					var transCodeString = "";
+					var subTransCodeString = "";
+					var beginDate = "0";
+					var endDate = "0";
+					for(var i=0;i<cacheKeys.length;i++){
+						var data = cacheKeys[i];
+						//var obj = {};
+						//obj["trans_code"] = data.get("trans_code");
+						//obj["sub_trans_code"] = data.get("sub_trans_code");
+						//obj["role_code"] = authorizedBy;
+						//obj["right_flag"] = MainWin.tRightFlag;
+						//obj["begin_date"] = "0";
+						//obj["end_date"] = "0";
+						transCodeString = transCodeString + data.get("trans_code");
+						subTransCodeString = subTransCodeString + data.get("sub_trans_code");
+						if(i<cacheKeys.length-1){
+							transCodeString = transCodeString + ",";
+							subTransCodeString = subTransCodeString + ",";
+						}
+
+						//cacheKeysArray[i] = obj;
+					}
+					var Result1 = resoOperRightService.synExecute({trans_code:transCodeString, sub_trans_code:subTransCodeString, role_code:authorizedBy, right_flag:MainWin.tRightFlag, begin_date:beginDate, end_date:endDate, resCode:"bizSetRight", opCode:"bizRoleRightAdd"});
+					gridRefresh2(authorizedBy);
+			});
+
+}
+//查询
+event Button12_click(Button thisComp, Ext.EventObject e) {
+			var seacher=seachRadioGroup.getValue();
+			if("" == seacher.trim() || null == seacher || undefined == seacher){
+				Ext.Msg.alert("提示","您没有选择查询目标，请您重选!");
+				return;
+			}
+			Grid4.clear();
+			Grid5.clear();
+			if("notAuthorized" == seacher){
+				DataSet6.setParams({trans_name:TextField10.getValue()});
+				DataSet6.setParams({sub_trans_name:TextField9.getValue()});
+				DataSet6.setParams({kind_code:kindCodeField.getValue()});
+				DataSet6.setParams({model_code:modelCodeField.getValue()});
+				DataSet6.setParams({right_flag:MainWin.tRightFlag});
+				Grid4.setDataSet(DataSet6);
+				DataSet6.load();
+				return;
+			}else{
+				   DataSet7.setParams({trans_name:TextField10.getValue()});
+				DataSet7.setParams({sub_trans_name:TextField9.getValue()});
+				DataSet7.setParams({kind_code:kindCodeField.getValue()});
+				DataSet7.setParams({model_code:modelCodeField.getValue()});
+				DataSet7.setParams({right_flag:MainWin.tRightFlag});
+				Grid5.setDataSet(DataSet7);
+				DataSet7.load();
+				return;
+			}
+
+
+
+}
+
+event Window3_complete() {
+			gridRefresh2(authorizedBy);
+}
+
+function gridRefresh(authorizedBy){
+
+}
+function gridRefresh2(authorizedBy){
+			DataSet6.setParams({role_code:authorizedBy, right_flag:MainWin.tRightFlag});
+			Grid4.setDataSet(DataSet6);
+			DataSet6.load();
+			DataSet7.setParams({role_code:authorizedBy, right_flag:MainWin.tRightFlag});
+			Grid5.setDataSet(DataSet7);
+			DataSet7.load();
+}
+
+event Panel6_show(Ext.Component thisComp) {
+			//gridRefresh2(authorizedBy);
+}
+event Button17_click(Button thisComp, Ext.EventObject e) {
+			var opCode = "";
+
+			if(MainWin.editMod == "auth")
+				opCode = "bizRoleARightDlt";
+			if(MainWin.editMod == "oprAuth")
+				opCode = "bizRoleRightDlt";
+
+			var record = Grid5.getSelectionModel().getSelected();
+			if (record == null) {
+				Ext.Msg.alert('提示', '请选择已授权记录');
+				return;
+			}
+
+			var authWindow = new auth(MainWin).window;
+			authWindow.needAuth(authWindow,'bizSetRight',opCode,MainWin, 
+				function(){
+					var cacheKeys = Grid5.getSelectionDatas();
+					var cacheKeysArray = new Array(cacheKeys.length);
+					var transCodeString = "";
+					var subTransCodeString = "";
+					var beginDate = "";
+					var endDate = "";
+					for(var i=0;i<cacheKeys.length;i++){
+						var data = cacheKeys[i];
+						//var obj = {};
+						//obj["trans_code"] = data.get("trans_code");
+						//obj["sub_trans_code"] = data.get("sub_trans_code");
+						//obj["role_code"] = data.get("role_code");
+						//obj["right_flag"] = data.get("right_flag");
+						//obj["begin_date"] = data.get("begin_date");
+						//obj["end_date"] = data.get("end_date");	
+						//cacheKeysArray[i] = obj;
+
+						transCodeString = transCodeString + data.get("trans_code");
+						subTransCodeString = subTransCodeString + data.get("sub_trans_code");
+						beginDate = beginDate + data.get("begin_date");
+						endDate = endDate + data.get("end_date");
+						if(i<cacheKeys.length-1){
+							transCodeString = transCodeString + ",";
+							subTransCodeString = subTransCodeString + ",";
+							beginDate = beginDate + ",";
+							endDate = endDate + ",";
+						}
+
+					}
+					var Result1 = cancelResoOperRightService.synExecute({trans_code:transCodeString, sub_trans_code:subTransCodeString, role_code:authorizedBy, right_flag:MainWin.tRightFlag, begin_date:beginDate, end_date:endDate, resCode:"bizSetRight", opCode:"bizRoleRightDlt"});
+					gridRefresh2(authorizedBy);
+			});
+}
+event Button19_click(Button thisComp, Ext.EventObject e) {
+			TextField10.setValue('');
+			TextField9.setValue('');
+			seachRadioGroup.setValue('');
+			kindCodeField.setValue('');
+			modelCodeField.setValue('');
+}
+		]]></WindowScript>
+    <WindowScript window="menuRightWindow"><![CDATA[remote  bizframe.authority.right.processRoleRightsService  as process;
+
+private currentIndex=0,allNum=0;
+private allMap=[];
+private currentNodeText='';
+private currentSpanNode=null;
+
+
+
+event sureButton_click(Button thisComp, Ext.EventObject e) {
+			var iframeDocument=document.getElementById('permissionFrame').contentWindow;
+			var inputNodes=iframeDocument.document.getElementsByTagName("input");
+			var rightsArray= new Array();
+			for(var i=0;i<inputNodes.length;i++){
+					inputNode= inputNodes[i];
+					if(inputNode.type.toLowerCase()=="checkbox"){
+							var right=inputNode.value;
+							if(inputNode.name.toLowerCase()=="op"){//操作
+								right=right+"$1";
+							}else if(inputNode.name.toLowerCase()=="auth"){//授权
+								right=right+"$2";
+							}
+							if(inputNode.checked && !isIn(right,iframeDocument.hashRightArray)){//选中并且没在此用拥有的权限范围内
+								right=right+"$0";
+								rightsArray.push(right);
+							}else if(!inputNode.checked && !isIn(right,iframeDocument.notHashRightArray)){//没选中并且没在此用没有拥有的权限范围内
+								right=right+"$1";
+								rightsArray.push(right);
+							}
+
+					}
+			}
+			if(rightsArray.length<=0){
+				Ext.Msg.alert('提示', '你没有修改角色的任何权限信息，无需提交');
+				return;
+			}
+
+			Ext.MessageBox.confirm('提示', '确认提交角色【'+MainWin.tRoleName+'】的权限?', function(button, text) {
+					if (button == "yes") {
+						var authWin = new auth(MainWin).window;
+						authWin.needAuth(authWin,'bizSetRole','bizRoleRightProcess',MainWin, function(){
+							var allRights="";
+							for(var i=0;i<rightsArray.length;i++){
+								allRights=allRights+rightsArray[i];
+								if(i<rightsArray.length-1){
+									allRights=allRights+',';
+								}
+							}
+							var result = process.synExecute({roleCode:MainWin.tRoleId, rights:allRights, resCode:"bizSetRole",opCode:"bizRoleRightProcess"});
+							if(!(result.returnCode == 0)){
+								Ext.Msg.alert('错误',result.errorInfo);
+							}else{
+								Ext.Msg.alert('提示','授权成功');
+								close();
+							}
+						});
+					}
+			});
+
+
+}
+
+
+function isIn($_value,array){
+			for(var i=0;i<array.length;i++){
+				var temp=array[i];
+				if(temp==$_value) 
+					return true;
+			}
+			return false;
+}
+
+event exitButton_click(Button thisComp, Ext.EventObject e) {
+			close();
+}
+
+event menuRightWindow_complete() {
+			var srcPath =window.ctxPath+'/bizframe/jsp/permission/permissionTree.jsp?serviceId=bizframe.authority.right.getRoleRightsService&&roleCode='+MainWin.tRoleId;
+			permissionTree.setHtml('<iframe id="permissionFrame" name="permissionFrame" src="'+srcPath+'" frameborder="0" height="100%" width="100%" style="overflow-y:scroll;"></iframe>');//window.ctxPath
+}
+
+
+/**
+上一个
+*/
+event prevButton_click(Button thisComp, Ext.EventObject e) {
+			if(currentIndex<=0){
+				return;
+			}
+			if(currentSpanNode && null!=currentSpanNode){
+				currentSpanNode.innerHTML=currentNodeText;
+			}
+			infoLabel.setValue(currentIndex+'/'+allNum);
+			selectNodeByIndex(--currentIndex);
+}
+/**
+下一个
+*/
+event nextButton_click(Button thisComp, Ext.EventObject e) {
+			if(currentIndex >= allMap.length-1){
+				return;
+			}
+			if(currentSpanNode && null!=currentSpanNode){
+				currentSpanNode.innerHTML=currentNodeText;
+			}
+			infoLabel.setValue((currentIndex+2)+'/'+allNum);
+			selectNodeByIndex(++currentIndex);
+}
+
+event searchField_keyup(Object thisComp, Ext.EventObject e) {
+			clearSearchStatu();
+			var searchValue=searchField.getValue();
+			if(searchValue && ''!=searchValue){
+				searchTreeByKeyWord(searchValue);
+			}
+}
+
+
+function searchTreeByKeyWord(keyWord){
+			var iframeDocument=document.getElementById('permissionFrame').contentWindow;
+			var spanNodes=iframeDocument.document.getElementsByTagName("span");
+
+			for(var i=0;i<spanNodes.length;i++){
+				var spanNode=spanNodes[i];
+				if(spanNode.innerHTML.indexOf(keyWord)>-1){
+					allMap[allNum++]=spanNode;
+				}
+			}
+			if(allNum>0){
+				infoLabel.setValue('1/'+allNum)
+				 selectNodeByIndex(0);
+			}
+}
+
+function selectNodeByIndex(index){
+			var spanNode=allMap[index];
+			currentNodeText=spanNode.innerHTML;
+			currentSpanNode=spanNode;
+			spanNode.innerHTML='<STRONG>'+currentNodeText+'</STRONG>'
+			nodeExpand(spanNode);
+			nodeVisible(spanNode);
+}
+
+function clearSearchStatu(){
+			if(currentSpanNode && null!=currentSpanNode){
+				currentSpanNode.innerHTML=currentNodeText;
+			}
+			allMap=[];
+			currentIndex=0;
+			allNum=0;
+			infoLabel.setValue('0/0');
+			currentNodeText='';
+			currentSpanNode=null;
+}
+
+function nodeExpand(nodeDom) {
+			var nodeTemp=nodeDom;
+			while(nodeTemp.parentNode && null!= nodeTemp.parentNode &&　undefined!=nodeTemp.parentNode){
+				if(nodeTemp.parentNode.style && nodeTemp.parentNode.style.display){
+					nodeTemp.parentNode.style.display="";
+					var key=nodeTemp.parentNode.id.substring(0,nodeTemp.parentNode.id.indexOf('-div'));
+					var iframeDocument=document.getElementById('permissionFrame').contentWindow;
+					var expImage=iframeDocument.document.getElementById(key+'-exp-icon');//节点是否展开图标
+					var nodeImage=iframeDocument.document.getElementById(key+'-node-icon');//节点是否展开图标
+					expImage.src=window.ctxPath+"/bizframe/images/tree/elbow-end-minus.gif";
+					nodeImage.src=window.ctxPath+"/bizframe/images/tree/folder-open.gif";
+				}
+				nodeTemp=nodeTemp.parentNode;
+			} 
+}
+
+function nodeVisible(nodeDom) {
+			var permissionTreePanl = Ext.getCmp(permissionTree.getId());
+			var permissionTreePanlDom = permissionTreePanl.el.dom;// 获取treeDom
+			var iframeDocument=document.getElementById('permissionFrame').contentWindow.document.body;
+			var panelBody = iframeDocument;
+			var nodeY = getAbsolutePos(nodeDom, panelBody).y;
+			if (nodeY < panelBody.scrollTop) {
+				panelBody.scrollTop = nodeY-panelBody.clientHeight/2.0;
+			} else if ((nodeY + nodeDom.offsetHeight) > (panelBody.scrollTop + panelBody.clientHeight)) {
+				panelBody.scrollTop = nodeY - panelBody.clientHeight
+						+ nodeDom.offsetHeight+panelBody.clientHeight/2.0;
+			}
+}
+
+
+function getAbsolutePos(el, parent) {
+			var r = {
+				x : el.offsetLeft,
+				y : el.offsetTop,
+				scrollLeft : 0,
+				scrollTop : 0
+			};
+			if (el.offsetParent && el.offsetParent != parent) {
+				r.scrollLeft = el.offsetParent.scrollLeft;
+				r.scrollTop = el.offsetParent.scrollTop;
+				var tmp = arguments.callee(el.offsetParent, parent);
+				r.x += tmp.x;
+				r.y += tmp.y;
+				r.scrollLeft += tmp.scrollLeft;
+				r.scrollTop += tmp.scrollTop;
+			}
+			return r;
+}
+private function  displayDiv(id,document,isExpand){
+	var divDoms = Ext.DomQuery.select("div[@id$='-div']",document);
+	var expChildDoms = Ext.DomQuery.select("img[@id$='-exp-icon']",document);
+	var nChildDoms = Ext.DomQuery.select("img[@id$='-node-icon']",document);
+	for(var i=0;i<expChildDoms.length;i++){
+	   var childNode = expChildDoms[i];
+	   var expImage=document.getElementById(childNode.id);//节点是否展开图标
+	   if(!isExpand){//隐藏,收缩子节点
+			expImage.src=ctxPath+"/bizframe/images/tree/elbow-end-plus.gif";
+		}else{//显示
+			expImage.src=ctxPath+"/bizframe/images/tree/elbow-end-minus.gif";
+		}
+	}
+	
+	for(var i=0;i<nChildDoms.length;i++){
+	   var nchildDom = nChildDoms[i];
+	   var nodeImage=document.getElementById(nchildDom.id);//节点是否展开图标
+	   if(!isExpand){//隐藏,收缩子节点
+			nodeImage.src=ctxPath+"/bizframe/images/tree/folder.gif";
+		}else{//显示
+			nodeImage.src=ctxPath+"/bizframe/images/tree/folder-open.gif";
+		}
+	}
+	var reg=new RegExp("-p-div$");     
+	
+	for(var i=0;i<divDoms.length;i++){
+	  var divDom = divDoms[i];
+	  if(!reg.test(divDom.id)){
+	     if(!isExpand){
+	           divDom.style.display="none";
+	     }else{
+	           divDom.style.display="";
+	     }
+	  }
+	  
+	}
+	
+}
+		
+event expandBtn_click(Button thisComp, Ext.EventObject e) {
+   var iframeDocument=document.getElementById('permissionFrame').contentWindow;
+   var _document = iframeDocument.document;
+   displayDiv("BIZFRAME",_document,true);
+}
+event closeBtn_click(Button thisComp, Ext.EventObject e) {
+   var iframeDocument=document.getElementById('permissionFrame').contentWindow;
+   var _document = iframeDocument.document;
+   displayDiv("BIZFRAME",_document,false);
+}]]></WindowScript>
+    <WindowScript window="RoleUserWindow2"><![CDATA[remote bizframe.authority.role.roleUserAdd   as allotSvc;
+remote bizframe.authority.role.roleUserDel   as cancelSvc;
+var roleCode='';
+var rightFlag='0';
+event RoleUserWindow2_complete() {
+			//FormPanel1.collapse();
+			var operationMap = {"bizSetRole.roleUserAdd":Button4,
+								"bizSetRole.roleUserDel":Button5
+								};
+			checkRights(operationMap,2);
+			var record = MainWin.roleGrid.getSelectionData();	
+			roleCode=record.data['role_code'];
+			rightFlag=MainWin.rightFlag;
+			DataSet1.setParams({roleCode : roleCode});
+			DataSet1.setParams({rightFlag : rightFlag});
+			DataSet1.load();
+
+}
+event GridItem71_renderer(Object value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store) {
+			if(record.get('auth_type')!="1"){//授权
+				 value='<font  color="#FF0000">'+value+'</font>';
+			}else{
+				  value='<font  color="#008000">'+value+'</font>';
+			}
+			return value;
+}
+event Button7_click(Button thisComp, Ext.EventObject e) {
+			var param=FormPanel1.getValues();
+			DataSet1.setParams(param);
+			DataSet1.setParams({roleCode : roleCode});
+			DataSet1.setParams({rightFlag : rightFlag});
+			DataSet1.load();
+}
+event Button4_click(Button thisComp, Ext.EventObject e) {
+			var record = userGrid.getSelectionModel().getSelected();
+			if (record == null) {
+				Ext.Msg.alert('提示', '请选择一个待分配用户');
+				return;
+			}
+			var codes = userGrid.getSelectionDatas();
+			var userIds='';//选中的用户ID
+			for(var i=0;i<codes.length;i++){
+				var authType=codes[i].get("auth_type") ;
+
+				   if( authType && "1"==authType){
+					 var _userName=codes[i].get("user_name") ;
+					 Ext.Msg.alert('提示','用户：'+_userName+'  已经分配了此角色，无需再次分配!');
+					 return;
+				   }
+				   var authUserId=codes[i].get("user_id");
+				   if(top.currUserId && top.currUserId==authUserId){
+					Ext.Msg.alert('提示', '用户不能为自己账户分配角色');
+					return ;
+				}
+				if(top.sysUser && top.sysUser==authUserId){
+					Ext.Msg.alert('提示', '用户不能为管理员账户分配角色');
+					return ;
+				}
+				userIds=userIds+authUserId;
+				if(i<codes.length-1){
+					userIds=userIds+",";
+				}
+			}
+			var params={};
+			Ext.apply(params,{userIds: userIds});
+			Ext.apply(params,{roleCode : roleCode});
+			Ext.apply(params,{rightFlag : rightFlag});
+			Ext.apply(params,{resCode:'bizSetRole',opCode:'roleUserAdd'});
+			var authWin = new auth(MainWin).window;
+			authWin.needAuth(authWin,'bizSetRole','roleUserAdd',MainWin, function(){
+				var result1 = allotSvc.synExecute(params);
+				var result = result1.dataSetResult[0].data[0].result;
+				if(result1 == ""){
+					Ext.Msg.alert('提示', '服务没有响应');
+					return;
+				}
+				if(!(result1.returnCode == 0)){
+					Ext.Msg.alert('错误','分配失败！<br>错误信息：'+result1.errorInfo);
+				}else{
+
+					if(result==0){
+							   Ext.Msg.show(
+					  {
+						title:'错误',
+						msg: '错误信息：对不起,您缺少分配用户的授权权限',
+						buttons: Ext.Msg.OK,
+						icon: Ext.MessageBox.ERROR
+					  });
+								}else{
+								refreshGrid(userGrid);
+								Ext.Msg.alert('提示','用户分配成功');
+								}
+							}
+			});
+}
+event Button5_click(Button thisComp, Ext.EventObject e) {
+			var record = userGrid.getSelectionModel().getSelected();
+			if (record == null) {
+				Ext.Msg.alert('提示', '请选择一个待取消用户');
+				return;
+			}
+			var codes = userGrid.getSelectionDatas();
+			var userIds='';//选中的用户ID
+			for(var i=0;i<codes.length;i++){
+				var authType=codes[i].get("auth_type") ;
+				   if( authType && "1"!=authType){
+					 var _userName=codes[i].get("user_name") ;
+					 Ext.Msg.alert('提示','用户：'+_userName+'  没有分配此角色，无需取消!');
+					 return;
+				   }
+				   var authUserId=codes[i].get("user_id");
+				   if(top.currUserId && top.currUserId==authUserId){
+					Ext.Msg.alert('提示', '用户不能取消自己相关的角色');
+					return ;
+				}
+				if(top.sysUser && top.sysUser==authUserId){
+					Ext.Msg.alert('提示', '用户不能取消管理员账户相关的角色');
+					return ;
+				}
+				userIds=userIds+authUserId;
+				if(i<codes.length-1){
+					userIds=userIds+",";
+				}
+			}
+			var params={};
+			Ext.apply(params,{userIds: userIds});
+			Ext.apply(params,{roleCode : roleCode});
+			Ext.apply(params,{rightFlag : rightFlag});
+			Ext.apply(params,{resCode:'bizSetRole',opCode:'roleUserDel'});
+			var authWin = new auth(MainWin).window;
+			authWin.needAuth(authWin,'bizSetRole','roleUserDel',MainWin, function(){
+				var result1 = cancelSvc.synExecute(params);
+				var result = result1.dataSetResult[0].data[0].result;
+				if(result1 == ""){
+					Ext.Msg.alert('提示', '服务没有响应');
+					return;
+				}
+				if(!(result1.returnCode == 0)){
+					Ext.Msg.alert('错误','取消失败！<br>错误信息：'+result1.errorInfo);
+				}else{
+				  if(result==0){
+							   Ext.Msg.show(
+					  {
+						title:'错误',
+						msg: '错误信息：对不起,您缺少取消分配用户的授权权限',
+						buttons: Ext.Msg.OK,
+						icon: Ext.MessageBox.ERROR
+					  });
+								}else{
+								refreshGrid(userGrid);
+								Ext.Msg.alert('提示','用户取消成功');
+								}
+							}
+			});
+}
+event Button8_click(Button thisComp, Ext.EventObject e) {
+			FormPanel1.getForm().reset();
+}
+		]]></WindowScript>
+    <WindowScript window="ViewRoleRightWindow"><![CDATA[var menuId='';
+var authMenuId='';
+
+
+		]]></WindowScript>
+    <WindowScript window="copyRoleWindow"><![CDATA[remote  bizframe.authority.right.roleRightCopyService  as process;
+public  _params = {};
+event copyButton_click(Button thisComp, Ext.EventObject e) {
+   var opType = opTypeCombo.getValue();
+   var selectRoles = roleGrid.getSelectionModel().getSelections();
+   var count = roleGrid.getSelectionModel().getSelections().length;
+   var str="";
+   var copyRoleIds = [];
+   var creators = [];
+   for(var i=0;i<count;i++){
+     if(selectRoles[i].data.role_code != _params.toCopyRoleId){
+	     var roleName = selectRoles[i].data.role_name;
+	     str +=","+roleName;
+	     copyRoleIds[i]= selectRoles[i].data.role_code;
+	     creators[i] = selectRoles[i].data.creator;
+     }
+   } 
+   if(str.length==0){
+      Ext.Msg.alert("提示","无角色记录可复制");
+   }
+   str=str.substring(1);
+   Ext.MessageBox.confirm('提示', '确认将角色【'+str+'】的权限复制给【'+_params.roleName+'】?', function(button, text) {
+					if (button == "yes") {
+					     var authWin = new auth(MainWin).window;
+					     authWin.needAuth(authWin,'bizSetRole','bizRoleRightCopy',MainWin, function(){
+					           process.asynExecute(
+					                   {"toCopyRoleId":_params.toCopyRoleId,
+					                     "creators":creators,
+					                     "copyRoleIds":copyRoleIds,
+					                     "resCode":'bizSetRole',
+					                     "opCode":'bizRoleRightCopy',
+					                     "opType":opType
+					                   },
+					                   function(result){
+					                     if(result.returnCode=="0"){
+					                       Ext.Msg.alert("提示","复制成功!");
+					                       close(); 
+					                     }else{
+					                       Ext.Msg.alert("错误提示",result.errorInfo);
+					                     }
+					                   },
+					                   function(result){
+					                     Ext.Msg.alert("错误提示","请求失败");
+					                     
+					                   }
+					           );
+					     });
+					}
+			});		
+}
+
+public  function setToCopyRole(params){
+   _params = params;
+}
+event searchRoleBtn_click(Button thisComp, Ext.EventObject e) {
+			if(searchRoleFormPanel.getForm().isValid()){
+				var values =  searchRoleFormPanel.getValues();
+				roleDataSet.setParams(values);
+				roleDataSet.load();
+			}else{
+				Ext.Msg.alert('提示', '发现有输入项不符合规范');
+			}
+}
+event searchResetBtn_click(Button thisComp, Ext.EventObject e) {
+			searchRoleFormPanel.getForm().reset();
+}
+event roleGrid_rowclick(Hs.HsGrid thisComp, Number rowIndex, Ext.EventObject e) {
+     if(roleGrid.getRow(rowIndex).data.role_code==_params.toCopyRoleId){
+        Ext.Msg.alert("提示","不能为同一角色复制权限",function(){
+            roleGrid.getSelectionModel().deselectRow(rowIndex);
+        });
+        
+     }else if(_params.toCopyRoleId == "admin" && (opTypeCombo.getValue()=="1")){
+         Ext.Msg.alert("提示","不能覆盖admin角色的权限",function(){
+            roleGrid.getSelectionModel().deselectRow(rowIndex);
+         });
+     }
+}]]></WindowScript>
+  </WindowScripts>
+</hsdoc>

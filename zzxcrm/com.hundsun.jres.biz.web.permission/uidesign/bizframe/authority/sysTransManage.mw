@@ -1,0 +1,852 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hsdoc version="1.1.0">
+  <Windows>
+    <control-MainWindow height="701" name="MainWin" templatePath="window.ftl" width="1038">
+      <layout-fit>
+        <control-Panel height="200" name="Panel1" width="300">
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+          <layout-border>
+            <control-Panel region="center" title="系统交易" height="200" name="sysTransForm" width="300" split="true">
+              <Top/>
+              <Bottom/>
+              <Left/>
+              <Right/>
+              <layout-border>
+                <control-FormPanel region="north" height="80" frame="true" name="sysTransSearchForm" width="300">
+                  <Top/>
+                  <Bottom/>
+                  <Left/>
+                  <Right/>
+                  <layout-table columns="2" fullWidth="true">
+                    <control-TextField labelAlign="right" msgTarget="qtip" labelWidth="70" regexText="输入含非法字符" fieldName="transCode" width="49.0%" height="22" regex="/^[A-Za-z0-9_]+$/" fieldLabel="交易编号" name="transCodeField" tabIndex="2"/>
+                    <control-DictComboBox labelAlign="right" msgTarget="qtip" labelWidth="70" editable="true" fieldName="kindCode" displayMode="true" width="49.0%" emptyText="请选择..." fieldLabel="分类编号" comboListWidth="230" name="kindCodeCombo" tabIndex="3" group="BIZ_SUB_SYSTEM"/>
+                    <control-TextField labelAlign="right" msgTarget="qtip" labelWidth="70" regexText="非法输入，只能输入中文、英文、数字和下划线" fieldName="transName" width="49.0%" regex="/^[\w\u4e00-\u9fa5\.\/\,\，\.\。\“\（\）\(\)\-\s]*$/" height="22" fieldLabel="交易名称" name="transNameField" tabIndex="4"/>
+                    <control-DictComboBox labelAlign="right" msgTarget="qtip" labelWidth="70" editable="true" fieldName="modelCode" displayMode="true" width="49.0%" emptyText="请选择..." fieldLabel="模块编号" comboListWidth="230" name="modelCodeCombo" tabIndex="5" group="BIZ_MODEL"/>
+                  </layout-table>
+                </control-FormPanel>
+                <control-Grid region="center" hasCheckColumn="true" remoteSort="true" enableCellTip="true" width="300" height="150" dataSet="findSysTransDS" name="sysTransGrid" hasCustomPageSize="true" hasPagingBar="true">
+                  <layout-GridToolbar>
+                    <control-GridItem title="交易编号" align="left" dataIndex="trans_code" name="GridItem4" width="100" sortable="true"/>
+                    <control-GridItem title="交易名称" align="left" dataIndex="trans_name" name="GridItem5" width="100" sortable="true"/>
+                    <control-GridItem title="分类编号" align="left" dataIndex="kind_name" name="GridItem6" width="100" sortable="true"/>
+                    <control-GridItem title="模块编号" align="left" dataIndex="model_name" name="GridItem8" width="100" sortable="true"/>
+                    <control-GridItem title="备注" align="left" dataIndex="remark" name="GridItem7" width="100" sortable="true"/>
+                  </layout-GridToolbar>
+                  <Top>
+                    <control-Toolbar name="Toolbar1">
+                      <layout-toolbar>
+                        <control-Button visible="false" name="sysTransSearchBtn" text="查询" width="75" icon="bizframe/images/icons/search.png" tabIndex="6"/>
+                        <control-Button name="resetBtn" text="重置" width="75" icon="bizframe/images/icons/refresh.png" tabIndex="7"/>
+                        <control-Button visible="false" name="sysTransAddBtn" text="新增" width="75" icon="bizframe/images/icons/add.gif" tabIndex="8"/>
+                        <control-Button visible="false" name="sysTransModifyBtn" text="修改" width="75" icon="bizframe/images/icons/edit.png" tabIndex="9"/>
+                        <control-Button visible="false" name="sysTransDeleteBtn" text="删除" width="75" icon="bizframe/images/icons/delete.gif" tabIndex="10"/>
+                        <control-Button visible="false" name="sysTransExportBtn" text="导出SQL" width="75" icon="bizframe/images/icons/export.png" tabIndex="11"/>
+                        <control-Button visible="false" width="75" icon="bizframe/images/icons/download.png" name="sysTransDownloadBtn" text="下载" tabIndex="12" menu="TransDownMenu"/>
+                      </layout-toolbar>
+                    </control-Toolbar>
+                  </Top>
+                  <Bottom/>
+                  <Left/>
+                  <Right/>
+                </control-Grid>
+              </layout-border>
+            </control-Panel>
+            <control-Panel region="east" width="500" height="200" title="系统子交易" collapsible="true" split="true" name="subSysTransForm">
+              <Top/>
+              <Bottom/>
+              <Left/>
+              <Right/>
+              <layout-border>
+                <control-FormPanel region="north" height="80" frame="true" name="subSysTransSearchForm" width="300">
+                  <Top/>
+                  <Bottom/>
+                  <Left/>
+                  <Right/>
+                  <layout-table columns="2" fullWidth="true">
+                    <control-TextField labelAlign="right" msgTarget="qtip" labelWidth="80" regexText="输入含非法字符" fieldName="subTransCode" width="49.0%" height="22" regex="/^[A-Za-z0-9_]+$/" fieldLabel="子交易编号" name="subTransCodeField" tabIndex="13"/>
+                    <control-DictComboBox labelAlign="right" msgTarget="qtip" labelWidth="70" editable="true" fieldName="ctrlFlag" displayMode="true" width="49.0%" emptyText="请选择..." fieldLabel="控制标志" name="ctrlFlagDictCombo" tabIndex="14" group="BIZ_SYN_AUTH"/>
+                    <control-TextField labelAlign="right" msgTarget="qtip" labelWidth="80" regexText="非法输入，只能输入中文、英文、数字和下划线" fieldName="subTransName" width="49.0%" regex="/^[\w\u4e00-\u9fa5\.\/\,\，\.\。\“\（\）\(\)\-\s]*$/" height="22" fieldLabel="子交易名称" name="subTransNameField" tabIndex="15"/>
+                    <control-DictComboBox labelAlign="right" msgTarget="qtip" labelWidth="70" editable="true" fieldName="loginFlag" displayMode="true" width="49.0%" emptyText="请选择..." fieldLabel="登录标志" name="loginFlagDictCombo" tabIndex="16" group="BIZ_LOGIN_FLAG"/>
+                    <control-HiddenField fieldName="transCode" name="transCodeHiddenField"/>
+                    <control-HiddenField defaultValue="bizSetSubTrans" fieldName="resCode" name="resCodeHidden"/>
+                    <control-HiddenField defaultValue="bizSubTransFind" fieldName="opCode" name="opCodeHidden"/>
+                  </layout-table>
+                </control-FormPanel>
+                <control-Grid region="center" hasCheckColumn="true" remoteSort="true" autoload="false" enableCellTip="true" width="400" height="214" dataSet="findSubSysTransDS" name="subSysTransGrid" hasCustomPageSize="true" hasPagingBar="true">
+                  <layout-GridToolbar>
+                    <control-GridItem title="子交易编号" align="left" dataIndex="sub_trans_code" name="GridItem1" width="100" sortable="true"/>
+                    <control-GridItem title="子交易名称" align="left" dataIndex="sub_trans_name" name="GridItem12" width="100" sortable="true"/>
+                    <control-GridItem title="映射服务" align="left" dataIndex="rel_serv" name="GridItem2" width="100" sortable="true"/>
+                    <control-GridItem title="映射URL" align="left" dataIndex="rel_url" name="GridItem3" width="100" sortable="true"/>
+                    <control-GridItem title="控制标志" align="center" dataIndex="ctrl_flag_name" name="GridItem9" width="100" sortable="true"/>
+                    <control-GridItem title="登录标志" align="center" dataIndex="login_flag_name" name="GridItem10" width="100" sortable="true"/>
+                    <control-GridItem title="备注" align="left" dataIndex="remark" name="GridItem11" width="100" sortable="true"/>
+                  </layout-GridToolbar>
+                  <Top>
+                    <control-Toolbar name="Toolbar2">
+                      <layout-toolbar>
+                        <control-Button visible="false" name="subSysTransSearchBtn" text="查询" width="75" icon="bizframe/images/icons/search.png" tabIndex="17"/>
+                        <control-Button name="subResetBtn" text="重置" width="75" icon="bizframe/images/icons/refresh.png" tabIndex="18"/>
+                        <control-Button visible="false" name="subSysTransAddBtn" text="新增" width="75" icon="bizframe/images/icons/add.gif" tabIndex="19"/>
+                        <control-Button visible="false" name="subSysTransModifyBtn" text="修改" width="75" icon="bizframe/images/icons/edit.png" tabIndex="20"/>
+                        <control-Button visible="false" name="subSysTransDeleteBtn" text="删除" width="75" icon="bizframe/images/icons/delete.gif" tabIndex="21"/>
+                        <control-Button visible="false" name="subSysTransExportBtn" text="导出SQL" width="75" icon="bizframe/images/icons/export.png" tabIndex="22"/>
+                        <control-Button visible="false" width="75" icon="bizframe/images/icons/download.png" name="subSysTransDownloadBtn" text="下载" tabIndex="23" menu="SubTransDownMenu"/>
+                      </layout-toolbar>
+                    </control-Toolbar>
+                  </Top>
+                  <Bottom/>
+                  <Left/>
+                  <Right/>
+                </control-Grid>
+              </layout-border>
+            </control-Panel>
+          </layout-border>
+        </control-Panel>
+      </layout-fit>
+    </control-MainWindow>
+    <control-Window title="新增系统交易" height="323" name="addSysTransWin" draggable="true" width="394" resizable="false">
+      <Top/>
+      <Bottom>
+        <control-ButtonGroup name="ButtonGroup1">
+          <layout-buttonGroup>
+            <control-Button name="addBtn" text="确定" width="75" icon="bizframe/images/icons/accept.png"/>
+            <control-Button name="resetBtn" text="重置" width="75" icon="bizframe/images/icons/refresh.png"/>
+            <control-Button name="cancelBtn" text="取消" width="75" icon="bizframe/images/icons/cross.gif"/>
+          </layout-buttonGroup>
+        </control-ButtonGroup>
+      </Bottom>
+      <Left/>
+      <Right/>
+      <layout-fit>
+        <control-FormPanel frame="true" height="250" submitService="bizframe.authority.sysTrans.addSysTrans" name="FormPanel1" width="394">
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+          <layout-form labelAlign="right" labelWidth="75">
+            <control-TextField msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" regexText="输入含非法字符" fieldName="transCode" width="350" height="22" regex="/^[A-Za-z0-9_]+$/" fieldLabel="交易编号" maxLength="32" name="transCodeField" allowBlank="false"/>
+            <control-TextField msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" regexText="输入含非法字符" fieldName="transName" width="350" height="22" regex="/^[\w\u4e00-\u9fa5\.\/\,\，\.\。\“\（\）\(\)\-\s]*$/" fieldLabel="交易名称" maxLength="32" name="transNameField" allowBlank="false"/>
+            <control-DictComboBox msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" editable="true" fieldName="kindCode" displayMode="true" width="350" emptyText="请选择..." fieldLabel="分类编号" name="kindCodeCombo" allowBlank="false" group="BIZ_SUB_SYSTEM"/>
+            <control-DictComboBox msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" editable="true" fieldName="modelCode" displayMode="true" width="350" emptyText="请选择..." fieldLabel="模块编号" name="modelCodeCombo" allowBlank="false" group="BIZ_MODEL"/>
+            <control-TextArea fieldLabel="备注" maxLength="256" fieldName="remark" height="98" name="remarkTextArea" width="350"/>
+            <control-HiddenField defaultValue="bizSetTrans" fieldName="resCode" name="resCodeHidden"/>
+            <control-HiddenField defaultValue="bizTransAdd" fieldName="opCode" name="opCodeHidden"/>
+          </layout-form>
+        </control-FormPanel>
+      </layout-fit>
+    </control-Window>
+    <control-Window title="修改系统交易" height="329" name="editSysTransWin" draggable="true" width="398" resizable="false">
+      <Top/>
+      <Bottom>
+        <control-ButtonGroup name="ButtonGroup1">
+          <layout-buttonGroup>
+            <control-Button name="modifyBtn" text="确定" width="75" icon="bizframe/images/icons/accept.png"/>
+            <control-Button name="resetBtn" text="重置" width="75" icon="bizframe/images/icons/refresh.png"/>
+            <control-Button name="cancelBtn" text="取消" width="75" icon="bizframe/images/icons/cross.gif"/>
+          </layout-buttonGroup>
+        </control-ButtonGroup>
+      </Bottom>
+      <Left/>
+      <Right/>
+      <layout-fit>
+        <control-FormPanel frame="true" height="200" autoScroll="true" name="editForm" width="398">
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+          <layout-form labelAlign="right" labelWidth="75">
+            <control-TextField dataField="trans_code" enabled="false" msgTarget="qtip" regexText="输入含非法字符" fieldName="transCode" width="350" height="22" regex="/^[A-Za-z0-9_]+$/" fieldLabel="交易编号" maxLength="32" name="transCodeField" allowBlank="false"/>
+            <control-TextField dataField="trans_name" msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" regexText="输入含非法字符" fieldName="transName" width="350" height="22" regex="/^[\w\u4e00-\u9fa5\.\/\,\，\.\。\“\（\）\(\)\-\s]*$/" fieldLabel="交易名称" maxLength="32" name="transNameField" allowBlank="false"/>
+            <control-DictComboBox dataField="kind_code" msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" editable="true" fieldName="kindCode" displayMode="true" width="350" emptyText="请选择..." fieldLabel="分类编号" name="kindCodeCombo" allowBlank="false" group="BIZ_SUB_SYSTEM"/>
+            <control-DictComboBox dataField="model_code" msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" editable="true" fieldName="modelCode" displayMode="true" width="350" emptyText="请选择..." fieldLabel="模块编号" name="modelCodeCombo" allowBlank="false" group="BIZ_MODEL"/>
+            <control-TextArea dataField="remark" fieldName="remark" width="350" height="98" fieldLabel="备注" maxLength="256" name="remarkTextArea"/>
+            <control-HiddenField dataField="trans_code" fieldName="transCode" name="transCodeHiddenField"/>
+          </layout-form>
+        </control-FormPanel>
+      </layout-fit>
+    </control-Window>
+    <control-Window title="新增系统子交易" height="317" name="addSubSysTransWin" draggable="true" width="400" resizable="false">
+      <Top/>
+      <Bottom>
+        <control-ButtonGroup name="ButtonGroup2">
+          <layout-buttonGroup>
+            <control-Button name="addSubSysTransBtn" text="确定" width="75" icon="bizframe/images/icons/add.gif"/>
+            <control-Button name="resetBtn" text="重置" width="75" icon="bizframe/images/icons/refresh.png"/>
+            <control-Button name="cancelBtn" text="取消" width="75" icon="bizframe/images/icons/cross.gif"/>
+          </layout-buttonGroup>
+        </control-ButtonGroup>
+      </Bottom>
+      <Left/>
+      <Right/>
+      <layout-fit>
+        <control-FormPanel height="200" submitService="bizframe.authority.subSysTrans.addSubSysTrans" frame="true" name="addSubSysTransForm" width="300">
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+          <layout-form labelAlign="right" labelWidth="75">
+            <control-TextField msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" regexText="输入含非法字符" fieldName="subTransCode" width="350" height="22" regex="/^[A-Za-z0-9_]+$/" fieldLabel="子交易号" maxLength="32" name="subTransCodeField" allowBlank="false"/>
+            <control-TextField msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" regexText="输入含非法字符" fieldName="subTransName" width="350" height="22" regex="/^[\w\u4e00-\u9fa5\.\/\,\，\.\。\“\（\）\(\)\-\s]*$/" fieldLabel="子交易名" maxLength="32" name="subTransNameField" allowBlank="false"/>
+            <control-TextField msgTarget="qtip" regexText="输入含非法字符" fieldName="relServ" width="350" height="22" regex="/^[0-9A-Za-z_\/\.]+$/" fieldLabel="映射服务" maxLength="256" name="relServField"/>
+            <control-TextField msgTarget="qtip" regexText="输入含非法字符" fieldName="relUrl" width="350" height="22" regex="/^[0-9A-Za-z_?=:@&amp;\/\.\$]+$/" fieldLabel="映射URL" maxLength="256" name="relUrlField"/>
+            <control-DictComboBox msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" fieldName="ctrlFlag" displayMode="true" width="350" emptyText="请选择..." fieldLabel="控制标志" name="ctrlFlagDictCombo" allowBlank="false" group="BIZ_SYN_AUTH"/>
+            <control-DictComboBox msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" fieldName="loginFlag" displayMode="true" width="350" emptyText="请选择..." fieldLabel="登录标志" name="loginFlagDictCombo" allowBlank="false" group="BIZ_LOGIN_FLAG"/>
+            <control-TextArea fieldLabel="备      注" maxLength="256" fieldName="remark" height="60" name="remarkField" width="350"/>
+            <control-HiddenField fieldName="transCode" name="transCodeField"/>
+            <control-HiddenField defaultValue="bizSetSubTrans" fieldName="resCode" name="resCodeHidden"/>
+            <control-HiddenField defaultValue="bizSubTransAdd" fieldName="opCode" name="opCodeHidden"/>
+          </layout-form>
+        </control-FormPanel>
+      </layout-fit>
+    </control-Window>
+    <control-Window title="修改系统子交易" height="325" name="editSubSysTransWin" draggable="true" width="400" resizable="false">
+      <Top/>
+      <Bottom>
+        <control-ButtonGroup name="ButtonGroup2">
+          <layout-buttonGroup>
+            <control-Button name="modifySubSysTransBtn" text="确定" width="75" icon="bizframe/images/icons/edit.png"/>
+            <control-Button name="resetBtn" text="重置" width="75" icon="bizframe/images/icons/refresh.png"/>
+            <control-Button name="cancelBtn" text="取消" width="75" icon="bizframe/images/icons/cross.gif"/>
+          </layout-buttonGroup>
+        </control-ButtonGroup>
+      </Bottom>
+      <Left/>
+      <Right/>
+      <layout-fit>
+        <control-FormPanel height="200" submitService="bizframe.authority.subSysTrans.modifySubSysTrans" frame="true" name="modifySubSysTransForm" width="300">
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+          <layout-form labelAlign="right" labelWidth="75">
+            <control-TextField dataField="sub_trans_code" enabled="false" msgTarget="qtip" regexText="输入含非法字符" width="350" height="22" regex="/^[A-Za-z0-9_]+$/" fieldLabel="子交易号" name="subTransCodeField"/>
+            <control-TextField dataField="sub_trans_name" msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" regexText="输入含非法字符" fieldName="subTransName" width="350" height="22" regex="/^[\w\u4e00-\u9fa5\.\/\,\，\.\。\“\（\）\(\)\-\s]*$/" fieldLabel="子交易名" name="subTransNameField" allowBlank="false"/>
+            <control-TextField dataField="rel_serv" msgTarget="qtip" regexText="输入含非法字符" fieldName="relServ" width="350" height="22" regex="/^[0-9A-Za-z_\/\.]+$/" fieldLabel="映射服务" maxLength="256" name="relServField"/>
+            <control-TextField dataField="rel_url" msgTarget="qtip" regexText="输入含非法字符" fieldName="relUrl" width="350" height="22" regex="/^[0-9A-Za-z_?=:@&amp;\/\.\$]+$/" fieldLabel="映射URL" maxLength="256" name="relUrlField"/>
+            <control-DictComboBox dataField="ctrl_flag" msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" fieldName="ctrlFlag" displayMode="true" width="350" emptyText="请选择..." fieldLabel="控制标志" name="ctrlFlagDictCombo" allowBlank="false" group="BIZ_SYN_AUTH"/>
+            <control-DictComboBox dataField="login_flag" msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" fieldName="loginFlag" displayMode="true" width="350" emptyText="请选择..." fieldLabel="登录标志" name="loginFlagDictCombo" allowBlank="false" group="BIZ_LOGIN_FLAG"/>
+            <control-TextArea dataField="remark" fieldName="remark" width="350" height="60" fieldLabel="备     注" maxLength="256" name="remarkField"/>
+            <control-HiddenField dataField="trans_code" fieldName="transCode" name="transCodeHidden"/>
+            <control-HiddenField dataField="sub_trans_code" fieldName="subTransCode" name="subTransCodeHidden"/>
+            <control-HiddenField defaultValue="bizSetSubTrans" fieldName="resCode" name="resCodeHidden"/>
+            <control-HiddenField defaultValue="bizSubTransEdit" fieldName="opCode" name="opCodeHidden"/>
+          </layout-form>
+        </control-FormPanel>
+      </layout-fit>
+    </control-Window>
+  </Windows>
+  <Accessory>
+    <control-DataSet name="findSysTransDS" service="bizframe.authority.sysTrans.findSysTrans" window="MainWin">
+      <params>
+        <param name="resCode"><![CDATA["bizSetTrans"]]></param>
+        <param name="opCode"><![CDATA["bizTransFind"]]></param>
+      </params>
+      <fields>
+        <field name="trans_code" type="String"/>
+        <field name="trans_name" type="String"/>
+        <field name="kind_code" type="String"/>
+        <field name="model_code" type="String"/>
+        <field name="remark" type="String"/>
+        <field name="kind_name" type="String"/>
+        <field name="model_name" type="String"/>
+      </fields>
+    </control-DataSet>
+    <control-DataSet name="findSubSysTransDS" service="bizframe.authority.subSysTrans.findSubSysTrans" window="MainWin">
+      <params>
+        <param name="resCode"><![CDATA["bizSetSubTrans"]]></param>
+        <param name="opCode"><![CDATA["bizSubTransFind"]]></param>
+        <param name="transName"><![CDATA[]]></param>
+        <param name="subTransName"><![CDATA[]]></param>
+        <param name="kindCode"><![CDATA[]]></param>
+        <param name="modelCode"><![CDATA[]]></param>
+      </params>
+      <fields>
+        <field name="trans_code" type="String"/>
+        <field name="sub_trans_code" type="String"/>
+        <field name="rel_serv" type="String"/>
+        <field name="rel_url" type="String"/>
+        <field name="ctrl_flag" type="String"/>
+        <field name="login_flag" type="String"/>
+        <field name="remark" type="String"/>
+        <field name="sub_trans_name" type="String"/>
+        <field name="trans_name" type="String"/>
+        <field name="kind_name" type="String"/>
+        <field name="model_name" type="String"/>
+        <field name="ctrl_flag_name" type="String"/>
+        <field name="login_flag_name" type="String"/>
+        <field name="isControlRight" type="String"/>
+        <field name="readOrWrite" type="String"/>
+        <field name="isControlRightDisplayName" type="String"/>
+        <field name="readOrWriteDisplayName" type="String"/>
+      </fields>
+    </control-DataSet>
+    <control-Menu window="MainWin" name="TransDownMenu">
+      <layout-menu>
+        <control-MenuItem name="TransCurrentDown" text="当页下载" icon="bizframe/images/icons/currentPageDownload.png">
+          <layout-menuitem/>
+        </control-MenuItem>
+        <control-MenuItem name="TransAllDown" text="全量下载" icon="bizframe/images/icons/allPageDownload.png">
+          <layout-menuitem/>
+        </control-MenuItem>
+      </layout-menu>
+    </control-Menu>
+    <control-Menu window="MainWin" name="SubTransDownMenu">
+      <layout-menu>
+        <control-MenuItem name="SubTransCurrentDown" text="当页下载" icon="bizframe/images/icons/currentPageDownload.png">
+          <layout-menuitem/>
+        </control-MenuItem>
+        <control-MenuItem name="SubTransAllDown" text="全量下载" icon="bizframe/images/icons/allPageDownload.png">
+          <layout-menuitem/>
+        </control-MenuItem>
+      </layout-menu>
+    </control-Menu>
+  </Accessory>
+  <WindowScripts>
+    <WindowScript window="MainWin"><![CDATA[import bizframe.authority.auth;
+
+service  bizframe.authority.sysTrans.removeSysTrans as REMOVESYSTRANS ;
+service  bizframe.authority.subSysTrans.findSubSysTrans as FINDSUBSYSTRANS ;
+service  bizframe.authority.subSysTrans.removeSubSysTrans as REMOVESUBSYSTRANS ;
+service  bizframe.authority.sysTrans.exportSysTrans as EXPORTSYSTRANS;
+service  bizframe.authority.subSysTrans.exportSubSysTran as EXPORTSUBSYSTRAN;
+
+include bizframe.js.checkRight;
+include bizframe.js.commonUtil;		//引入公共工具包js文件
+
+
+//当前页面下载
+event TransCurrentDown_click(Ext.menu.BaseItem baseItem, Ext.EventObject e) {
+	if(sysTransGrid.getAllData().length == 0){
+       Ext.Msg.alert('提示','此页面表格没数据可下载！');
+       return;
+    }
+	var start = sysTransGrid.getStart();
+	var limit = sysTransGrid.getLimit();
+	//var action = ctxPath+'/bizframe.authority.sysTrans.downloadSysTrans.service?resCode=bizSetTrans&opCode=bizTransDownload&downType=0'  
+	//					+ '&start=' + start
+	//					+ '&limit=' + limit; 
+	var action = ctxPath+'/downloadExcel?resCode=bizSetTrans&opCode=bizTransDownload&downType=0'  
+						+ '&start=' + start
+						+ '&limit=' + limit;
+	var authWin = new auth(MainWin).window;
+	authWin.needAuth(authWin,'bizSetTrans','bizTransDownload',MainWin, function(){						
+			TransDown(action);
+	});
+	
+}
+
+//全量下载
+event TransAllDown_click(Ext.menu.BaseItem baseItem, Ext.EventObject e) {
+	if(sysTransGrid.getAllData().length == 0){
+       Ext.Msg.alert('提示','此页面表格没数据可下载！');
+       return;
+    }
+	//var action = ctxPath+'/bizframe.authority.sysTrans.downloadSysTrans.service?resCode=bizSetTrans&opCode=bizTransDownload';
+	var action = ctxPath+'/downloadExcel?resCode=bizSetTrans&opCode=bizTransDownload';
+	var authWin = new auth(MainWin).window;
+	authWin.needAuth(authWin,'bizSetTrans','bizTransDownload',MainWin, function(){						
+			TransDown(action);
+	});
+}
+
+
+
+//下载提交
+public function TransDown(action){
+	sysTransSearchForm.getForm().getEl().dom.action = action;
+	sysTransSearchForm.getForm().getEl().dom.method = 'post'; 
+	sysTransSearchForm.getForm().getEl().dom.submit(); 
+}
+
+//当前页面下载
+event SubTransCurrentDown_click(Ext.menu.BaseItem baseItem, Ext.EventObject e) {
+	if(subSysTransGrid.getAllData().length == 0){
+       Ext.Msg.alert('提示','此页面表格没数据可下载！');
+       return;
+    }
+	var start = subSysTransGrid.getStart();
+	var limit = subSysTransGrid.getLimit();
+	//var action = ctxPath+'/bizframe.authority.subSysTrans.downloadSubSysTrans.service?resCode=bizSetSubTrans&opCode=bizSubTransDownload&downType=0'  
+	//					+ '&start=' + start
+	//					+ '&limit=' + limit; 
+	var action = ctxPath+'/downloadExcel?resCode=bizSetSubTrans&opCode=bizSubTransDownload&downType=0'  
+						+ '&start=' + start
+						+ '&limit=' + limit; 
+	var authWin = new auth(MainWin).window;
+	authWin.needAuth(authWin,'bizSetSubTrans','bizSubTransDownload',MainWin, function(){						
+			SubTransDown(action);
+	});
+	
+}
+
+//全量下载
+event SubTransAllDown_click(Ext.menu.BaseItem baseItem, Ext.EventObject e) {
+    if(subSysTransGrid.getAllData().length == 0){
+       Ext.Msg.alert('提示','此页面表格没数据可下载！');
+       return;
+    }
+	//var action = ctxPath+'/bizframe.authority.subSysTrans.downloadSubSysTrans.service?resCode=bizSetSubTrans&opCode=bizSubTransDownload';
+	var action = ctxPath+'/downloadExcel?resCode=bizSetSubTrans&opCode=bizSubTransDownload';
+	var authWin = new auth(MainWin).window;
+	authWin.needAuth(authWin,'bizSetSubTrans','bizSubTransDownload',MainWin, function(){						
+			SubTransDown(action);
+	});
+}
+
+
+
+//下载提交
+public function SubTransDown(action){
+	subSysTransSearchForm.getForm().getEl().dom.action = action;
+	subSysTransSearchForm.getForm().getEl().dom.method = 'post'; 
+	subSysTransSearchForm.getForm().getEl().dom.submit(); 
+}
+
+event sysTransAddBtn_click(Button thisComp, Ext.EventObject e) {
+	var addSysTransWindow = new addSysTransWin();
+	addSysTransWindow.show();
+}
+event sysTransSearchBtn_click(Button thisComp, Ext.EventObject e) {
+	//var findSysTransWindow = new findSysTransWin();
+	//findSysTransWindow.show();
+	if(sysTransSearchForm.isValid()){
+		var params = sysTransSearchForm.getValues();
+		var authWin = new auth(MainWin).window;
+		authWin.needAuth(authWin,'bizSetTrans','bizTransFind',MainWin, function(){
+			findSysTransDS.setParams(params);
+			findSysTransDS.load();
+			var _start = 0;
+			var _limit = subSysTransGrid.pageSize;
+			findSubSysTransDS.clearParams();
+			findSubSysTransDS.setParams({start:_start,limit:_limit,resCode:'bizSetSubTrans',opCode:'bizSubTransFind'});
+			findSubSysTransDS.loadData({dataSetResult:[{data:[]}],totalCount:0});
+		});
+	}else {
+		Ext.Msg.alert('提示','请按要求输入合法内容！');
+	}
+}
+event sysTransModifyBtn_click(Button thisComp, Ext.EventObject e) {
+	if(sysTransGrid.getSelectionDatas().length == 1){
+		var editSysTransWindow = new editSysTransWin();
+		editSysTransWindow.show();
+	}else if(sysTransGrid.getSelectionDatas().length == 0){
+		Ext.Msg.alert('提示','请选择一行进行修改！');		
+	}else if(sysTransGrid.getSelectionDatas().length>1){
+		Ext.Msg.alert('提示','只能选择一条数据！');	
+	}
+}
+event sysTransDeleteBtn_click(Button thisComp, Ext.EventObject e) {
+	var rowCount = sysTransGrid.getSelectionDatas().length ;
+	if(rowCount >= 1){
+		Ext.MessageBox.confirm('提示', '您真的要删除选中的数据?', function(button, text) {
+			if (button == "yes") {
+				var records = sysTransGrid.getSelectionDatas();
+				var transCodeArray = new Array(records.length);
+				var checkRight = true ;
+				var _msg = '';
+				for(var i=0;i<records.length;i++){
+					transCodeArray[i] = records[i].get("trans_code");
+					var subSysTrans = FINDSUBSYSTRANS.synExecute({transCode:transCodeArray[i],resCode:'bizSetSubTrans',opCode:'bizSubTransFind'});
+					var length = null;
+					try{
+						length = subSysTrans.dataSetResult[0].data.length;
+					} catch(e){
+						length = null;
+					}
+					if(length != null && length > 0){
+						checkRight = false ;
+					    _msg = '交易编码为'+transCodeArray[i] + '的数据下有子交易系统数据';
+						break;
+					}
+				}
+				
+				if(checkRight){
+					var authWin = new auth(MainWin).window;
+					authWin.needAuth(authWin,'bizSetTrans','bizTransRemove',MainWin, function(){
+						var Result = REMOVESYSTRANS.synExecute({transCode:transCodeArray,resCode:'bizSetTrans',opCode:'bizTransRemove'});
+						if(!(Result.returnCode == 0)){
+							Ext.Msg.alert('错误',Result.errorInfo);
+						}else{
+							Ext.Msg.alert('提示','删除成功');
+							//setDateSetCurrentPage(findSysTransDS,sysTransGrid);
+							//findSysTransDS.load();
+							sysTransGrid.refresh();
+						}
+					});
+				} else {
+					Ext.Msg.alert('错误',_msg);
+				}	
+			}
+		});
+	} else {
+		Ext.Msg.alert('提示','请选择您需要删除的交易');
+	}
+}
+
+event sysTransExportBtn_click(Button thisComp, Ext.EventObject e) {
+	if(sysTransSearchForm.isValid()){
+		var params = sysTransSearchForm.getValues();
+		var authWin = new auth(MainWin).window;
+		authWin.needAuth(authWin,'bizSetTrans','bizTransExport',MainWin, function(){
+		var action = ctxPath+'/bizframe.authority.sysTrans.exportSysTrans.service?resCode=bizSetTrans&opCode=bizTransExport'; 
+			sysTransSearchForm.getForm().getEl().dom.action = action;
+			sysTransSearchForm.getForm().getEl().dom.method = 'post'; 
+			sysTransSearchForm.getForm().getEl().dom.submit(); 
+		});
+	}else {
+		Ext.Msg.alert('提示','请按要求输入合法内容！');
+	}
+}
+
+event subSysTransAddBtn_click(Button thisComp, Ext.EventObject e) {
+	var recordArray = sysTransGrid.getSelectionDatas();
+	if(recordArray.length == 1){
+		var _transCode = recordArray[0].get('trans_code');
+		if(undefined != _transCode && ''!= _transCode){
+			var subSysTransAddWin = new addSubSysTransWin();
+			subSysTransAddWin.show();
+			subSysTransAddWin.transCodeField.setValue(_transCode);
+		}else {
+			Ext.Msg.alert('提示','交易编号数据为空！');
+		}
+		
+	} else if( recordArray.length >1){
+		Ext.Msg.alert('提示','只允许选择一条系统交易');
+	} else {
+		Ext.Msg.alert('提示','请选择一条系统交易');
+	}
+	
+}
+event subSysTransSearchBtn_click(Button thisComp, Ext.EventObject e) {
+	var recordArray = sysTransGrid.getSelectionDatas();
+	if(recordArray.length == 1){
+	    var _transCode = recordArray[0].get('trans_code');
+		if(subSysTransSearchForm.isValid()){
+		var params = subSysTransSearchForm.getValues();
+		var authWin = new auth(MainWin).window;
+		authWin.needAuth(authWin,'bizSetSubTrans','bizSubTransFind',MainWin, function(){
+			Ext.apply(params,{transCode:_transCode});
+			findSubSysTransDS.setParams(params);
+			findSubSysTransDS.load();
+		});
+		}else {
+			Ext.Msg.alert('提示','请按要求输入合法内容！');
+		}
+		
+	} else if( recordArray.length >1){
+		Ext.Msg.alert('提示','只允许选择一条系统交易');
+	} else {
+		Ext.Msg.alert('提示','请选择一条系统交易');
+	}
+}
+event subSysTransModifyBtn_click(Button thisComp, Ext.EventObject e) {
+	var rowCount = subSysTransGrid.getSelectionDatas().length ;
+	if(rowCount == 1){
+		var subSysTransWditWin= new editSubSysTransWin();
+		subSysTransWditWin.show();
+	}else if(rowCount == 0){
+		Ext.Msg.alert('提示','请选择一行进行修改！');		
+	}else if(rowCount > 1){
+		Ext.Msg.alert('提示','只能选择一条数据！');	
+	}
+}
+
+
+private function modifySubSysSuccess(response){
+	if(response.returnCode == 0){
+		findSubSysTransDS.load();
+	} else {
+		Ext.Msg.alert('错误',response.errorInfo);
+	}
+}
+
+private function modifySubSysFailure(response){
+	Ext.Msg.alert('错误','请求发送出错！');
+}
+
+event subSysTransDeleteBtn_click(Button thisComp, Ext.EventObject e) {
+	var rowCount = subSysTransGrid.getSelectionDatas().length ;
+	if(rowCount >= 1){
+		if (subSysTransGrid.getSelectionDatas() != null) {
+			Ext.MessageBox.confirm('提示', '删除选中的数据并删除关联的菜单和权限数据?', function(button, text) {
+				if (button == "yes") {
+				var records = subSysTransGrid.getSelectionDatas();
+				var transCodeArray = new Array(records.length);
+				var subTransCodeArray =  new Array(records.length);
+				for(var i=0;i<records.length;i++){
+					transCodeArray[i] = records[i].get("trans_code");
+					subTransCodeArray[i] = records[i].get("sub_trans_code");
+				}
+				var authWin = new auth(MainWin).window;
+				authWin.needAuth(authWin,'bizSetSubTrans','bizSubTransDel',MainWin, function(){
+					var deleteResult=REMOVESUBSYSTRANS.asynExecute({transCode:transCodeArray,subTransCode:subTransCodeArray,resCode:'bizSetSubTrans',opCode:'bizSubTransDel'},modifySubSysSuccess,modifySubSysFailure);
+					if(deleteResult && deleteResult.returnCode != 0){
+						Ext.Msg.alert('错误',deleteResult.errorInfo);
+					}else{
+						Ext.Msg.alert('提示','删除成功');
+						subSysTransGrid.refresh();
+					}
+				});
+				}
+			});
+		} else {
+			Ext.Msg.alert('提示','请选择您需要删除的子交易');
+		}
+	}
+	else {
+		Ext.Msg.alert('提示','请选择一条系统子交易');
+	}
+}
+
+event subSysTransExportBtn_click(Button thisComp, Ext.EventObject e) {
+	if(subSysTransSearchForm.isValid()){
+		var params = subSysTransSearchForm.getValues();
+		
+		var authWin = new auth(MainWin).window;
+		authWin.needAuth(authWin,'bizSetSubTrans','bizSubTransExport',MainWin, function(){
+		var action = ctxPath+'/bizframe.authority.subSysTrans.exportSubSysTrans.service?resCode=bizSetSubTrans&opCode=bizSubTransExport'; 
+		subSysTransSearchForm.getForm().getEl().dom.action = action;
+		subSysTransSearchForm.getForm().getEl().dom.method = 'post'; 
+		subSysTransSearchForm.getForm().getEl().dom.submit(); 
+		});
+	}else {
+		Ext.Msg.alert('提示','请按要求输入合法内容！');
+	}
+}
+
+event subResetBtn_click(Button thisComp, Ext.EventObject e) {
+	//sysTransSearchForm.getForm().reset();
+	var transCode = transCodeHiddenField.getValue();
+	var resCode = resCodeHidden.getValue();
+	var opCode = opCodeHidden.getValue();
+	subSysTransSearchForm.getForm().reset();
+	transCodeHiddenField.setValue(transCode);
+	resCodeHidden.setValue(resCode);
+	opCodeHidden.setValue(opCode);
+}
+event sysTransGrid_rowdblclick(Hs.HsGrid thisComp, Number rowIndex, Ext.EventObject e) {
+	var record = thisComp.getStore().getAt(rowIndex);
+	var trans_code = record.get('trans_code');
+	var params = {transCode:trans_code};
+	transCodeHiddenField.setValue(trans_code);
+	var authWin = new auth(MainWin).window;
+	authWin.needAuth(authWin,'bizSetSubTrans','bizSubTransFind',MainWin, function(){
+		var _start = findSubSysTransDS.getParams().start ;
+		var _limit = findSubSysTransDS.getParams().limit ;
+		findSubSysTransDS.clearParams();
+		Ext.apply(params,{resCode:'bizSetSubTrans',opCode:'bizSubTransFind',start:_start,limit:_limit });
+		findSubSysTransDS.setParams(params);
+		findSubSysTransDS.load();
+	});
+}
+event resetBtn_click(Button thisComp, Ext.EventObject e) {
+	sysTransSearchForm.getForm().reset();
+}
+
+event MainWin_complete() {
+	var operationMap = {"bizSetTrans.bizTransAdd":sysTransAddBtn,
+			   			   "bizSetTrans.bizTransModify":sysTransModifyBtn,
+			   			   "bizSetTrans.bizTransRemove":sysTransDeleteBtn,
+			   			   "bizSetTrans.bizTransFind":sysTransSearchBtn,
+			   			   "bizSetTrans.bizTransExport":sysTransExportBtn,
+			   			   "bizSetTrans.bizTransDownload":sysTransDownloadBtn,
+			   			   "bizSetSubTrans.bizSubTransAdd":subSysTransAddBtn,
+			   			   "bizSetSubTrans.bizSubTransEdit":subSysTransModifyBtn,
+			   			   "bizSetSubTrans.bizSubTransDel":subSysTransDeleteBtn,
+			   			   "bizSetSubTrans.bizSubTransFind":subSysTransSearchBtn,
+			   			   "bizSetSubTrans.bizSubTransExport":subSysTransExportBtn,
+			   			   "bizSetSubTrans.bizSubTransDownload":subSysTransDownloadBtn};
+	checkRights(operationMap);
+}
+
+event sysTransDownloadBtn_click(Button thisComp, Ext.EventObject e) {
+
+}]]></WindowScript>
+    <WindowScript window="addSysTransWin"><![CDATA[service  bizframe.authority.sysTrans.findSysTrans as FINDSYSTRANS ;
+
+event resetBtn_click(Button thisComp, Ext.EventObject e) {
+	FormPanel1.getForm().reset();
+}
+event cancelBtn_click(Button thisComp, Ext.EventObject e) {
+	close();
+}
+event addBtn_click(Button thisComp, Ext.EventObject e) {
+	var _transCode = transCodeField.getValue();
+	var _kindCode =kindCodeCombo.getValue();
+	var _modelCode =modelCodeCombo.getValue();
+	var params = {};
+
+	if(FormPanel1.isValid()){
+		if(null!=_modelCode&&""!=_modelCode&&null!=_kindCode&&""!=_kindCode){
+			//var opt = {resCode:'bizSetTrans',opCode:'bizTransFind'};
+			//params["transCode"] = _transCode ;
+			//Ext.apply(params,opt);
+			//var result = FINDSYSTRANS.synExecute(params);
+			//if(result.dataSetResult[0].data && result.dataSetResult[0].data.length>0){
+			//	Ext.Msg.alert('错误','交易编号重复！');
+			//} else {
+				var authWindow = new auth(MainWin).window;
+				authWindow.needAuth(authWindow,'bizSetTrans','bizTransAdd',MainWin, function(){
+					FormPanel1.commSubmit();
+				});
+			//}
+		}else{
+		    Ext.Msg.alert('提示','发现有输入项不符合规范！');
+		}
+	}else {
+		Ext.Msg.alert('提示','发现有输入项不符合规范！');
+	}
+
+}
+event FormPanel1_submitFailure(object response) {
+	Ext.Msg.alert('错误','请求发送出错！');
+}
+event FormPanel1_submitSuccess(object response) {
+	if(response.returnCode == 0){
+		close();
+		MainWin.sysTransGrid.refresh();
+	}else {
+		Ext.Msg.alert('错误',response.errorInfo);
+	}
+}]]></WindowScript>
+    <WindowScript window="editSysTransWin"><![CDATA[service  bizframe.authority.sysTrans.modifySysTrans as MODIFYSYSTRANS ;
+
+
+event editSysTransWin_complete() {
+	var record = MainWin.sysTransGrid.getSelectionData();
+	editForm.setValues(record);
+}
+event cancelBtn_click(Button thisComp, Ext.EventObject e) {
+	close();
+}
+event resetBtn_click(Button thisComp, Ext.EventObject e) {
+	var record = MainWin.sysTransGrid.getSelectionData();
+	editForm.setValues(record);
+}
+
+private function modifySucc(response){
+	if(response.returnCode == 0){
+		close();	
+		///MainWin.subSysTransGrid.clear();
+		MainWin.sysTransGrid.refresh();
+	} else {
+		Ext.Msg.alert('错误','修改系统交易失败！');
+	}
+}
+
+private function modifyFail(response){
+	Ext.Msg.alert('错误','请求发送出错！');
+}
+
+event modifyBtn_click(Button thisComp, Ext.EventObject e) {
+	if(editForm.isValid()){
+	   var _kindCode=kindCodeCombo.getValue();
+	   var _modelCode=modelCodeCombo.getValue();
+	    if(null!=_kindCode&&""!=_kindCode&&null!=_modelCode&&""!=_modelCode){
+	    		var params = editForm.getValues();
+				Ext.apply(params,{resCode:'bizSetTrans',opCode:'bizTransModify'});
+				var authWin = new auth(MainWin).window;
+				authWin.needAuth(authWin,'bizSetTrans','bizTransModify',MainWin, function(){
+					MODIFYSYSTRANS.asynExecute(params,modifySucc,modifyFail); 
+				});
+	    }else{
+	      Ext.Msg.alert('错误',"发现有输入项不符合规范!");
+	    }
+
+	}else{
+		Ext.Msg.alert('错误',"发现有输入项不符合规范!");
+	}
+}]]></WindowScript>
+    <WindowScript window="addSubSysTransWin"><![CDATA[service  bizframe.authority.subSysTrans.findSubSysTrans as FINDSUBSYSTRANS ;
+event resetBtn_click(Button thisComp, Ext.EventObject e) {
+	var transCode = transCodeField.getValue();
+	var resCode = resCodeHidden.getValue();
+	var opCode = opCodeHidden.getValue();
+	addSubSysTransForm.getForm().reset();
+	transCodeField.setValue(transCode);
+	resCodeHidden.setValue(resCode);
+	opCodeHidden.setValue(opCode);
+}
+event cancelBtn_click(Button thisComp, Ext.EventObject e) {
+	close();
+}
+event addSubSysTransBtn_click(Button thisComp, Ext.EventObject e) {
+	if(addSubSysTransForm.getForm().isValid()){
+	    var _loginFlagDict=loginFlagDictCombo.getValue();
+	    var _ctrlFlagDict=ctrlFlagDictCombo.getValue();
+	    
+	    if(null!=_loginFlagDict&&""!=_loginFlagDict&&null!=_ctrlFlagDict&&""!=_ctrlFlagDict){
+		    //var _subTransCode =subTransCodeField.getValue();
+			//var params = {};
+			//var opt = {resCode:'bizSetSubTrans',opCode:'bizSubTransFind'};
+			//params["subTransCode"] = _subTransCode ;
+			//Ext.apply(params,opt);
+			//var result = FINDSUBSYSTRANS.synExecute(params);
+			//if(result.dataSetResult[0].data && result.dataSetResult[0].data.length>0){
+			//	Ext.Msg.alert('错误','子交易编码重复！');
+			//} else {
+				var authWin = new auth(MainWin).window;
+				authWin.needAuth(authWin,'bizSetSubTrans','bizSubTransAdd',MainWin, function(){
+					addSubSysTransForm.commSubmit();
+				});
+			//}
+	    }else{
+	      Ext.Msg.alert('错误',"发现有输入项不符合规范!");
+	    }
+
+	}else{
+		Ext.Msg.alert('错误',"发现有输入项不符合规范!");
+	}
+}
+event addSubSysTransForm_submitFailure(object response) {
+	Ext.Msg.alert('错误','请求发送出错！');
+}
+event addSubSysTransForm_submitSuccess(object response) {
+	if(response.returnCode == 0){
+		close();
+		MainWin.subSysTransGrid.refresh();
+	}else {
+		Ext.Msg.alert('错误',response.errorInfo);
+	}
+}]]></WindowScript>
+    <WindowScript window="editSubSysTransWin"><![CDATA[
+
+event modifySubSysTransBtn_click(Button thisComp, Ext.EventObject e) {
+	if(modifySubSysTransForm.isValid()){
+		var authWin = new auth(MainWin).window;
+		authWin.needAuth(authWin,'bizSetSubTrans','bizSubTransEdit',MainWin, function(){
+			modifySubSysTransForm.commSubmit();
+		});
+	}else{
+		Ext.Msg.alert('错误',"发现有输入项不符合规范!");
+	}
+}
+event modifySubSysTransForm_submitFailure(object response) {
+	Ext.Msg.alert('错误','请求发送出错！');
+}
+event modifySubSysTransForm_submitSuccess(object response) {
+	if(response.returnCode == 0){
+		close();	
+		MainWin.subSysTransGrid.refresh();
+	} else {
+		Ext.Msg.alert('错误',response.errorInfo);
+	}
+}
+event resetBtn_click(Button thisComp, Ext.EventObject e) {
+	var record = MainWin.subSysTransGrid.getSelectionData();
+	modifySubSysTransForm.setValues(record);
+}
+event cancelBtn_click(Button thisComp, Ext.EventObject e) {
+	close();
+}
+event editSubSysTransWin_complete() {
+	var record = MainWin.subSysTransGrid.getSelectionData();
+	modifySubSysTransForm.setValues(record);
+}]]></WindowScript>
+  </WindowScripts>
+</hsdoc>

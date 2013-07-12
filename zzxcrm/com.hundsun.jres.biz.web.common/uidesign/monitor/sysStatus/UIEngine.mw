@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hsdoc version="1.1.0">
+  <Windows>
+    <control-MainWindow height="461" name="MainWin" templatePath="window.ftl" width="598">
+      <layout-border>
+        <control-Tree title="控件继承关系树" region="west" height="300" name="compExtendTree" width="200">
+          <layout-tree>
+            <control-AsyncTreeNode id="Object" dataSet="treeDataset" name="AsyncTreeNode1" text="Object">
+              <layout-tree/>
+            </control-AsyncTreeNode>
+          </layout-tree>
+          <Top/>
+          <Bottom/>
+          
+          <Left/>
+          <Right/>
+        </control-Tree>
+        <control-Panel region="center" title="控件信息" height="200" name="Panel1" width="300">
+          <layout-absolute/>
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+        </control-Panel>
+      </layout-border>
+    </control-MainWindow>
+  </Windows>
+  <Accessory>
+    <control-TreeDataSet window="MainWin" name="treeDataset" service="com.hundsun.jres.manage" usingServiceName="true">
+      <params>
+        <param name="commandName"><![CDATA["queryControllDependencies"]]></param>
+        <param name="pluginId"><![CDATA["jres.uiengine.engineservice"]]></param>
+        <param name="engineType"><![CDATA["ext3.0"]]></param>
+        <param name="resCode"><![CDATA["bizSysStatus"]]></param>
+        <param name="opCode"><![CDATA["queryControllDependencies"]]></param>
+      </params>
+      <fields>
+        <field name="compId" type="String" mapping="id"/>
+        <field name="compName" type="String" mapping="text"/>
+        <field name="compPid" type="String" mapping="pid"/>
+      </fields>
+    </control-TreeDataSet>
+  </Accessory>
+  <WindowScripts>
+    <WindowScript window="MainWin"><![CDATA[
+event Button1_click(Button thisComp, Ext.EventObject e) {
+
+   FormPanel1.doFileUpload();
+}
+event compExtendTree_click(Node node, EventObject e) {
+
+}]]></WindowScript>
+  </WindowScripts>
+</hsdoc>

@@ -1,0 +1,632 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hsdoc version="1.1.0">
+  <Windows>
+    <control-MainWindow height="534" name="MainWin" templatePath="window.ftl" width="962">
+      <layout-fit>
+        <control-Panel border="false" height="200" name="bizKernelStatusPanel" width="300">
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+          <layout-fit>
+            <control-TabPanel border="false" name="TabPanel1" width="300" activeTab="0">
+              <layout-tab>
+                <control-Panel title="业务逻辑管理" border="false" height="200" autoScroll="true" name="Panel1" width="300">
+                  <Top/>
+                  <Bottom/>
+                  <Left/>
+                  <Right/>
+                  <layout-border>
+                    <control-Grid region="center" hasCheckColumn="true" enableCellTip="true" width="300" height="200" numberColumnWidth="33" dataSet="queryBizServiceDataset" name="serviceGrid" border="false" autoScroll="true">
+                      <layout-GridToolbar>
+                        <control-GridItem align="left" width="150" title="ID" dataIndex="id" sortable="true" tipText="ID" name="GridItem11"/>
+                        <control-GridItem align="left" width="100" title="名称" dataIndex="name" sortable="true" tipText="名称" name="GridItem22"/>
+                        <control-GridItem align="left" width="100" title="版本" dataIndex="version" sortable="true" tipText="版本" name="GridItem12"/>
+                        <control-GridItem align="left" width="100" title="状态" dataIndex="state" sortable="true" tipText="状态" name="GridItem33"/>
+                        <control-GridItem align="left" width="100" title="类型" dataIndex="Type" sortable="true" tipText="类型" name="GridItem14"/>
+                        <control-GridItem align="left" width="100" title="别名" dataIndex="alias" sortable="true" tipText="别名" name="GridItem13"/>
+                        <control-GridItem align="left" width="100" title="最后更新时间" dataIndex="modifyTime" sortable="true" tipText="最后更新时间" name="GridItem15"/>
+                        <control-GridItem align="left" width="100" title="描述" dataIndex="description" sortable="true" tipText="描述" name="GridItem44"/>
+                      </layout-GridToolbar>
+                      <Top>
+                        <control-Toolbar name="Toolbar1">
+                          <layout-toolbar>
+                            <control-Label name="Label3" text="业务逻辑类型:" width="91"/>
+                            <control-ComboBox defaultValue="service" staticValues="['service','subFlow','component','componentMethod']" doload="false" fieldName="type" width="250" height="22" staticTexts="['服务','子流程','构件','构件方法']" name="typeGroup1" tabIndex="2"/>
+                            <control-Button name="Button2" text="刷新" width="100" icon="bizframe/images/icons/refresh.png" tabIndex="3"/>
+                            <control-Button name="pauseBtn" text="暂停" width="100" icon="bizframe/images/icons/stop.png" tabIndex="4"/>
+                            <control-Button name="restartBtn" text="启动" width="100" icon="bizframe/images/icons/start.png" tabIndex="5"/>
+                          </layout-toolbar>
+                        </control-Toolbar>
+                      </Top>
+                      <Bottom/>
+                      <Left/>
+                      <Right/>
+                    </control-Grid>
+                  </layout-border>
+                </control-Panel>
+                <control-Panel title="业务逻辑监控" border="false" height="200" autoScroll="true" name="monitorPanel" width="300">
+                  <Top/>
+                  <Bottom/>
+                  <Left/>
+                  <Right/>
+                  <layout-border>
+                    <control-Grid pageSize="20" region="center" hasCheckColumn="true" autoload="false" width="300" enableCellTip="true" height="200" numberColumnWidth="33" dataSet="monitorInfoDataSet" name="monitorGrid" border="false" autoScroll="true">
+                      <layout-GridToolbar>
+                        <control-GridItem align="left" width="198" title="路径" dataIndex="id" sortable="true" tipText="路径" name="GridItem1"/>
+                        <control-GridItem align="left" width="120" title="名称" dataIndex="name" sortable="true" tipText="名称" name="GridItem2"/>
+                        <control-GridItem align="left" width="80" title="监控状态" dataIndex="state" sortable="true" tipText="监控状态" name="GridItem10"/>
+                        <control-GridItem align="left" width="80" title="类型" dataIndex="type" sortable="true" tipText="类型" name="GridItem3"/>
+                        <control-GridItem align="left" width="100" title="执行成功次数" dataIndex="successCount" sortable="true" tipText="执行成功次数" name="GridItem4"/>
+                        <control-GridItem align="left" width="100" title="执行失败次数" dataIndex="failureCount" sortable="true" tipText="执行失败次数" name="GridItem5"/>
+                        <control-GridItem align="left" width="120" title="执行最长时间" dataIndex="maxTime" sortable="true" tipText="执行最长时间" name="GridItem6"/>
+                        <control-GridItem align="left" width="120" title="执行最短时间" dataIndex="minTime" sortable="true" tipText="执行最短时间" name="GridItem7"/>
+                        <control-GridItem align="left" width="150" title="监控开始时间" dataIndex="startTime" sortable="true" tipText="监控开始时间" name="GridItem8"/>
+                        <control-GridItem align="left" width="150" title="监控结束时间" dataIndex="endTime" sortable="true" tipText="监控结束时间" name="GridItem9"/>
+                      </layout-GridToolbar>
+                      <Top>
+                        <control-Toolbar name="Toolbar2">
+                          <layout-toolbar>
+                            <control-Button name="Button1" text="刷新" width="100" tabIndex="6" icon="bizframe/images/icons/refresh.png"/>
+                            <control-Button name="addMBtn" text="添加监控" width="100" enabled="false" icon="bizframe/images/icons/add.gif" tabIndex="7"/>
+                            <control-Button name="pauseMBtn" text="停止监控" width="100" icon="bizframe/images/icons/stop.png" tabIndex="8"/>
+                            <control-Button name="restartMBtn" text="启动监控" width="100" tabIndex="9" icon="bizframe/images/icons/start.png"/>
+                            <control-Button name="removeMBtn" text="移出监控" width="100" tabIndex="10" icon="bizframe/images/icons/delete.gif"/>
+                          </layout-toolbar>
+                        </control-Toolbar>
+                      </Top>
+                      <Bottom/>
+                      <Left/>
+                      <Right/>
+                    </control-Grid>
+                    <control-FormPanel collapseMode="mini" region="north" width="700" autoHeight="true" height="102" hideCollapseTool="true" collapsible="true" split="true" name="queryForm">
+                      <Top/>
+                      <Bottom/>
+                      <Left/>
+                      <Right/>
+                      <layout-table columns="1" fullWidth="true" cellspacing="5">
+                        <control-Label name="Label1" text="请先开启监控状态,只有bizkernel处于监控状态才可以添加某些服务进行监控" width="100.0%"/>
+                        <control-Panel border="false" height="35" name="Panel3" width="41%">
+                          <Top/>
+                          <Bottom/>
+                          <Left/>
+                          <Right/>
+                          <layout-absolute>
+                            <control-Button enabled="false" width="75" x="85" y="2" name="startStatusBtn" text="统一开启" tabIndex="11"/>
+                            <control-Button enabled="false" width="75" x="175" y="2" name="stopStatusBtn" text="统一关闭" tabIndex="12"/>
+                            <control-Label x="2" y="3" name="Label2" text="监控状态开关:" width="100"/>
+                          </layout-absolute>
+                        </control-Panel>
+                        <control-ComboBox defaultValue="service" staticValues="['service','subFlow','component','componentMethod']" doload="false" labelWidth="80" fieldName="type" width="300" height="22" staticTexts="['服务','子流程','构件','构件方法']" fieldLabel="业务逻辑类型" name="typeGroup2" tabIndex="13" blankSuffixLabel=""/>
+                      </layout-table>
+                    </control-FormPanel>
+                  </layout-border>
+                </control-Panel>
+              </layout-tab>
+              <Top/>
+              <Bottom/>
+              <Left/>
+              <Right/>
+            </control-TabPanel>
+          </layout-fit>
+        </control-Panel>
+      </layout-fit>
+    </control-MainWindow>
+  </Windows>
+  <Accessory>
+    <control-DataSet name="monitorInfoDataSet" service="com.hundsun.jres.manage" usingServiceName="true" window="MainWin">
+      <params>
+        <param name="type"><![CDATA["service"]]></param>
+        <param name="resCode"><![CDATA["bizSysStatus"]]></param>
+        <param name="opCode"><![CDATA["FindMonitorInfo"]]></param>
+        <param name="pluginId"><![CDATA["jres.bizkernel_plugin"]]></param>
+        <param name="commandName"><![CDATA["queryMonitorByServiceType"]]></param>
+        <param name="nodeName"><![CDATA[nodeName]]></param>
+      </params>
+      <fields>
+        <field name="id" type="String"/>
+        <field name="name" type="String"/>
+        <field name="type" type="String"/>
+        <field name="successCount" type="int"/>
+        <field name="failureCount" type="int"/>
+        <field name="maxTime" type="Long"/>
+        <field name="minTime" type="Long"/>
+        <field name="startTime" type="String"/>
+        <field name="endTime" type="String"/>
+        <field name="state" type="String"/>
+      </fields>
+    </control-DataSet>
+    <control-DataSet name="queryBizServiceDataset" service="com.hundsun.jres.manage" usingServiceName="true" window="MainWin">
+      <params>
+        <param name="type"><![CDATA["service"]]></param>
+        <param name="resCode"><![CDATA["bizSysStatus"]]></param>
+        <param name="opCode"><![CDATA["queryBizService"]]></param>
+        <param name="pluginId"><![CDATA["jres.bizkernel_plugin"]]></param>
+        <param name="commandName"><![CDATA["queryBizServiceByType"]]></param>
+        <param name="nodeName"><![CDATA[nodeName]]></param>
+      </params>
+      <fields>
+        <field name="id" type="String"/>
+        <field name="name" type="String"/>
+        <field name="version" type="String"/>
+        <field name="alias" type="String"/>
+        <field name="description" type="String"/>
+        <field name="Type" type="String"/>
+        <field name="modifyTime" type="String"/>
+        <field name="state" type="String"/>
+      </fields>
+    </control-DataSet>
+  </Accessory>
+  <WindowScripts>
+    <WindowScript window="MainWin"><![CDATA[import monitor.pw.queryBizService ;
+service com.hundsun.jres.manage as startM;
+service com.hundsun.jres.manage as stopM;
+service com.hundsun.jres.manage as pauseS;
+service com.hundsun.jres.manage as restartS;
+service com.hundsun.jres.manage as Mg;
+
+private nodeName = getStringFromURLPath("nodeName");
+private function getNewTask(){
+   return {
+    run: function(){
+       monitorInfoDataSet.load();
+    },
+    interval: 20000 //15 seconds
+   };
+}
+private task = {
+    run: function(){
+       monitorInfoDataSet.load();
+    },
+    interval: 20000 //15 seconds
+   };
+
+public function  getNodeName(){
+     return nodeName;
+}
+event GridItem3_renderer(Object value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store) {
+   if(value=="service"){
+     return '服务';
+   }else if(value=="component"){
+     return '构件';
+   }else if(value=="componentMethod"){
+     return '构件方法';
+   }else if(value=="subFlow"){
+     return "子流程";
+   }else if(value=="testCase"){
+     return "测试用例";
+   }
+}
+
+event GridItem10_renderer(string value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store) {
+   if(value == "monitor"){
+      return '<span style="color:red;" >监控</span>'
+   }else if(value == 'stop'){
+     return '<span style="color:blue;" >暂停</span>'
+   }   
+}
+
+event GridItem33_renderer(Object value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store) {
+  
+  if(value == 'runable'){
+     return '<span style="color:green;" >运行</span>'
+  }else if(value == 'pause'){
+     return '<span style="color:red;" >暂停</span>'
+  }
+}
+//添加监控事件
+event addMBtn_click(Button thisComp, Ext.EventObject e) {   
+   var  win = new queryBizService(MainWin).window;
+   //win.setNodeName(nodeName);
+   win.show(); 
+}
+//暂停监控服务事件
+event pauseMBtn_click(Button thisComp, Ext.EventObject e) {
+   var submitParams = {}; 
+   submitParams.type = "";
+   var records = monitorGrid.getSelectionDatas();
+   submitParams.resCode = 'bizSysStatus';
+   submitParams.opCode = 'StopMonitor';  
+   submitParams.pluginId = "jres.bizkernel_plugin";
+   submitParams.nodeName = nodeName;
+   if(records.length > 0){
+      submitParams.type = records[0].data.type;
+      var ids = [];
+      for(var i =0;i<records.length;i++){
+         ids.push(records[i].data.id);
+      }
+      ids = ids.join(";");
+      submitParams.ids = ids;
+      submitParams.commandName = "stopMonitorByServiceList";
+      stopM.asynExecute(
+                  submitParams,
+                  function(response,opt){
+                      if(response.returnCode == 0 && response.dataSetResult[0].data!=null && response.dataSetResult[0].data.length > 0){
+                         monitorInfoDataSet.load();
+                      } else if(response.returnCode != 0){
+                         Ext.Msg.show({
+                            title:'错误信息',
+                            msg: response.errorInfo,
+                            buttons: Ext.Msg.OK,
+                            icon: Ext.MessageBox.ERROR
+                          }); 
+                      }
+                   },
+                   function(response,opt){
+                      Ext.Msg.show({
+                            title:'错误信息',
+                            msg: response.errorInfo,
+                            buttons: Ext.Msg.OK,
+                            icon: Ext.MessageBox.ERROR
+                          });
+                   }
+      );
+   }else{       
+     Ext.Msg.show({
+          title:'提示',
+          msg: '请先选择一行再操作',
+          buttons: Ext.Msg.OK,
+          icon: Ext.MessageBox.WARNING
+     }); 
+   } 
+   
+}
+//重启监控服务事件
+event restartMBtn_click(Button thisComp, Ext.EventObject e) {
+   var submitParams = {};   
+   submitParams.type = "";
+   var records = monitorGrid.getSelectionDatas(); 
+   submitParams.resCode = 'bizSysStatus';
+   submitParams.opCode = 'StartMonitorT';
+   submitParams.pluginId = "jres.bizkernel_plugin";
+   submitParams.nodeName = nodeName;
+   if(records.length > 0){
+     submitParams.type = records[0].data.type;
+     var ids = [];
+      for(var i =0;i<records.length;i++){
+         ids.push(records[i].data.id);
+      }
+      ids = ids.join(";");
+      submitParams.ids = ids;
+      submitParams.commandName = "startMonitorByServiceList";   
+      startM.asynExecute(
+                   submitParams,
+                   function(response,opt){
+                      if(response.returnCode == 0 && response.dataSetResult[0].data!=null && response.dataSetResult[0].data.length > 0){
+                         monitorInfoDataSet.load();
+                      } else if(response.returnCode != 0){
+                         Ext.Msg.show({
+                            title:'错误信息',
+                            msg: response.errorInfo,
+                            buttons: Ext.Msg.OK,
+                            icon: Ext.MessageBox.ERROR
+                          });
+                      }
+                      
+                   },
+                function(response,opt){
+                      Ext.Msg.show({
+                            title:'错误信息',
+                            msg: response.errorInfo,
+                            buttons: Ext.Msg.OK,
+                            icon: Ext.MessageBox.ERROR
+                          });
+                   }
+     );
+   }else{       
+      Ext.Msg.show({
+          title:'提示',
+          msg: '请先选择一行再操作',
+          buttons: Ext.Msg.OK,
+          icon: Ext.MessageBox.WARNING
+     });
+   }
+    
+}
+//移出监控服务事件
+event removeMBtn_click(Button thisComp, Ext.EventObject e) {
+   var submitParams = {};   
+   submitParams.type = "";
+   var records = monitorGrid.getSelectionDatas(); 
+   submitParams.resCode = 'bizSysStatus';
+   submitParams.opCode = 'RemoveMonitor';
+   submitParams.pluginId = "jres.bizkernel_plugin";
+   submitParams.commandName = "removeMonitorByServiceList";
+   submitParams.nodeName = nodeName;
+   if(records.length > 0){
+     submitParams.type = records[0].data.type;
+     var ids = [];
+      for(var i =0;i<records.length;i++){
+         ids.push(records[i].data.id);
+      }
+      ids = ids.join(";");
+      submitParams.ids = ids;
+         
+      Mg.asynExecute(
+                   submitParams,
+                   function(response,opt){
+                      if(response.returnCode == 0 && response.dataSetResult[0].data!=null && response.dataSetResult[0].data.length > 0){
+                         monitorInfoDataSet.load();
+                      } else if(response.returnCode != 0){
+                         Ext.Msg.show({
+                            title:'错误信息',
+                            msg: response.errorInfo,
+                            buttons: Ext.Msg.OK,
+                            icon: Ext.MessageBox.ERROR
+                          });
+                      }
+                      
+                   },
+                function(response,opt){
+                      Ext.Msg.show({
+                            title:'错误信息',
+                            msg: response.errorInfo,
+                            buttons: Ext.Msg.OK,
+                            icon: Ext.MessageBox.ERROR
+                          });
+                   }
+     );
+   }else{       
+      Ext.Msg.show({
+          title:'提示',
+          msg: '请先选择一行再操作',
+          buttons: Ext.Msg.OK,
+          icon: Ext.MessageBox.WARNING
+     });
+   }
+   
+}
+
+//暂停服务事件
+event pauseBtn_click(Button thisComp, Ext.EventObject e) {
+   if(serviceGrid.getSelectionDatas().length > 0){
+     var records = serviceGrid.getSelectionDatas();
+     var ids = [];
+     for(var i =0;i<records.length;i++){
+       ids.push(records[i].data.id);
+     }
+     ids = ids.join(";");
+     var submitParams = {type : typeGroup1.getValue(),ids:ids};
+     submitParams.resCode = 'bizSysStatus';
+     submitParams.opCode = 'pauseBizService';   
+     submitParams.pluginId = "jres.bizkernel_plugin";
+     submitParams.commandName = "pauseBizServiceByIds";
+     submitParams.nodeName = nodeName;
+     pauseS.asynExecute(
+                   submitParams,
+                   function(response,opt){
+                      if(response.returnCode != 0){
+                          Ext.Msg.show({
+                            title:'错误信息',
+                            msg: response.errorInfo,
+                            buttons: Ext.Msg.OK,
+                            icon: Ext.MessageBox.ERROR
+                          });
+                      }else{
+                         queryBizServiceDataset.load();
+                      }
+                   },
+                   function(response,opt){
+                   
+                   }
+      );
+   }else{
+         Ext.Msg.show({
+          title:'提示',
+          msg: '请先选择一行再操作',
+          buttons: Ext.Msg.OK,
+          icon: Ext.MessageBox.WARNING
+         }); 
+   }
+    
+
+}
+event restartBtn_click(Button thisComp, Ext.EventObject e) {
+  if(serviceGrid.getSelectionDatas().length > 0){
+      
+      var records = serviceGrid.getSelectionDatas();
+      var ids = [];
+      var type = records[0].data.Type;
+      for(var i =0;i<records.length;i++){
+        ids.push(records[i].data.id);
+      }
+      ids = ids.join(";");
+      var submitParams = {type : type,ids:ids};
+      submitParams.resCode = 'bizSysStatus';
+      submitParams.opCode = 'restartBizService';   
+      submitParams.pluginId = "jres.bizkernel_plugin";
+      submitParams.commandName = "restartBizServiceByIds";
+      submitParams.nodeName = nodeName; 
+      restartS.asynExecute(
+                   submitParams,
+                   function(response,opt){
+                      if(response.returnCode != 0){
+                                             
+                         Ext.Msg.alert("错误",response.errorInfo); 
+                      }else{
+                         queryBizServiceDataset.load();
+                      }
+                      
+                   },
+                   function(response,opt){
+                   
+                   }
+      );
+  }else{
+     Ext.Msg.show({
+          title:'提示',
+          msg: '请先选择一行再操作',
+          buttons: Ext.Msg.OK,
+          icon: Ext.MessageBox.WARNING
+     }); 
+  }
+   
+}
+event GridItem14_renderer(Object value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store) {
+   if(value=="service"){
+     return '服务';
+   }else if(value=="component"){
+     return '构件';
+   }else if(value=="componentMethod"){
+     return '构件方法';
+   }else if(value=="subFlow"){
+     return "子流程";
+   }else if(value=="testCase"){
+     return "测试用例";
+   }
+}
+event startStatusBtn_click(Button thisComp, Ext.EventObject e) {
+   Mg.asynExecute({
+         resCode : "bizSysStatus",
+         opCode : "startBizkernelMonitor",
+         pluginId : "jres.bizkernel_plugin",
+         commandName : "startBizkernelMonitor",
+         nodeName : nodeName
+      },function(response,opt){
+          if(response.returnCode != 0){
+               Ext.Msg.alert("错误",response.errorInfo); 
+          }else{
+               stopStatusBtn.setEnabled(true);
+               startStatusBtn.setEnabled(false);
+               addMBtn.setEnabled(true);
+               pauseMBtn.setEnabled(true);
+               restartMBtn.setEnabled(true);
+               removeMBtn.setEnabled(true);
+               typeGroup2.setEnabled(true);
+               Button1.setEnabled(true);
+               monitorInfoDataSet.load();  
+               //Ext.TaskMgr.start(task);
+               //closeTimeTaskBtn.setEnabled(true);
+               //startTimeTaskBtn.setEnabled(false);        
+          }
+      },function(response,opt){
+      
+      });
+}
+event stopStatusBtn_click(Button thisComp, Ext.EventObject e) {
+  Mg.asynExecute({
+         resCode : "bizSysStatus",
+         opCode : "stopBizkernelMonitor",
+         pluginId : "jres.bizkernel_plugin",
+         commandName : "stopBizkernelMonitor",
+         nodeName : nodeName
+      },function(response,opt){
+          if(response.returnCode != 0){
+               Ext.Msg.alert("错误",response.errorInfo); 
+               
+          }else{
+               startStatusBtn.setEnabled(true);
+               stopStatusBtn.setEnabled(false);
+               addMBtn.setEnabled(false);
+               pauseMBtn.setEnabled(false);
+               restartMBtn.setEnabled(false);
+               removeMBtn.setEnabled(false);
+               typeGroup2.setEnabled(false);
+               Button1.setEnabled(false);
+               monitorInfoDataSet.load();  
+              // Ext.TaskMgr.stop(task);
+              // closeTimeTaskBtn.setEnabled(false); 
+              // startTimeTaskBtn.setEnabled(false);       
+          }
+      },function(response,opt){
+      
+      });
+}
+event MainWin_complete() {  
+   Mg.asynExecute({
+         resCode : "bizSysStatus",
+         opCode : "queryBizkernelMonitor",
+         pluginId : "jres.bizkernel_plugin",
+         commandName : "queryBizkernelMonitor",
+         nodeName : nodeName
+      },function(response,opt){
+          if(response.returnCode != 0){
+               Ext.Msg.alert(response.errorInfo); 
+          }else{
+             if(response.dataSetResult[0]){
+                if(response.dataSetResult[0].data[0]){
+                    var obj = response.dataSetResult[0].data[0];
+                    if(obj.state == "false"){
+                       startStatusBtn.setEnabled(true);
+                       addMBtn.setEnabled(false);
+                       pauseMBtn.setEnabled(false);
+                       restartMBtn.setEnabled(false);
+                       removeMBtn.setEnabled(false);
+                       typeGroup2.setEnabled(false);
+                       Button1.setEnabled(false);
+                      // closeTimeTaskBtn.setEnabled(false);
+                     //  startTimeTaskBtn.setEnabled(false);
+                    }else if(obj.state == "true"){
+                       stopStatusBtn.setEnabled(true);
+                       addMBtn.setEnabled(true);
+                       pauseMBtn.setEnabled(true);
+                       restartMBtn.setEnabled(true);
+                       removeMBtn.setEnabled(true);
+                       typeGroup2.setEnabled(true);
+                       Button1.setEnabled(true);
+                       monitorInfoDataSet.load();
+                       
+                      // Ext.TaskMgr.start(task);  
+                      // closeTimeTaskBtn.setEnabled(true);
+                      // startTimeTaskBtn.setEnabled(false);
+                    }
+                    
+                }
+             }            
+          }
+      },function(response,opt){
+      
+      });
+       
+    
+}
+
+event GridItem15_renderer(Object value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store) {   
+   return value
+}
+
+event typeGroup2_select(Hs.HsCheckCombo combo, Ext.data.Record record, Number index) {
+    monitorInfoDataSet.setParams({
+        type : typeGroup2.getValue(),
+        commandName:"queryMonitorByServiceType",
+        nodeName : nodeName
+     });
+    monitorInfoDataSet.load();
+}
+
+event typeGroup1_select(Hs.HsCheckCombo combo, Ext.data.Record record, Number index) {
+    queryBizServiceDataset.setParams({
+        type : typeGroup1.getValue(),
+        commandName:"queryBizServiceByType",
+        nodeName : nodeName
+     });
+    queryBizServiceDataset.load(); 
+}
+/*
+event closeTimeTaskBtn_click(Button thisComp, Ext.EventObject e) {
+     //关闭定时任务
+     Ext.TaskMgr.stop(task);
+     closeTimeTaskBtn.setEnabled(false);
+     startTimeTaskBtn.setEnabled(true);
+}
+
+event startTimeTaskBtn_click(Button thisComp, Ext.EventObject e) {
+   Ext.TaskMgr.start(task);
+   startTimeTaskBtn.setEnabled(false);
+   closeTimeTaskBtn.setEnabled(true);
+} */
+event Button1_click(Button thisComp, Ext.EventObject e) {
+    monitorInfoDataSet.load();
+}
+event GridItem6_renderer(Object value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store) {
+   return value+"毫秒";
+}
+event GridItem7_renderer(Object value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store) {
+    return value+"毫秒";
+}
+event Button2_click(Button thisComp, Ext.EventObject e) {
+  queryBizServiceDataset.load();
+}]]></WindowScript>
+  </WindowScripts>
+</hsdoc>

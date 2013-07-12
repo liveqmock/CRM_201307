@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service2:ServiceModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:flow2="http://www.hundsun.com/ares/studio/jres/flow2" xmlns:service2="http://www.hundsun.com/ares/studio/jres/service2" name="角色权限复制">
+  <unit>
+    <info xsi:type="flow2:LogicUnitInfo"/>
+    <children id="copyRoleRight1" name="copyRoleRight" desc="copyRoleRight">
+      <info xsi:type="flow2:ComponentMethodInfo" fullyQualifiedName="bizframe.authority.right.rightQuryComponent" methodName="copyRoleRight">
+        <inputParameters id="context" javaType="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext" name="context"/>
+      </info>
+    </children>
+  </unit>
+</service2:ServiceModel>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.hundsun.ares.studio.jres.component:HSComponent_EMF xmlns:XMI="http://www.omg.org/XMI" xmlns:com.hundsun.ares.studio.jres.component="http://com.hundsun.ares.studio.jres.hsobject" name="rightQuryComponent" className="com.hundsun.jres.bizframe.core.authority.service.RightQuryService" XMI:version="2.0">
+  <methodList methodName="getUserRights" alias="getUserRights" desc="getUserRights">
+    <paramList id="context" name="context" type="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext" rename="context">
+      <children id="globalMap" type="java.util.Map&lt;java.lang.String,java.lang.Object>"/>
+      <children id="flow" type="java.util.Map&lt;java.lang.Object,java.lang.Object>"/>
+    </paramList>
+    <result id="getUserRights_result" type="com.hundsun.jres.interfaces.share.dataset.IDataset"/>
+  </methodList>
+  <methodList methodName="getRoleRights" alias="getRoleRights" desc="getRoleRights">
+    <paramList id="context" name="context" type="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext" rename="context">
+      <children id="globalMap" type="java.util.Map&lt;java.lang.String,java.lang.Object>"/>
+      <children id="flow" type="java.util.Map&lt;java.lang.Object,java.lang.Object>"/>
+    </paramList>
+    <result id="getRoleRights_result" type="com.hundsun.jres.interfaces.share.dataset.IDataset"/>
+  </methodList>
+  <methodList methodName="processRoleRight" alias="processRoleRight" desc="processRoleRight">
+    <paramList id="context" name="context" type="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext" rename="context">
+      <children id="globalMap" type="java.util.Map&lt;java.lang.String,java.lang.Object>"/>
+      <children id="flow" type="java.util.Map&lt;java.lang.Object,java.lang.Object>"/>
+    </paramList>
+    <result id="processRoleRight_result" type="com.hundsun.jres.interfaces.share.dataset.IDataset"/>
+  </methodList>
+  <methodList methodName="processUserRight" alias="processUserRight" desc="processUserRight">
+    <paramList id="context" name="context" type="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext" rename="context">
+      <children id="globalMap" type="java.util.Map&lt;java.lang.String,java.lang.Object>"/>
+      <children id="flow" type="java.util.Map&lt;java.lang.Object,java.lang.Object>"/>
+    </paramList>
+    <result id="processUserRight_result" type="com.hundsun.jres.interfaces.share.dataset.IDataset"/>
+  </methodList>
+  <methodList methodName="copyRoleRight" alias="copyRoleRight" desc="copyRoleRight">
+    <paramList id="context" name="context" type="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext" rename="context"/>
+    <result type="void"/>
+  </methodList>
+  <methodList methodName="downloadRoleRights" alias="downloadRoleRights" desc="downloadRoleRights">
+    <paramList id="arg0" name="arg0" type="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext" rename="arg0"/>
+    <result id="downloadRoleRights_result" type="com.hundsun.jres.interfaces.share.dataset.IDataset"/>
+  </methodList>
+</com.hundsun.ares.studio.jres.component:HSComponent_EMF>

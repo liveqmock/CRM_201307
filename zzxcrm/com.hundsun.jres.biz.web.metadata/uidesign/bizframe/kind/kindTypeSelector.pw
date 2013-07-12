@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hsdoc version="1.1.0">
+  <Windows>
+    <control-Window title="分类选择" height="396" name="Window1" draggable="true" width="428">
+      <Top/>
+      <Bottom>
+        <control-ButtonGroup name="ButtonGroup1">
+          <layout-buttonGroup>
+            <control-Button name="button_submit" text="确  定" width="75" icon="bizframe/images/icons/accept.png"/>
+            <control-Button name="button_close" text="关  闭" width="75" icon="bizframe/images/icons/cross.gif"/>
+          </layout-buttonGroup>
+        </control-ButtonGroup>
+      </Bottom>
+      <Left/>
+      <Right/>
+      <layout-fit>
+        <control-Tree selectModel="singleSelect" name="kind_tree" width="200">
+          <layout-tree>
+            <control-AsyncTreeNode hideNode="true" checked="false" dataSet="kind_tree_dataset" expanded="true" id="bizroot" name="kind_tree_root_node" text="分类树">
+              <layout-tree/>
+            </control-AsyncTreeNode>
+          </layout-tree>
+          <Top>
+            <control-Toolbar height="31" name="Toolbar1">
+              <layout-toolbar>
+                <control-Button name="ex" text="展开" width="56" icon="bizframe/images/icons/arrow_out.png"/>
+                <control-ToolbarSeparator name="ToolbarSeparator1"/>
+                <control-Button name="re" text="收缩" width="59" icon="bizframe/images/icons/arrow_in.png"/>
+              </layout-toolbar>
+            </control-Toolbar>
+          </Top>
+          <Left/>
+          <Right/>
+        </control-Tree>
+      </layout-fit>
+    </control-Window>
+  </Windows>
+  <Accessory>
+    <control-TreeDataSet name="kind_tree_dataset" service="bizframe.kind.fetchKindList" window="Window1">
+      <params>
+        <param name="kind_type"><![CDATA[]]></param>
+        <param name="parent_code"><![CDATA["root"]]></param>
+        <param name="resCode"><![CDATA["bizSetKind"]]></param>
+        <param name="opCode"><![CDATA["bizSetKindFind"]]></param>
+      </params>
+      <fields>
+        <field name="kind_code" type="String" mapping="id"/>
+        <field name="kind_name" type="String" mapping="text"/>
+        <field name="parent_code" type="String" mapping="pid"/>
+      </fields>
+    </control-TreeDataSet>
+  </Accessory>
+  <WindowScripts>
+    <WindowScript window="Window1"><![CDATA[private params=null;
+private selectCode="";
+private selectName="";
+private selectKindCode="";
+private selectKindName="";
+private flag=false;
+public function rec(obj){
+	params=obj;
+	selectName=obj[0].getValue();
+	selectCode=obj[1].getValue();
+}
+
+event button_submit_click(Button thisComp, Ext.EventObject e) {
+	params[0].setValue(selectName);
+	params[1].setValue(selectCode);
+	close();
+}
+event button_close_click(Button thisComp, Ext.EventObject e) {
+	close();
+}
+
+event kind_tree_expandnode(Node node) {
+	var nodes=node.childNodes;
+	if(nodes){
+		for(var i=0;i<nodes.length;i++){
+			if(selectCode==nodes[i].id){
+				kind_tree.setChecked(nodes[i],true);
+			}
+		}
+	}
+}
+event kind_tree_click(Node node, EventObject e) {
+	if(!node.attributes.checked){
+		selectCode = node.id;
+		selectName = node.text;
+	}else{
+		selectCode = "";
+		selectName = "";
+	}
+}
+event ex_click(Button thisComp, Ext.EventObject e) {
+	kind_tree.expandAll();
+}
+event re_click(Button thisComp, Ext.EventObject e) {
+    var nodes = kind_tree.getNodeById('bizroot').childNodes;
+	for(var i=0;i<nodes.length;i++){
+	   var node = nodes[i];
+	   if(node && node.collapse){
+	      node.collapse(true,false);
+	   }
+	}
+}
+event Window1_complete() {
+	kind_tree.expandAll();
+}
+
+event kind_tree_beforeload(Node node) {
+   var kind_type = ParentWin.kindType;
+   if(!Ext.isEmpty(kind_type))
+      Ext.applyIf(kind_tree.getLoader().baseParams,{"kind_type" : kind_type});
+}]]></WindowScript>
+  </WindowScripts>
+</hsdoc>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hsdoc version="1.1.0">
+  <Windows>
+    <control-MainWindow height="424" name="MainWin" templatePath="window.ftl" width="849">
+      <layout-fit>
+        <control-Panel height="200" name="Panel1" width="300">
+          <Top>
+            <control-Toolbar name="Toolbar1">
+              <layout-toolbar>
+                <control-Button name="allRefleshButton" text="批量刷新" width="75" tabIndex="2" icon="bizframe/images/icons/refresh.png"/>
+                <control-Button name="singRefleshButton" text="单步刷新" width="75" tabIndex="3" icon="bizframe/images/icons/refresh.png"/>
+                <control-Button name="clearButton" text="重置" width="60" tabIndex="4" icon="bizframe/images/icons/refresh.png"/>
+              </layout-toolbar>
+            </control-Toolbar>
+          </Top>
+          <Bottom/>
+          <Left/>
+          <Right/>
+          <layout-fit>
+            <control-Grid hasCheckColumn="true" enableCellTip="true" width="828" height="179" title="刷新信息" dataSet="getCacheDataSet" name="grid">
+              <layout-GridToolbar>
+                <control-GridItem align="left" width="142" dataIndex="id" headerAlign="center" sortable="true" title="缓存编号" name="GridItem3"/>
+                <control-GridItem align="left" width="166" title="缓存名称" dataIndex="name" sortable="true" headerAlign="center" name="GridItem4"/>
+                <control-GridItem align="center" width="111" title="是否成功刷新" dataIndex="isFreshSucess" sortable="true" headerAlign="center" name="GridItem1"/>
+                <control-GridItem align="left" width="297" title="响应详细信息" dataIndex="freshInfo" sortable="true" headerAlign="center" name="GridItem2"/>
+                <control-GridItem align="left" width="200" title="服务器最新刷新时间" dataIndex="freshLastTime" sortable="true" headerAlign="center" name="GridItem5"/>
+              </layout-GridToolbar>
+              <Top/>
+              <Bottom/>
+              <Left/>
+              <Right/>
+            </control-Grid>
+          </layout-fit>
+        </control-Panel>
+      </layout-fit>
+    </control-MainWindow>
+  </Windows>
+  <Accessory>
+    <control-DataSet name="DataSet1" service="bizframe.common.cacheRefreshService" usingServiceName="true" window="MainWin">
+      <params>
+        <param name="cacheCodes"><![CDATA[]]></param>
+        <param name="resCode"><![CDATA["bizSetCache"]]></param>
+        <param name="opCode"><![CDATA["bizCacheFresh"]]></param>
+      </params>
+      <fields>
+        <field name="cacheCode" type="String"/>
+        <field name="isFreshSucess" type="String"/>
+        <field name="freshInfo" type="String"/>
+        <field name="freshLastTime" type="String"/>
+      </fields>
+    </control-DataSet>
+    <control-DataSet start="start" name="getCacheDataSet" limit="limit" service="bizframe.common.getCaches" usingServiceName="true" window="MainWin">
+      <params>
+        <param name="opCode"><![CDATA['bizCachesFind']]></param>
+        <param name="resCode"><![CDATA['bizSetCache']]></param>
+      </params>
+      <fields>
+        <field name="id" type="String"/>
+        <field name="name" type="String"/>
+        <field name="pid" type="String"/>
+        <field name="leaf" type="String"/>
+      </fields>
+    </control-DataSet>
+  </Accessory>
+  <WindowScripts>
+    <WindowScript window="MainWin"><![CDATA[import bizframe.authority.auth;
+
+remote bizframe.common.cacheRefreshService as refreshSvc;
+
+
+//批量刷新
+event allRefleshButton_click(Button thisComp, Ext.EventObject e) {
+			var indexs=grid.getSelectionsIndex();
+			if(indexs.length <= 0){
+				 Ext.Msg.alert('提示',"你没选中任何一个刷新目标缓存,请您选中.");
+				 return ;
+			}
+			var ids="";
+			var map=new Array();
+			for(var i=0;i<indexs.length;i++){
+				var index=indexs[i];
+				var selectID= grid.getRow(index).get("id");
+				map[i]={id:selectID , index: index}
+				ids += selectID;
+				if(i<indexs.length-1)
+					ids += ',';
+			}
+	        Ext.MessageBox.confirm('提示', '您确定刷新缓存么?',function (btn){
+			      if (btn=="yes"){
+                        var params = {"cacheCodes":ids,"resCode":"bizSetCache","opCode":"bizCacheFresh"};
+						var authWin = new auth(MainWin).window;
+						authWin.needAuth(authWin,'bizSetCache','bizCacheFresh',MainWin,
+						function(){
+							refeshCache(map,params);
+						});
+          }});
+}
+
+function refeshCache(map,params){
+			var result = new Hs.DataDeal(refreshSvc.synExecute(params));
+			if(result.getErrorNo() == 0){
+				var data=result.getData();
+				for(var i=0;i<result.getTotalCount();i++){
+					var code=data[i].id;
+					var indx=getIndex(map,code);
+					grid.updateRow(data[i],indx);
+				}
+				return true;
+			}else{
+				return false;
+			}
+}
+
+function getIndex(map,code){
+	var index=null;
+	for(var i=0;i<map.length;i++){
+		var recode=map[i];
+		if(recode.id==code){
+		   index=recode.index;
+		   break;
+		}
+	}
+	return index;
+}
+
+function sleep(){}
+
+//单步刷新
+event singRefleshButton_click(Button thisComp, Ext.EventObject e) {
+			var indexs=grid.getSelectionsIndex();
+			if(indexs.length <= 0){
+				 Ext.Msg.alert('提示',"你没选中任何一个刷新目标缓存,请您选中.");
+				 return ;
+			}
+			var ids="";
+			var map=new Array();
+			for(var i=0;i<indexs.length;i++){
+				var index=indexs[i];
+				var selectID= grid.getRow(index).get("id");
+				map[i]={id:selectID , index: index}
+			}
+	        Ext.MessageBox.confirm('提示', '您确定刷新缓存么?',function (btn){
+			      if (btn=="yes"){
+						var authWin = new auth(MainWin).window;
+						authWin.needAuth(authWin,'bizSetCache','bizCacheFresh',MainWin,
+						function(){
+							for(var i=0;i<indexs.length;i++){
+								var index=indexs[i];
+								var selectID= grid.getRow(index).get("id");
+								var params = {"cacheCodes":selectID,"resCode":"bizSetCache","opCode":"bizCacheFresh"};
+								refeshCache(map,params);
+							}
+						});
+          }});
+}
+
+event clearButton_click(Button thisComp, Ext.EventObject e) {
+	grid.refresh();
+}]]></WindowScript>
+  </WindowScripts>
+</hsdoc>

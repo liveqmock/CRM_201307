@@ -1,0 +1,711 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hsdoc version="1.1.0">
+  <Windows>
+    <control-MainWindow height="482" name="MainWin" templatePath="window.ftl" width="1057">
+      <layout-fit>
+        <control-Panel height="600" name="DictionaryPanel" width="800">
+          <layout-border>
+            <control-Tree region="west" width="200" height="600" title="分类树" split="true" collapsible="true" name="KindTree">
+              <layout-tree>
+                <control-AsyncTreeNode id="0001" dataSet="KindDataSet" name="AsyncTreeNode1" text="数据字典" expanded="true">
+                  <layout-tree/>
+                </control-AsyncTreeNode>
+              </layout-tree>
+              <Top>
+                <control-Toolbar name="TreeToolBar">
+                  <layout-toolbar>
+                    <control-Button name="expandTree_btn" text="展开" width="65" icon="bizframe/images/icons/arrow_out.png" tabIndex="2"/>
+                    <control-Button name="collapseTree_btn" text="收缩" width="65" icon="bizframe/images/icons/arrow_in.png" tabIndex="3"/>
+                    <control-Button name="refreshTree_btn" text="刷新" width="65" icon="bizframe/images/icons/refresh.png" tabIndex="4"/>
+                  </layout-toolbar>
+                </control-Toolbar>
+              </Top>
+            </control-Tree>
+            <control-Panel region="center" height="600" name="DictPanel" width="600">
+              <layout-border>
+                <control-Panel region="center" border="false" height="250" name="DictEntryPanel" width="600" split="true">
+                  <layout-border>
+                    <control-Panel region="center" border="false" height="350" name="DictEntryGridPanel" width="600">
+                      <layout-border>
+                        <control-FormPanel collapseMode="mini" region="north" width="600" height="150" hideCollapseTool="true" collapsible="true" split="true" name="SearchPanel" border="false">
+                          <Top>
+                            <control-Toolbar name="DictEntryToolbar">
+                              <layout-toolbar>
+                                <control-Button visible="false" name="addDictEntry_btn" text="新增" width="75" icon="bizframe/images/icons/add.gif" tabIndex="13"/>
+                                <control-Button visible="false" name="editDictEntry_btn" text="修改" width="75" icon="bizframe/images/icons/edit.png" tabIndex="14"/>
+                                <control-Button enabled="false" visible="false" width="75" icon="bizframe/images/icons/delete.gif" name="delDictEntry_btn" text="删除" tabIndex="15"/>
+                                <control-Button visible="false" width="75" icon="bizframe/images/icons/download.png" name="dictEntryDownloadBtn" text="下载" tabIndex="16" menu="DictEntryDownMenu"/>
+                              </layout-toolbar>
+                            </control-Toolbar>
+                          </Top>
+                          <Bottom>
+                            <control-ButtonGroup name="ButtonGroup1">
+                              <layout-buttonGroup>
+                                <control-Button visible="false" name="searchDictEntry_btn" text="查询" width="75" icon="bizframe/images/icons/search.png" tabIndex="5"/>
+                                <control-Button name="searchResetBtn" text="重置" width="75" icon="bizframe/images/icons/refresh.png" tabIndex="6"/>
+                              </layout-buttonGroup>
+                            </control-ButtonGroup>
+                          </Bottom>
+                          <layout-table collapsible="true" columns="2" fullWidth="true">
+                            <control-TargetSelect labelAlign="right" targetWindow="kindTypeSelector" fieldName="kind_Name" params="['searchKindType','kindTypeField']" callFunction="rec" width="250" fieldLabel="字典类别" name="searchKindType" tabIndex="7"/>
+                            <control-TextField labelAlign="right" regexText="非法输入，只能输入英文、数字和下划线" fieldName="dictEntryCode" width="250" height="22" fieldLabel="条目编号" maxLength="32" name="searchDictEntryCode" tabIndex="8"/>
+                            <control-HiddenField fieldName="kindCode" name="kindTypeField"/>
+                            <control-TextField labelAlign="right" regexText="非法输入，只能输入中文、英文、小括号和下划线" fieldName="dictEntryName" width="250" height="22" fieldLabel="条目名称" maxLength="32" name="searchDictEntryName" tabIndex="9"/>
+                            <control-TextField labelAlign="right" fieldName="kindName" width="250" height="22" fieldLabel="分类名称" name="searchKindName" tabIndex="17"/>
+                          </layout-table>
+                        </control-FormPanel>
+                        <control-Grid hasCheckColumn="true" region="center" singleSelect="true" remoteSort="true" enableCellTip="true" width="531" height="409" dataSet="DictEntryDataSet" title="字典条目列表" name="DictEntryGrid" hasCustomPageSize="true" border="false" hasPagingBar="true">
+                          <layout-GridToolbar>
+                            <control-GridItem title="条目编号" dataIndex="dict_entry_code" name="dictEntryCode" width="165"/>
+                            <control-GridItem title="条目名称" dataIndex="dict_entry_name" name="dictEntryName" width="149"/>
+                            <control-GridItem title="类别名称" dataIndex="kind_name" name="kindName" width="134"/>
+                            <control-GridItem title="平台标识名称" align="center" dataIndex="platform_name" name="GridItem1" width="130" sortable="true"/>
+                            <control-GridItem title="备注" hidden="true" dataIndex="remark" name="remark" width="102"/>
+                            <control-GridItem title="分类编号" hidden="true" dataIndex="kind_code" name="kindCode" width="79"/>
+                            <control-GridItem align="left" width="100" title="平台标识" dataIndex="platform" sortable="true" hidden="true" name="GridItem2"/>
+                          </layout-GridToolbar>
+                        </control-Grid>
+                        <control-Panel region="east" width="258" height="200" title="字典项列表" split="true" name="DictItemPanel" border="false">
+                          <layout-fit>
+                            <control-EditorGrid autoload="false" width="600" height="150" dataSet="DictItemDataSet" name="DictItemGrid" hasCustomPageSize="true" border="false">
+                              <layout-GridToolbar>
+                                <control-EditorGridItem title="字典项编号" align="right" dataIndex="dict_item_code" columnWidget="new Hs.HsTextField({       allowBlank:false,       regexText:'非法输入，不能输入&quot;$&quot;&quot;,&quot;',       regex:/^[^,$]*$/i,       maxLength:32  })" name="dictItemCode" width="129"/>
+                                <control-EditorGridItem title="字典项名称" align="center" dataIndex="dict_item_name" columnWidget="new Hs.HsTextField({        allowBlank:false,        regexText:'非法输入，只能输入中文、英文、小括号、顿号、逗号、句号、分号和下划线',        regex:/^[\w\u4e00-\u9fa5\（\）\(\)\，\、\。\；\-\s]*$/,        maxLength:32  })" name="dictItemName" width="129"/>
+                                <control-EditorGridItem title="字典条目编号" hidden="true" dataIndex="dict_entry_code" editable="false" name="dictEntryCode2" width="120"/>
+                              </layout-GridToolbar>
+                            </control-EditorGrid>
+                          </layout-fit>
+                          <Top>
+                            <control-Toolbar name="DictItemToolbar">
+                              <layout-toolbar>
+                                <control-Button name="addDictItem_btn" text="新增" width="75" enabled="false" icon="bizframe/images/icons/add.gif" tabIndex="10"/>
+                                <control-Button name="delDictItem_btn" text="删除" width="75" enabled="false" icon="bizframe/images/icons/delete.gif" tabIndex="11"/>
+                                <control-Button enabled="false" visible="false" width="75" icon="bizframe/images/icons/accept.png" name="saveDictItem_btn" text="保存" tabIndex="12"/>
+                              </layout-toolbar>
+                            </control-Toolbar>
+                          </Top>
+                        </control-Panel>
+                      </layout-border>
+                      <Top/>
+                      <Bottom/>
+                      <Left/>
+                      <Right/>
+                    </control-Panel>
+                  </layout-border>
+                </control-Panel>
+              </layout-border>
+            </control-Panel>
+          </layout-border>
+        </control-Panel>
+      </layout-fit>
+    </control-MainWindow>
+    <control-Window title="新增字典条目" height="260" name="DictEntryWindow" draggable="true" width="360" resizable="false">
+      <layout-fit>
+        <control-FormPanel border="false" height="250" frame="true" submitService="bizframe.dictionary.insertDictEntry" name="DictEntryFormPanel" width="400">
+          <layout-form labelAlign="right" labelWidth="75">
+            <control-TextField msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" regexText="非法输入，只能输入英文、数字和下划线" fieldName="dictEntryCode" width="320" height="22" regex="/^\w+$/" fieldLabel="条目编号" maxLength="32" name="addDictEntryCode" allowBlank="false"/>
+            <control-TextField msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" regexText="非法输入，只能输入中文、英文、小括号、顿号、逗号、句号、分号和下划线" fieldName="dictEntryName" width="320" height="22" regex="/^[\w\u4e00-\u9fa5\（\）\(\)\，\、\。\；\-\s]*$/" fieldLabel="条目名称" maxLength="32" name="addDictEntryName" allowBlank="false"/>
+            <control-TargetSelect targetWindow="kindTypeSelector" msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" params="['kindNameField','addKindCode']" callFunction="rec" width="320" fieldLabel="字典类别" name="kindNameField" allowBlank="false"/>
+            <control-TextArea msgTarget="qtip" fieldName="remark" width="320" height="90" fieldLabel="备      注" maxLength="256" name="addRemark"/>
+            <control-HiddenField fieldName="kind_code" name="addKindCode"/>
+          </layout-form>
+        </control-FormPanel>
+      </layout-fit>
+      <Bottom>
+        <control-ButtonGroup name="Toolbar2">
+          <layout-buttonGroup>
+            <control-Button name="save_btn" text="确定" width="75" icon="bizframe/images/icons/accept.png"/>
+            <control-Button name="reset_btn" text="重置" width="75" icon="bizframe/images/icons/refresh.png"/>
+            <control-Button name="cancel_btn" text="取消" width="75" icon="bizframe/images/icons/cross.gif"/>
+          </layout-buttonGroup>
+        </control-ButtonGroup>
+      </Bottom>
+    </control-Window>
+  </Windows>
+  <Accessory>
+    <control-DataSet name="DictEntryDataSet" service="bizframe.dictionary.findDictEntry" usingServiceName="true" window="MainWin">
+      <params>
+        <param name="limit"><![CDATA[1]]></param>
+        <param name="start"><![CDATA[10]]></param>
+        <param name="resCode"><![CDATA["bizSetDict"]]></param>
+        <param name="opCode"><![CDATA["bizDictEntryFind"]]></param>
+      </params>
+      <fields>
+        <field name="dict_entry_code" type="String"/>
+        <field name="kind_code" type="String"/>
+        <field name="dict_entry_name" type="String"/>
+        <field name="ctrl_flag" type="String"/>
+        <field name="platform" type="String"/>
+        <field name="remark" type="String"/>
+        <field name="kind_name" type="String"/>
+        <field name="platform_name" type="String"/>
+      </fields>
+    </control-DataSet>
+    <control-DataSet name="DictItemDataSet" service="bizframe.dictionary.findDictItem" window="MainWin">
+      <params>
+        <param name="resCode"><![CDATA["bizSetDict"]]></param>
+        <param name="opCode"><![CDATA["bizDictItemFind"]]></param>
+      </params>
+      <fields>
+        <field name="dict_item_code" type="String"/>
+        <field name="dict_entry_code" type="String"/>
+        <field name="dict_item_name" type="String"/>
+      </fields>
+    </control-DataSet>
+    <control-TreeDataSet name="KindDataSet" service="bizframe.kind.fetchKindList" usingServiceName="true" window="MainWin">
+      <params>
+        <param name="resCode"><![CDATA["bizSetKind"]]></param>
+        <param name="opCode"><![CDATA["bizSetKindFind"]]></param>
+      </params>
+      <fields>
+        <field name="kind_code" type="String" mapping="id"/>
+        <field name="kind_name" type="String" mapping="text"/>
+        <field name="parent_code" type="String" mapping="pid"/>
+      </fields>
+    </control-TreeDataSet>
+    <control-Menu window="MainWin" name="DictEntryDownMenu">
+      <layout-menu>
+        <control-MenuItem name="DictEntryCurrentDown" text="当页下载" icon="bizframe/images/icons/currentPageDownload.png">
+          <layout-menuitem/>
+        </control-MenuItem>
+        <control-MenuItem name="DictEntryAllDown" text="全量下载" icon="bizframe/images/icons/allPageDownload.png">
+          <layout-menuitem/>
+        </control-MenuItem>
+      </layout-menu>
+    </control-Menu>
+    <control-DataSet name="KindComboDataSet" service="bizframe.kind.fetchKindList" window="DictEntryWindow">
+      <params>
+        <param name="resCode"><![CDATA["bizSetKind"]]></param>
+        <param name="opCode"><![CDATA["bizSetKindFind"]]></param>
+      </params>
+      <fields>
+        <field name="kind_code" type="String"/>
+        <field name="kind_name" type="String"/>
+      </fields>
+    </control-DataSet>
+  </Accessory>
+  <WindowScripts>
+    <WindowScript window="MainWin"><![CDATA[remote bizframe.dictionary.deleteDictEntry as DELETEDICT;
+remote bizframe.dictionary.insertDictItem as INSERTDICTITEM;
+    
+include bizframe.js.checkRight;
+include bizframe.js.commonUtil;		//引入公共工具包js文件
+    
+import bizframe.authority.auth;
+import bizframe.kind.kindTypeSelector;
+public editMod="";    
+public selectedDictEntryCode = "";
+public platform="";
+private saveItems={};
+private saveDicCode='';
+private addCode="";
+private addText="";
+private isDel = false;
+public kindType="0";
+//当前页面下载
+event DictEntryCurrentDown_click(Ext.menu.BaseItem baseItem, Ext.EventObject e) {
+	Ext.MessageBox.confirm('提示', '您确定下载当前页数据?', function(button, text) {
+		if (button == "yes") {
+			var start = DictEntryGrid.getStart();
+			var limit = DictEntryGrid.getLimit();
+			//var action = ctxPath+'/bizframe.dictionary.downloadDictEntry.service?resCode=bizSetDict&opCode=bizDictEntryDownload&downType=0'
+			//					+ '&start=' + start
+			//					+ '&limit=' + limit; 
+			var action = ctxPath+'/downloadExcel?resCode=bizSetDict&opCode=bizDictEntryDownload&downType=0'
+								+ '&start=' + start
+								+ '&limit=' + limit; 
+			var authWin = new auth(MainWin).window;
+			authWin.needAuth(authWin,'bizSetDict','bizDictEntryDownload',MainWin, function(){						
+					DictEntryDown(action);
+			});	     
+		}
+	});
+}
+
+//全量下载
+event DictEntryAllDown_click(Ext.menu.BaseItem baseItem, Ext.EventObject e) {
+	Ext.MessageBox.confirm('提示', '您确定全量下载?', function(button, text) {
+		if (button == "yes") {
+			//var action = ctxPath+'/bizframe.dictionary.downloadDictEntry.service?resCode=bizSetDict&opCode=bizDictEntryDownload';
+			var action = ctxPath+'/downloadExcel?resCode=bizSetDict&opCode=bizDictEntryDownload';
+			var authWin = new auth(MainWin).window;
+			authWin.needAuth(authWin,'bizSetDict','bizDictEntryDownload',MainWin, function(){						
+					DictEntryDown(action);
+			});	     
+		}
+	});
+}
+
+
+
+//下载提交
+public function DictEntryDown(action){
+	SearchPanel.getForm().getEl().dom.action = action;
+	SearchPanel.getForm().getEl().dom.method = 'post'; 
+	SearchPanel.getForm().getEl().dom.submit(); 
+}
+    
+event addDictEntry_btn_click(Button thisComp, Ext.EventObject e) {
+	editMod = "add";
+	if(addCode==""){
+		Ext.Msg.alert('提示', '请选择一个类别');
+		return;
+	}
+	var DictEntryWindow = new DictEntryWindow();
+	DictEntryWindow.DictEntryFormPanel.setSubmitService("bizframe.dictionary.insertDictEntry");
+	DictEntryWindow.addKindCode.setValue(addCode);
+	DictEntryWindow.kindNameField.setValue(addText);
+	DictEntryWindow.show();
+}
+event editDictEntry_btn_click(Button thisComp, Ext.EventObject e) {
+	editMod = "update";
+	if (DictEntryGrid.getSelectionModel().getSelections().length == 1) {
+		var DictEntryWindow = new DictEntryWindow();
+		DictEntryWindow.setTitle("修改字典条目");	
+		DictEntryWindow.show();		
+	} else {
+		Ext.Msg.alert('提示','请选择一条记录进行修改');
+	}
+}
+
+
+event delDictEntry_btn_click(Button thisComp, Ext.EventObject e) {
+	if (DictEntryGrid.getSelectionModel().getSelections().length >= 1) {
+			Ext.MessageBox.confirm('提示', '您确定要删除字典条目?', function(button, text) {
+				if (button == "yes") {
+						var dictEntryList = DictEntryGrid.getSelectionDatas();
+						var dictEntryCodes = "";
+						for(var i=0;i<dictEntryList.length;i++){
+							dictEntryCodes = dictEntryCodes + dictEntryList[i].get("dict_entry_code")+"#";
+						}
+						dictEntryCodes = dictEntryCodes.substring(0,dictEntryCodes.length-1);
+					var obj = {"dictEntryCode":dictEntryCodes,"resCode":"bizSetDict","opCode":"bizDictEntryDel"};
+					var succ = function(response, options){
+						if(response.returnCode=='0'){
+							Ext.Msg.alert('提示','删除成功');
+							//DictEntryDataSet.load();
+							DictEntryGrid.refresh();
+						}else{
+							Ext.Msg.alert("提示",response.errorInfo);
+						}
+					}
+					var fail = function(response, options){
+						Ext.Msg.alert('提示','删除失败');
+					}
+					var authWindow = new auth(MainWin).window;
+					authWindow.needAuth(authWindow,'bizSetDict','bizDictEntryDel',MainWin,
+					function(){
+						DELETEDICT.asynExecute(obj,succ,fail);
+					});
+					
+				}
+			});
+		}else{
+			Ext.Msg.alert('提示','请选择至少一条字典条目信息进行删除');
+		}
+}
+event searchDictEntry_btn_click(Button thisComp, Ext.EventObject e) {
+	
+	var rr=DictItemGrid.getChangeDatas();	 
+	if(rr.length>0 || isDel){//如果修改了数据，或者清空了数据
+	    saveItems=DictItemGrid.getRecord();
+	    saveDicCode=selectedDictEntryCode;
+	    if(platform=='0'){
+			Ext.MessageBox.confirm('提示', '有未保存的项目，保存吗?', function(button, text) {
+					if(button=='yes'){
+						saveDicItem(saveItems,saveDicCode);
+					}
+					searchDictEntryByParam();
+				});
+		}
+		isDel = false;
+		DictItemGrid.clearChangeDatas();
+	}else{
+		searchDictEntryByParam();
+	}
+	
+}
+
+/**
+*单击查询按钮时候激发的查询操作，根据查询表单的值查询
+*/
+function searchDictEntryByParam(){
+	var param = {};
+
+	if(searchDictEntryCode.getValue()!=null){
+	var value = searchDictEntryCode.getValue();
+		Ext.apply(param,{dictEntryCode:value});
+	}
+	if(searchDictEntryName.getValue()!=null){
+		var value= searchDictEntryName.getValue();
+		Ext.apply(param,{dictEntryName:value});
+	}
+	if(searchKindType.getValue()!=null){
+		var value= kindTypeField.getValue();
+		Ext.apply(param,{kindCode:value});
+	}
+	if(searchKindName.getValue()!=null){
+		var value= searchKindName.getValue();
+		Ext.apply(param,{kindName:value});
+	}
+
+	Ext.apply(param,{"resCode":"bizSetDict","opCode":"bizDictEntryFind"});
+	Ext.apply(param,{start:0});
+	Ext.apply(param,{limit:DictEntryGrid.pageSize});
+	DictEntryDataSet.clearParams();
+	DictEntryDataSet.setParams(param);
+	DictEntryDataSet.load();
+	//DictEntryGrid.refresh();
+}
+
+
+event searchResetBtn_click(Button thisComp, Ext.EventObject e) {
+	searchDictEntryCode.reset();
+	searchDictEntryName.reset();
+	searchKindType.reset();
+	searchKindName.reset();
+}
+event addDictItem_btn_click(Button thisComp, Ext.EventObject e) {
+	DictItemGrid.insertDataToFirstRow([{dict_item_code:'',dict_item_name:'',dict_entry_code:selectedDictEntryCode}]);
+}
+event delDictItem_btn_click(Button thisComp, Ext.EventObject e) {
+	DictItemGrid.deleteSelectedRow();
+	isDel = true;
+}
+event saveDictItem_btn_click(Button thisComp, Ext.EventObject e) {
+	var records = DictItemGrid.getRecord();
+	saveDicItem(records,selectedDictEntryCode);
+	isDel = false;
+	DictItemGrid.clearChangeDatas();
+}
+event expandTree_btn_click(Button thisComp, Ext.EventObject e) {
+	KindTree.root.expand(true,false);
+}
+event collapseTree_btn_click(Button thisComp, Ext.EventObject e) {
+	KindTree.root.collapse(true,false);
+}
+event refreshTree_btn_click(Button thisComp, Ext.EventObject e) {
+	KindTree.reload();
+	//----20111019--huhl@hundsun.com--BUG #1494::新增字典条目窗口中未将分类编号读取过来--bengin-
+    addCode = '';
+    searchKindType.setValue();
+    //----20111019--huhl@hundsun.com--BUG #1494::新增字典条目窗口中未将分类编号读取过来--end-
+}
+event KindTree_click(Node thisComp, EventObject e) {
+
+	var rr=DictItemGrid.getChangeDatas();	 
+	if(rr.length>0 || isDel){//如果修改了数据，或者清空了数据
+	    saveItems=DictItemGrid.getRecord();
+	    saveDicCode=selectedDictEntryCode;
+	    if(platform=='0'){
+			Ext.MessageBox.confirm('提示', '有未保存的项目，保存吗?', function(button, text) {
+					if(button=='yes'){
+						saveDicItem(saveItems,saveDicCode);
+					}
+					refeshGridByKindTreeClick(thisComp,e);
+				});
+		}
+		isDel = false;
+		DictItemGrid.clearChangeDatas();
+	}else{
+		refeshGridByKindTreeClick(thisComp,e);
+	}
+	
+	
+}
+
+/**
+* 单击数据字典导航树时刷新页面
+*/
+function refeshGridByKindTreeClick($_node, $_eventObject){
+    addCode = $_node.id;
+    addText= $_node.text;
+    //----20111019--huhl@hundsun.com--BUG #1494::新增字典条目窗口中未将分类编号读取过来--bengin-
+    searchKindType.setValue($_node.text);
+    kindTypeField.setValue($_node.id);
+    //----20111019--huhl@hundsun.com--BUG #1494::新增字典条目窗口中未将分类编号读取过来--end-
+	var param = {};
+	Ext.apply(param,{"resCode":"bizSetDict","opCode":"bizDictEntryFind",kindCode:$_node.id});
+	Ext.apply(param,{start:0});
+	Ext.apply(param,{limit:DictEntryGrid.pageSize});
+	DictEntryDataSet.clearParams();
+	DictEntryDataSet.setParams(param);
+	DictEntryDataSet.load();
+	
+	var param2 = {};
+	Ext.apply(param2,{"resCode":"bizSetDict","opCode":"bizDictItemFind",group:"-1"});
+	DictItemDataSet.clearParams();
+	DictItemDataSet.setParams(param2);
+	DictItemDataSet.load();
+	addDictItem_btn.setEnabled(false);
+	delDictItem_btn.setEnabled(false);
+	saveDictItem_btn.setEnabled(false);
+	searchDictEntryCode.reset();
+	searchDictEntryName.reset();
+	searchKindName.reset();
+}
+
+
+function saveDicItem(records,dicCode){
+	//var records = DictItemGrid.getRecord();
+	var succ = function(response, options){
+		if(response.returnCode=='0'){
+			Ext.Msg.alert('提示','字典项操作成功');
+		}else{
+			Ext.Msg.alert("提示",response.errorInfo);
+		}
+	}
+	var fail = function(response, options){
+		Ext.Msg.alert('提示','字典项操作失败');
+	}
+	if(records.length<=0){
+		if(DictEntryGrid.getSelectionModel().getSelected()!=null){
+			var data = {dictEntryCode:dicCode,dictItemDelete:"true",resCode:"bizSetDict",opCode:"bizDictItemEdit"};
+			var authWindow = new auth(MainWin).window;
+			authWindow.needAuth(authWindow,'bizSetDict','bizDictItemEdit',MainWin,
+					function(){
+						INSERTDICTITEM.asynExecute(data,succ,fail);
+			});     
+		}
+	}else{
+		var obj
+		var dictItemCodeStrs ='';
+		var dictItemNameStrs ='';
+		for(var i=0;i<records.length;i++){
+			var record = records[i] ;
+			
+			var dictItemCode = record.get('dict_item_code');
+			var dictItemName = record.get('dict_item_name');
+			var _coderegx=/^[^,$]*$/i;
+			if(dictItemCode == ""){
+				Ext.Msg.alert('提示','字典项编码不能为空');
+				return;
+			}else if( dictItemName == "" ){
+				Ext.Msg.alert('提示','字典项名称不能为空');
+				return;
+			}else if(record.get('dict_entry_code')==null){
+				Ext.Msg.alert('提示','字典条目编码不能为空');
+				return;
+			}else if(dictItemCode.length>32){
+			    Ext.Msg.alert('提示','字典项编码长度超过最大长度32。');
+				return;
+			}else if(dictItemName.length>32){
+			    Ext.Msg.alert('提示','字典项名称值长度超过最大长度32。');
+				return;
+			}else if(!_coderegx.test(dictItemCode)){
+				Ext.Msg.alert('提示','字典项编码不能输入"$"、"," ');
+				return;
+			}
+			for(var j=i+1;j<records.length;j++){
+				if(dictItemCode == records[j].get('dict_item_code')){
+					Ext.Msg.alert('提示','字典项代码重复');
+					//20120322 xujin fix BUG #2296 begin
+					//DictItemDataSet.load();
+					//20120322 xujin fix BUG #2296 end
+					return;
+				}
+			}
+			dictItemCodeStrs=dictItemCodeStrs+dictItemCode;
+			dictItemNameStrs=dictItemNameStrs+dictItemName;
+			if(i<records.length-1){
+						dictItemCodeStrs=dictItemCodeStrs+',';
+						dictItemNameStrs=dictItemNameStrs+',';
+			}
+		}
+		var data = {dictItemCode: dictItemCodeStrs, dictItemName: dictItemNameStrs,dictEntryCode: dicCode,
+					dictItemDelete:"false",resCode:"bizSetDict",opCode:"bizDictItemEdit"};
+					
+		var authWindow = new auth(MainWin).window;
+		authWindow.needAuth(authWindow,'bizSetDict','bizDictItemEdit',MainWin,
+						function(){
+							INSERTDICTITEM.asynExecute(data,succ,fail);
+		});	     
+	}
+	DictItemGrid.clearChangeDatas();
+
+}
+
+	
+event MainWin_complete() {
+	//SearchPanel.collapse();
+	var operationMap = {"bizSetDict.bizDictEntryAdd":addDictEntry_btn,
+			   			   "bizSetDict.bizDictEntryEdit":editDictEntry_btn,
+			   			   "bizSetDict.bizDictEntryDel":delDictEntry_btn,
+			   			   "bizSetDict.bizDictEntryFind":searchDictEntry_btn,
+			   			   "bizSetDict.bizDictItemEdit":saveDictItem_btn,
+			   			   "bizSetDict.bizDictEntryDownload":dictEntryDownloadBtn};
+	checkRights(operationMap);
+}
+
+event DictEntryGrid_rowclick(Hs.HsGrid thisComp, Number rowIndex, Ext.EventObject e) {
+    var selectData  = DictEntryGrid.getSelectionData();
+    if(selectData){
+        processDictItems(thisComp,rowIndex,e);
+    }
+}
+
+private function  processDictItems(thisComp,rowIndex,exception){
+        var rr=DictItemGrid.getChangeDatas();	 	
+		if(rr.length>0 || isDel){//如果修改了数据，或者清空了数据
+			    saveItems=DictItemGrid.getRecord();
+			    saveDicCode=selectedDictEntryCode;
+			    if(platform=='0'){
+					Ext.MessageBox.confirm('提示', '有未保存的项目，保存吗?', function(button, text) {
+							if(button=='yes'){
+								saveDicItem(saveItems,saveDicCode);
+							}
+							loadItems(thisComp,rowIndex,exception);
+						});
+				}
+				isDel = false;
+				DictItemGrid.clearChangeDatas();
+	     }else{
+				loadItems(thisComp,rowIndex,exception);
+			}
+}
+
+function loadItems($grid,$rowIndex,$e){
+
+	var dictEntryCode = $grid.getSelectionModel().getSelected().get("dict_entry_code");
+	selectedDictEntryCode = dictEntryCode;
+	platform = $grid.getSelectionModel().getSelected().get("platform");
+	
+	var param = {};
+	Ext.apply(param,{"resCode":"bizSetDict","opCode":"bizDictItemFind",group:dictEntryCode});
+	DictItemDataSet.clearParams();
+	DictItemDataSet.setParams(param);
+	DictItemDataSet.load();
+	
+	if(platform=='1'||platform=='2'){
+		editDictEntry_btn.setEnabled(false);
+		delDictEntry_btn.setEnabled(false);
+		addDictItem_btn.setEnabled(false);
+		delDictItem_btn.setEnabled(false);
+		saveDictItem_btn.setEnabled(false);
+		//DictItemGrid.setEnabled(false);
+		dictItemCode.editable=false;
+		dictItemName.editable=false;
+	}
+	else{
+		editDictEntry_btn.setEnabled(true);
+		delDictEntry_btn.setEnabled(true);
+		addDictItem_btn.setEnabled(true);
+		delDictItem_btn.setEnabled(true);
+		saveDictItem_btn.setEnabled(true);
+		//DictItemGrid.setEnabled(true);
+		dictItemCode.editable=true;
+		dictItemName.editable=true;
+	}
+}]]></WindowScript>
+    <WindowScript window="DictEntryWindow"><![CDATA[
+   public dictEntryCode = "";
+   public kindCode = "";
+event cancel_btn_click(Button thisComp, Ext.EventObject e) {
+	close();
+	DictEntryFormPanel.getForm().reset();
+}
+event reset_btn_click(Button thisComp, Ext.EventObject e) {
+	var record = MainWin.DictEntryGrid.getSelectionModel().getSelected();
+	if('add'==MainWin.editMod){
+	   DictEntryFormPanel.getForm().reset();
+	}else if('update'==MainWin.editMod){
+		addDictEntryName.setValue(record.get("dict_entry_name"));
+	    addRemark.setValue(record.get("remark"));
+	}
+
+}
+
+event save_btn_click(Button thisComp, Ext.EventObject e) {
+	if(DictEntryFormPanel.getForm().isValid()){
+		Ext.MessageBox.confirm('提示', '您确定提交请求?', function(button, text) {
+			if (button == "yes") {
+				if(MainWin.editMod == "update"){
+					var authWindow = new auth(MainWin).window;
+					authWindow.needAuth(authWindow,'bizSetDict','bizDictEntryEdit',MainWin,
+					function(){
+						DictEntryFormPanel.commSubmit({"dictEntryCode":dictEntryCode,"kindCode":kindCode,"resCode":"bizSetDict","opCode":"bizDictEntryEdit"});
+					});
+				}else if(MainWin.editMod == "add"){
+					var kind_code =MainWin.kindTypeField.getValue();
+					var authWindow = new auth(MainWin).window;
+					authWindow.needAuth(authWindow,'bizSetDict','bizDictEntryAdd',MainWin,
+					function(){
+						DictEntryFormPanel.commSubmit({"kindCode":kind_code,"resCode":"bizSetDict","opCode":"bizDictEntryAdd"});
+					});
+				}	     
+			}
+		});
+
+	}else{
+		Ext.Msg.alert('提示', '发现有输入项不符合规范');
+		return;
+	}
+	
+}
+event DictEntryWindow_complete() {
+
+	DictEntryFormPanel.getForm().reset();
+	if(MainWin.editMod == "update"){
+		var record = MainWin.DictEntryGrid.getSelectionModel().getSelected();
+		addDictEntryCode.setValue(record.get("dict_entry_code"));
+		dictEntryCode = addDictEntryCode.getValue();
+		addDictEntryCode.setDisabled(true);
+		addDictEntryName.setValue(record.get("dict_entry_name"));
+		addRemark.setValue(record.get("remark"));
+		kindNameField.setValue(record.get("kind_name"));
+		addKindCode.setValue(record.get("kind_code"));
+		kindCode = addKindCode.getValue();
+		addKindCode.setDisabled(true);
+		DictEntryFormPanel.setSubmitService("bizframe.dictionary.updateDictEntry");
+	}
+}
+event DictEntryFormPanel_submitSuccess(object response) {
+	var returnCode = "-1";
+	var errorInfo;
+	if(typeof response == 'object'){
+		returnCode = response.returnCode;
+		errorInfo = response.errorInfo;
+	}
+	if(response.returnCode=='0'){
+		
+		
+		//20111116修改之前的代码
+		//close();
+		//MainWin.DictEntryGrid.refresh();
+		//DictEntryDataSet.load();
+		//MainWin.editmod = "";
+		
+		
+		//20111116 BUG #1634::数据字典设置界面中新增字典条目无法即时出现。 huhl@hundsun.com  bengin 
+		var add_DictEntryCode=addDictEntryCode.getValue();
+		var add_DictEntryName=addDictEntryName.getValue();
+		var add_KindCode=addKindCode.getValue();
+		var add_KindName=kindNameField.getValue();
+		
+		MainWin.searchKindType.setValue(add_KindName);
+		MainWin.kindTypeField.setValue(add_KindCode);
+		MainWin.searchDictEntryCode.setValue(add_DictEntryCode);
+		MainWin.searchDictEntryName.setValue(add_DictEntryName);
+		
+		var param = {};
+		Ext.apply(param,{"dictEntryCode" : add_DictEntryCode});
+		Ext.apply(param,{"kindCode" : add_KindCode});
+		MainWin.DictEntryDataSet.setParams(param);
+		MainWin.DictEntryDataSet.load();
+		MainWin.editmod = "";
+		close();
+		
+		//20111116 BUG #1634::数据字典设置界面中新增字典条目无法即时出现。 huhl@hundsun.com  end 
+		
+		
+	}else{
+		Ext.Msg.alert('提示', '更新失败<br>原因：' + errorInfo);
+	}
+}
+event DictEntryFormPanel_submitFailure(object response) {
+	Ext.Msg.alert('提示', '调用服务失败');
+}
+]]></WindowScript>
+  </WindowScripts>
+</hsdoc>

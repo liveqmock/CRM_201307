@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:flow2="http://www.hundsun.com/ares/studio/jres/flow2" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.1/notation" xmlns:service2="http://www.hundsun.com/ares/studio/jres/service2">
+  <service2:ServiceModel xmi:id="_sXySFaqeEd-E9O-ihdIKYg" name="查询数据字典" inputCollection="true" outputCollection="true" outputCollectionID="def_getSysDictItemDataset">
+    <inputDefines xmi:type="flow2:InputParameterDefine" xmi:id="_sXySFqqeEd-E9O-ihdIKYg" id="group" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_EzB9Mr_NEd-iCKw9MHFyrg"/>
+    </inputDefines>
+    <unit xmi:type="flow2:LogicUnit" xmi:id="_sXySGKqeEd-E9O-ihdIKYg" id="211">
+      <info xmi:type="flow2:LogicUnitInfo" xmi:id="_sXySGaqeEd-E9O-ihdIKYg"/>
+      <children xmi:type="flow2:FlowNode" xmi:id="_azaKgL_VEd-iCKw9MHFyrg" id="getSysDictItemDataset" name="getSysDictItemDataset">
+        <info xmi:type="flow2:ComponentMethodInfo" xmi:id="_azaKgr_VEd-iCKw9MHFyrg" fullyQualifiedName="bizframe.dictionary.dictItemComponent" methodName="getSysDictItemDataset">
+          <inputParameters xmi:type="flow2:InputParameter" xmi:id="_azaKg7_VEd-iCKw9MHFyrg" id="requestDataset" javaType="com.hundsun.jres.interfaces.share.dataset.IDataset" name="requestDataset" userValue="Input:IDATASET"/>
+          <outputParameters xmi:type="flow2:OutputParameter" xmi:id="_azaKhL_VEd-iCKw9MHFyrg" id="getSysDictItemDataset_result" javaType="com.hundsun.jres.interfaces.share.dataset.IDataset"/>
+        </info>
+      </children>
+      <children xmi:type="flow2:FlowNode" xmi:id="_eBB9EL_VEd-iCKw9MHFyrg" id="resultAssignment1" name="resultAssignment1">
+        <info xmi:type="flow2:ResultAssignmentInfo" xmi:id="_eBB9Eb_VEd-iCKw9MHFyrg" resultSet="true" resultType="com.hundsun.jres.interfaces.share.dataset.IDataset" expression="Result:getSysDictItemDataset.getSysDictItemDataset_result"/>
+      </children>
+    </unit>
+  </service2:ServiceModel>
+  <notation:Diagram xmi:id="_ncXhFbotEd-Bgs--RVxt5w" type="Flow2" element="_sXySFaqeEd-E9O-ihdIKYg" measurementUnit="Pixel">
+    <children xmi:type="notation:Node" xmi:id="_nl53kLotEd-Bgs--RVxt5w" type="1001" element="_sXySGKqeEd-E9O-ihdIKYg">
+      <children xmi:type="notation:Node" xmi:id="_nmDokLotEd-Bgs--RVxt5w" type="5001">
+        <children xmi:type="notation:Node" xmi:id="_azj7gL_VEd-iCKw9MHFyrg" type="2001" element="_azaKgL_VEd-iCKw9MHFyrg">
+          <children xmi:type="notation:Node" xmi:id="_azj7g7_VEd-iCKw9MHFyrg" type="4001"/>
+          <children xmi:type="notation:Node" xmi:id="_azj7hL_VEd-iCKw9MHFyrg" type="5002">
+            <styles xmi:type="notation:DrawerStyle" xmi:id="_azj7hb_VEd-iCKw9MHFyrg"/>
+            <styles xmi:type="notation:SortingStyle" xmi:id="_azj7hr_VEd-iCKw9MHFyrg"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_azj7h7_VEd-iCKw9MHFyrg"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_azj7gb_VEd-iCKw9MHFyrg"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_azj7gr_VEd-iCKw9MHFyrg"/>
+        </children>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_nmDokbotEd-Bgs--RVxt5w"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_nmDokrotEd-Bgs--RVxt5w"/>
+      </children>
+      <styles xmi:type="notation:ShapeStyle" xmi:id="_nl53kbotEd-Bgs--RVxt5w"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nl53krotEd-Bgs--RVxt5w"/>
+    </children>
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_ncXhFrotEd-Bgs--RVxt5w"/>
+  </notation:Diagram>
+</xmi:XMI>

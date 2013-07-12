@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hsdoc version="1.1.0">
+  <Windows>
+    <control-Window title="柜员选择" height="418" name="Window1" draggable="true" width="526">
+      <Top/>
+      <Bottom>
+        <control-ButtonGroup name="ButtonGroup1">
+          <layout-buttonGroup>
+            <control-Button name="button_submit" text="确  认" width="75" icon="bizframe/images/icons/accept.png"/>
+            <control-Button name="button_cancel" text="关  闭" width="75" icon="bizframe/images/icons/cross.gif"/>
+          </layout-buttonGroup>
+        </control-ButtonGroup>
+      </Bottom>
+      <Left/>
+      <Right/>
+      <layout-border>
+        <control-Tree region="west" height="300" name="dep_tree" width="200" split="true">
+          <layout-tree>
+            <control-AsyncTreeNode id="zzjg" dataSet="dataset_branchTree" name="branchTree_node" text="组织机构" expanded="true">
+              <layout-tree/>
+            </control-AsyncTreeNode>
+          </layout-tree>
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+        </control-Tree>
+        <control-Grid region="center" hasCheckColumn="true" singleSelect="true" autoload="false" width="300" height="200" dataSet="dep_grid_dataset" name="dep_grid" hasPagingBar="true">
+          <layout-GridToolbar>
+            <control-GridItem title="柜员标识" align="left" dataIndex="user_id" name="dep_code" width="100" sortable="true"/>
+            <control-GridItem title="用户名称" align="left" dataIndex="user_name" name="GridItem2" width="100" sortable="true"/>
+            <control-GridItem title="构构名称" align="left" dataIndex="branch_name" name="GridItem3" width="100" sortable="true"/>
+          </layout-GridToolbar>
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+        </control-Grid>
+      </layout-border>
+    </control-Window>
+  </Windows>
+  <Accessory>
+    <control-TreeDataSet serviceAlias="bizSetBranch$bizSubBranchFind" window="Window1" name="dataset_branchTree" service="bizframe.authority.organization.findSubBranch">
+      <params>
+        <param name="branchCode"><![CDATA[]]></param>
+        <param name="resCode"><![CDATA["bizSetBranch"]]></param>
+        <param name="opCode"><![CDATA["bizSubBranchFind"]]></param>
+      </params>
+      <fields>
+        <field name="branchCode" type="String" mapping="id"/>
+        <field name="branchLevel" type="String" mapping=""/>
+        <field name="branchName" type="String" mapping="text"/>
+        <field name="shortName" type="String" mapping=""/>
+        <field name="parentCode" type="String" mapping="pid"/>
+        <field name="branchPath" type="String" mapping=""/>
+      </fields>
+    </control-TreeDataSet>
+    <control-DataSet window="Window1" name="dep_grid_dataset" service="bizframe.authority.organization.findGUser" usingServiceName="true">
+      <params>
+        <param name="branch_code"><![CDATA[]]></param>
+        <param name="start"><![CDATA[]]></param>
+        <param name="limit"><![CDATA[]]></param>
+        <param name="resCode"><![CDATA["bizSetBranch"]]></param>
+        <param name="opCode"><![CDATA["bizBranchUserFind"]]></param>
+      </params>
+      <fields>
+        <field name="branch_code" type="String"/>
+        <field name="user_id" type="String"/>
+        <field name="user_name" type="String"/>
+        <field name="branch_name" type="String"/>
+      </fields>
+    </control-DataSet>
+  </Accessory>
+  <WindowScripts>
+    <WindowScript window="Window1"><![CDATA[private params=null;
+private selectValue=null;
+public function rec(obj){
+	params=obj;
+	try{
+		if(obj[0].getValue()){
+			selectValue=obj[0].getValue();
+		}
+	}catch(e){
+	}
+}
+event button_submit_click(Button thisComp, Ext.EventObject e) {
+    var t=dep_grid.getSelectionData();
+    if(t){
+		params[0].setValue(t.get("user_id"));
+	}
+	close();
+}
+event button_cancel_click(Button thisComp, Ext.EventObject e) {
+	close();
+}
+event dep_tree_click(Node node, EventObject e) {
+	dep_grid_dataset.setParams({branch_code:node.id});
+	dep_grid_dataset.load();
+}
+
+event dep_code_renderer(string value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store) {
+	if(value==selectValue){
+		dep_grid.getSelectionModel().selectRow(rowIndex);
+	}
+	return value;
+}
+
+]]></WindowScript>
+  </WindowScripts>
+</hsdoc>

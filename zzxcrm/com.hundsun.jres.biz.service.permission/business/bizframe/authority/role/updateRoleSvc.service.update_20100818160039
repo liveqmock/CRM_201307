@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:com.hundsun.ares.studio.jres.service="http://com.hundsun.ares.studio.jres.hsservice" xmlns:flow="http://www.hundsun.com/ares/studio/jres/flow" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.1/notation">
+  <com.hundsun.ares.studio.jres.service:HSService_EMF xmi:id="_Ohg9IJV6Ed-3aZq2bG77Sg" name="修改角色">
+    <flow xmi:type="flow:FlowModel" xmi:id="_Ohg9IZV6Ed-3aZq2bG77Sg">
+      <unit xmi:type="flow:LogicUnit" xmi:id="_Ohg9IpV6Ed-3aZq2bG77Sg" id="340">
+        <statements xmi:type="flow:ComponentMethod" xmi:id="_ZnsnYJV6Ed-3aZq2bG77Sg" id="componentMethod29" resourceName="bizframe.utils.convert.dataSetConvert.dataSet2Object" result="true" returnId="result" returnType="com.hundsun.jres.common.biz.entity.BaseEntity">
+          <parameters xmi:type="flow:ComponentMethodParameter" xmi:id="_WBAXcKR2Ed-lxtxcJeVG6g" key="dataSet" value="Input:IDATASET"/>
+          <parameters xmi:type="flow:ComponentMethodParameter" xmi:id="_WBAXcaR2Ed-lxtxcJeVG6g" key="clazz" value="com.hundsun.jres.component.biz.authority.entity.RoleEntity.class"/>
+        </statements>
+        <statements xmi:type="flow:ComponentMethod" xmi:id="_0p0KIKXyEd-KIb4O4_nTXg" id="componentMethod304" resourceName="bizframe.authority.role.roleService.updateRole" returnType="void">
+          <parameters xmi:type="flow:ComponentMethodParameter" xmi:id="_0p0KIaXyEd-KIb4O4_nTXg" key="role" value="Result:componentMethod29.result"/>
+        </statements>
+      </unit>
+    </flow>
+    <serviceInput xmi:type="com.hundsun.ares.studio.jres.service:ServiceInput_EMF" xmi:id="_Ohg9I5V6Ed-3aZq2bG77Sg" isCollection="true">
+      <inputParamList xmi:type="com.hundsun.ares.studio.jres.service:ServiceInputParam_EMF" xmi:id="_QzsbIJV6Ed-3aZq2bG77Sg" id="roleId" value="null" javaType="String"/>
+      <inputParamList xmi:type="com.hundsun.ares.studio.jres.service:ServiceInputParam_EMF" xmi:id="_Rld2UJV6Ed-3aZq2bG77Sg" id="roleName" value="null" javaType="String"/>
+      <inputParamList xmi:type="com.hundsun.ares.studio.jres.service:ServiceInputParam_EMF" xmi:id="_STzjAJV6Ed-3aZq2bG77Sg" id="roleCode" value="null" javaType="String"/>
+      <inputParamList xmi:type="com.hundsun.ares.studio.jres.service:ServiceInputParam_EMF" xmi:id="_TR8mQJV6Ed-3aZq2bG77Sg" id="roleCate" value="null" javaType="String"/>
+      <inputParamList xmi:type="com.hundsun.ares.studio.jres.service:ServiceInputParam_EMF" xmi:id="_UFzFEJV6Ed-3aZq2bG77Sg" id="remark" name="备注" type="TDesc" value="null" javaType="String"/>
+    </serviceInput>
+    <serviceOutput xmi:type="com.hundsun.ares.studio.jres.service:ServiceOutput_EMF" xmi:id="_Ohg9JJV6Ed-3aZq2bG77Sg"/>
+  </com.hundsun.ares.studio.jres.service:HSService_EMF>
+  <notation:Diagram xmi:id="_PYzKdpV6Ed-3aZq2bG77Sg" type="Flow" element="_Ohg9IZV6Ed-3aZq2bG77Sg" measurementUnit="Pixel">
+    <children xmi:type="notation:Node" xmi:id="_PdHpwJV6Ed-3aZq2bG77Sg" type="1001" element="_Ohg9IpV6Ed-3aZq2bG77Sg">
+      <children xmi:type="notation:Node" xmi:id="_PdHpw5V6Ed-3aZq2bG77Sg" type="5001">
+        <children xmi:type="notation:Node" xmi:id="_Zn2YYpV6Ed-3aZq2bG77Sg" type="2003" element="_ZnsnYJV6Ed-3aZq2bG77Sg">
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_Zn2YY5V6Ed-3aZq2bG77Sg" fontName="宋体"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Zn2YZJV6Ed-3aZq2bG77Sg"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_0p0KIqXyEd-KIb4O4_nTXg" type="2003" element="_0p0KIKXyEd-KIb4O4_nTXg">
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_0p0KI6XyEd-KIb4O4_nTXg" fontName="宋体"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0p0KJKXyEd-KIb4O4_nTXg"/>
+        </children>
+        <styles xmi:type="notation:DrawerStyle" xmi:id="_PdHpxJV6Ed-3aZq2bG77Sg"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_PdHpxZV6Ed-3aZq2bG77Sg"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_PdHpxpV6Ed-3aZq2bG77Sg"/>
+      </children>
+      <styles xmi:type="notation:ShapeStyle" xmi:id="_PdHpwZV6Ed-3aZq2bG77Sg" fontName="宋体"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_PdHpwpV6Ed-3aZq2bG77Sg"/>
+    </children>
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_PYzKd5V6Ed-3aZq2bG77Sg"/>
+  </notation:Diagram>
+</xmi:XMI>

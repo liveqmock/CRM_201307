@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:flow2="http://www.hundsun.com/ares/studio/jres/flow2" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.1/notation" xmlns:service2="http://www.hundsun.com/ares/studio/jres/service2">
+  <service2:ServiceModel xmi:id="_xQRqILypEd-RFcZryA9HKA" name="查询子交易" outputCollection="true" outputCollectionID="def_action">
+    <inputDefines xmi:type="flow2:InputParameterDefine" xmi:id="_v9c64LyqEd-RFcZryA9HKA" id="resCode" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_v9c64byqEd-RFcZryA9HKA"/>
+    </inputDefines>
+    <inputDefines xmi:type="flow2:InputParameterDefine" xmi:id="_xB0h8LyqEd-RFcZryA9HKA" id="opCode" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_xB0h8byqEd-RFcZryA9HKA"/>
+    </inputDefines>
+    <inputDefines xmi:type="flow2:InputParameterDefine" xmi:id="_fwZ78L8EEd-DR6iJRWtnzg" id="transName" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_fwZ78b8EEd-DR6iJRWtnzg"/>
+    </inputDefines>
+    <inputDefines xmi:type="flow2:InputParameterDefine" xmi:id="_h9RcIL8EEd-DR6iJRWtnzg" id="subTransName" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_h9RcIb8EEd-DR6iJRWtnzg"/>
+    </inputDefines>
+    <inputDefines xmi:type="flow2:InputParameterDefine" xmi:id="_w_UfAL8EEd-DR6iJRWtnzg" id="kindCode" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_w_UfAb8EEd-DR6iJRWtnzg"/>
+    </inputDefines>
+    <inputDefines xmi:type="flow2:InputParameterDefine" xmi:id="_x_jM8L8EEd-DR6iJRWtnzg" id="modelCode" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_x_jM8b8EEd-DR6iJRWtnzg"/>
+    </inputDefines>
+    <inputDefines xmi:type="flow2:InputParameterDefine" xmi:id="_OsJZQMOwEd-4S9oA5RgT_Q" id="transCode" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_OsJZQcOwEd-4S9oA5RgT_Q"/>
+    </inputDefines>
+    <inputDefines xmi:type="flow2:InputParameterDefine" xmi:id="_RZvn8MOwEd-4S9oA5RgT_Q" id="subTransCode" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_RZvn8cOwEd-4S9oA5RgT_Q"/>
+    </inputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_jAanQLyrEd-RFcZryA9HKA" id="trans_code" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_jAanQbyrEd-RFcZryA9HKA"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_jlgRULyrEd-RFcZryA9HKA" id="sub_trans_code" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_jlgRUbyrEd-RFcZryA9HKA"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_kQ27cLyrEd-RFcZryA9HKA" id="rel_serv" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_kQ27cbyrEd-RFcZryA9HKA"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_k1pqkLyrEd-RFcZryA9HKA" id="rel_url" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_k1pqkbyrEd-RFcZryA9HKA"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_lZ2j0LyrEd-RFcZryA9HKA" id="ctrl_flag" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_lZ2j0byrEd-RFcZryA9HKA"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_mEdAALyrEd-RFcZryA9HKA" id="login_flag" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_mEdAAbyrEd-RFcZryA9HKA"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_m2gIALyrEd-RFcZryA9HKA" id="remark" type="TDesc" javaType="String" name="备注" stdField="true" description="模板位置">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_m2gIAbyrEd-RFcZryA9HKA"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_iKbywLyxEd-RFcZryA9HKA" id="sub_trans_name" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_iKbywbyxEd-RFcZryA9HKA"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_5on3IL8EEd-DR6iJRWtnzg" id="trans_name" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_5on3Ib8EEd-DR6iJRWtnzg"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_4ZFlEL8IEd-DR6iJRWtnzg" id="kind_name" type="TName" javaType="String" name="类别名称" stdField="true">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_4ZFlEb8IEd-DR6iJRWtnzg"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_5uJ6kL8IEd-DR6iJRWtnzg" id="model_name" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_5uJ6kb8IEd-DR6iJRWtnzg"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_Vw0sYL8PEd-V8K_JAtVTPg" id="ctrl_flag_name" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_Vw0sYb8PEd-V8K_JAtVTPg"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_XpEncL8PEd-V8K_JAtVTPg" id="login_flag_name" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_XpEncb8PEd-V8K_JAtVTPg"/>
+    </outputDefines>
+    <unit xmi:type="flow2:LogicUnit" xmi:id="_xQRqIbypEd-RFcZryA9HKA">
+      <info xmi:type="flow2:LogicUnitInfo" xmi:id="_xQRqIrypEd-RFcZryA9HKA"/>
+      <children xmi:type="flow2:FlowNode" xmi:id="_N545cLyrEd-RFcZryA9HKA" id="action_8" name="action_8">
+        <info xmi:type="flow2:ComponentMethodInfo" xmi:id="_N545cryrEd-RFcZryA9HKA" fullyQualifiedName="bizframe.authority.subSysTrans.SubSysTransService" methodName="action">
+          <inputParameters xmi:type="flow2:InputParameter" xmi:id="_N545c7yrEd-RFcZryA9HKA" id="context" javaType="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext" name="context"/>
+          <outputParameters xmi:type="flow2:OutputParameter" xmi:id="_N545dLyrEd-RFcZryA9HKA" id="action_result" javaType="com.hundsun.jres.interfaces.share.dataset.IDataset"/>
+        </info>
+      </children>
+      <children xmi:type="flow2:FlowNode" xmi:id="_ONQhYLyrEd-RFcZryA9HKA" id="resultAssignment1" name="resultAssignment1">
+        <info xmi:type="flow2:ResultAssignmentInfo" xmi:id="_ONQhYbyrEd-RFcZryA9HKA" resultSet="true" resultType="com.hundsun.jres.interfaces.share.dataset.IDataset" expression="Result:action_8.action_result"/>
+      </children>
+    </unit>
+  </service2:ServiceModel>
+  <notation:Diagram xmi:id="_xTGUo7ypEd-RFcZryA9HKA" type="Flow2" element="_xQRqILypEd-RFcZryA9HKA" measurementUnit="Pixel">
+    <children xmi:type="notation:Node" xmi:id="_xcVwMLypEd-RFcZryA9HKA" type="1001" element="_xQRqIbypEd-RFcZryA9HKA">
+      <children xmi:type="notation:Node" xmi:id="_xcVwM7ypEd-RFcZryA9HKA" type="5001">
+        <children xmi:type="notation:Node" xmi:id="_N545dbyrEd-RFcZryA9HKA" type="2001" element="_N545cLyrEd-RFcZryA9HKA">
+          <children xmi:type="notation:Node" xmi:id="_N545eLyrEd-RFcZryA9HKA" type="4001"/>
+          <children xmi:type="notation:Node" xmi:id="_N545ebyrEd-RFcZryA9HKA" type="5002">
+            <styles xmi:type="notation:DrawerStyle" xmi:id="_N545eryrEd-RFcZryA9HKA"/>
+            <styles xmi:type="notation:SortingStyle" xmi:id="_N545e7yrEd-RFcZryA9HKA"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_N545fLyrEd-RFcZryA9HKA"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_N545dryrEd-RFcZryA9HKA" fontName="宋体"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_N545d7yrEd-RFcZryA9HKA"/>
+        </children>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_xcVwNLypEd-RFcZryA9HKA"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_xcVwNbypEd-RFcZryA9HKA"/>
+      </children>
+      <styles xmi:type="notation:ShapeStyle" xmi:id="_xcVwMbypEd-RFcZryA9HKA" fontName="宋体"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_xcVwMrypEd-RFcZryA9HKA"/>
+    </children>
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_xTGUpLypEd-RFcZryA9HKA"/>
+  </notation:Diagram>
+</xmi:XMI>

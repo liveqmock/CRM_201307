@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.hundsun.ares.studio.table:TableInfo xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:com.hundsun.ares.studio.table="com.hundsun.ares.studio.table" chineseName="系统岗位表" englishName="tsys_position" desc="系统岗位表">
+  <fields fieldName="position_code" primaryKey="true">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields canNull="true" fieldName="position_name">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields canNull="true" fieldName="parent_code">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields canNull="true" fieldName="org_id">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields canNull="true" fieldName="role_code">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields canNull="true" fieldName="position_path">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields canNull="true" fieldName="remark">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields canNull="true" fieldName="ext_field_1">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields canNull="true" fieldName="ext_field_2">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields canNull="true" fieldName="ext_field_3">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+</com.hundsun.ares.studio.table:TableInfo>

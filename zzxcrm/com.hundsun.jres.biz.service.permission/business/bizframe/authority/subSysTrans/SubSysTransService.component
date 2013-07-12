@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.hundsun.ares.studio.jres.component:HSComponent_EMF xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:com.hundsun.ares.studio.jres.component="http://com.hundsun.ares.studio.jres.hsobject" name="SubSysTransService"
+    className="com.hundsun.jres.bizframe.core.authority.service.SysSubTransService">
+  <methodList methodName="action" alias="action" desc="action">
+    <paramList id="context" name="context" type="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext"/>
+    <result id="action_result" type="com.hundsun.jres.interfaces.share.dataset.IDataset"/>
+  </methodList>
+</com.hundsun.ares.studio.jres.component:HSComponent_EMF>

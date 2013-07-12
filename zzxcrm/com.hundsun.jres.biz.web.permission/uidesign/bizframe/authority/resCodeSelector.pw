@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hsdoc version="1.1.0">
+  <Windows>
+    <control-Window title="交易码选择" height="391" name="Window1" width="627">
+      <Top/>
+      <Bottom>
+        <control-ButtonGroup name="ButtonGroup1">
+          <layout-buttonGroup>
+            <control-Button name="button_submit" text="确  认" width="75" icon="bizframe/images/icons/accept.png"/>
+            <control-Button name="button_cancel" text="关  闭" width="75" icon="bizframe/images/icons/cross.gif"/>
+          </layout-buttonGroup>
+        </control-ButtonGroup>
+      </Bottom>
+      <Left/>
+      <Right/>
+      <layout-border>
+        <control-Panel region="north" height="127" name="panel1" width="300">
+          <Top/>
+          <Bottom>
+            <control-Toolbar name="Toolbar1">
+              <layout-toolbar>
+                <control-Button name="button_search" text="查  询" width="75" icon="bizframe/images/icons/search.png"/>
+                <control-Button tipText="清空查询条件" name="Button1" text=" 重置" width="75" icon="bizframe/images/icons/refresh.png" tabIndex="1"/>
+              </layout-toolbar>
+            </control-Toolbar>
+          </Bottom>
+          <Left/>
+          <Right/>
+          <layout-table columns="2" fullWidth="true">
+            <control-TextField fieldLabel="交易码" height="22" labelAlign="right" name="query_trans_code" width="200"/>
+            <control-TextField fieldLabel="子交易码" height="22" labelAlign="right" name="query_sub_trans_code" width="200"/>
+            <control-TextField fieldLabel="交易名称" height="22" labelAlign="right" name="trans_name" width="200"/>
+            <control-DictComboBox fieldLabel="模块编号" labelAlign="right" displayMode="true" name="model_code" width="200" group="BIZ_MODEL"/>
+            <control-DictComboBox fieldLabel="分类编号" labelAlign="right" displayMode="true" name="kind_code" width="200" group="BIZ_SUB_SYSTEM"/>
+          </layout-table>
+        </control-Panel>
+        <control-Grid region="center" hasCheckColumn="true" singleSelect="true" width="300" height="200" dataSet="res_grid_dataset" name="res_grid" border="false" hasPagingBar="true">
+          <layout-GridToolbar>
+            <control-GridItem title="交易码" align="left" dataIndex="trans_code" name="res_code" width="100" sortable="true"/>
+            <control-GridItem title="交易名称" align="left" dataIndex="trans_name" name="GridItem3" width="100" sortable="true"/>
+            <control-GridItem title="子交易码" align="left" dataIndex="sub_trans_code" name="trans_code" width="171" sortable="true"/>
+            <control-GridItem title="子交易名称" align="left" dataIndex="sub_trans_name" name="GridItem2" width="167" sortable="true"/>
+          </layout-GridToolbar>
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+        </control-Grid>
+      </layout-border>
+    </control-Window>
+  </Windows>
+  <Accessory>
+    <control-DataSet name="res_grid_dataset" service="bizframe.authority.subSysTrans.findSubSysTrans" window="Window1">
+      <params>
+        <param name="resCode"><![CDATA["bizSetSubTrans"]]></param>
+        <param name="opCode"><![CDATA["bizSubTransFind"]]></param>
+        <param name="transName"><![CDATA[]]></param>
+        <param name="subTransName"><![CDATA[]]></param>
+        <param name="kindCode"><![CDATA[]]></param>
+        <param name="modelCode"><![CDATA[]]></param>
+      </params>
+      <fields>
+        <field name="trans_code" type="String"/>
+        <field name="sub_trans_code" type="String"/>
+        <field name="rel_serv" type="String"/>
+        <field name="rel_url" type="String"/>
+        <field name="ctrl_flag" type="String"/>
+        <field name="login_flag" type="String"/>
+        <field name="remark" type="String"/>
+        <field name="sub_trans_name" type="String"/>
+        <field name="trans_name" type="String"/>
+      </fields>
+    </control-DataSet>
+  </Accessory>
+  <WindowScripts>
+    <WindowScript window="Window1"><![CDATA[private params=null;
+private selectValue=null;
+public function rec(obj){
+	params=obj;
+	if(obj[0].getValue()){
+		selectValue=obj[0].getValue()+","+obj[1].getValue();
+	}
+}
+
+event button_submit_click(Button thisComp, Ext.EventObject e) {
+    var t=res_grid.getSelectionData();
+    if(t){
+		params[0].setValue(t.get("trans_code"));
+		params[1].setValue(t.get("sub_trans_code"));
+	}
+	close();
+}
+event button_cancel_click(Button thisComp, Ext.EventObject e) {
+	close();
+}
+event res_code_renderer(string value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store) {
+	if((value+","+record.get("sub_trans_code"))==selectValue){
+	
+		res_grid.getSelectionModel().selectRow(rowIndex);
+	}
+	return value;
+}
+event button_search_click(Button thisComp, Ext.EventObject e) {
+	res_grid_dataset.setParams({transCode:query_trans_code.getValue(),subTransCode:query_sub_trans_code.getValue(),transName:trans_name.getValue(),kindCode:kind_code.getValue(),modelCode:model_code.getValue()});
+	res_grid_dataset.load();
+}
+event Button1_click(Button thisComp, Ext.EventObject e) {
+	query_trans_code.reset();
+	query_sub_trans_code.reset();
+	trans_name.reset();
+	model_code.reset();
+	kind_code.reset();
+	
+	
+	
+}]]></WindowScript>
+  </WindowScripts>
+</hsdoc>

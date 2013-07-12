@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:flow2="http://www.hundsun.com/ares/studio/jres/flow2" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.1/notation" xmlns:service2="http://www.hundsun.com/ares/studio/jres/service2">
+  <service2:ServiceModel xmi:id="_BJYQwKLsEeCYCbV2uaBdsQ" name="分配人员">
+    <unit xmi:type="flow2:LogicUnit" xmi:id="_BJYQw6LsEeCYCbV2uaBdsQ">
+      <info xmi:type="flow2:LogicUnitInfo" xmi:id="_BJYQxaLsEeCYCbV2uaBdsQ"/>
+      <children xmi:type="flow2:FlowNode" xmi:id="_BJYQxqLsEeCYCbV2uaBdsQ" id="action1" name="action" desc="action">
+        <info xmi:type="flow2:ComponentMethodInfo" xmi:id="_BJYQyKLsEeCYCbV2uaBdsQ" fullyQualifiedName="bizframe.authority.organization.SysOrganizationService" methodName="action">
+          <inputParameters xmi:type="flow2:InputParameter" xmi:id="_BJYQyaLsEeCYCbV2uaBdsQ" id="context" javaType="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext" name="context"/>
+        </info>
+      </children>
+    </unit>
+  </service2:ServiceModel>
+  <notation:Diagram xmi:id="_BJYQyqLsEeCYCbV2uaBdsQ" type="Flow2" element="_BJYQwKLsEeCYCbV2uaBdsQ" measurementUnit="Pixel">
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_BJYQy6LsEeCYCbV2uaBdsQ"/>
+  </notation:Diagram>
+</xmi:XMI>

@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hsdoc version="1.1.0">
+  <Windows>
+    <control-MainWindow height="420" name="MainWin" templatePath="window.ftl" width="609">
+      <layout-fit>
+        <control-Panel height="200" name="Panel1" width="300">
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+          <layout-border>
+            <control-Panel region="center" height="400" name="Panel2" split="true" width="300">
+              <Top>
+                <control-Toolbar name="Toolbar1">
+                  <layout-toolbar>
+                    <control-Button name="Button1" text="删除" width="75" icon="bizframe/images/email_delete.png" tabIndex="2"/>
+                    <control-Button name="Button2" text="查看" width="75" icon="bizframe/images/icons/eye.png" tabIndex="3"/>
+                    <control-Button name="Button3" text="回复" width="75" icon="bizframe/images/email_edit.png" tabIndex="4"/>
+                  </layout-toolbar>
+                </control-Toolbar>
+              </Top>
+              <Bottom/>
+              <Left/>
+              <Right/>
+              <layout-fit>
+                <control-Grid hasCheckColumn="true" enableCellTip="true" width="300" height="200" dataSet="DataSet1" name="Grid1" hasCustomPageSize="true" hasPagingBar="true">
+                  <layout-GridToolbar>
+                    <control-GridItem title="标题" align="left" dataIndex="msg_title" name="GridItem1" width="100" sortable="true"/>
+                    <control-GridItem title="发件人" align="left" dataIndex="send_user_name" name="GridItem5" width="100" sortable="true"/>
+                    <control-GridItem title="时间" align="left" dataIndex="send_date" name="GridItem3" width="100" sortable="true"/>
+                    <control-GridItem title="状态" align="center" dataIndex="msg_isred_display" name="GridItem4" width="127" sortable="true"/>
+                    <control-GridItem align="left" width="154" title="发件人用户编号" dataIndex="send_user_id" sortable="true" hidden="true" name="GridItem2"/>
+                  </layout-GridToolbar>
+                  <Top/>
+                  <Bottom/>
+                  <Left/>
+                  <Right/>
+                </control-Grid>
+              </layout-fit>
+            </control-Panel>
+          </layout-border>
+        </control-Panel>
+      </layout-fit>
+    </control-MainWindow>
+    <control-Window title="Window1" collapsible="true" height="327" name="Window1" width="739">
+      <Top>
+        <control-Toolbar name="Toolbar2">
+          <layout-toolbar>
+            <control-Button name="Button4" text="转发" width="75" tabIndex="5" icon="bizframe/images/email_link.png"/>
+            <control-Button name="Button5" text="回复" width="75" tabIndex="6" icon="bizframe/images/email_go.png"/>
+          </layout-toolbar>
+        </control-Toolbar>
+      </Top>
+      <Bottom/>
+      <Left/>
+      <Right/>
+      <layout-fit>
+        <control-Panel border="false" height="200" name="Panel4" width="300">
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+          <layout-border>
+            <control-FormPanel region="center" height="120" frame="true" name="FormPanel1" width="441">
+              <layout-form labelAlign="right" labelWidth="50">
+                <control-TextField editable="false" width="250" height="22" minLength="1" fieldLabel="收件人" maxLength="32" name="TextField1" tabIndex="7"/>
+                <control-TextField editable="false" width="250" height="22" minLength="1" fieldLabel="发件人" maxLength="32" name="TextField2" allowBlank="false" tabIndex="8"/>
+                <control-TextField editable="false" width="250" height="22" minLength="1" fieldLabel="标   题" maxLength="32" name="TextField3" allowBlank="false" tabIndex="9"/>
+                <control-TextArea editable="false" width="770" height="161" showLabel="false" minLength="1" maxLength="1024" name="TextArea1" allowBlank="false" tabIndex="10"/>
+              </layout-form>
+              <Top/>
+              <Bottom/>
+              <Left/>
+              <Right/>
+            </control-FormPanel>
+          </layout-border>
+        </control-Panel>
+      </layout-fit>
+    </control-Window>
+    <control-Window title="Window2" height="318" name="Window2" draggable="true" width="726" resizable="false">
+      <Top>
+        <control-Toolbar name="Toolbar3">
+          <layout-toolbar>
+            <control-Button name="backButton" text="返回" width="75" tabIndex="11" icon="bizframe/images/return.png"/>
+            <control-Button name="sendButton" text="发送" width="75" tabIndex="12" icon="bizframe/images/icons/email.png"/>
+          </layout-toolbar>
+        </control-Toolbar>
+      </Top>
+      <Bottom/>
+      <Left/>
+      <Right/>
+      <layout-fit>
+        <control-FormPanel autoload="false" height="200" frame="true" autoScroll="true" name="sendFormPanel" width="300">
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+          <layout-form labelAlign="right" labelWidth="50">
+            <control-TargetSelect targetWindow="org" fieldName="gerterNameField" enableKeyEvents="false" params="['gerter_name_Field','receive_User_Ids']" callFunction="intOrg" width="250" fieldLabel="收件人" name="gerter_name_Field" allowBlank="false" tabIndex="13"/>
+            <control-TextField editable="false" fieldName="sendName" width="250" height="22" fieldLabel="发件人" name="sendUserName" tabIndex="14"/>
+            <control-HiddenField fieldName="receiveUserIds" name="receive_User_Ids"/>
+            <control-TextField msgTarget="qtip" width="250" height="22" minLength="1" emptyText="消息主题" fieldLabel="标   题" maxLength="32" name="emailtitle" allowBlank="false" tabIndex="15"/>
+            <control-HiddenField dataField="user_id" fieldName="sendUserId" name="senderIdHiddenField"/>
+            <control-TextArea width="702" height="169" showLabel="false" minLength="1" fieldLabel="TextArea1" maxLength="1024" name="msgContent" allowBlank="false" tabIndex="16"/>
+          </layout-form>
+        </control-FormPanel>
+      </layout-fit>
+    </control-Window>
+  </Windows>
+  <Accessory>
+    <control-DataSet name="DataSet1" service="bizframe.message.messageService" usingServiceName="true" window="MainWin">
+      <params>
+        <param name="resCode"><![CDATA["bizEmailInbox"]]></param>
+        <param name="opCode"><![CDATA["bizEmailInboxFind"]]></param>
+      </params>
+      <fields>
+        <field name="msg_id" type="String"/>
+        <field name="msg_title" type="String"/>
+        <field name="send_user_id" type="String"/>
+        <field name="receive_user_id" type="String"/>
+        <field name="send_date" type="int"/>
+        <field name="msg_content" type="String"/>
+        <field name="msg_type_display" type="String"/>
+        <field name="msg_isred_display" type="String"/>
+        <field name="ext_field" type="String"/>
+        <field name="send_user_name" type="String"/>
+        <field name="receive_user_name" type="String"/>
+      </fields>
+    </control-DataSet>
+  </Accessory>
+  <WindowScripts>
+    <WindowScript window="MainWin"><![CDATA[remote bizframe.message.messageService as msgService;
+import bizframe.message.org ;
+import bizframe.message.sendEmail ;
+
+include bizframe.js.commonUtil;		//引入公共工具包js文件
+public emailReply = true;
+private window1_ref=null;
+//删除
+event Button1_click(Button thisComp, Ext.EventObject e) {
+	if (Grid1.getSelectionModel().getSelected() != null) {
+		Ext.MessageBox.confirm('提示', '您真的要删除选中记录？', function(button, text) {
+			if (button == "yes") {
+					var msgIds = Grid1.getSelectionDatas();
+					var msgIdsArray = new Array(msgIds.length);
+					for(var i=0;i<msgIds.length;i++){
+						msgIdsArray[i] = msgIds[i].get("msg_id");
+					}
+					var Result = msgService.synExecute({msgIds:msgIdsArray,resCode:"bizEmailInbox",opCode:"bizMsgDel"});
+					if(Result.returnCode != 0){
+						Ext.Msg.alert('错误',Result.errorInfo);
+					}else{
+						Ext.Msg.alert('提示','删除成功');
+						Grid1.refresh()
+					}
+			}
+		});
+	} else {
+		Ext.Msg.alert('提示','请选择至少一条记录进行删除');
+	}
+}
+//查看
+event Button2_click(Button thisComp, Ext.EventObject e) {
+    var counts = Grid1.getSelectionModel().getSelections().length;
+	if(counts!= 1){
+	   var msgs=(counts>1)?'请选择一条消息查看':'未选中任何消息';
+	  Ext.Msg.alert('提示',msgs);
+	  return;
+	}
+	var record = Grid1.getSelectionModel().getSelected();
+	var win = new Window1();
+	window1_ref=win;
+	win.setTitle('查看  '+record.get('msg_title'));
+    win.show();
+    record.set('msg_isred', '1');
+    record.set('msg_isred_display', '已读');
+    record.commit();
+}
+//回复
+event Button3_click(Button thisComp, Ext.EventObject e) {
+	//var sendEmailWin=new sendEmail();
+	//sendEmailWin.window.show();
+	//----2012.01.05---huhl@hundsun.com-----修改回复-----bengin-
+	Ext.QuickTips.init();
+	var counts = Grid1.getSelectionModel().getSelections().length;
+	if(counts!= 1){
+	  var msgs=(counts>1)?'请选择一条消息回复':'未选中任何消息';
+	  Ext.Msg.alert('提示',msgs);
+	  return;
+	}
+    emailReply=true;
+    
+    var $_record = Grid1.getSelectionModel().getSelected();
+	var win=new Window2();
+	win.setTitle('回复 '+$_record.get('msg_title'));
+	win.show();
+	//----2012.01.05---huhl@hundsun.com-----修改回复-----end-
+	$_record.set('msg_isred', '1');
+    $_record.set('msg_isred_display', '已读');
+    $_record.commit();
+}
+
+event GridItem3_renderer(Object value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store) {
+	value = renderDatePattern(value);
+	if(record.get('msg_isred_display')=="未读"){
+       value='<font  color="#FF0000">'+value+'</font>';
+    }
+    return value;
+}
+
+function renderDatePattern(value){
+      return Ext.util.Format.date(new Date(value), 'Y-m-d H:i:s');
+}
+event GridItem1_renderer(Object value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store) {
+    if(record.get('msg_isred_display')=="未读"){
+       value='<font  color="#FF0000">'+value+'</font>';
+    }
+    return value;
+}
+event GridItem2_renderer(Object value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store) {
+    if(record.get('msg_isred_display')=="未读"){
+       value='<font  color="#FF0000">'+value+'</font>';
+    }
+    return value;
+}
+event GridItem4_renderer(Object value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store) {
+    if(record.get('msg_isred_display')=="未读"){
+       value='<font  color="#FF0000">'+value+'</font>';
+    }
+    return value;
+}
+event Button6_click(Button thisComp, Ext.EventObject e) {
+  var win=new Window3();
+  win.show();
+}
+event Grid1_rowdblclick(Hs.HsGrid thisComp, Number rowIndex, Ext.EventObject e) {
+	var record = Grid1.getRow(rowIndex);
+	var win = new Window1();
+	window1_ref=win;
+	win.setTitle('查看  '+record.get('msg_title'));
+    win.show();
+    record.set('msg_isred', '1');
+    record.set('msg_isred_display', '已读');
+    record.commit();
+}
+public function getWindow1(){
+    return window1_ref;
+}]]></WindowScript>
+    <WindowScript window="Window1"><![CDATA[remote bizframe.message.messageService as msgService;
+var record = MainWin.Grid1.getSelectionModel().getSelected();
+//转发
+event Button4_click(Button thisComp, Ext.EventObject e) {
+	//setVisible(false);//原窗口隐藏
+	Ext.QuickTips.init();
+	MainWin.emailReply=false;
+	var win=new Window2();
+	win.setTitle('转发 '+record.get('msg_title'));
+	win.show();
+}
+//回复
+event Button5_click(Button thisComp, Ext.EventObject e) {
+    //setVisible(false);//原窗口隐藏
+    Ext.QuickTips.init();
+    MainWin.emailReply=true;
+	var win=new Window2();
+	win.setTitle('回复 '+record.get('msg_title'));
+	win.show();
+}
+
+event Window1_complete() {
+   var Result = msgService.synExecute({msgId:record.get("msg_id"),resCode:"bizEmailInbox",opCode:"bizEmailView"});
+   TextArea1.setValue(record.get("msg_content"));
+   TextField1.setValue(record.get("receive_user_id"));//收件人
+   TextField2.setValue(record.get("send_user_id"));//发件人
+   TextField3.setValue(record.get("msg_title"));//标题
+   
+}]]></WindowScript>
+    <WindowScript window="Window2"><![CDATA[remote bizframe.message.messageService as msgService;
+
+var record = MainWin.Grid1.getSelectionModel().getSelected();
+
+//还回
+event backButton_click(Button thisComp, Ext.EventObject e) {
+    close();
+}
+//发送
+event sendButton_click(Button thisComp, Ext.EventObject e) {
+        if(sendFormPanel.getForm().isValid()){
+           	Ext.MessageBox.confirm('提示', '发送消息？', function(button, text) {
+				if (button == "yes") {
+				        var geterIds=receive_User_Ids.getValue();
+				        var sendId=senderIdHiddenField.getValue();
+				        var title=emailtitle.getValue();
+				        var content=msgContent.getValue();
+				        //20120522 xujin BUG #2923::收件箱中将“未读”消息直接回复后，该消息仍为未读 begin
+				        var params={srcMsgId:record.get("msg_id"),sendUserId:sendId,receiveUserIds:geterIds,msgType:'1',msgTitle:title,msgContent:content,resCode:"bizEmailInbox",opCode:"bizMsgSend"};
+				        //20120522 xujin BUG #2923::收件箱中将“未读”消息直接回复后，该消息仍为未读 end
+						var Result = msgService.synExecute(params);
+						if(!(Result.returnCode == 0)){
+							Ext.Msg.alert('错误',Result.errorInfo);
+						}else{
+							Ext.Msg.alert('提示','发送成功');
+							close();
+							MainWin.getWindow1().close();
+						}
+				}
+		  });
+        }
+}
+
+event Window2_complete() {
+   var date=new Date(record.get("send_date"));
+   var nowtime=date.getFullYear()+'年'+(date.getMonth()+1)+'月'+date.getDate()+'日'+date.toLocaleTimeString();
+   msgContent.setValue('\r\n----------------------------------------' + '\n发件人：'+ record.get("send_user_id")+ '\n发送时间：' + nowtime + '\n收件人：' + record.get("receive_user_id") + '\n主题：' + record.get('msg_title') + '\n消息内容：\n' + record.get("msg_content"));
+   var titleStart="";
+   if(MainWin.emailReply){
+      titleStart="回复";
+      gerter_name_Field.setValue(record.get("send_user_id"));//收件人
+      receive_User_Ids.setValue(record.get("send_user_id"));//收件人
+      sendUserName.setValue(record.get("receive_user_id"));//发件人
+      senderIdHiddenField.setValue(record.get("receive_user_id"));//发件人
+   }else{
+      titleStart="转发";
+      sendUserName.setValue(record.get("receive_user_id"));//发件人
+      senderIdHiddenField.setValue(record.get("receive_user_id"));//发件人
+   }
+   emailtitle.setValue( titleStart+':'+record.get("msg_title"));//标题
+}]]></WindowScript>
+  </WindowScripts>
+</hsdoc>

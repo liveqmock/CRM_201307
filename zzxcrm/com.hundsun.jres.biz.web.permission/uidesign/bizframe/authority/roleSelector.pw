@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hsdoc version="1.1.0">
+  <Windows>
+    <control-Window title="角色选择" height="323" name="Window1" draggable="true" width="437">
+      <Top/>
+      <Bottom/>
+      <Left/>
+      <Right/>
+      <layout-border>
+        <control-Panel region="center" height="200" name="Panel1" width="300">
+          <Top/>
+          <Bottom>
+            <control-ButtonGroup name="ButtonGroup1">
+              <layout-buttonGroup>
+                <control-Button name="addButton" text="确定" width="75" tabIndex="1" icon="bizframe/images/icons/accept.png"/>
+                <control-Button name="closedButton" text="取消" width="75" tabIndex="1" icon="bizframe/images/icons/cross.gif"/>
+              </layout-buttonGroup>
+            </control-ButtonGroup>
+          </Bottom>
+          <Left/>
+          <Right/>
+          <layout-border>
+            <control-FormPanel region="north" width="300" height="113" closable="true" x="149" title="查询条件" y="66" collapsible="true" name="rearchFormPanel">
+              <Top/>
+              <Bottom>
+                <control-Toolbar name="Toolbar1">
+                  <layout-toolbar>
+                    <control-Button name="searchButton" text="查询" width="75" icon="bizframe/images/icons/search.png"/>
+                    <control-Button name="resetButton" text="重置" width="75" icon="bizframe/images/icons/refresh.png"/>
+                  </layout-toolbar>
+                </control-Toolbar>
+              </Bottom>
+              <Left/>
+              <Right/>
+              <layout-table columns="2" fullWidth="true">
+                <control-TextField labelAlign="right" labelWidth="75" regexText="非法输入，只能输入英文、数字和下划线" fieldName="role_code" width="50.0%" height="22" regex="/^[\w\u4e00-\u9fa5\.\/\,\，\.\。\“\（\）\(\)\-\s]*$/" fieldLabel="角色代码" name="roleCode"/>
+                <control-TextField labelAlign="right" labelWidth="75" regexText="非法输入，只能输入中文、英文、数字和下划线" fieldName="role_name" width="50.0%" height="22" regex="/^[\w\u4e00-\u9fa5\.\/\,\，\.\。\“\（\）\(\)\-\s]*$/" fieldLabel="角色名称" name="roleName"/>
+              </layout-table>
+            </control-FormPanel>
+            <control-Grid pageSize="20" hasCheckColumn="true" region="center" singleSelect="true" autoload="false" width="100" height="100" x="0" dataSet="DataSet4" y="0" name="Grid5">
+              <layout-GridToolbar>
+                <control-GridItem title="角色代码" align="right" dataIndex="role_code" name="GridItem17" width="100" sortable="true"/>
+                <control-GridItem title="角色名称" align="right" dataIndex="role_name" name="GridItem18" width="100" sortable="true"/>
+                <control-GridItem title="创建者" align="left" dataIndex="creator_name" name="GridItem5" width="100" sortable="true"/>
+                <control-GridItem title="备注" align="left" dataIndex="remark" name="remark" width="200"/>
+                <control-GridItem title="creator_id" hidden="true" align="left" name="creator_id" width="100" sortable="true"/>
+              </layout-GridToolbar>
+              <Top/>
+              <Bottom/>
+              <Left/>
+              <Right/>
+            </control-Grid>
+          </layout-border>
+        </control-Panel>
+      </layout-border>
+    </control-Window>
+  </Windows>
+  <Accessory>
+    <control-DataSet serviceAlias="bizSetRole$bizRoleSelector" window="Window1" name="DataSet4" service="bizframe.authority.organization.findUserAuthedRoles" usingServiceName="true">
+      <params>
+        <param name="resCode"><![CDATA["bizSetRole"]]></param>
+        <param name="opCode"><![CDATA["bizRoleSelector"]]></param>
+        <param name="user_id"><![CDATA[]]></param>
+        <param name="role_code"><![CDATA[]]></param>
+        <param name="role_name"><![CDATA[]]></param>
+      </params>
+      <fields>
+        <field name="creator_name" type="String"/>
+        <field name="creator_id" type="String"/>
+        <field name="remark" type="String"/>
+        <field name="role_name" type="String"/>
+        <field name="role_code" type="String"/>
+      </fields>
+    </control-DataSet>
+  </Accessory>
+  <WindowScripts>
+    <WindowScript window="Window1"><![CDATA[private params=null;
+private selectIds=[];//选中的id
+private flag=false;//是否单选
+
+
+public function rec(obj){
+	params=obj;
+	if(obj[0] && obj[0].getValue()){
+		selectIds=obj[0].getValue().split(",");//已经选中的id
+	}
+	if(obj[1]){
+		flag=obj[1];//是否单选
+	}
+}
+
+event addButton_click(Button thisComp, Ext.EventObject e) {
+	var record = Grid5.getSelectionModel().getSelected();
+	params[0].setValue(record.get("role_code"));
+	close();
+}
+event closedButton_click(Button thisComp, Ext.EventObject e) {
+	close();
+}
+event searchButton_click(Button thisComp, Ext.EventObject e) {
+    var param=rearchFormPanel.getValues();
+    Ext.apply(param,{userId : top.currUserId } );
+	DataSet4.setParams(param);
+	DataSet4.load();
+}
+event resetButton_click(Button thisComp, Ext.EventObject e) {
+    rearchFormPanel.getForm().reset();
+}
+event Window1_complete() {
+	rearchFormPanel.collapse();
+	DataSet4.setParams({user_id : top.currUserId });
+	DataSet4.load();
+}
+
+event Window1_beforerender(Ext.Component thisComp) {
+	Grid5.singleSelect=flag;
+}
+]]></WindowScript>
+  </WindowScripts>
+</hsdoc>

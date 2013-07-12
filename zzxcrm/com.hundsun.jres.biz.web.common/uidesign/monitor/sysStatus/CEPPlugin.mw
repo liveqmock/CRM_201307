@@ -1,0 +1,642 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hsdoc version="1.1.0">
+  <Windows>
+    <control-MainWindow height="554" name="MainWin" templatePath="window.ftl" width="910">
+      <layout-fit>
+        <control-Panel border="false" height="200" name="CEPStatusPanel" width="300">
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+          <layout-fit>
+            <control-TabPanel border="false" name="TabPanel1" width="300" activeTab="0">
+              <layout-tab>
+                <control-Panel title="基础信息" border="false" height="200" name="localServicePanel" width="300">
+                  <Top/>
+                  <Bottom/>
+                  <Left/>
+                  <Right/>
+                  <layout-border>
+                    <control-Panel region="center" title="CEP路由表信息" height="271" autoScroll="true" name="routePanel" width="300">
+                      <Top/>
+                      <Bottom/>
+                      <Left/>
+                      <Right/>
+                      <layout-fit>
+                        <control-Grid enableCellTip="true" width="300" height="200" numberColumnWidth="33" dataSet="routeTableDataset" name="routeTableGrid" border="false" autoScroll="true">
+                          <layout-GridToolbar>
+                            <control-GridItem align="left" width="120" title="系统号" dataIndex="systemNo" sortable="true" tipText="系统号" name="GridItem14"/>
+                            <control-GridItem align="left" width="120" title="子系统号" dataIndex="subSystemNo" sortable="true" tipText="子系统号" name="GridItem11"/>
+                            <control-GridItem align="left" width="170" title="通配服务号" dataIndex="services" sortable="true" tipText="通配服务号" name="GridItem12"/>
+                            <control-GridItem align="left" width="120" title="通配服务别名" dataIndex="aliases" sortable="true" tipText="通配服务别名" name="GridItem15"/>
+                            <control-GridItem align="left" width="120" title="关联节点名" dataIndex="nodeName" sortable="true" tipText="关联节点名" name="GridItem16"/>
+                            <control-GridItem align="left" width="120" title="关联插件名" dataIndex="pluginName" sortable="true" tipText="关联插件名" name="GridItem17"/>
+                          </layout-GridToolbar>
+                          <Top>
+                            <control-Toolbar name="Toolbar4">
+                              <layout-toolbar>
+                                <control-Button name="Button4" text="刷新" width="75" icon="bizframe/images/icons/refresh.png" tabIndex="1"/>
+                              </layout-toolbar>
+                            </control-Toolbar>
+                          </Top>
+                          <Bottom/>
+                          <Left/>
+                          <Right/>
+                        </control-Grid>
+                      </layout-fit>
+                    </control-Panel>
+                    <control-Panel region="north" height="235" autoScroll="true" name="Panel1" width="300" split="true">
+                      <Top/>
+                      <Bottom/>
+                      <Left/>
+                      <Right/>
+                      <layout-table columns="3" fullWidth="true">
+                        <control-Panel title="本地通道运行时参数" height="200" name="Panel4" width="300">
+                          <Top/>
+                          <Bottom/>
+                          <Left/>
+                          <Right/>
+                          <layout-fit>
+                            <control-FormPanel border="false" height="200" dataSet="paramsDataset" autoScroll="true" name="FormPanel1" width="200">
+                              <Top/>
+                              <Bottom/>
+                              <Left/>
+                              <Right/>
+                              <layout-table columns="1" fullWidth="false">
+                                <control-LabelField fieldLabel="发送事件个数" dataField="procEventCount" fieldName="procEventCount" name="LabelField1" width="99%" labelSeparator=""/>
+                                <control-LabelField fieldLabel="未响应事件个数" dataField="waitingEventCount" fieldName="waitingEventCount" name="LabelField2" width="99%" labelSeparator=""/>
+                                <control-LabelField fieldLabel="超时事件个数" dataField="timeoutCount" fieldName="timeoutCount" name="LabelField3" width="99%" labelSeparator=""/>
+                                <control-LabelField fieldLabel="丢弃事件个数" dataField="abandonedCount" fieldName="abandonedCount" name="LabelField4" width="99%" labelSeparator=""/>
+                                <control-LabelField dataField="defaultTimeout" labelSeparator="" suffixLabel="ms" fieldName="defaultTimeout" width="140" fieldLabel="同步调用超时时间" name="LabelField5"/>
+                                <control-LabelField fieldLabel="是否启用计数功能" dataField="counterFlag" fieldName="counterFlag" name="LabelField6" width="99%" labelSeparator=""/>
+                              </layout-table>
+                            </control-FormPanel>
+                          </layout-fit>
+                        </control-Panel>
+                        <control-Panel title="CEP事件处理链" height="200" autoScroll="true" name="chainPanel" width="300">
+                          <Top/>
+                          <Bottom/>
+                          <Left/>
+                          <Right/>
+                          <layout-fit>
+                            <control-Grid enableCellTip="true" width="300" height="200" dataSet="eventChainsDataset" name="chainGrid" border="false" autoScroll="true">
+                              <layout-GridToolbar>
+                                <control-GridItem title="事件处理链" align="left" dataIndex="chain" name="GridItem10" width="290" sortable="true"/>
+                              </layout-GridToolbar>
+                              <Top/>
+                              <Bottom/>
+                              <Left/>
+                              <Right/>
+                            </control-Grid>
+                          </layout-fit>
+                        </control-Panel>
+                        <control-Panel title="CEP所有事件处理插件" height="200" autoScroll="true" name="cepcorePanel" width="300">
+                          <Top/>
+                          <Bottom/>
+                          <Left/>
+                          <Right/>
+                          <layout-fit>
+                            <control-Grid enableCellTip="true" width="300" height="200" dataSet="allEventServiceDataset" name="cepcoreGrid" border="false" autoScroll="true">
+                              <layout-GridToolbar>
+                                <control-GridItem title="插件名" align="left" dataIndex="serviceName" name="GridItem13" width="290" sortable="true"/>
+                              </layout-GridToolbar>
+                              <Top/>
+                              <Bottom/>
+                              <Left/>
+                              <Right/>
+                            </control-Grid>
+                          </layout-fit>
+                        </control-Panel>
+                      </layout-table>
+                    </control-Panel>
+                  </layout-border>
+                </control-Panel>
+                <control-Panel title="cep注册的服务" height="200" autoScroll="true" name="procServicesPanel" width="300">
+                  <Top/>
+                  <Bottom/>
+                  <Left/>
+                  <Right/>
+                  <layout-border>
+                    <control-Grid region="center" enableCellTip="true" width="300" height="200" numberColumnWidth="33" dataSet="procServicesDataset" name="procServicesGrid">
+                      <layout-GridToolbar>
+                        <control-GridItem align="left" width="210" title="服务名" dataIndex="serviceId" sortable="true" tipText="服务名" name="GridItem18"/>
+                        <control-GridItem align="left" width="100" title="服务执行次数" dataIndex="executeTimes" sortable="true" tipText="服务执行次数" name="GridItem22"/>
+                        <control-GridItem align="left" width="100" title="执行失败次数" dataIndex="executeFailureTimes" sortable="true" tipText="执行失败次数" name="GridItem23"/>
+                        <control-GridItem align="left" width="100" title="总执行时间" dataIndex="excuteTime" sortable="true" tipText="总执行时间" name="GridItem24"/>
+                        <control-GridItem align="left" width="100" title="执行最短时间" dataIndex="excuteMinTime" sortable="true" tipText="执行最短时间" name="GridItem25"/>
+                        <control-GridItem align="left" width="100" title="执行最长时间" dataIndex="excuteMaxTime" sortable="true" tipText="执行最长时间" name="GridItem26"/>
+                        <control-GridItem align="left" width="100" title="最后注册时间" dataIndex="lastUpdateTime" sortable="true" tipText="最后注册时间" name="GridItem20"/>
+                        <control-GridItem align="left" width="100" title="功能号" dataIndex="aliasId" sortable="true" tipText="功能号" name="GridItem19"/>
+                        <control-GridItem align="left" width="100" title="服务描述" dataIndex="desc" sortable="true" tipText="服务描述" name="GridItem21"/>
+                      </layout-GridToolbar>
+                      <Top>
+                        <control-Toolbar name="Toolbar1">
+                          <layout-toolbar>
+                            <control-Button name="Button1" text="刷新" width="75" tabIndex="1" icon="bizframe/images/icons/refresh.png"/>
+                          </layout-toolbar>
+                        </control-Toolbar>
+                      </Top>
+                      <Bottom/>
+                      <Left/>
+                      <Right/>
+                    </control-Grid>
+                    <control-FormPanel collapseMode="mini" region="north" width="300" autoHeight="true" height="75" collapsed="true" hideCollapseTool="true" title="操作说明" collapsible="true" split="true" name="FormPanel2" frame="true">
+                      <Top/>
+                      <Bottom/>
+                      <Left/>
+                      <Right/>
+                      <layout-table columns="2" fullWidth="true">
+                        <control-Label colspan="2" name="Label2" text="请选择下拉框中插件名称查看所选插件下的服务执行信息" width="100%"/>
+                        <control-ComboBox labelWidth="70" editable="true" width="300" height="22" displayField="serviceDisplay" dataSet="pluginDataset" valueField="serviceName" emptyText="-----请选择-----" fieldLabel="插件名称" name="pluginNameCombo" tabIndex="1" blankSuffixLabel=""/>
+                      </layout-table>
+                    </control-FormPanel>
+                  </layout-border>
+                </control-Panel>
+                <control-Panel title="插件线程池" height="200" name="Panel2" width="300">
+                  <Top/>
+                  <Bottom/>
+                  <Left/>
+                  <Right/>
+                  <layout-border>
+                    <control-Panel collapseMode="mini" region="north" width="300" autoHeight="true" collapsed="true" hideCollapseTool="true" height="75" title="操作说明" collapsible="true" split="true" name="Panel3" frame="true">
+                      <Top/>
+                      <Bottom/>
+                      <Left/>
+                      <Right/>
+                      <layout-table columns="1" fullWidth="true">
+                        <control-Label name="Label1" text="请选择下拉框中插件名称查看所选插件下的线程队列信息" width="100.0%"/>
+                        <control-ComboBox labelWidth="70" editable="true" width="300" height="22" displayField="serviceDisplay" dataSet="pluginDataset" valueField="serviceName" emptyText="------请选择------" fieldLabel="插件名称" name="serviceCombo" tabIndex="1" blankSuffixLabel=""/>
+                      </layout-table>
+                    </control-Panel>
+                    <control-Grid region="center" height="200" dataSet="bizServiceInfoDataset" enableCellTip="true" name="Grid1" width="300">
+                      <layout-GridToolbar>
+                        <control-GridItem align="left" width="100" title="线程编号" dataIndex="threadNo" tipText="线程编号" sortable="true" name="GridItem37"/>
+                        <control-GridItem align="left" width="100" title="队列长度" dataIndex="queueSize" tipText="队列长度" sortable="true" name="GridItem38"/>
+                        <control-GridItem align="left" width="100" title="队列容量" dataIndex="queueCapability" tipText="队列容量" sortable="true" name="GridItem39"/>
+                        <control-GridItem align="left" width="130" title="拒绝处理的事件个数" dataIndex="rejectCount" tipText="拒绝处理的事件个数" sortable="true" name="GridItem40"/>
+                        <control-GridItem align="left" width="100" title="处理事件个数" dataIndex="procEventCount" tipText="处理事件个数" sortable="true" name="GridItem41"/>
+                        <control-GridItem align="left" width="100" title="状态" dataIndex="status" tipText="状态" sortable="true" name="GridItem42"/>
+                        <control-GridItem align="left" width="134" title="处理中的事件服务名" dataIndex="processingService" tipText="处理中的事件服务名" sortable="true" name="GridItem43"/>
+                        <control-GridItem align="left" width="140" title="正在处理的服务步骤" dataIndex="processingStep" tipText="正在处理的服务步骤" sortable="true" name="GridItem44"/>
+                        <control-GridItem align="left" width="100" title="第一次队列满的时间" dataIndex="firstQueueFullTime" tipText="第一次队列满的时间" sortable="true" name="GridItem45"/>
+                      </layout-GridToolbar>
+                      <Top>
+                        <control-Toolbar name="Toolbar5">
+                          <layout-toolbar>
+                            <control-Button name="Button5" text="刷新" width="75" icon="bizframe/images/icons/refresh.png" tabIndex="1"/>
+                          </layout-toolbar>
+                        </control-Toolbar>
+                      </Top>
+                      <Bottom/>
+                      <Left/>
+                      <Right/>
+                    </control-Grid>
+                  </layout-border>
+                </control-Panel>
+                <control-Panel title="cep分发线程池" height="200" autoScroll="true" name="dispatchPoolInfoPanel" width="300">
+                  <Top/>
+                  <Bottom/>
+                  <Left/>
+                  <Right/>
+                  <layout-fit>
+                    <control-Grid height="200" dataSet="dispatchPoolInfoDataset" enableCellTip="true" name="dispatchPoolInfoGrid" width="300" numberColumnWidth="33">
+                      <layout-GridToolbar>
+                        <control-GridItem align="left" width="150" title="线程编号" dataIndex="threadNo" sortable="true" tipText="线程编号" name="GridItem28"/>
+                        <control-GridItem align="left" width="100" title="队列长度" dataIndex="queueSize" sortable="true" tipText="队列长度" name="GridItem29"/>
+                        <control-GridItem align="left" width="100" title="队列容量" dataIndex="queueCapability" sortable="true" tipText="队列容量" name="GridItem31"/>
+                        <control-GridItem align="left" width="132" title="拒绝处理的事件个数" dataIndex="rejectCount" sortable="true" tipText="拒绝处理的事件个数" name="GridItem30"/>
+                        <control-GridItem align="left" width="100" title="处理事件个数" dataIndex="procEventCount" sortable="true" tipText="处理事件个数" name="GridItem32"/>
+                        <control-GridItem align="left" width="100" title="状态" dataIndex="status" sortable="true" tipText="状态" name="GridItem35"/>
+                        <control-GridItem align="left" width="100" title="路由失败个数" dataIndex="routeErrorCount" sortable="true" tipText="路由失败个数" name="GridItem33"/>
+                        <control-GridItem align="left" width="100" title="处理失败事件个数" dataIndex="procErrorCount" sortable="true" tipText="处理失败事件个数" name="GridItem34"/>
+                        <control-GridItem align="left" width="160" title="处理中的事件服务名" dataIndex="processingService" sortable="true" tipText="处理中的事件服务名" name="GridItem36"/>
+                      </layout-GridToolbar>
+                      <Top>
+                        <control-Toolbar name="Toolbar3">
+                          <layout-toolbar>
+                            <control-Button name="Button3" text="刷新" width="75" icon="bizframe/images/icons/refresh.png" tabIndex="1"/>
+                          </layout-toolbar>
+                        </control-Toolbar>
+                      </Top>
+                      <Bottom/>
+                      <Left/>
+                      <Right/>
+                    </control-Grid>
+                  </layout-fit>
+                </control-Panel>
+              </layout-tab>
+              <Top/>
+              <Bottom/>
+              <Left/>
+              <Right/>
+            </control-TabPanel>
+          </layout-fit>
+        </control-Panel>
+      </layout-fit>
+    </control-MainWindow>
+  </Windows>
+  <Accessory>
+    <control-DataSet name="paramsDataset" service="com.hundsun.jres.manage" window="MainWin">
+      <params>
+        <param name="nodeName"><![CDATA[nodeName]]></param>
+        <param name="commandName"><![CDATA["queryRuntimeParameters"]]></param>
+        <param name="pluginId"><![CDATA["jres.localService"]]></param>
+        <param name="resCode"><![CDATA["bizSysStatus"]]></param>
+        <param name="opCode"><![CDATA["queryRuntimeParameters"]]></param>
+      </params>
+      <fields>
+        <field name="procEventCount" type="int"/>
+        <field name="waitingEventCount" type="int"/>
+        <field name="timeoutCount" type="int"/>
+        <field name="abandonedCount" type="int"/>
+        <field name="defaultTimeout" type="int"/>
+        <field name="counterFlag" type="String"/>
+      </fields>
+    </control-DataSet>
+    <control-DataSet name="waitThreadDataset" service="com.hundsun.jres.manage" window="MainWin">
+      <params>
+        <param name="nodeName"><![CDATA[nodeName]]></param>
+        <param name="commandName"><![CDATA["queryWaitingThread"]]></param>
+        <param name="pluginId"><![CDATA["jres.localService"]]></param>
+        <param name="resCode"><![CDATA["bizSysStatus"]]></param>
+        <param name="opCode"><![CDATA["queryWaitingThread"]]></param>
+      </params>
+      <fields>
+        <field name="eventNo" type="int"/>
+        <field name="threadName" type="String"/>
+        <field name="eventName" type="String"/>
+      </fields>
+    </control-DataSet>
+    <control-DataSet name="allEventServiceDataset" service="com.hundsun.jres.manage" usingServiceName="true" window="MainWin">
+      <params>
+        <param name="nodeName"><![CDATA[nodeName]]></param>
+        <param name="commandName"><![CDATA["queryAllEventService"]]></param>
+        <param name="pluginId"><![CDATA["jres.cepcore"]]></param>
+        <param name="resCode"><![CDATA["bizSysStatus"]]></param>
+        <param name="opCode"><![CDATA["queryAllEventService"]]></param>
+      </params>
+      <fields>
+        <field name="serviceName" type="String"/>
+        <field name="threadName" type="String"/>
+        <field name="eventName" type="String"/>
+      </fields>
+    </control-DataSet>
+    <control-DataSet name="eventChainsDataset" service="com.hundsun.jres.manage" usingServiceName="true" window="MainWin">
+      <params>
+        <param name="nodeName"><![CDATA[nodeName]]></param>
+        <param name="commandName"><![CDATA["queryEventChains"]]></param>
+        <param name="pluginId"><![CDATA["jres.cepcore"]]></param>
+        <param name="resCode"><![CDATA["bizSysStatus"]]></param>
+        <param name="opCode"><![CDATA["queryEventChains"]]></param>
+      </params>
+      <fields>
+        <field name="chain" type="String"/>
+      </fields>
+    </control-DataSet>
+    <control-DataSet name="routeTableDataset" service="com.hundsun.jres.manage" usingServiceName="true" window="MainWin">
+      <params>
+        <param name="nodeName"><![CDATA[nodeName]]></param>
+        <param name="commandName"><![CDATA["queryRouteTable"]]></param>
+        <param name="pluginId"><![CDATA["jres.cepcore"]]></param>
+        <param name="resCode"><![CDATA["bizSysStatus"]]></param>
+        <param name="opCode"><![CDATA["queryRouteTable"]]></param>
+      </params>
+      <fields>
+        <field name="systemNo" type="String"/>
+        <field name="subSystemNo" type="String"/>
+        <field name="services" type="String"/>
+        <field name="aliases" type="String"/>
+        <field name="nodeName" type="String"/>
+        <field name="pluginName" type="String"/>
+      </fields>
+    </control-DataSet>
+    <control-DataSet name="procServicesDataset" service="com.hundsun.jres.manage" usingServiceName="true" window="MainWin">
+      <params>
+        <param name="nodeName"><![CDATA[nodeName]]></param>
+        <param name="commandName"><![CDATA["queryProcServices"]]></param>
+        <param name="pluginId"><![CDATA["jres.cepcore"]]></param>
+        <param name="resCode"><![CDATA["bizSysStatus"]]></param>
+        <param name="opCode"><![CDATA["queryProcServices"]]></param>
+      </params>
+      <fields>
+        <field name="serviceId" type="String"/>
+        <field name="aliasId" type="String"/>
+        <field name="lastUpdateTime" type="String"/>
+        <field name="desc" type="String"/>
+        <field name="executeTimes" type="int"/>
+        <field name="executeFailureTimes" type="int"/>
+        <field name="excuteTime" type="int"/>
+        <field name="excuteMinTime" type="int"/>
+        <field name="excuteMaxTime" type="int"/>
+      </fields>
+    </control-DataSet>
+    <control-DataSet name="dispatchPoolInfoDataset" service="com.hundsun.jres.manage" usingServiceName="true" window="MainWin">
+      <params>
+        <param name="nodeName"><![CDATA[nodeName]]></param>
+        <param name="commandName"><![CDATA["queryDispatchPoolInfo"]]></param>
+        <param name="pluginId"><![CDATA["jres.cepcore"]]></param>
+        <param name="resCode"><![CDATA["bizSysStatus"]]></param>
+        <param name="opCode"><![CDATA["queryDispatchPoolInfo"]]></param>
+      </params>
+      <fields>
+        <field name="threadNo" type="String"/>
+        <field name="queueSize" type="int"/>
+        <field name="rejectCount" type="long"/>
+        <field name="queueCapability" type="int"/>
+        <field name="procEventCount" type="long"/>
+        <field name="routeErrorCount" type="long"/>
+        <field name="procErrorCount" type="int"/>
+        <field name="status" type="int"/>
+        <field name="processingService" type="String"/>
+      </fields>
+    </control-DataSet>
+    <control-DataSet name="bizServiceInfoDataset" service="com.hundsun.jres.manage" usingServiceName="true" window="MainWin">
+      <params>
+        <param name="nodeName"><![CDATA[nodeName]]></param>
+        <param name="commandName"><![CDATA["queryBizServiceInfo"]]></param>
+        <param name="pluginId"><![CDATA["jres.cepcore"]]></param>
+        <param name="resCode"><![CDATA["bizSysStatus"]]></param>
+        <param name="opCode"><![CDATA["queryBizServiceInfo"]]></param>
+      </params>
+      <fields>
+        <field name="threadNo" type="String"/>
+        <field name="queueSize" type="int"/>
+        <field name="rejectCount" type="long"/>
+        <field name="queueCapability" type="int"/>
+        <field name="procEventCount" type="long"/>
+        <field name="status" type="int"/>
+        <field name="processingService" type="String"/>
+        <field name="processingStep" type="String"/>
+        <field name="firstQueueFullTime" type="String"/>
+      </fields>
+    </control-DataSet>
+    <control-DataSet name="pluginDataset" service="com.hundsun.jres.manage" usingServiceName="true" window="MainWin">
+      <params>
+        <param name="nodeName"><![CDATA[nodeName]]></param>
+        <param name="commandName"><![CDATA["queryAllEventService"]]></param>
+        <param name="pluginId"><![CDATA["jres.cepcore"]]></param>
+        <param name="resCode"><![CDATA["bizSysStatus"]]></param>
+        <param name="opCode"><![CDATA["queryAllEventService"]]></param>
+      </params>
+      <fields>
+        <field name="serviceName" type="String"/>
+        <field name="serviceDisplay" type="String"/>
+      </fields>
+    </control-DataSet>
+  </Accessory>
+  <WindowScripts>
+    <WindowScript window="MainWin"><![CDATA[service com.hundsun.jres.manage as manage;
+private task = {
+    run: function(){
+       paramsDataset.load();
+       procServicesDataset.load();
+       dispatchPoolInfoDataset.load();
+       bizServiceInfoDataset.load();
+    },
+    interval: 15000 //1 second
+    
+};
+private nodeName = getStringFromURLPath("nodeName");
+private function  round(v,e){
+    var   t=1;
+    for(;e>0;t*=10,e--);
+    for(;e<0;t/=10,e++);
+    return   Math.round(v*t)/t;
+}
+
+private function renderThreadStatus(value){   
+   if(value == 0){      
+      return '<span style="color:blue;" >空闲</span>';      
+    }else if(value == 1){
+      return '<span style="color:green;" >运行</span>';
+    }else if(value == 2){
+      return '<span style="color:red;" >停止(Dead)/span>';
+    }else{
+      return value;
+    }
+
+}
+event queryBtn_click(Button thisComp, Ext.EventObject e) {
+     bizServiceInfoDataset.clearParamsByKey(['pluginName']);
+     bizServiceInfoDataset.load();
+}
+
+
+
+event paramsDataset_beforedispensedata(Hs.HsDataSet dataSet) {
+    if(dataSet.resultData){
+       var result = dataSet.resultData;
+       if(result.returnCode == 0 && result.dataSetResult[0]){
+           if(result.dataSetResult[0].data){
+               var params = result.dataSetResult[0].data[0];
+               if(params.counterFlag){
+                  if(params.counterFlag == "true"){
+                      params.counterFlag = "启用";
+                  }else{
+                      params.counterFlag = "停止";
+                  } 
+                  
+               }
+               //result.dataSetResult[0].data[0]  = params;
+           }
+          dataSet.resultData = result; 
+       }
+    }
+}
+event GridItem24_renderer(Object value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store) { 
+  /*
+  var hour = 0;
+  var minities = 0;
+  var second = 0;
+  var mSecond = 0;
+  
+  var rate = 1000*1000;  
+  var mCount = value/rate;
+  mCount = Math.round(mCount);
+  return  mCount+"毫秒"; */
+  return value +"毫秒";
+}
+
+
+event GridItem45_renderer(Object value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store) {
+    var date = new Date(value);
+    return date.format('Y-m-d H:i:s');
+}
+
+event bizServiceInfoDataset_beforedispensedata(Hs.HsDataSet dataSet) {  
+    var temp = [];
+    if(dataSet.resultData){
+        var result = dataSet.resultData;
+        if(result.returnCode == 0 && result.dataSetResult&&result.dataSetResult.length>1){
+           for(var i =0;i<result.dataSetResult.length;i++){
+              var item = result.dataSetResult[i];
+              if(item){
+                 var dataArray = item.data;
+                 if(dataArray){
+                      for(var j=0;j<dataArray.length;j++){
+                          temp.push(dataArray[j]);
+                      }
+                 }
+              }
+             
+           }
+          
+           if(temp.length>0){              
+              result.dataSetResult[0].data = temp;
+              dataSet.resultData = result;
+           }
+        }
+    }
+}
+
+event MainWin_complete() {
+   // 启动定时任务
+  // Ext.TaskMgr.start(task);
+}
+event pluginNameCombo_select(Hs.HsCheckCombo combo, Ext.data.Record record, Number index) {
+  var value = pluginNameCombo.getValue(); 
+  if(value != ""){
+    procServicesDataset.setParams({pluginName : value});
+    procServicesDataset.load();
+  }else{ 
+    procServicesDataset.clearParamsByKey(['pluginName']);
+    procServicesDataset.load();
+  }
+}
+event serviceCombo_select(Hs.HsCheckCombo combo, Ext.data.Record record, Number index) {
+  var value = serviceCombo.getValue();
+  if(value != ""){
+    bizServiceInfoDataset.setParams({pluginName : value});
+    bizServiceInfoDataset.load();
+  }else{
+     bizServiceInfoDataset.clearParamsByKey(['pluginName']);
+     bizServiceInfoDataset.load();
+  }
+}
+event GridItem44_renderer(Object value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store) {
+    if(value == "none"){
+      return "无";
+    }else{
+      return value;
+    }
+}
+event GridItem42_renderer(Object value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store) {
+    var value1 = renderThreadStatus(value);
+    return value1;
+}
+event GridItem35_renderer(Object value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store) {
+   var value1 = renderThreadStatus(value);
+   return value1;
+}
+event pluginDataset_beforedispensedata(Hs.HsDataSet dataSet) {
+   if(dataSet.resultData){
+       var result = dataSet.resultData;
+       if(result.returnCode == 0 && result.dataSetResult[0]){
+           if(result.dataSetResult[0].data){
+               var services = result.dataSetResult[0].data;
+               var temp = [];
+               temp.push({"serviceName" :"","serviceDisplay":"全部列表"});
+               for(var i=0;i<services.length;i++){
+                  services[i].serviceDisplay = services[i].serviceName; 
+                  temp.push(services[i]);
+               }
+               result.dataSetResult[0].data  = temp;
+           }
+          dataSet.resultData = result; 
+       }
+    }
+}
+event GridItem23_renderer(Object value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store) {
+    if(value > 0){
+         return  '<span style="color:red;" >'+value+'</span>';
+    }else{
+         return value;
+    }     
+}
+event GridItem25_renderer(Object value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store) {
+  /*
+  var rate = 1000*1000;  
+  var mCount = value/rate;
+  mCount = Math.round(mCount);
+  return  mCount+"毫秒"; */
+  return value+"毫秒";
+}
+event GridItem26_renderer(Object value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store) {
+ /*
+  var rate = 1000*1000;  
+  var mCount = value/rate;
+  mCount = Math.round(mCount);
+  return  mCount+"毫秒"; */
+  return value+"毫秒";
+}
+
+event procServicesDataset_beforedispensedata(Hs.HsDataSet dataSet) {
+   var temp = [];
+    if(dataSet.resultData){
+        var result = dataSet.resultData;
+        if(result.returnCode == 0 && result.dataSetResult&&result.dataSetResult.length>1){
+           for(var i =0;i<result.dataSetResult.length;i++){
+              var item = result.dataSetResult[i];
+              if(item){
+                 var dataArray = item.data;
+                 if(dataArray){
+                      for(var j=0;j<dataArray.length;j++){
+                          temp.push(dataArray[j]);
+                      }
+                 }
+                 
+              }
+             
+           }
+          
+           if(temp.length>0){              
+              result.dataSetResult[0].data = temp;
+              dataSet.resultData = result;
+           }
+        }
+    }
+}
+/**
+event stopTaskButton_click(Button thisComp, Ext.EventObject e) {
+    Ext.TaskMgr.stopAll(); 
+    stopTaskButton.setEnabled(false);
+    startTaskButton.setEnabled(true);
+}
+event startTaskButton_click(Button thisComp, Ext.EventObject e) {
+    Ext.TaskMgr.start(task);
+    startTaskButton.setEnabled(false);
+    stopTaskButton.setEnabled(true);
+}
+*/
+event GridItem33_renderer(Object value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store) {
+   if(value > 0){
+         return  '<span style="color:red;" >'+value+'</span>';
+    }else{
+         return value;
+    }  
+}
+event GridItem34_renderer(Object value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store) {
+  if(value > 0){
+         return  '<span style="color:red;" >'+value+'</span>';
+    }else{
+         return value;
+    }  
+}
+event Button1_click(Button thisComp, Ext.EventObject e) {
+   procServicesDataset.load();
+}
+event Button3_click(Button thisComp, Ext.EventObject e) {
+  dispatchPoolInfoDataset.load();
+}
+event Button2_click(Button thisComp, Ext.EventObject e) {
+  bizServiceInfoDataset.load();
+}
+event Button4_click(Button thisComp, Ext.EventObject e) {
+  routeTableDataset.load();
+}
+event Button5_click(Button thisComp, Ext.EventObject e) {
+  bizServiceInfoDataset.load();
+}]]></WindowScript>
+  </WindowScripts>
+</hsdoc>

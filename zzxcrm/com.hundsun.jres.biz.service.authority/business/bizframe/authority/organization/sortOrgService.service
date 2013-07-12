@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ASCII"?>
+<service2:ServiceModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:flow2="http://www.hundsun.com/ares/studio/jres/flow2" xmlns:service2="http://www.hundsun.com/ares/studio/jres/service2" name="sortOrgService">
+  <inputDefines id="resCode" javaType="String">
+    <defaultValue2/>
+  </inputDefines>
+  <inputDefines id="opCode" javaType="String">
+    <defaultValue2/>
+  </inputDefines>
+  <inputDefines id="org_id" type="TStringID" javaType="String" name="&#x7ec4;&#x7ec7;&#x6807;&#x8bc6;" stdField="true">
+    <defaultValue2/>
+  </inputDefines>
+  <inputDefines id="dimension" type="TDict" javaType="String" name="&#x7ec4;&#x7ec7;&#x7ef4;&#x5ea6;" stdField="true" description="&#x7528;&#x4e8e;&#x8868;&#x793a;&#x6b64;&#x7ec4;&#x7ec7;&#x7684;&#x5206;&#x7c7b;&#x7ef4;&#x5ea6;&#xA;&#x53d6;&#x6570;&#x636e;&#x5b57;&#x5178;[sys_biz_org_dimension]&#xA;0-&#x673a;&#x6784;&#x7ef4;&#x5ea6;&#xA;1-&#x90e8;&#x95e8;&#x7ef4;&#x5ea6;&#xA;2-&#x5c97;&#x4f4d;&#x7ef4;&#x5ea6;">
+    <defaultValue2/>
+  </inputDefines>
+  <inputDefines id="sort_type" javaType="String">
+    <defaultValue2/>
+  </inputDefines>
+  <unit>
+    <info xsi:type="flow2:LogicUnitInfo"/>
+    <children id="action1" name="action" desc="action">
+      <info xsi:type="flow2:ComponentMethodInfo" fullyQualifiedName="bizframe.authority.organization.SysOrganizationService" methodName="action">
+        <inputParameters id="context" javaType="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext" name="context"/>
+      </info>
+    </children>
+  </unit>
+</service2:ServiceModel>

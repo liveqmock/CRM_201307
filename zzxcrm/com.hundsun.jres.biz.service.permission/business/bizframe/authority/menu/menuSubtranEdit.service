@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service2:ServiceModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:flow2="http://www.hundsun.com/ares/studio/jres/flow2" xmlns:service2="http://www.hundsun.com/ares/studio/jres/service2" xmi:id="_WTeb8HGUEeCvJMPVuep6Vg" name="修改菜单子功能">
+  <inputDefines xmi:id="_vFcgwHGUEeCvJMPVuep6Vg" id="resCode" javaType="String">
+    <defaultValue2 xmi:id="_vFcgwXGUEeCvJMPVuep6Vg"/>
+  </inputDefines>
+  <inputDefines xmi:id="_wEdtwHGUEeCvJMPVuep6Vg" id="opCode" javaType="String">
+    <defaultValue2 xmi:id="_wEdtwXGUEeCvJMPVuep6Vg"/>
+  </inputDefines>
+  <unit xmi:id="_WTeb8XGUEeCvJMPVuep6Vg">
+    <info xsi:type="flow2:LogicUnitInfo" xmi:id="_WTeb8nGUEeCvJMPVuep6Vg"/>
+    <children xmi:id="_xUtNoHGUEeCvJMPVuep6Vg" id="action1" name="action" desc="action">
+      <info xsi:type="flow2:ComponentMethodInfo" xmi:id="_xUtNonGUEeCvJMPVuep6Vg" fullyQualifiedName="bizframe.authority.menu.menuService" methodName="action">
+        <inputParameters xmi:id="_xUubwHGUEeCvJMPVuep6Vg" id="context" javaType="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext" name="context"/>
+      </info>
+    </children>
+  </unit>
+</service2:ServiceModel>

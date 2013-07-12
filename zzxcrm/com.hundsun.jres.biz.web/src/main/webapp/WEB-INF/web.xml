@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+	<!--####################	1.	公共定义部分 (begin) 			####################-->
+	<display-name>com.hundsun.jres</display-name>
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+	<!--####################	1.	公共定义部分 (end) 			####################-->
+
+	<!--####################	2.	JRES平台定义部分 (begin) 		####################-->
+	<listener>
+		<listener-class>
+			com.hundsun.jres.impl.plugin.framework.RunPluginFrameworkListener</listener-class>
+	</listener>
+	<!--
+		<servlet> <servlet-name>jresToolCommandServlet</servlet-name>
+		<servlet-class>
+		com.hundsun.jres.impl.bizkernel.tools.defaults.JresToolCommandImpl
+		</servlet-class> </servlet> <servlet-mapping>
+		<servlet-name>jresToolCommandServlet</servlet-name>
+		<url-pattern>/toolCommand/*</url-pattern> </servlet-mapping>
+	-->
+	<servlet>
+		<servlet-name>EngineServlet</servlet-name>
+		<servlet-class>com.hundsun.jres.impl.uiengine.servlet.EngineServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EngineServlet</servlet-name>
+		<url-pattern>*.mw</url-pattern>
+	</servlet-mapping>
+	
+	<!--   huhl@hundsun.com 于20111017需求1563集成到基础业务框架 bengin-->
+    <servlet-mapping>
+         <servlet-name>EngineServlet</servlet-name>
+         <url-pattern>*.sw</url-pattern>
+     </servlet-mapping>
+	<!--   huhl@hundsun.com 于20111017需求1563集成到基础业务框架 end-->
+
+	<servlet>
+		<servlet-name>DataServlet</servlet-name>
+		<servlet-class>com.hundsun.jres.impl.uiengine.servlet.DataServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DataServlet</servlet-name>
+		<url-pattern>*.service</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>testCase</servlet-name>
+		<servlet-class>
+			com.hundsun.jres.impl.bizkernel.testframework.util.TestCasetRunServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>testCase</servlet-name>
+		<url-pattern>/testCaseRunnerServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>DataSetsServlet</servlet-name>
+		<servlet-class>com.hundsun.jres.impl.uiengine.servlet.DataSetsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DataSetsServlet</servlet-name>
+		<url-pattern>*.dataSets</url-pattern>
+	</servlet-mapping>
+
+	<!-- 韩寅添加 begin -->
+	<servlet>
+		<servlet-name>ManageCEPServlet</servlet-name>
+		<servlet-class>com.hundsun.jres.impl.cep.servlet.ManageCEPServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ManageCEPServlet</servlet-name>
+		<url-pattern>/manager/cep/*</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>CommonCEPServlet</servlet-name>
+		<servlet-class>com.hundsun.jres.impl.cep.servlet.CommonCEPServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CommonCEPServlet</servlet-name>
+		<url-pattern>/common/cep/*</url-pattern>
+	</servlet-mapping>
+	<!-- 韩寅添加 end -->
+
+
+	<!--####################	2.	JRES平台定义部分 (end) 		####################-->
+
+
+
+
+
+	<!--####################	3.	基础业务框架定义部分 (begin) 	####################-->
+	<servlet>
+		<description>基础业务框架启动Servlet,过程中初始化一些基础数据</description>
+		<display-name>BizframeStartServlet</display-name>
+		<servlet-name>BizframeStartServlet</servlet-name>
+		<servlet-class>
+			com.hundsun.jres.bizframe.core.framework.servlet.BizframeStartServlet</servlet-class>
+		<init-param>
+			<description>基础业务框架配置文件路径,多个以“;”隔开(项目的根目录为基准)</description>
+			<param-name>configPaths</param-name>
+			<param-value>/WEB-INF/config/bizframe/bizframe-config.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<listener>
+		<description>HttpSession失效监听器,执行一些会话失效逻辑</description>
+		<listener-class>
+			com.hundsun.jres.bizframe.core.framework.listener.SessionListener</listener-class>
+	</listener>
+
+	<filter>
+		<description>字符过滤器</description>
+		<filter-name>CharsetConversion</filter-name>
+		<filter-class>
+			com.hundsun.jres.bizframe.core.framework.filter.CharsetConversion</filter-class>
+		<init-param>
+			<param-name>enable</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>CharsetConversion</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<filter>
+		<description>基础业务框架服务请求路径路由过滤器，其路径是.../resCode$opCode.do的模式</description>
+		<filter-name>AuthorityFilter</filter-name>
+		<filter-class>
+			com.hundsun.jres.bizframe.core.framework.filter.AuthorityFilter</filter-class>
+		<init-param>
+			<param-name>isCheck</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>errorUrl</param-name>
+			<param-value>/bizframe/error.jsp?error=url_illegal</param-value>
+		</init-param>
+		<init-param>
+			<param-name>skipPattern</param-name>
+			<param-value></param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>AuthorityFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+
+	<filter>
+		<description>
+			基础业务框架权限过滤器,设了不开启则无法进行权限校验，工作流默认是不开启.
+			1:工作流需在skipPattern中配置|\/workflow|\/hsBpm
+			2:如果某服务或模块不需登陆检测和权限检测则在skipPattern中配置|\/XXXXXX 注：XXXXXX是你模块的开头或你服务的开头
+		</description>
+		<filter-name>PermissionFilter</filter-name>
+		<filter-class>
+			com.hundsun.jres.bizframe.core.framework.filter.PermissionFilter</filter-class>
+		<init-param>
+			<param-name>isCheck</param-name>
+			<param-value>false</param-value>
+		</init-param>
+		<init-param>
+			<param-name>isLoginCheck</param-name>
+			<param-value>false</param-value>
+		</init-param>
+		<init-param>
+			<param-name>loginUrl</param-name>
+			<param-value>/bizframe/jsp/login.jsp</param-value>
+		</init-param>
+		<init-param>
+			<param-name>loginService</param-name>
+			<param-value>/bizframe.framework._signIn.service</param-value>
+		</init-param>
+		<init-param>
+			<param-name>errorUrl</param-name>
+			<param-value>/bizframe/jsp/error.jsp</param-value>
+		</init-param>
+		<init-param>
+			<description>不校验的路径</description>
+			<param-name>skipPattern</param-name>
+			<param-value>
+                /\/login|\/logout|\/error|\/getSecurityKey|\/workflow|\/hsBpm|\/permissionTree
+            </param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>PermissionFilter</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>PermissionFilter</filter-name>
+		<url-pattern>*.mw</url-pattern>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>PermissionFilter</filter-name>
+		<url-pattern>*.service</url-pattern>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+
+	<servlet>
+		<description>验证码图片生成</description>
+		<servlet-name>ImageServlet</servlet-name>
+		<servlet-class>
+			com.hundsun.jres.bizframe.core.framework.servlet.ImageServlet</servlet-class>
+		<init-param>
+			<description>验证码图片的宽度</description>
+			<param-name>imageWidth</param-name>
+			<param-value>60</param-value>
+		</init-param>
+		<init-param>
+			<description>验证码图片的高度</description>
+			<param-name>imageHeight</param-name>
+			<param-value>20</param-value>
+		</init-param>
+		<init-param>
+			<description>验证码字符个数</description>
+			<param-name>codeCount</param-name>
+			<param-value>4</param-value>
+		</init-param>
+		<init-param>
+			<description>验证码干扰线条数</description>
+			<param-name>lineCount</param-name>
+			<param-value>10</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ImageServlet</servlet-name>
+		<url-pattern>*.image</url-pattern>
+	</servlet-mapping>
+	
+	<!-- huhl@hundsun.com 20111011 添加 begin -->
+	<servlet>
+		<servlet-name>SecurityServlet</servlet-name>
+		<servlet-class>com.hundsun.jres.bizframe.core.framework.servlet.BizframeSecurityServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SecurityServlet</servlet-name>
+		<url-pattern>/login</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>SecurityServlet</servlet-name>
+		<url-pattern>/logout</url-pattern>
+	</servlet-mapping>
+	<!-- huhl@hundsun.com 20111011 添加 end -->
+	
+	<!-- xujin@hundsun.com 20120417 添加 begin -->
+	<servlet>
+		<servlet-name>BizframeDownloadServlet</servlet-name>
+		<servlet-class>com.hundsun.jres.bizframe.core.framework.servlet.BizframeDownloadServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BizframeDownloadServlet</servlet-name>
+		<url-pattern>/downloadExcel</url-pattern>
+	</servlet-mapping>
+	<!-- xujin@hundsun.com 20120417 添加 end -->
+	
+	<welcome-file-list>
+		<welcome-file>bizframe/jsp/login.jsp</welcome-file>
+	</welcome-file-list>
+
+
+	<!--####################	3.	基础业务框架定义部分 (end) 	####################-->
+</web-app>

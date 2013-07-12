@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.hundsun.ares.studio.table:TableInfo xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:com.hundsun.ares.studio.table="com.hundsun.ares.studio.table" chineseName="角色权限授权表" englishName="tsys_role_right" desc="角色权限授权表">
+  <fields fieldName="trans_code" primaryKey="true">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields fieldName="sub_trans_code" primaryKey="true">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields fieldName="role_code" primaryKey="true">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields canNull="true" fieldName="create_by">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields canNull="true" fieldName="create_date">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields fieldName="begin_date" primaryKey="true">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields fieldName="end_date" primaryKey="true">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields fieldName="right_flag" primaryKey="true">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields canNull="true" fieldName="right_enable">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+</com.hundsun.ares.studio.table:TableInfo>

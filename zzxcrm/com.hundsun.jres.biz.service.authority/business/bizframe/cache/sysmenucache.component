@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.hundsun.ares.studio.jres.component:HSComponent_EMF xmlns:com.hundsun.ares.studio.jres.component="http://com.hundsun.ares.studio.jres.hsobject" name="sysmenucache" id="菜单缓存构件" desc="菜单缓存构件" className="com.hundsun.jres.bizframe.core.cache.service.SysMenuCacheService">
+  <methodList methodName="action" alias="action" desc="action">
+    <paramList id="context" name="context" type="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext" rename="context"/>
+    <result id="action_result" type="com.hundsun.jres.interfaces.share.dataset.IDataset"/>
+  </methodList>
+</com.hundsun.ares.studio.jres.component:HSComponent_EMF>

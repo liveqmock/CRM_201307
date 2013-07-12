@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<aar>
+  <info>
+    <id>dto</id>
+    <name>JRES平台基础业务框架-数据传输对象定义模块</name>
+    <version>1.1.1-SNAPSHOT</version>
+    <provider></provider>
+    <contact></contact>
+    <note>此模块包含以下内容：
+数据传输协议定义
+数据传输对象定义</note>
+    <publisher>JRES Builder</publisher>
+    <pubtime>2012-5-23 17:35:08</pubtime>
+    <type></type>
+  </info>
+  <respath>
+    <entry kind="src" type="com.hundsun.ares.studio.publicres.rootpublicres" path="publicres"/>
+    <entry kind="src" type="com.hundsun.ares.studio.jres.database" path="database"/>
+  </respath>
+  <dependencies>
+    <lib id="" version="" type="com.hundsun.ares.studio.jres.core.modulenature"/>
+  </dependencies>
+  <extended/>
+</aar>

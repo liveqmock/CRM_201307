@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hsdoc version="1.1.0">
+  <Windows>
+    <control-MainWindow height="458" name="MainWin" templatePath="window.ftl" width="642">
+      <layout-fit>
+        <control-Panel name="totalPanel" x="123" y="50" width="300" title="汇总" height="200">
+          <layout-absolute/>
+          <Top/>
+          <Bottom/>
+          
+          <Left/>
+          <Right/>
+        </control-Panel>
+      </layout-fit>
+    </control-MainWindow>
+  </Windows>
+  <Accessory/>
+  <WindowScripts>
+    <WindowScript window="MainWin"><![CDATA[]]></WindowScript>
+  </WindowScripts>
+</hsdoc>

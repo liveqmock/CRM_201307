@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="ASCII"?>
+<service2:ServiceModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:flow2="http://www.hundsun.com/ares/studio/jres/flow2" xmlns:service2="http://www.hundsun.com/ares/studio/jres/service2" name="&#x67e5;&#x770b;&#x7528;&#x6237;&#x7ec4;&#x7ec7;">
+  <inputDefines id="opCode" javaType="String">
+    <defaultValue2/>
+  </inputDefines>
+  <inputDefines id="resCode" javaType="String">
+    <defaultValue2/>
+  </inputDefines>
+  <outputDefines id="org_path" type="TLongDesc" javaType="String" name="&#x7d22;&#x5f15;&#x7801;" stdField="true">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="position_name" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="position_code" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="leaf" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="org_cate_name" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="org_level_name" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="dimension_name" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="dimension" type="TDict" javaType="String" name="&#x7ec4;&#x7ec7;&#x7ef4;&#x5ea6;" stdField="true" description="&#x7528;&#x4e8e;&#x8868;&#x793a;&#x6b64;&#x7ec4;&#x7ec7;&#x7684;&#x5206;&#x7c7b;&#x7ef4;&#x5ea6;&#xA;&#x53d6;&#x6570;&#x636e;&#x5b57;&#x5178;[sys_biz_org_dimension]&#xA;0-&#x673a;&#x6784;&#x7ef4;&#x5ea6;&#xA;1-&#x90e8;&#x95e8;&#x7ef4;&#x5ea6;&#xA;2-&#x5c97;&#x4f4d;&#x7ef4;&#x5ea6;">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="org_id" type="TStringID" javaType="String" name="&#x7ec4;&#x7ec7;&#x6807;&#x8bc6;" stdField="true">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="manage_code" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="manage_name" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="parent_name" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="parent_code" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="remark" type="TDesc" javaType="String" name="&#x5907;&#x6ce8;" stdField="true" description="&#x6a21;&#x677f;&#x4f4d;&#x7f6e;">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="ext_id" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="sso_parent_code" type="TCode" javaType="String" name="sso&#x4e0a;&#x7ea7;&#x7ec4;&#x7ec7;&#x4ee3;&#x7801;" stdField="true">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="sso_org_code" type="TCode" javaType="String" name="sso&#x4ee3;&#x7801;" stdField="true">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="org_order" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="org_level" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="org_cate" type="TDict" javaType="String" name="&#x7ec4;&#x7ec7;&#x5206;&#x7c7b;" stdField="true" description="&#x7528;&#x4e8e;&#x8868;&#x793a;&#x6b64;&#x7ec4;&#x7ec7;&#x7684;&#x5206;&#x7c7b;&#xA;&#x53d6;&#x6570;&#x636e;&#x5b57;&#x5178;[sys_biz_org_cate]&#xA;0-&#x603b;&#x90e8;&#x673a;&#x6784; (&#x673a;&#x6784;&#x7ef4;&#x5ea6;)&#xA;1-&#x5206;&#x673a;&#x6784;     (&#x673a;&#x6784;&#x7ef4;&#x5ea6;)&#xA;2-&#x7f51;&#x70b9;&#x673a;&#x6784; (&#x673a;&#x6784;&#x7ef4;&#x5ea6;)&#xA;3-&#x90e8;&#x95e8;         (&#x90e8;&#x95e8;&#x7ef4;&#x5ea6;)&#xA;4-&#x5c97;&#x4f4d;         (&#x5c97;&#x4f4d;&#x7ef4;&#x5ea6;)">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="manage_id" type="TStringID" javaType="String" name="&#x4e3b;&#x7ba1;&#x6807;&#x8bc6;" stdField="true">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="parent_id" type="TStringID" javaType="String" name="&#x4e0a;&#x7ea7;&#x6807;&#x8bc6;" stdField="true">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="org_name" type="TName" javaType="String" name="&#x7ec4;&#x7ec7;&#x540d;&#x79f0;" stdField="true">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="org_code" type="TCode" javaType="String" name="&#x7ec4;&#x7ec7;&#x4ee3;&#x7801;" stdField="true">
+    <defaultValue2/>
+  </outputDefines>
+  <unit>
+    <info xsi:type="flow2:LogicUnitInfo"/>
+    <children id="action1" name="action" desc="action">
+      <info xsi:type="flow2:ComponentMethodInfo" fullyQualifiedName="bizframe.authority.user._userComponent" methodName="action">
+        <inputParameters id="context" javaType="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext" name="context"/>
+      </info>
+    </children>
+    <children id="resultAssignment1" name="&#x7ed3;&#x679c;&#x8d4b;&#x503c;">
+      <info xsi:type="flow2:ResultAssignmentInfo" resultSet="true" resultType="com.hundsun.jres.interfaces.share.dataset.IDataset" expression="Result:action1.action_result"/>
+    </children>
+  </unit>
+</service2:ServiceModel>

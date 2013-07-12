@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service2:ServiceModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:flow2="http://www.hundsun.com/ares/studio/jres/flow2" xmlns:service2="http://www.hundsun.com/ares/studio/jres/service2" name="查询菜单" outputCollection="true" outputCollectionID="def_action" desc="查询菜单">
+  <inputDefines id="resCode" javaType="String">
+    <defaultValue2/>
+  </inputDefines>
+  <inputDefines id="opCode" javaType="String">
+    <defaultValue2/>
+  </inputDefines>
+  <outputDefines id="menu_name" type="TName" javaType="String" name="菜单名称" stdField="true" description="用于表示菜单中文名称&#xA;studio需显示文本输入">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="menu_code" type="TCode" javaType="String" name="菜单代码" stdField="true" description="用于表示菜单英文代码,代码与生命周期组成唯一索引&#xA;studio需显示文本输入">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="menu_icon" type="TDesc" javaType="String" name="菜单图标" stdField="true" description="名称之前icon图标或者菜单的背景图片">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="kind_code" type="TCode" javaType="String" name="类别代码" stdField="true">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="kind_name" type="TName" javaType="String" name="类别名称" stdField="true">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="trans_code" javaType="String" name="交易代码">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="trans_name" javaType="String" name="交易名">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="sub_trans_code" javaType="String" name="子交易代码">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="sub_trans_name" javaType="String" name="子交易名">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="menu_url" javaType="String" name="菜单URL">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="menu_arg" javaType="String" name="菜单参数">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="tip" type="TDesc" javaType="String" name="提示信息" stdField="true" description="对菜单功能的简单描述，鼠标悬停在菜单名称上时可做相应的提示">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="hot_key" type="TShortCode" javaType="String" name="快捷键" stdField="true">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="order_no" type="TInt" javaType="int" name="序号" stdField="true" description="显示顺序">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="open_flag" type="TDict" javaType="String" name="展开标志" stdField="true" description="用于表示该菜单是否默认展开&#xA;取数据字典[sys_biz_yes_or_no]&#xA;0-否&#xA;1-是">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="window_name" javaType="String" name="菜单打开类型名">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="parent_name" javaType="String" name="父亲节点">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="window_type" javaType="String" name="菜单打开类型">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="remark" type="TDesc" javaType="String" name="备注" stdField="true" description="模板位置">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="parent_code" javaType="String" name="父亲节点编号">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="leaf" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="iconCls" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="tree_idx" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <unit>
+    <info xsi:type="flow2:LogicUnitInfo"/>
+    <children id="action_13" name="action_13">
+      <info xsi:type="flow2:ComponentMethodInfo" fullyQualifiedName="bizframe.authority.menu.menuService" methodName="action">
+        <inputParameters id="context" javaType="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext" name="context"/>
+        <outputParameters id="action_result" javaType="com.hundsun.jres.interfaces.share.dataset.IDataset"/>
+      </info>
+    </children>
+    <children id="resultAssignment1" name="resultAssignment1">
+      <info xsi:type="flow2:ResultAssignmentInfo" assignmentType="REFERENCE" resultType="com.hundsun.jres.interfaces.share.dataset.IDataset" expression="Result:action_13.action_result"/>
+    </children>
+  </unit>
+</service2:ServiceModel>

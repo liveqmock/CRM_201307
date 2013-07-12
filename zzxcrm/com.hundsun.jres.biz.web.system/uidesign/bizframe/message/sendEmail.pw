@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hsdoc version="1.1.0">
+  <Windows>
+    <control-Window title="新建消息" height="369" name="Window1" draggable="true" width="723" resizable="false">
+      <Top>
+        <control-Toolbar name="Toolbar1">
+          <layout-toolbar>
+            <control-Button name="Button1" text="发送" width="75" tabIndex="2" icon="bizframe/images/icons/email.png"/>
+            <control-Button name="Button2" text="返回" width="75" tabIndex="3" icon="bizframe/images/return.png"/>
+          </layout-toolbar>
+        </control-Toolbar>
+      </Top>
+      <Bottom/>
+      <Left/>
+      <Right/>
+      <layout-fit>
+        <control-FormPanel autoload="false" width="300" height="200" dataSet="findUserDataSet" name="FormPanel1" autoScroll="true" frame="true">
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+          <layout-form labelAlign="right" labelWidth="50">
+            <control-TargetSelect targetWindow="org" fieldName="gerterNameField" params="['gerter_name_Field','receive_User_Ids']" callFunction="intOrg" width="250" fieldLabel="收件人" name="gerter_name_Field" allowBlank="false" tabIndex="4"/>
+            <control-TextField dataField="user_name" editable="false" fieldName="sendName" width="250" height="22" fieldLabel="发件人" name="TextField2" tabIndex="5"/>
+            <control-HiddenField fieldName="receiveUserIds" name="receive_User_Ids"/>
+            <control-TextField width="250" height="22" minLength="1" emptyText="消息主题" fieldLabel="标   题" maxLength="32" name="TextField3" allowBlank="false" tabIndex="6"/>
+            <control-HiddenField dataField="user_id" fieldName="sendUserId" name="senderIdHiddenField"/>
+            <control-TextArea width="706" height="200" showLabel="false" minLength="1" fieldLabel="TextArea1" maxLength="1024" name="TextArea1" allowBlank="false" tabIndex="7"/>
+          </layout-form>
+        </control-FormPanel>
+      </layout-fit>
+    </control-Window>
+  </Windows>
+  <Accessory>
+    <control-DataSet name="findUserDataSet" service="bizframe.authority.user._userService" usingServiceName="true" window="Window1">
+      <params>
+        <param name="resCode"><![CDATA["bizSetUser"]]></param>
+        <param name="opCode"><![CDATA["bizSetUserFind"]]></param>
+      </params>
+      <fields>
+        <field name="user_id" type="String"/>
+        <field name="branch_code" type="String"/>
+        <field name="dep_code" type="String"/>
+        <field name="user_name" type="String"/>
+        <field name="user_pwd" type="String"/>
+        <field name="user_type" type="String"/>
+        <field name="user_status" type="String"/>
+        <field name="lock_status" type="String"/>
+        <field name="create_date" type="int"/>
+        <field name="modify_date" type="int"/>
+        <field name="pass_modify_date" type="int"/>
+        <field name="remark" type="String"/>
+        <field name="user_status_display" type="String"/>
+        <field name="lock_status_display" type="String"/>
+        <field name="user_type_display" type="String"/>
+        <field name="branch_name" type="String"/>
+        <field name="dep_name" type="String"/>
+        <field name="ext_field_1" type="String"/>
+        <field name="ext_field_2" type="String"/>
+        <field name="ext_field_3" type="String"/>
+        <field name="ext_field_4" type="String"/>
+        <field name="ext_field_5" type="String"/>
+      </fields>
+    </control-DataSet>
+  </Accessory>
+  <WindowScripts>
+    <WindowScript window="Window1"><![CDATA[remote bizframe.message.messageService as msgService;
+
+public sendGrid=null;//发件箱
+
+//发送
+event Button1_click(Button thisComp, Ext.EventObject e) {
+        if(FormPanel1.getForm().isValid()){
+           	Ext.MessageBox.confirm('提示', '发送消息？', function(button, text) {
+				if (button == "yes") {
+				        var geterIds=receive_User_Ids.getValue();
+				        var sendId=senderIdHiddenField.getValue();
+				        var title=TextField3.getValue();
+				        var content=TextArea1.getValue();
+				        var params={sendUserId:sendId,receiveUserIds:geterIds,msgType:'1',msgTitle:title,msgContent:content,resCode:"bizEmailInbox",opCode:"bizMsgSend"};
+						var Result = msgService.synExecute(params);
+						if(!(Result.returnCode == 0)){
+							Ext.Msg.alert('错误',Result.errorInfo);
+						}else{
+							Ext.Msg.alert('提示','发送成功');
+							close();
+							if(sendGrid){
+							  	sendGrid.refresh();
+							}
+						}
+				}
+		  });
+        }
+
+}
+
+//返回
+event Button2_click(Button thisComp, Ext.EventObject e) {
+   close();
+}
+
+event Window1_complete() {
+     findUserDataSet.setParams({getCurrUser:'true'});
+     FormPanel1.setDataSet(findUserDataSet);
+     findUserDataSet.load();
+}
+event findUserDataSet_loadfailure(Hs.HsDataSet dataSet) {
+   if(dataSet!=null){
+       var resultObj = dataSet.getResultData();
+       if(resultObj !== null && resultObj.returnCode !== undefined && resultObj.returnCode != 0){
+            var errorInfo = resultObj.errorInfo ? resultObj.errorInfo : '数据为空!';
+            Ext.Msg.alert("提示",errorInfo);
+       }
+             
+   }
+}]]></WindowScript>
+  </WindowScripts>
+</hsdoc>

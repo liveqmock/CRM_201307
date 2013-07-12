@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="GB2312"?>
+
+<syncs>
+    <sync configPropPath="" excludes="" target="E:/local_workspace/trunk/crm/com.hundsun.jres.biz.web/target/com.hundsun.jres.biz.web-1.1.30-SNAPSHOT/WEB-INF/classes" src="target/classes" type="common" includes=""/>
+</syncs>

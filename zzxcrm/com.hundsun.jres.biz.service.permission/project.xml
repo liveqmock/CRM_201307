@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hsdoc version="1.1.0">
+  <id>permission</id>
+  <name>JRES平台基础业务框架-功能权限管理服务接口层模块</name>
+  <version>1.1.1-SNAPSHOT</version>
+  <note></note>
+  <ext dbType="oracle"/>
+  <extendMap>
+    <entity>
+      <key>top_package</key>
+      <value>
+        <top_package top=""/>
+      </value>
+    </entity>
+    <entity>
+      <key>JRESModuleCommonProperty</key>
+      <value><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<core:JRESModuleCommonProperty xmlns:core="http://www.hundsun.com/ares/studio/jres/core/1.0.0"/>
+]]></value>
+    </entity>
+  </extendMap>
+</hsdoc>

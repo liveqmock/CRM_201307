@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:flow2="http://www.hundsun.com/ares/studio/jres/flow2" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.1/notation" xmlns:service2="http://www.hundsun.com/ares/studio/jres/service2">
+  <service2:ServiceModel xmi:id="_W41Vpa9eEd-AAIDj9Ld_QA" name="交易授权" outputCollection="true" outputCollectionID="def_service">
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_iZMI0LoyEd-JjJmTStgDYQ" id="datasetName" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_Wqg-Av5IEd-oo_B_Zk5lIQ"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_iZMI0boyEd-JjJmTStgDYQ" id="totalCount" javaType="int">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_Wqg-A_5IEd-oo_B_Zk5lIQ"/>
+    </outputDefines>
+    <unit xmi:type="flow2:LogicUnit" xmi:id="_W41Vpq9eEd-AAIDj9Ld_QA" id="420">
+      <info xmi:type="flow2:LogicUnitInfo" xmi:id="_W41Vp69eEd-AAIDj9Ld_QA"/>
+      <children xmi:type="flow2:FlowNode" xmi:id="_covpoLoxEd-JjJmTStgDYQ" id="service" name="同步授权">
+        <info xmi:type="flow2:ComponentMethodInfo" xmi:id="_covporoxEd-JjJmTStgDYQ" fullyQualifiedName="bizframe.authority.right.TransAuthComp" methodName="service">
+          <inputParameters xmi:type="flow2:InputParameter" xmi:id="_covpo7oxEd-JjJmTStgDYQ" id="context" javaType="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext" name="context"/>
+          <outputParameters xmi:type="flow2:OutputParameter" xmi:id="_covppLoxEd-JjJmTStgDYQ" id="result" javaType="com.hundsun.jres.interfaces.share.dataset.IDataset"/>
+        </info>
+      </children>
+      <children xmi:type="flow2:FlowNode" xmi:id="_iXs7ELoyEd-JjJmTStgDYQ" id="resultAssignment1" name="resultAssignment1">
+        <info xmi:type="flow2:ResultAssignmentInfo" xmi:id="_iXs7EboyEd-JjJmTStgDYQ" resultSet="true" resultType="com.hundsun.jres.interfaces.share.dataset.IDataset" expression="Result:service.service_result">
+          <inputParameters xmi:type="flow2:InputParameter" xmi:id="_iXs7EroyEd-JjJmTStgDYQ" id="datasetName" javaType="String"/>
+          <inputParameters xmi:type="flow2:InputParameter" xmi:id="_iXs7E7oyEd-JjJmTStgDYQ" id="totalCount" javaType="int"/>
+        </info>
+      </children>
+    </unit>
+  </service2:ServiceModel>
+  <notation:Diagram xmi:id="_kJJ8NK9eEd-AAIDj9Ld_QA" type="Flow2" element="_W41Vpa9eEd-AAIDj9Ld_QA" measurementUnit="Pixel">
+    <children xmi:type="notation:Node" xmi:id="_H62F8LorEd-JjJmTStgDYQ" type="1001" element="_W41Vpq9eEd-AAIDj9Ld_QA">
+      <children xmi:type="notation:Node" xmi:id="_H62F87orEd-JjJmTStgDYQ" type="5001">
+        <children xmi:type="notation:Node" xmi:id="_covppboxEd-JjJmTStgDYQ" type="2001" element="_covpoLoxEd-JjJmTStgDYQ">
+          <children xmi:type="notation:Node" xmi:id="_covpqLoxEd-JjJmTStgDYQ" type="4001"/>
+          <children xmi:type="notation:Node" xmi:id="_covpqboxEd-JjJmTStgDYQ" type="5002">
+            <styles xmi:type="notation:DrawerStyle" xmi:id="_covpqroxEd-JjJmTStgDYQ"/>
+            <styles xmi:type="notation:SortingStyle" xmi:id="_covpq7oxEd-JjJmTStgDYQ"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_covprLoxEd-JjJmTStgDYQ"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_covpproxEd-JjJmTStgDYQ" fontName="宋体"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_covpp7oxEd-JjJmTStgDYQ"/>
+        </children>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_H62F9LorEd-JjJmTStgDYQ"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_H62F9borEd-JjJmTStgDYQ"/>
+      </children>
+      <styles xmi:type="notation:ShapeStyle" xmi:id="_H62F8borEd-JjJmTStgDYQ" fontName="宋体"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_H62F8rorEd-JjJmTStgDYQ"/>
+    </children>
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_kJJ8Na9eEd-AAIDj9Ld_QA"/>
+  </notation:Diagram>
+</xmi:XMI>

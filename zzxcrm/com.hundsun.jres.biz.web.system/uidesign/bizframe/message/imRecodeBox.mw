@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hsdoc version="1.1.0">
+  <Windows>
+    <control-MainWindow height="420" name="MainWin" templatePath="window.ftl" width="609">
+      <layout-fit>
+        <control-Panel title="即时消息记录" height="200" name="Panel1" width="300">
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+          <layout-border>
+            <control-Panel region="center" height="200" name="Panel2" split="true" width="300">
+              <Top>
+                <control-Toolbar name="Toolbar1">
+                  <layout-toolbar>
+                    <control-Button name="Button1" text="删除" width="75" icon="images/delete.gif" tabIndex="2"/>
+                    <control-Button name="Button2" text="查看" width="75" icon="bizframe/images/icons/eye.png" tabIndex="3"/>
+                  </layout-toolbar>
+                </control-Toolbar>
+              </Top>
+              <Bottom/>
+              <Left/>
+              <Right/>
+              <layout-fit>
+                <control-Grid hasCheckColumn="true" height="200" dataSet="DataSet1" name="Grid1" width="300" hasPagingBar="true">
+                  <layout-GridToolbar>
+                    <control-GridItem title="发件人" align="left" dataIndex="send_user_id" name="GridItem2" width="100" sortable="true"/>
+                    <control-GridItem title="收件人" align="left" dataIndex="receive_user_id" name="GridItem5" width="144" sortable="true"/>
+                    <control-GridItem title="内容" align="left" dataIndex="msg_content" name="GridItem1" width="194" sortable="true"/>
+                    <control-GridItem title="时间" align="left" dataIndex="send_date" name="GridItem3" width="100" sortable="true"/>
+                    <control-GridItem title="状态" align="center" dataIndex="msg_isred_display" name="GridItem4" width="100" sortable="true"/>
+                    <control-GridItem align="left" width="100" dataIndex="msg_id" tipText="记录编号" sortable="true" title="记录编号" hidden="true" name="GridItem6"/>
+                  </layout-GridToolbar>
+                  <Top/>
+                  <Bottom/>
+                  <Left/>
+                  <Right/>
+                </control-Grid>
+              </layout-fit>
+            </control-Panel>
+          </layout-border>
+        </control-Panel>
+      </layout-fit>
+    </control-MainWindow>
+    <control-Window title="查看消息" height="300" name="signIn" draggable="true" width="300">
+      <Top/>
+      <Bottom/>
+      <Left/>
+      <Right/>
+      <layout-fit>
+        <control-FormPanel height="200" name="FormPanel1" width="300">
+          <Top>
+            <control-Toolbar name="Toolbar2">
+              <layout-toolbar>
+                <control-Button name="Button4" text="回复" width="75" tabIndex="1" icon="bizframe/images/im.png"/>
+              </layout-toolbar>
+            </control-Toolbar>
+          </Top>
+          <Bottom/>
+          <Left/>
+          <Right/>
+          <layout-fit>
+            <control-TextArea editable="false" width="250" height="60" showLabel="false" fieldLabel="TextArea1" name="TextArea1" tabIndex="1"/>
+          </layout-fit>
+        </control-FormPanel>
+      </layout-fit>
+    </control-Window>
+  </Windows>
+  <Accessory>
+    <control-DataSet name="DataSet1" service="bizframe.message.messageService" usingServiceName="true" window="MainWin">
+      <params>
+        <param name="resCode"><![CDATA["bizEmailInbox"]]></param>
+        <param name="opCode"><![CDATA["bizIMBoxFind"]]></param>
+      </params>
+      <fields>
+        <field name="msg_id" type="String"/>
+        <field name="msg_title" type="String"/>
+        <field name="send_user_id" type="String"/>
+        <field name="receive_user_id" type="String"/>
+        <field name="send_date" type="int"/>
+        <field name="msg_content" type="String"/>
+        <field name="msg_type_display" type="String"/>
+        <field name="msg_isred_display" type="String"/>
+        <field name="ext_field" type="String"/>
+      </fields>
+    </control-DataSet>
+  </Accessory>
+  <WindowScripts>
+    <WindowScript window="MainWin"><![CDATA[remote bizframe.message.messageService as msgService;
+import bizframe.message.org ;
+
+event Button1_click(Button thisComp, Ext.EventObject e) {
+	if (Grid1.getSelectionModel().getSelected() != null) {
+		Ext.MessageBox.confirm('提示', '您真的要删除选中记录？', function(button, text) {
+			if (button == "yes") {
+					var msgIds = Grid1.getSelectionDatas();
+					var msgIdsArray = new Array(msgIds.length);
+					for(var i=0;i<msgIds.length;i++){
+						msgIdsArray[i] = msgIds[i].get("msg_id");
+					}
+					var Result = msgService.synExecute({msgIds:msgIdsArray,resCode:"bizEmailInbox",opCode:"bizMsgDel"});
+					if(!(Result.returnCode == 0)){
+						Ext.Msg.alert('错误',Result.errorInfo);
+					}else{
+						Ext.Msg.alert('提示','删除成功');
+						DataSet1.load();
+					}
+			}
+		});
+	} else {
+		Ext.Msg.alert('提示','请选择至少一条记录进行删除');
+	}
+}
+event Button2_click(Button thisComp, Ext.EventObject e) {
+	var win = new signIn();
+	var counts = Grid1.getSelectionModel().getSelections().length;
+	if(counts!= 1){
+		Ext.Msg.alert('提示', '请选择一条聊天记录');
+		return;
+	}
+	win.show();
+}
+
+event GridItem3_renderer(Object value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store) {
+	return renderDatePattern(value);
+}
+
+function renderDatePattern(value){
+      return Ext.util.Format.date(new Date(value), 'Y-m-d H:i:s');
+}
+]]></WindowScript>
+    <WindowScript window="signIn"><![CDATA[include dwr.interface.ChatService;  
+include dwr.engine;
+include dwr.util;
+
+var record = MainWin.Grid1.getSelectionModel().getSelected();
+
+event Button4_click(Button thisComp, Ext.EventObject e) {
+setVisible(false);//原窗口隐藏
+Ext.QuickTips.init();
+var  sendMessageWin = new Ext.Window({
+      width:650,
+      height:400,
+      title:'消息发送',
+      border:true,
+      layout:'form',
+      layoutConfig:{
+      labelAlign:'left',
+      labelWidth:70
+      },
+      items:[
+        {id:'content',xtype:'htmleditor',fieldLabel:'内容',height:200}
+      ],
+      bbar:new Ext.Toolbar({
+        items:[{
+	        text:'发送',
+	        handler:function(b,e){
+	             var owerID='';
+	             var callBack=function(curUserID){
+	             	 var content=Ext.getCmp('content').getValue();
+		             var geter='';
+		             if(record.get('send_user_id')==curUserID){
+		                geter=record.get('receive_user_id');//接收人是原消息的接收者
+		             }else{
+		                geter=record.get('send_user_id');//接收人是原消息的发生者
+		             }
+		             alert(Ext.util.Format.nl2br(Ext.util.Format.htmlEncode(content)));
+	             	 ChatService.send(curUserID,geter,content); // 发送消息
+	             	 sendMessageWin.destroy();
+	             	 setVisible(false);
+	             }
+	            ChatService.getCurUserID(callBack);
+	        }
+        },
+        {xtype:'tbseparator'},
+        {text:'返回',
+         handler:function(b,e){
+              sendMessageWin.destroy();
+              setVisible(true);
+        }
+        }
+        ]
+      })
+     });
+    sendMessageWin.show(); //发送窗口
+}
+
+
+function setViewMsgContent(content){
+	TextArea1.setValue(content);
+}
+
+
+event Button3_click(Button thisComp, Ext.EventObject e) {
+    setVisible(false);//原窗口隐藏
+    var  sendMessageWin = new Ext.Window({
+	      width:650,
+	      height:400,
+	      title:'消息发送',
+	      border:true,
+	      layout:'form',
+	      layoutConfig:{
+	      labelAlign:'left',
+	      labelWidth:70
+      },
+      items:[
+	      {xtype:'textfield',fieldLabel:'收件人',defaultValue:'admin'},
+	      {xtype:'textfield',fieldLabel:'标题'},
+	      {xtype:'htmleditor',fieldLabel:'内容',height:200}
+      ],
+      bbar:new Ext.Toolbar({
+	        items:[{
+	       	  text:'发送'
+	        },
+	        {xtype:'tbseparator'},
+	        {text:'返回',
+	         handler:function(b,e){
+	                   sendMessageWin.destroy();
+	                   setVisible(true);
+	              }
+	        }]
+      })
+     });
+      sendMessageWin.show(); //发送窗口
+}
+
+event signIn_complete() {
+    TextArea1.setValue(record.get("msg_content"));
+}]]></WindowScript>
+  </WindowScripts>
+</hsdoc>

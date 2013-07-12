@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.hundsun.ares.studio.table:TableInfo xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:com.hundsun.ares.studio.table="com.hundsun.ares.studio.table" chineseName="系统分类表" englishName="tsys_kind" desc="系统分类表">
+  <fields fieldName="kind_code" primaryKey="true">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields fieldName="kind_type">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields fieldName="kind_name">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields canNull="true" fieldName="parent_code">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields fieldName="mnemonic">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields canNull="true" fieldName="tree_idx">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields canNull="true" fieldName="ext_flag">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields canNull="true" fieldName="lifecycle">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields canNull="true" fieldName="platform">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields canNull="true" fieldName="remark">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+</com.hundsun.ares.studio.table:TableInfo>

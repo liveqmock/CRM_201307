@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.hundsun.ares.studio.table:TableInfo xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:com.hundsun.ares.studio.table="com.hundsun.ares.studio.table" chineseName="系统业务日志表" englishName="tsys_log" desc="系统业务日志表">
+  <fields fieldName="log_id" primaryKey="true">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields canNull="true" fieldName="org_id">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields canNull="true" fieldName="org_name">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields canNull="true" fieldName="user_id">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields canNull="true" fieldName="user_name">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields fieldName="access_date">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields fieldName="access_time">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields canNull="true" fieldName="sub_trans_code">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields canNull="true" fieldName="trans_code">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields canNull="true" fieldName="oper_contents">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields canNull="true" fieldName="ip_add">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields canNull="true" fieldName="host_name">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+</com.hundsun.ares.studio.table:TableInfo>

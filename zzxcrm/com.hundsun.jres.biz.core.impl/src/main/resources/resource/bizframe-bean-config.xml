@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<bizframeConfig id="bizframe-beans-config">
+	<bizframe-beans id="bizframe-beans">
+		<!-- 登陆服务 -->
+		<bean id="signInService" class="com.hundsun.jres.bizframe.core.framework.service.BizFrameSignInService">
+		      <property name="head" value="userCheckService"></property>
+		</bean>
+		
+		<!-- http登陆服务 -->
+		<bean id="login" class="com.hundsun.jres.bizframe.core.framework.service.httpService.BizSignInService">
+		      <property name="head" value="userCheckService"></property>
+		</bean>
+		
+		
+		<!-- 登陆用户合法性检查流程节点 -->
+		<bean id="userCheckService" class="com.hundsun.jres.bizframe.core.framework.service.UserCheckService">
+		      <property name="next" value="validateCodeCheckService"></property>
+		</bean>
+		
+		<!-- 登陆验证码合法性检查流程节点 -->
+		<bean id="validateCodeCheckService" class="com.hundsun.jres.bizframe.core.framework.service.ValidateCodeCheckService">
+			<property name="next" value="userStatuCheckService"></property>
+		</bean>
+		
+		<!-- 登陆用户状态合法性检查流程节点 -->
+		<bean id="userStatuCheckService" class="com.hundsun.jres.bizframe.core.framework.service.UserStatuCheckService">
+			<property name="next" value="loginModelService"></property>
+		</bean>
+		
+		<!-- 登陆模式检查流程节点 -->
+		<bean id="loginModelService" class="com.hundsun.jres.bizframe.core.framework.service.LoginModelService"></bean>
+		
+		<!-- 签出服务 -->
+		<bean id="signOutService" class="com.hundsun.jres.bizframe.core.framework.service.SignOutService">
+		      <property name="head" value="clearUserCache"></property>
+		</bean>
+		
+		<!-- Http签出服务 -->
+		<bean id="logout" class="com.hundsun.jres.bizframe.core.framework.service.httpService.BizSignOutService">
+		      <property name="head" value="clearUserCache"></property>
+		</bean>
+		
+		<!-- 签出清空用户会话缓存映射清空用户消息缓存流程节点 -->
+		<bean id="clearUserCache" class="com.hundsun.jres.bizframe.core.framework.service.ClearUserCacheService">
+			<property name="next" value="clearHttpSession"></property>
+		</bean>
+		
+		<!-- 签出清空HttpSession流程节点 -->
+		<bean id="clearHttpSession" class="com.hundsun.jres.bizframe.core.framework.service.ClearHttpSessionService">
+		</bean>
+		
+				
+		<!-- 基础业务框架用户服务 -->
+		<bean id="bizUserService" class="com.hundsun.jres.bizframe.core.authority.service.api.UserServiceHandler"> 
+			<property name="initAtStart" value="true"> </property>
+		</bean>
+		
+		<!-- 基础业务框架用户包装器用 -->
+		<bean id="bizUserServiceWrapper" class="com.hundsun.jres.bizframe.core.authority.service.wrapper.UserServiceWrapper"> 
+			<property name="initAtStart" value="true"> </property>
+		</bean>
+		
+		<!-- 基础业务框架菜单服务 -->
+		<bean id="bizMenuService" class="com.hundsun.jres.bizframe.core.authority.service.api.MenuServiceHandler"> 
+			<property name="initAtStart" value="true"> </property>
+		</bean>
+		
+		<!-- 基础业务框架数据字典服务 -->
+		<bean id="bizDictService" class="com.hundsun.jres.bizframe.core.system.service.api.DictionaryServiceHandler"> 
+			<property name="initAtStart" value="true"> </property>
+		</bean>
+		
+		<!-- 基础业务框架数据字典服务包装器用 -->
+		<bean id="bizDictServiceWrapper" class="com.hundsun.jres.bizframe.core.system.service.wrapper.DictServiceWrapper"> 
+			<property name="initAtStart" value="true"> </property>
+		</bean>
+		
+		
+		<!-- 基础业务框架类别参数服务 -->
+		<bean id="bizKindService" class="com.hundsun.jres.bizframe.core.system.service.api.KindServiceHandler"> 
+			 <property name="initAtStart" value="true"> </property>
+		</bean>
+		<!-- 基础业务框架系统参数服务 -->
+		<bean id="bizParamService" class="com.hundsun.jres.bizframe.core.system.service.api.ParameterServiceHandler"> 
+			<property name="initAtStart" value="true"> </property>
+		</bean>
+
+		<!-- 基础业务框架用户分组服务 -->
+		<bean id="userGroupService" class="com.hundsun.jres.bizframe.core.authority.service.api.UserGroupServiceHandler"> 
+			<property name="initAtStart" value="true"></property>
+		</bean>
+		
+		<!-- 基础业务框架用户分组服务-包装器用 -->
+		<bean id="bizUserGroupServiceWrapper" class="com.hundsun.jres.bizframe.core.authority.service.wrapper.UserGroupServiceWrapper"> 
+			<property name="initAtStart" value="true"></property><!--是否是在容器启动时候加载  -->
+		</bean>
+		
+		
+		<!-- 基础业务框架消息服务 -->
+		<bean id="bizMsgService" class="com.hundsun.jres.bizframe.core.authority.service.api.MessageServiceHandler"> 
+			<property name="initAtStart" value="true"> </property>
+		</bean>
+		<!-- 基础业务框架权限服务 -->
+		<bean id="bizPermissionService" class="com.hundsun.jres.bizframe.core.authority.service.api.PermissionServiceHandler"> 
+			<property name="initAtStart" value="true"> </property>
+		</bean>
+		<!-- 基础业务框架系统公共服务 -->
+		<bean id="bizCommonService" class="com.hundsun.jres.bizframe.core.authority.service.api.CommonServiceHandler"> 
+			<property name="initAtStart" value="true"> </property>
+		</bean>
+		<!--获取系统时间服务 -->
+		<bean id="serverTimeService" calss="com.hundsun.jres.bizframe.core.framework.service.ServerTimeServiceImpl"/>
+		<!-- 基础业务框架密码服务 -->
+		<bean id="bizPwdService" class="com.hundsun.jres.bizframe.core.authority.service.api.PwdSecurityServiceHandler"> 
+			<property name="initAtStart" value="true"> </property>
+		</bean>
+		<!-- 基础业务框架日志服务服务 -->
+		<bean id="bizLogService" class="com.hundsun.jres.bizframe.core.system.service.api.LoggerServiceHandler"> 
+			<property name="initAtStart" value="true"> 	</property>
+		</bean>
+		
+		<!-- 基础业务框架系统参数服务包装器 -->
+		<bean id="bizParamServiceWrapper" class="com.hundsun.jres.bizframe.core.system.service.wrapper.ParameterServiceWrapper"> 
+			<property name="initAtStart" value="true"> </property>
+		</bean>
+		
+	</bizframe-beans>
+</bizframeConfig>

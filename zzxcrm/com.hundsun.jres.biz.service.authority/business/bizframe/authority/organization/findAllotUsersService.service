@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:flow2="http://www.hundsun.com/ares/studio/jres/flow2" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.1/notation" xmlns:service2="http://www.hundsun.com/ares/studio/jres/service2">
+  <service2:ServiceModel xmi:id="_7_bUYKLrEeCYCbV2uaBdsQ" name="查询组织人员分配">
+    <inputDefines xmi:type="flow2:InputParameterDefine" xmi:id="_7RI78qL0EeCYCbV2uaBdsQ" id="opCode" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_7RI786L0EeCYCbV2uaBdsQ"/>
+    </inputDefines>
+    <inputDefines xmi:type="flow2:InputParameterDefine" xmi:id="_7RI78KL0EeCYCbV2uaBdsQ" id="resCode" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_7RI78aL0EeCYCbV2uaBdsQ"/>
+    </inputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_upKH6KL0EeCYCbV2uaBdsQ" id="org_name" type="TName" javaType="String" name="组织名称" stdField="true">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_upKH6aL0EeCYCbV2uaBdsQ"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_upKH5qL0EeCYCbV2uaBdsQ" id="org_id" type="TStringID" javaType="String" name="组织标识" stdField="true">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_upKH56L0EeCYCbV2uaBdsQ"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_upKH5KL0EeCYCbV2uaBdsQ" id="ext_field_5" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_upKH5aL0EeCYCbV2uaBdsQ"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_upKH4qL0EeCYCbV2uaBdsQ" id="ext_field_4" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_upKH46L0EeCYCbV2uaBdsQ"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_upKH4KL0EeCYCbV2uaBdsQ" id="ext_field_3" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_upKH4aL0EeCYCbV2uaBdsQ"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_upKH3qL0EeCYCbV2uaBdsQ" id="ext_field_2" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_upKH36L0EeCYCbV2uaBdsQ"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_upKH3KL0EeCYCbV2uaBdsQ" id="ext_field_1" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_upKH3aL0EeCYCbV2uaBdsQ"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_upKH2qL0EeCYCbV2uaBdsQ" id="user_type_display" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_upKH26L0EeCYCbV2uaBdsQ"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_upKH2KL0EeCYCbV2uaBdsQ" id="lock_status_display" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_upKH2aL0EeCYCbV2uaBdsQ"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_upKH1qL0EeCYCbV2uaBdsQ" id="user_status_display" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_upKH16L0EeCYCbV2uaBdsQ"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_upKH1KL0EeCYCbV2uaBdsQ" id="remark" type="TDesc" javaType="String" name="备注" stdField="true" description="模板位置">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_upKH1aL0EeCYCbV2uaBdsQ"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_upKH0qL0EeCYCbV2uaBdsQ" id="pass_modify_date" javaType="int">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_upKH06L0EeCYCbV2uaBdsQ"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_upKH0KL0EeCYCbV2uaBdsQ" id="modify_date" type="TIntDateTime" javaType="int" name="最后修改时间" stdField="true">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_upKH0aL0EeCYCbV2uaBdsQ"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_upKHzqL0EeCYCbV2uaBdsQ" id="create_date" type="TIntDateTime" javaType="int" name="创建时间" stdField="true">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_upKHz6L0EeCYCbV2uaBdsQ"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_upKHzKL0EeCYCbV2uaBdsQ" id="lock_status" type="TDict" javaType="String" name="锁定状态" stdField="true" description="用于表示此用户是否被锁定&#xA;取数据字典[sys_biz_yes_or_no]&#xA;0-否&#xA;1-是">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_upKHzaL0EeCYCbV2uaBdsQ"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_upKHyqL0EeCYCbV2uaBdsQ" id="user_status" type="TDict" javaType="String" name="用户状态" stdField="true" description="用于表示此用户状态&#xA;取数据字典[sys_biz_user_status]&#xA;0-正常&#xA;1-注销">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_upKHy6L0EeCYCbV2uaBdsQ"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_upKHyKL0EeCYCbV2uaBdsQ" id="user_type" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_upKHyaL0EeCYCbV2uaBdsQ"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_upKHxqL0EeCYCbV2uaBdsQ" id="user_pwd" type="TCode" javaType="String" name="登录密码">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_upKHx6L0EeCYCbV2uaBdsQ"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_upKHxKL0EeCYCbV2uaBdsQ" id="user_name" type="TName" javaType="String" name="用户名称">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_upKHxaL0EeCYCbV2uaBdsQ"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_upKHwqL0EeCYCbV2uaBdsQ" id="user_id" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_upKHw6L0EeCYCbV2uaBdsQ"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_upKHwKL0EeCYCbV2uaBdsQ" id="auth_type" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_upKHwaL0EeCYCbV2uaBdsQ"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_upAWwKL0EeCYCbV2uaBdsQ" id="auth_type_name" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_upAWwaL0EeCYCbV2uaBdsQ"/>
+    </outputDefines>
+    <unit xmi:type="flow2:LogicUnit" xmi:id="_7_bUY6LrEeCYCbV2uaBdsQ">
+      <info xmi:type="flow2:LogicUnitInfo" xmi:id="_7_bUZaLrEeCYCbV2uaBdsQ"/>
+      <children xmi:type="flow2:FlowNode" xmi:id="_7_bUZqLrEeCYCbV2uaBdsQ" id="action1" name="action" desc="action">
+        <info xmi:type="flow2:ComponentMethodInfo" xmi:id="_7_bUaKLrEeCYCbV2uaBdsQ" fullyQualifiedName="bizframe.authority.organization.SysOrganizationService" methodName="action">
+          <inputParameters xmi:type="flow2:InputParameter" xmi:id="_7_bUaaLrEeCYCbV2uaBdsQ" id="context" javaType="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext" name="context"/>
+        </info>
+      </children>
+      <children xmi:type="flow2:FlowNode" xmi:id="_7_bUaqLrEeCYCbV2uaBdsQ" id="resultAssignment1" name="结果赋值">
+        <info xmi:type="flow2:ResultAssignmentInfo" xmi:id="_7_bUbKLrEeCYCbV2uaBdsQ" resultSet="true" resultType="com.hundsun.jres.interfaces.share.dataset.IDataset" expression="Result:action1.action_result"/>
+      </children>
+    </unit>
+  </service2:ServiceModel>
+  <notation:Diagram xmi:id="_7_bUbaLrEeCYCbV2uaBdsQ" type="Flow2" element="_7_bUYKLrEeCYCbV2uaBdsQ" measurementUnit="Pixel">
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_7_bUbqLrEeCYCbV2uaBdsQ"/>
+  </notation:Diagram>
+</xmi:XMI>

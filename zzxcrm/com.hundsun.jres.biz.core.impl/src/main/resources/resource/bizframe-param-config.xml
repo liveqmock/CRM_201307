@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bizframeConfig id="bizframe-params-config">
+	<bizframe-params id="bizframe-params">
+	
+				<!-- 系统的类型码  -->
+				<sys-param key="biz_kind_code" value="BIZFRAME"/>
+				<!-- EXCEL报表路径 -->
+				<sys-param key="excel_template" value="template/"/>			
+				<!-- EXCEL下载文件路径 -->
+				<sys-param key="excel_download" value="download/"/>
+				<!-- 系统用户默认密码-->
+				<sys-param key="defaultUserPassword" value="111111"/>
+				<!-- 页面是否需屏蔽F5按钮 -->
+				<sys-param key="shieldF5" value="false"/>
+				<!-- 页面是否需屏蔽BcakSpace按钮 -->
+				<sys-param key="shieldBcakSpace" value="false"/>
+				<!-- 页面是否需屏蔽鼠标右键 -->
+				<sys-param key="shieldRightKey" value="false"/>
+				<!-- 默认主页菜单深度 -->
+				<sys-param key="default_menu_depth" value="1"/>
+				<!-- 桌面开始菜单深度 -->
+				<sys-param key="desktop_start_menu_depth" value="1"/>
+				<!-- 桌面顶置导航菜单深度 -->
+				<sys-param key="desktop_navigation_menu_depth"  value="1"/>
+				<!-- 主页打开的最大菜单数目 -->
+				<sys-param key="openMaxTabNum" value="6"/>
+				<!-- 用户是否启动登录模式检测 -->
+				<sys-param key="loginModelCheck" value="false"/>
+				 <!-- 用户登录模式 -->
+				<sys-param key="loginModel" value="1"/>
+				<!-- 登陆页面是否需验证码 -->
+				<sys-param key="login_has_validateCode" value="false"/>
+				<!-- 登陆页面是否需“登录风格”选择 -->
+				<sys-param key="loginMutipleStyle" 	value="true"/>
+				
+				<!-- 用户登录时,登录名对应的字段tsys_user表的字段名,默认是user_id-->
+				<!-- 20111102####huhl@hundsun.com####登录可用别的字段登录####begin -->
+       			<sys-param key="loginFieldName" value="user_id"/>
+       			
+				<!-- 页面是否开启同步授权功能 -->
+				<sys-param key="startSynchAuthorize" value="false"/>
+				<!-- 页面消息轮询间隔(以分钟为单位，默认3分钟)-->
+				<sys-param key="msgPollInterval" value="3"/>
+				<!-- 用户无活动锁屏时间隔(以分钟为单位，默认10分钟)-->
+				<sys-param key="lockScreenInterval" value="10"/>
+				<!-- 缓存刷新的时间间隔(以秒为单位，默认60秒)-->
+				<sys-param key="cacheRefeshInterval" value="60"/>
+				<!-- 系统帮助手册地址-->
+				<sys-param key="systemHelpUrl" 	value="bizframe/jsp/help/bizframe-help.html"/>
+				<!-- 启动服务器是否对菜单索引检测-->
+				<sys-param key="checkMenuTreeIndexInStart" 	value="false"/>
+				<!-- 启动服务器是否对组织索引检测-->
+				<sys-param key="checkOrgPathInStart" value="false"/>
+				<!--新增组织的负责岗位编号后缀-->
+				<sys-param key="managerPositionCodeSuffix" value="head"/>
+				<!-- 新增组织的负责岗位名称后缀-->
+        		<sys-param key="managerPositionNameSuffix" value="主管"/>
+        		<!--新增组织的负责岗位编号后缀-->
+        		<sys-param key="commonPositionCodeSuffix" value="common"/>
+        		<!-- 新增组织的负责岗位名称后缀-->
+        		<sys-param key="commonPositionNameSuffix" value="普通岗"/>
+        		<!--组织的编码是否唯一-->
+       			<sys-param key="uniqueOrgCode" 	value="false"/>       			
+       			<!-- 首页菜单加载模式accordion,tree-->
+        		<sys-param key="menuLoadModel" value="tree"/>
+        		<!-- 控制页面是否单一打开，默认值true-->
+        		<sys-param key="singleTab" value="true"/>
+        		<!-- 页面logo区域高度，默认值70-->
+       			<sys-param key="logoHeight" 	value="70"/>
+        		<!-- 是否在重置密码后给管理员显示重置后的密码-->
+       			<sys-param key="isShowAdminPwd" 	value="false"/>
+       			<!-- 错误页面的配置-->
+       			<sys-param key="conErrorURL" value="/bizframe/jsp/error.jsp"/>
+       			
+       			<!-- 登陆时web端调用后台取用户信息和用户登陆信息的服务的服务ID-->
+       			<sys-param key="signInServiceID" 	value="bizframe.authority.user.signInService"/>
+       			
+       			<!-- 登陆完成时web端调用后台更新用户登陆信息的服务的服务ID-->
+       			<sys-param key="updateUserInfoServiceID" 	value="bizframe.authority.user.updateUserInfoService"/>
+       			
+       			
+       			<!-- 登陆时根据登录名获取用户ID的SQL片段-->
+       			<sys-param key="userLoginInfoSQL" 	value="(select u.user_id login_name, u.user_id  from tsys_user u where u.user_id =@loginName)"/>
+       			
+       			<!-- 用户密码加密模式，目前支持MD5|DESede两类，默认为MD5模式 -->
+       			<sys-param key="userPwdEncryptModel" 	value="MD5"/>
+       			
+       			<!-- 基础业务框架默认数据源名称  -->
+       			<sys-param key="dataSourceName" 	value="default"/>
+       			<!--权限控制的标志-->
+       			<sys-param key="dataAccessFlag"   value="false"></sys-param>
+	</bizframe-params>
+</bizframeConfig>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service2:ServiceModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:flow2="http://www.hundsun.com/ares/studio/jres/flow2" xmlns:service2="http://www.hundsun.com/ares/studio/jres/service2" xmi:id="_v1NBIP-CEd-NM4PqXsppUQ" outputPagination="true" name="messageService">
+  <inputDefines xmi:id="_dotmEP-DEd-NM4PqXsppUQ" id="resCode" javaType="String">
+    <defaultValue2 xmi:id="_dotmEf-DEd-NM4PqXsppUQ"/>
+  </inputDefines>
+  <inputDefines xmi:id="_fIORAP-DEd-NM4PqXsppUQ" id="opCode" javaType="String">
+    <defaultValue2 xmi:id="_fIORAf-DEd-NM4PqXsppUQ"/>
+  </inputDefines>
+  <outputDefines xmi:id="_k7tSkP-DEd-NM4PqXsppUQ" id="msg_id" javaType="String" name="消息代码">
+    <defaultValue2 xmi:id="_k7tSkf-DEd-NM4PqXsppUQ"/>
+  </outputDefines>
+  <outputDefines xmi:id="_m5a8cP-DEd-NM4PqXsppUQ" id="msg_title" javaType="String" name="消息标题">
+    <defaultValue2 xmi:id="_m5a8cf-DEd-NM4PqXsppUQ"/>
+  </outputDefines>
+  <outputDefines xmi:id="_oyYCIP-DEd-NM4PqXsppUQ" id="send_user_id" javaType="String" name="发送者ID">
+    <defaultValue2 xmi:id="_oyYCIf-DEd-NM4PqXsppUQ"/>
+  </outputDefines>
+  <outputDefines xmi:id="_qX_VEP-DEd-NM4PqXsppUQ" id="receive_user_id" javaType="String" name="接收者ID">
+    <defaultValue2 xmi:id="_qX_VEf-DEd-NM4PqXsppUQ"/>
+  </outputDefines>
+  <outputDefines xmi:id="_vneRsP-DEd-NM4PqXsppUQ" id="send_date" javaType="int" name="消息发送日期时间">
+    <defaultValue2 xmi:id="_vneRsf-DEd-NM4PqXsppUQ"/>
+  </outputDefines>
+  <outputDefines xmi:id="_xm-EQP-DEd-NM4PqXsppUQ" id="msg_content" javaType="String" name="站内消息内容">
+    <defaultValue2 xmi:id="_xm-EQf-DEd-NM4PqXsppUQ"/>
+  </outputDefines>
+  <outputDefines xmi:id="_z211IP-DEd-NM4PqXsppUQ" id="msg_type_display" javaType="String" name="站内消息类型">
+    <defaultValue2 xmi:id="_z211If-DEd-NM4PqXsppUQ"/>
+  </outputDefines>
+  <outputDefines xmi:id="_2Zv2wP-DEd-NM4PqXsppUQ" id="msg_isred_display" javaType="String" name="站内消息是否已读">
+    <defaultValue2 xmi:id="_2Zv2wf-DEd-NM4PqXsppUQ"/>
+  </outputDefines>
+  <outputDefines xmi:id="_Auj-YP-YEd-NM4PqXsppUQ" id="ext_field" javaType="String" name="扩展字段">
+    <defaultValue2 xmi:id="_Auj-Yf-YEd-NM4PqXsppUQ"/>
+  </outputDefines>
+  <outputDefines id="send_user_name" javaType="String" name="发送者名称">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="receive_user_name" javaType="String" name="接收者名称">
+    <defaultValue2/>
+  </outputDefines>
+  <unit xmi:id="_v1NBIf-CEd-NM4PqXsppUQ">
+    <info xsi:type="flow2:LogicUnitInfo" xmi:id="_v1NBIv-CEd-NM4PqXsppUQ"/>
+    <children xmi:id="_xJkMAP-CEd-NM4PqXsppUQ" id="componentMethod1" name="构件方法">
+      <info xsi:type="flow2:ComponentMethodInfo" xmi:id="_xJkMAv-CEd-NM4PqXsppUQ" fullyQualifiedName="bizframe.message.messageComponent" methodName="action">
+        <inputParameters xmi:id="_zxrdwP-CEd-NM4PqXsppUQ" id="context" javaType="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext" name="context"/>
+      </info>
+    </children>
+    <children xmi:id="_yEoGEP-CEd-NM4PqXsppUQ" id="resultAssignment1" name="结果赋值">
+      <info xsi:type="flow2:ResultAssignmentInfo" xmi:id="_yEoGEf-CEd-NM4PqXsppUQ" assignmentType="REFERENCE" resultType="com.hundsun.jres.interfaces.share.dataset.IDataset" expression="Result:componentMethod1.action_result">
+        <inputParameters xmi:id="_yEoGEv-CEd-NM4PqXsppUQ"/>
+      </info>
+    </children>
+  </unit>
+</service2:ServiceModel>

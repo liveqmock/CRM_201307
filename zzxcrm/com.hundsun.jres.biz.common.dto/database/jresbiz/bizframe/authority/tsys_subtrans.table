@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.hundsun.ares.studio.table:TableInfo xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:com.hundsun.ares.studio.table="com.hundsun.ares.studio.table" chineseName="系统子交易表" englishName="tsys_subtrans" desc="系统子交易表">
+  <fields fieldName="trans_code" primaryKey="true">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields fieldName="sub_trans_code" primaryKey="true">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields canNull="true" fieldName="sub_trans_name">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields canNull="true" fieldName="rel_serv">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields canNull="true" fieldName="rel_url">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields canNull="true" fieldName="ctrl_flag">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields canNull="true" fieldName="login_flag">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields canNull="true" fieldName="remark">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields canNull="true" fieldName="ext_field_1">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields canNull="true" fieldName="ext_field_2">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+  <fields canNull="true" fieldName="ext_field_3">
+    <extendStrings>
+      <map key="default" value=""/>
+    </extendStrings>
+  </fields>
+</com.hundsun.ares.studio.table:TableInfo>

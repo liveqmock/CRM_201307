@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ASCII"?>
+<service2:ServiceModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:flow2="http://www.hundsun.com/ares/studio/jres/flow2" xmlns:service2="http://www.hundsun.com/ares/studio/jres/service2" name="&#x5c97;&#x4f4d;&#x67e5;&#x627e;&#x670d;&#x52a1;">
+  <inputDefines id="resCode" javaType="String">
+    <defaultValue2/>
+  </inputDefines>
+  <inputDefines id="opCode" javaType="String">
+    <defaultValue2/>
+  </inputDefines>
+  <outputDefines id="position_code" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="position_name" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="parent_code" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="org_id" type="TStringID" javaType="String" name="&#x7ec4;&#x7ec7;&#x6807;&#x8bc6;" stdField="true">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="role_code" type="TCode" javaType="String" name="&#x89d2;&#x8272;&#x4ee3;&#x7801;" stdField="true">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="position_path" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="remark" type="TDesc" javaType="String" name="&#x5907;&#x6ce8;" stdField="true" description="&#x6a21;&#x677f;&#x4f4d;&#x7f6e;">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="ext_field_1" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="ext_field_2" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="ext_field_3" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="role_name" type="TName" javaType="String" name="&#x89d2;&#x8272;&#x540d;&#x79f0;" stdField="true">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="org_name" type="TName" javaType="String" name="&#x7ec4;&#x7ec7;&#x540d;&#x79f0;" stdField="true">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="parent_name" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <unit>
+    <info xsi:type="flow2:LogicUnitInfo"/>
+    <children id="action1" name="action" desc="action">
+      <info xsi:type="flow2:ComponentMethodInfo" fullyQualifiedName="bizframe.authority.position.SysPositionService" methodName="action">
+        <inputParameters id="context" javaType="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext" name="context"/>
+      </info>
+    </children>
+    <children id="resultAssignment1" name="&#x7ed3;&#x679c;&#x8d4b;&#x503c;">
+      <info xsi:type="flow2:ResultAssignmentInfo" resultSet="true" resultType="com.hundsun.jres.interfaces.share.dataset.IDataset" expression="Result:action1.action_result"/>
+    </children>
+  </unit>
+</service2:ServiceModel>

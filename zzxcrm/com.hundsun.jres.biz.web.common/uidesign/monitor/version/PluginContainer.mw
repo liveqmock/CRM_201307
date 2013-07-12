@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hsdoc version="1.1.0">
+  <Windows>
+    <control-MainWindow height="505" name="MainWin" templatePath="window.ftl" width="581">
+      <layout-fit>
+        <control-Panel border="false" height="200" name="pluginContainer" width="300">
+          <Top/>
+          <Bottom/>
+          <Left/>
+          
+          <Right/>
+          <layout-border>
+            <control-TabPanel region="center" border="false" name="TabPanel2" width="300" activeTab="0">
+              <layout-tab>
+                <control-Panel title="JarVersion" border="false" height="200" name="queryJarVersionPanel" width="300">
+                  <Top/>
+                  <Bottom/>
+                  <Left/>
+                  <Right/>
+                  <layout-fit>
+                    <control-Grid region="center" title="Jres的jar包的版本列表" height="200" name="jarVersionGrid" width="300">
+                      <layout-GridToolbar>
+                        <control-GridItem title="jar包名" align="left" name="GridItem1" width="100" sortable="true"/>
+                        <control-GridItem title="manifest版本" align="left" name="GridItem2" width="100" sortable="true"/>
+                        <control-GridItem title="实现版本" align="left" name="GridItem3" width="100" sortable="true"/>
+                        <control-GridItem title="jdk环境" align="left" name="GridItem4" width="100" sortable="true"/>
+                      </layout-GridToolbar>
+                      <Top/>
+                      <Bottom/>
+                      <Left/>
+                      <Right/>
+                    </control-Grid>
+                  </layout-fit>
+                </control-Panel>
+                <control-Panel title="AllPluginVersion" border="false" height="200" name="queryAllPluginInfoPanel" width="300">
+                  <Top/>
+                  <Bottom/>
+                  <Left/>
+                  <Right/>
+                  <layout-fit>
+                    <control-Grid x="176" title="所有插件版本列表" y="41" height="200" name="plugInfoGrid" width="300">
+                      <layout-GridToolbar>
+                        <control-GridItem title="插件名" align="left" name="GridItem5" width="100" sortable="true"/>
+                        <control-GridItem title="版本" align="left" name="GridItem6" width="100" sortable="true"/>
+                        <control-GridItem title="插件的class类" align="left" name="GridItem7" width="100" sortable="true"/>
+                        <control-GridItem title="描述" align="left" name="GridItem8" width="100" sortable="true"/>
+                        <control-GridItem title="依赖的插件" align="left" name="GridItem9" width="100" sortable="true"/>
+                        <control-GridItem title="启动等级" align="left" name="GridItem10" width="100" sortable="true"/>
+                        <control-GridItem title="是否被加载" align="left" name="GridItem11" width="100" sortable="true"/>
+                      </layout-GridToolbar>
+                      <Top/>
+                      <Bottom/>
+                      <Left/>
+                      <Right/>
+                    </control-Grid>
+                  </layout-fit>
+                </control-Panel>
+                <control-Panel title="ClassesVersion" border="false" height="200" name="queryClassesVersionPanel" width="300" html="&lt;h3&gt;待定中......&lt;/h3&gt;">
+                  <layout-absolute/>
+                  <Top/>
+                  <Bottom/>
+                  <Left/>
+                  <Right/>
+                </control-Panel>
+              </layout-tab>
+              <Top/>
+              <Bottom/>
+              <Left/>
+              <Right/>
+            </control-TabPanel>
+          </layout-border>
+        </control-Panel>
+      </layout-fit>
+    </control-MainWindow>
+  </Windows>
+  <Accessory/>
+  <WindowScripts>
+    <WindowScript window="MainWin"><![CDATA[]]></WindowScript>
+  </WindowScripts>
+</hsdoc>

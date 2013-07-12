@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root>
+  <definer>
+    <element_def>
+      <name>标准数据类型</name>
+      <id>root</id>
+      <collection_def>
+        <ref_def>defaultType</ref_def>
+      </collection_def>
+    </element_def>
+    <element_def showAttr="true">
+      <name>系统默认标准类型</name>
+      <id>defaultType</id>
+      <attr_def>
+        <name>名称</name>
+        <id>name</id>
+      </attr_def>
+      <attr_def>
+        <name>ORACLE</name>
+        <id>oracle</id>
+      </attr_def>
+      <attr_def>
+        <name>DB2</name>
+        <id>db2</id>
+      </attr_def>
+      <attr_def type="text">
+        <name>SQL Server</name>
+        <id>sqlserver</id>
+      </attr_def>
+      <attr_def>
+        <name>JAVA</name>
+        <id>java</id>
+      </attr_def>
+      <attr_def>
+        <name>C</name>
+        <id>c</id>
+      </attr_def>
+      <attr_def>
+        <name>MySql</name>
+        <id>mysql</id>
+      </attr_def>
+      <attr_def>
+        <name>Informix</name>
+        <id>informix</id>
+      </attr_def>
+      <attr_def>
+        <name>Sybase</name>
+        <id>sybase</id>
+      </attr_def>
+      <attr_def>
+        <name>JavaScript</name>
+        <id>js</id>
+      </attr_def>
+    </element_def>
+  </definer>
+  <data id="defaultType">
+    <children/>
+    <attrs>
+      <desc><![CDATA[]]></desc>
+      <c><![CDATA[short]]></c>
+      <name><![CDATA[HsTinyint]]></name>
+      <java><![CDATA[short]]></java>
+      <sqlserver><![CDATA[tinyint ]]></sqlserver>
+      <db2><![CDATA[smallint]]></db2>
+      <oracle><![CDATA[number(3,0)]]></oracle>
+    </attrs>
+  </data>
+  <data id="defaultType">
+    <children/>
+    <attrs>
+      <desc><![CDATA[]]></desc>
+      <c><![CDATA[short]]></c>
+      <name><![CDATA[HsShort]]></name>
+      <java><![CDATA[short]]></java>
+      <sqlserver><![CDATA[smallint]]></sqlserver>
+      <db2><![CDATA[smallint]]></db2>
+      <oracle><![CDATA[number(6,0)]]></oracle>
+    </attrs>
+  </data>
+  <data id="defaultType">
+    <children/>
+    <attrs>
+      <desc><![CDATA[]]></desc>
+      <c><![CDATA[int]]></c>
+      <name><![CDATA[HsInteger]]></name>
+      <java><![CDATA[int]]></java>
+      <sqlserver><![CDATA[int]]></sqlserver>
+      <db2><![CDATA[int]]></db2>
+      <oracle><![CDATA[number(10,0)]]></oracle>
+    </attrs>
+  </data>
+  <data id="defaultType">
+    <children/>
+    <attrs>
+      <desc><![CDATA[]]></desc>
+      <c><![CDATA[long]]></c>
+      <name><![CDATA[HsLong]]></name>
+      <java><![CDATA[long]]></java>
+      <sqlserver><![CDATA[decimal(20,0)]]></sqlserver>
+      <db2><![CDATA[bigint]]></db2>
+      <oracle><![CDATA[number(20,0)]]></oracle>
+    </attrs>
+  </data>
+  <data id="defaultType">
+    <children/>
+    <attrs>
+      <desc><![CDATA[]]></desc>
+      <c><![CDATA[float]]></c>
+      <name><![CDATA[HsFloat]]></name>
+      <java><![CDATA[float]]></java>
+      <sqlserver><![CDATA[real]]></sqlserver>
+      <db2><![CDATA[real]]></db2>
+      <oracle><![CDATA[number($L,$P)]]></oracle>
+    </attrs>
+  </data>
+  <data id="defaultType">
+    <children/>
+    <attrs>
+      <desc><![CDATA[]]></desc>
+      <c><![CDATA[double]]></c>
+      <name><![CDATA[HsDouble]]></name>
+      <java><![CDATA[double]]></java>
+      <sqlserver><![CDATA[float]]></sqlserver>
+      <db2><![CDATA[double]]></db2>
+      <oracle><![CDATA[number($L,$P)]]></oracle>
+    </attrs>
+  </data>
+  <data id="defaultType">
+    <children/>
+    <attrs>
+      <desc><![CDATA[]]></desc>
+      <c><![CDATA[double]]></c>
+      <name><![CDATA[HsNumeric]]></name>
+      <java><![CDATA[double]]></java>
+      <sqlserver><![CDATA[decimal($L,$P)]]></sqlserver>
+      <db2><![CDATA[decimal($L,$P)]]></db2>
+      <oracle><![CDATA[number($L,$P)]]></oracle>
+    </attrs>
+  </data>
+  <data id="defaultType">
+    <children/>
+    <attrs>
+      <desc><![CDATA[]]></desc>
+      <c><![CDATA[double]]></c>
+      <name><![CDATA[HsDecimal]]></name>
+      <java><![CDATA[double]]></java>
+      <sqlserver><![CDATA[decimal($L,$P)]]></sqlserver>
+      <db2><![CDATA[decimal($L,$P)]]></db2>
+      <oracle><![CDATA[number($L,$P)]]></oracle>
+    </attrs>
+  </data>
+  <data id="defaultType">
+    <children/>
+    <attrs>
+      <desc><![CDATA[]]></desc>
+      <c><![CDATA[char]]></c>
+      <name><![CDATA[HsChar]]></name>
+      <java><![CDATA[char]]></java>
+      <sqlserver><![CDATA[char]]></sqlserver>
+      <db2><![CDATA[char]]></db2>
+      <oracle><![CDATA[char]]></oracle>
+    </attrs>
+  </data>
+  <data id="defaultType">
+    <children/>
+    <attrs>
+      <desc><![CDATA[]]></desc>
+      <c><![CDATA[char($L)]]></c>
+      <name><![CDATA[HsVarChar]]></name>
+      <java><![CDATA[String]]></java>
+      <sqlserver><![CDATA[varchar($L)]]></sqlserver>
+      <db2><![CDATA[varchar($L)]]></db2>
+      <oracle><![CDATA[varchar2($L)]]></oracle>
+    </attrs>
+  </data>
+  <data id="defaultType">
+    <children/>
+    <attrs>
+      <desc><![CDATA[]]></desc>
+      <c><![CDATA[int]]></c>
+      <name><![CDATA[HsIntDate]]></name>
+      <java><![CDATA[int]]></java>
+      <sqlserver><![CDATA[DATEPART(year, GETDATE()) * 10000 + DATEPART(month, GETDATE()) * 100 + DATEPART(day, GETDATE())]]></sqlserver>
+      <db2><![CDATA[int]]></db2>
+      <oracle><![CDATA[number(8,0)]]></oracle>
+    </attrs>
+  </data>
+  <data id="defaultType">
+    <children/>
+    <attrs>
+      <desc><![CDATA[]]></desc>
+      <c><![CDATA[int]]></c>
+      <name><![CDATA[HsIntTime]]></name>
+      <java><![CDATA[int]]></java>
+      <sqlserver><![CDATA[DATEPART(hour, GETDATE())*10000 + DATEPART(minute ,GETDATE())*100 + DATEPART(second, GETDATE())]]></sqlserver>
+      <db2><![CDATA[int]]></db2>
+      <oracle><![CDATA[number(6,0)]]></oracle>
+    </attrs>
+  </data>
+  <data id="defaultType">
+    <children/>
+    <attrs>
+      <desc><![CDATA[]]></desc>
+      <c><![CDATA[int]]></c>
+      <name><![CDATA[HsIntDatetime]]></name>
+      <java><![CDATA[int]]></java>
+      <sqlserver><![CDATA[GETDATE()]]></sqlserver>
+      <db2><![CDATA[int]]></db2>
+      <oracle><![CDATA[number(14,0)]]></oracle>
+    </attrs>
+  </data>
+  <data id="defaultType">
+    <children/>
+    <attrs>
+      <desc><![CDATA[]]></desc>
+      <c><![CDATA[int]]></c>
+      <name><![CDATA[HsDatetime]]></name>
+      <java><![CDATA[Date]]></java>
+      <sqlserver><![CDATA[datetime]]></sqlserver>
+      <db2><![CDATA[timestamp]]></db2>
+      <oracle><![CDATA[date]]></oracle>
+    </attrs>
+  </data>
+  <data id="defaultType">
+    <children/>
+    <attrs>
+      <name><![CDATA[HsClob]]></name>
+      <oracle><![CDATA[clob]]></oracle>
+      <db2><![CDATA[clob]]></db2>
+      <sqlserver><![CDATA[clob]]></sqlserver>
+      <java><![CDATA[String]]></java>
+      <c><![CDATA[char($L)]]></c>
+    </attrs>
+  </data>
+  <data id="defaultType">
+    <children/>
+    <attrs>
+      <name><![CDATA[HsBlob]]></name>
+      <oracle><![CDATA[blob]]></oracle>
+      <db2><![CDATA[blob]]></db2>
+      <sqlserver><![CDATA[blob]]></sqlserver>
+      <java><![CDATA[byte($L)]]></java>
+      <c><![CDATA[byte($L)]]></c>
+    </attrs>
+  </data>
+  <buttons/>
+  <revisions/>
+</root>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:flow2="http://www.hundsun.com/ares/studio/jres/flow2" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.1/notation" xmlns:service2="http://www.hundsun.com/ares/studio/jres/service2">
+  <service2:ServiceModel xmi:id="_ieEbILlpEd-zWf8YitF-aQ" name="修改岗位" desc="修改岗位" inputCollection="true">
+    <inputDefines xmi:type="flow2:InputParameterDefine" xmi:id="_c5bksLmnEd-zWf8YitF-aQ" id="officeCode" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_5FvKkv3QEd-coM7C16WdFw"/>
+    </inputDefines>
+    <inputDefines xmi:type="flow2:InputParameterDefine" xmi:id="_djIpALmnEd-zWf8YitF-aQ" id="officeName" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_5FvKk_3QEd-coM7C16WdFw"/>
+    </inputDefines>
+    <inputDefines xmi:type="flow2:InputParameterDefine" xmi:id="_eSDkgLmnEd-zWf8YitF-aQ" id="shortName" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_5FvKlP3QEd-coM7C16WdFw"/>
+    </inputDefines>
+    <inputDefines xmi:type="flow2:InputParameterDefine" xmi:id="_fBRa8LmnEd-zWf8YitF-aQ" id="remark" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_5FvKlf3QEd-coM7C16WdFw"/>
+    </inputDefines>
+    <unit xmi:type="flow2:LogicUnit" xmi:id="_ieEbIblpEd-zWf8YitF-aQ">
+      <info xmi:type="flow2:LogicUnitInfo" xmi:id="_ieEbIrlpEd-zWf8YitF-aQ"/>
+      <children xmi:type="flow2:FlowNode" xmi:id="_uImmcLmnEd-zWf8YitF-aQ" id="editService_2" name="editService_2">
+        <info xmi:type="flow2:ComponentMethodInfo" xmi:id="_uImmcrmnEd-zWf8YitF-aQ" fullyQualifiedName="bizframe.authority.office.SysOfficeService" methodName="action">
+          <inputParameters xmi:type="flow2:InputParameter" xmi:id="_erZN0FCSEeCZqvmRaLmqww" id="context" javaType="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext" name="context"/>
+          <outputParameters xmi:type="flow2:OutputParameter" xmi:id="_uImmdLmnEd-zWf8YitF-aQ"/>
+        </info>
+      </children>
+    </unit>
+  </service2:ServiceModel>
+  <notation:Diagram xmi:id="_X44b87mnEd-zWf8YitF-aQ" type="Flow2" element="_ieEbILlpEd-zWf8YitF-aQ" measurementUnit="Pixel">
+    <children xmi:type="notation:Node" xmi:id="_iWRn4LmnEd-zWf8YitF-aQ" type="1001" element="_ieEbIblpEd-zWf8YitF-aQ">
+      <children xmi:type="notation:Node" xmi:id="_iWbY4LmnEd-zWf8YitF-aQ" type="5001">
+        <children xmi:type="notation:Node" xmi:id="_uIvwYLmnEd-zWf8YitF-aQ" type="2001" element="_uImmcLmnEd-zWf8YitF-aQ">
+          <children xmi:type="notation:Node" xmi:id="_uIvwY7mnEd-zWf8YitF-aQ" type="4001"/>
+          <children xmi:type="notation:Node" xmi:id="_uIvwZLmnEd-zWf8YitF-aQ" type="5002">
+            <styles xmi:type="notation:DrawerStyle" xmi:id="_uIvwZbmnEd-zWf8YitF-aQ"/>
+            <styles xmi:type="notation:SortingStyle" xmi:id="_uIvwZrmnEd-zWf8YitF-aQ"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_uIvwZ7mnEd-zWf8YitF-aQ"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_uIvwYbmnEd-zWf8YitF-aQ"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_uIvwYrmnEd-zWf8YitF-aQ"/>
+        </children>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_iWbY4bmnEd-zWf8YitF-aQ"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_iWbY4rmnEd-zWf8YitF-aQ"/>
+      </children>
+      <styles xmi:type="notation:ShapeStyle" xmi:id="_iWRn4bmnEd-zWf8YitF-aQ"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_iWRn4rmnEd-zWf8YitF-aQ"/>
+    </children>
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_X44b9LmnEd-zWf8YitF-aQ"/>
+  </notation:Diagram>
+</xmi:XMI>

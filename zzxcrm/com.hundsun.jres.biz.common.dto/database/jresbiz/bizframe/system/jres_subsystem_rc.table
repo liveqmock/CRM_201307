@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database:TableResourceData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:database="http://www.hundsun.com/ares/studio/jres/database/1.0.0" xmlns:oracle="http://www.hundsun.com/ares/studio/jres/database/oracle/1.0.0" xmlns:stock3="http://www.hundsun.com/ares/studio/jres/database/stock3/1.0.0" name="jres_subsystem_rc" chineseName="系统版本信息表" description="系统版本信息表">
+  <data2 key="Oracle">
+    <value xsi:type="oracle:OracleTableProperty"/>
+  </data2>
+  <data2 key="Stock3">
+    <value xsi:type="stock3:Stock3TableProperty"/>
+  </data2>
+  <columns name="subsystem_name" primaryKey="true" nullable="false">
+    <data2 key="Stock3">
+      <value xsi:type="stock3:Stock3ColumnProperty"/>
+    </data2>
+  </columns>
+  <columns name="subsystem_ver" primaryKey="true" nullable="false">
+    <data2 key="Stock3">
+      <value xsi:type="stock3:Stock3ColumnProperty"/>
+    </data2>
+  </columns>
+  <columns name="begin_time" nullable="false">
+    <data2 key="Stock3">
+      <value xsi:type="stock3:Stock3ColumnProperty"/>
+    </data2>
+  </columns>
+  <columns name="end_time">
+    <data2 key="Stock3">
+      <value xsi:type="stock3:Stock3ColumnProperty"/>
+    </data2>
+  </columns>
+  <columns name="remark">
+    <data2 key="Stock3">
+      <value xsi:type="stock3:Stock3ColumnProperty"/>
+    </data2>
+  </columns>
+  <columns name="trace_info">
+    <data2 key="Stock3">
+      <value xsi:type="stock3:Stock3ColumnProperty"/>
+    </data2>
+  </columns>
+</database:TableResourceData>

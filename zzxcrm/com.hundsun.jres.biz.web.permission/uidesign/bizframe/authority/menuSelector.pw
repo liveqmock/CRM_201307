@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hsdoc version="1.1.0">
+  <Windows>
+    <control-Window title="菜单选择" height="365" name="Window1" width="398">
+      <Top/>
+      <Bottom>
+        <control-ButtonGroup name="ButtonGroup1">
+          <layout-buttonGroup>
+            <control-Button name="addButton" text="确定" width="75" tabIndex="1" icon="bizframe/images/icons/accept.png"/>
+            <control-Button name="Button2" text="取消" width="75" tabIndex="1" icon="bizframe/images/icons/cross.gif"/>
+          </layout-buttonGroup>
+        </control-ButtonGroup>
+      </Bottom>
+      <Left/>
+      <Right/>
+      <layout-fit>
+        <control-Tree border="false" height="200" selectModel="multipleSelect" name="menuTree" width="200">
+          <layout-tree>
+            <control-AsyncTreeNode id="bizroot" dataSet="menuTreeDataSet" hideNode="true" name="menuRootNode" text="根菜单" expanded="true">
+              <layout-tree/>
+            </control-AsyncTreeNode>
+          </layout-tree>
+          <Top>
+            <control-Toolbar name="menuTreeToolbar">
+              <layout-toolbar>
+                <control-Button name="expendTreeBtn" text="展开" width="65" icon="bizframe/images/icons/arrow_out.png"/>
+                <control-Button name="collTreeBtn" text="收缩" width="65" icon="bizframe/images/icons/arrow_in.png"/>
+              </layout-toolbar>
+            </control-Toolbar>
+          </Top>
+          <Bottom/>
+          <Left/>
+          <Right/>
+        </control-Tree>
+      </layout-fit>
+    </control-Window>
+  </Windows>
+  <Accessory>
+    <control-TreeDataSet name="menuTreeDataSet" service="bizframe.authority.menu.menuQuery" usingServiceName="true" window="Window1">
+      <params>
+        <param name="resCode"><![CDATA["bizSetMenu"]]></param>
+        <param name="opCode"><![CDATA["bizMenuFind"]]></param>
+      </params>
+      <fields>
+        <field name="menu_name" type="String" mapping="text"/>
+        <field name="menu_code" type="String" mapping="id"/>
+        <field name="menu_icon" type="String" mapping=""/>
+        <field name="kind_code" type="String" mapping=""/>
+        <field name="kind_name" type="String" mapping=""/>
+        <field name="trans_code" type="String" mapping=""/>
+        <field name="trans_name" type="String" mapping=""/>
+        <field name="sub_trans_code" type="String" mapping=""/>
+        <field name="sub_trans_name" type="String" mapping=""/>
+        <field name="menu_url" type="String" mapping=""/>
+        <field name="menu_arg" type="String" mapping=""/>
+        <field name="tip" type="String" mapping=""/>
+        <field name="hot_key" type="String" mapping=""/>
+        <field name="order_no" type="int" mapping=""/>
+        <field name="open_flag" type="String" mapping=""/>
+        <field name="window_name" type="String" mapping=""/>
+        <field name="parent_name" type="String" mapping=""/>
+        <field name="window_type" type="String" mapping=""/>
+        <field name="remark" type="String" mapping=""/>
+        <field name="parent_code" type="String" mapping="pid"/>
+        <field name="leaf" type="String" mapping="leaf"/>
+        <field name="iconCls" type="String" mapping=""/>
+      </fields>
+    </control-TreeDataSet>
+  </Accessory>
+  <WindowScripts>
+    <WindowScript window="Window1"><![CDATA[private params=null;
+private selectIds=[];
+private selectNames=[];
+private flag=false;
+private orgName=null;
+
+private  tParentCode = "";
+private  tParentName = "";
+
+public function rec(obj){
+	params=obj;
+	if(obj[0] && obj[0].getValue()){
+		selectIds=obj[0].getValue().split(",");//已经选中的id
+	}
+	if(obj[1] && obj[1].getValue()){
+		selectNames=obj[1].getValue().split(",");//已经选中的name
+	}
+	if(obj[2]){
+		flag=obj[2];
+	}
+}
+
+private function contains(selects,value){
+    if(selects){
+    	for(var i=0;i<selects.length;i++){
+			if(value==selects[i]){
+			   return true;
+			}
+	    }
+	}
+	return false;
+}
+private function addSelected(selects,value){
+	if(contains(selects,value)){
+		return;
+	}
+	selects.push(value);
+}
+private function deleteSelected(selects,value){
+    if(selects)
+	for(var i=0;i<selects.length;i++){
+		if(value==selects[i]){
+		   selects.splice(i,1);
+		   return;
+		}
+	}
+}
+
+event menuTree_expandnode(Node node) {
+	var nodes=node.childNodes;
+	if(nodes){
+		for(var i=0;i<nodes.length;i++){
+			if(contains(selectIds,nodes[i].id)){
+				menuTree.setChecked(nodes[i],true);
+			}
+		}
+	}
+}
+
+event menuTree_click(Node node, EventObject e) {
+	tParentCode = node.id;
+	tParentName = node.text;
+	if(!node.attributes.checked){
+		if(flag){
+			var c=menuTree.getChecked();
+			if(c){
+				for(var i=0;i<c.length;i++){
+					menuTree.setChecked(c[i],false);
+				}
+			}
+			selectIds=[];
+			selectNames=[];
+		}
+		addSelected(selectIds,node.id);
+		addSelected(selectNames,node.text);
+	}else{
+		deleteSelected(selectIds,node.id);
+		deleteSelected(selectNames,node.text);
+	}
+}
+
+event expendTreeBtn_click(Button thisComp, Ext.EventObject e) {
+	if(tParentCode==''){
+    	Ext.Msg.alert('提示','请先选择展开的菜单');
+    	return;
+    }
+   	var selectNode=menuTree.getNodeById(tParentCode);
+   	if(!selectNode){
+   		Ext.Msg.alert('提示','请刷新');
+   		return;
+   	}
+    menuTreeDataSet.setParams({isSynTree : true});
+	selectNode.reload();
+	selectNode.expand(true,false);
+	menuTreeDataSet.setParams({isSynTree : false});
+}
+event collTreeBtn_click(Button thisComp, Ext.EventObject e) {
+	if(tParentCode==''){
+    	Ext.Msg.alert('提示','请选择需收缩的菜单');
+    	return;
+    }
+    menuTree.getNodeById(tParentCode).collapse(true,false);
+}
+
+event addButton_click(Button thisComp, Ext.EventObject e) {
+	params[0].setValue(selectIds.toString());
+	params[1].setValue(selectNames.toString());
+	close();
+}
+event Button2_click(Button thisComp, Ext.EventObject e) {
+	close();
+}
+event menuTree_beforeload(Node node) {
+	menuTreeDataSet.setParams({ isSynTree : 'true' });
+}]]></WindowScript>
+  </WindowScripts>
+</hsdoc>

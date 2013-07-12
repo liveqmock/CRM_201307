@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hsdoc version="1.1.0">
+  <Windows>
+    <control-MainWindow height="504" name="MainWin" templatePath="window.ftl" width="579">
+      <layout-fit>
+        <control-Panel border="false" height="200" name="bizKernel" width="300">
+          <Top/>
+          <Bottom/>
+          <Left/>
+          
+          <Right/>
+          <layout-fit>
+            <control-TabPanel width="300" x="227" y="96" name="TabPanel1" border="false" activeTab="0">
+              <layout-tab>
+                <control-Panel width="300" height="200" title="BizServiceVersion" name="bizServicePanel" border="false">
+                  <Top/>
+                  <Bottom/>
+                  <Left/>
+                  <Right/>
+                  <layout-border>
+                    <control-FormPanel region="north" name="queryBizServiceForm" width="300" title="查询条件" height="69">
+                      <Top/>
+                      <Bottom/>
+                      <Left/>
+                      <Right/>
+                      <layout-table columns="3" fullWidth="true">
+                        <control-TextField name="serviceId" fieldLabel="服务ID" labelAlign="right" width="250" maxLength="20" height="22"/>
+                        <control-TextField name="serviceType" fieldLabel="服务类型" labelAlign="right" width="250" maxLength="20" height="22"/>
+                        <control-Button width="75" name="Button1" text="查询"/>
+                      </layout-table>
+                    </control-FormPanel>
+                    <control-Grid region="center" name="Grid1" width="300" title="查询结果" height="200">
+                      <layout-GridToolbar>
+                        <control-GridItem align="left" width="100" sortable="true" title="服务名字" name="GridItem1"/>
+                        <control-GridItem align="left" width="100" sortable="true" title="版本" name="GridItem2"/>
+                        <control-GridItem align="left" width="100" sortable="true" title="功能号" name="GridItem3"/>
+                        <control-GridItem align="left" width="100" sortable="true" title="服务描述" name="GridItem4"/>
+                        <control-GridItem align="left" width="100" sortable="true" title="服务类型" name="GridItem5"/>
+                        <control-GridItem align="left" width="100" sortable="true" title="最后更新时间" name="GridItem6"/>
+                        <control-GridItem align="left" width="100" sortable="true" title="服务状态" name="GridItem7"/>
+                      </layout-GridToolbar>
+                      <Top/>
+                      <Bottom/>
+                      <Left/>
+                      <Right/>
+                    </control-Grid>
+                  </layout-border>
+                </control-Panel>
+              </layout-tab>
+              <Top/>
+              <Bottom/>
+              <Left/>
+              <Right/>
+            </control-TabPanel>
+          </layout-fit>
+        </control-Panel>
+      </layout-fit>
+    </control-MainWindow>
+  </Windows>
+  <Accessory/>
+  <WindowScripts>
+    <WindowScript window="MainWin"><![CDATA[]]></WindowScript>
+  </WindowScripts>
+</hsdoc>

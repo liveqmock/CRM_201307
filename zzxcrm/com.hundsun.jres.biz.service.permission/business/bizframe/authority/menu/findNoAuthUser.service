@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service2:ServiceModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:flow2="http://www.hundsun.com/ares/studio/jres/flow2" xmlns:service2="http://www.hundsun.com/ares/studio/jres/service2" xmi:id="_pQZs4FkSEeCtRMYcoJCgBQ" outputPagination="true" outputCollection="true" name="菜单查找用户未授权">
+  <inputDefines xmi:id="_2OBdEFkWEeCtRMYcoJCgBQ" id="resCode" javaType="String">
+    <defaultValue2 xmi:id="_2OBdEVkWEeCtRMYcoJCgBQ"/>
+  </inputDefines>
+  <inputDefines xmi:id="_4zV5gFkWEeCtRMYcoJCgBQ" id="opCode" javaType="String">
+    <defaultValue2 xmi:id="_4zV5gVkWEeCtRMYcoJCgBQ"/>
+  </inputDefines>
+  <outputDefines id="dep_name" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="branch_name" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="user_type_display" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="lock_status_display" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="user_status_display" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="remark" type="TDesc" javaType="String" name="备注" stdField="true" description="模板位置">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="pass_modify_date" javaType="int">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="modify_date" type="TIntDateTime" javaType="int" name="最后修改时间" stdField="true">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="create_date" type="TIntDateTime" javaType="int" name="创建时间" stdField="true">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="lock_status" type="TDict" javaType="String" name="锁定状态" stdField="true" description="用于表示此用户是否被锁定&#xA;取数据字典[sys_biz_yes_or_no]&#xA;0-否&#xA;1-是">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="user_status" type="TDict" javaType="String" name="用户状态" stdField="true" description="用于表示此用户状态&#xA;取数据字典[sys_biz_user_status]&#xA;0-正常&#xA;1-注销">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="user_type" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="user_pwd" type="TCode" javaType="String" name="登录密码">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="user_name" type="TName" javaType="String" name="用户名称">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="dep_code" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="branch_code" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="user_id" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <unit xmi:id="_pQZs4VkSEeCtRMYcoJCgBQ">
+    <info xsi:type="flow2:LogicUnitInfo" xmi:id="_pQZs4lkSEeCtRMYcoJCgBQ"/>
+    <children xmi:id="_uLo30FkSEeCtRMYcoJCgBQ" id="action1" name="action" desc="action">
+      <info xsi:type="flow2:ComponentMethodInfo" xmi:id="_uLo30lkSEeCtRMYcoJCgBQ" fullyQualifiedName="bizframe.authority.menu.menuService" methodName="action">
+        <inputParameters xmi:id="_uLo301kSEeCtRMYcoJCgBQ" id="context" javaType="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext" name="context"/>
+      </info>
+    </children>
+    <children xmi:id="_uieqgFkSEeCtRMYcoJCgBQ" id="resultAssignment1" name="结果赋值">
+      <info xsi:type="flow2:ResultAssignmentInfo" xmi:id="_uieqgVkSEeCtRMYcoJCgBQ" resultSet="true" resultType="com.hundsun.jres.interfaces.share.dataset.IDataset" expression="Result:action1.action_result"/>
+    </children>
+  </unit>
+</service2:ServiceModel>

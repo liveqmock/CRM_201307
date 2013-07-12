@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service2:ServiceModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:flow2="http://www.hundsun.com/ares/studio/jres/flow2" xmlns:service2="http://www.hundsun.com/ares/studio/jres/service2" xmi:id="_Okh5QGA7EeCuTYL0F4cxFA" outputPagination="true" outputCollection="true" name="菜单查找角色未授权">
+  <inputDefines xmi:id="_iIfBEGA7EeCuTYL0F4cxFA" id="opCode" javaType="String">
+    <defaultValue2 xmi:id="_iIfBEWA7EeCuTYL0F4cxFA"/>
+  </inputDefines>
+  <inputDefines xmi:id="_j6i0kGA7EeCuTYL0F4cxFA" id="resCode" javaType="String">
+    <defaultValue2 xmi:id="_j6i0kWA7EeCuTYL0F4cxFA"/>
+  </inputDefines>
+  <outputDefines id="role_code" type="TCode" javaType="String" name="角色代码" stdField="true">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="role_name" type="TName" javaType="String" name="角色名称" stdField="true">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="right_flag" type="TDict" javaType="String" name="授权标志" stdField="true" description="用于表示该授权的操作授权标志&#xA;取数据字典[sys_biz_right_flag]&#xA;0-禁止&#xA;1-操作&#xA;2-授权&#xA;3-全部">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="rflag_name" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="remark" type="TDesc" javaType="String" name="备注" stdField="true" description="模板位置">
+    <defaultValue2/>
+  </outputDefines>
+  <unit xmi:id="_Okh5QWA7EeCuTYL0F4cxFA">
+    <info xsi:type="flow2:LogicUnitInfo" xmi:id="_Okh5QmA7EeCuTYL0F4cxFA"/>
+    <children xmi:id="_tchrsGA8EeCuTYL0F4cxFA" id="action1" name="action" desc="action">
+      <info xsi:type="flow2:ComponentMethodInfo" xmi:id="_tchrsmA8EeCuTYL0F4cxFA" fullyQualifiedName="bizframe.authority.menu.menuService" methodName="action">
+        <inputParameters xmi:id="_tchrs2A8EeCuTYL0F4cxFA" id="context" javaType="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext" name="context"/>
+      </info>
+    </children>
+    <children xmi:id="_tw-4wGA8EeCuTYL0F4cxFA" id="resultAssignment1" name="结果赋值">
+      <info xsi:type="flow2:ResultAssignmentInfo" xmi:id="_tw-4wWA8EeCuTYL0F4cxFA" resultSet="true" resultType="com.hundsun.jres.interfaces.share.dataset.IDataset" expression="Result:action1.action_result"/>
+    </children>
+  </unit>
+</service2:ServiceModel>

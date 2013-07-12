@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<aar>
+  <info>
+    <id>common</id>
+    <name>JRES平台基础业务框架-服务接口层公共模块</name>
+    <version>1.1.1-SNAPSHOT</version>
+    <provider></provider>
+    <contact></contact>
+    <note></note>
+    <publisher>JRES Builder</publisher>
+    <pubtime>2012-5-23 17:35:30</pubtime>
+    <type></type>
+  </info>
+  <respath>
+    <entry kind="src" type="com.hundsun.ares.studio.jres.moduleroot.business" path="business"/>
+  </respath>
+  <dependencies>
+    <lib id="" version="" type="com.hundsun.ares.studio.jres.core.modulenature"/>
+    <lib id="dto" version="1.1.1-SNAPSHOT" type="com.hundsun.ares.studio.jres.core.modulenature"/>
+  </dependencies>
+  <extended/>
+</aar>

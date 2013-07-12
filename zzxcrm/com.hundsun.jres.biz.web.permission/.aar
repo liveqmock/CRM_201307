@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<aar>
+  <info>
+    <id>permission</id>
+    <name>JRES平台基础业务框架-功能权限表现层模块</name>
+    <version>1.1.1-SNAPSHOT</version>
+    <provider></provider>
+    <contact></contact>
+    <note>此模块包含以下内容：
+菜单管理
+交易功能管理
+角色管理
+权限管理</note>
+    <publisher>JRES Builder</publisher>
+    <pubtime>2012-5-23 17:35:47</pubtime>
+    <type></type>
+  </info>
+  <respath>
+    <entry kind="src" type="com.hundsun.ares.studio.jres.moduleroot.ui" path="uidesign"/>
+  </respath>
+  <dependencies/>
+  <extended/>
+</aar>

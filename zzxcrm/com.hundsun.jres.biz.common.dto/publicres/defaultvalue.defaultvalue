@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata:TypeDefaultValueList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:metadata="http://www.hundsun.com/ares/studio/jres/metadata/1.0.0">
+  <root/>
+  <items xsi:type="metadata:TypeDefaultValue" name="CharDefault">
+    <data key="oracle" value="' '"/>
+    <data key="java" value="' '"/>
+    <data key="db2" value="' '"/>
+    <data key="sqlserver" value="' '"/>
+    <data key="c" value="' '"/>
+  </items>
+  <items xsi:type="metadata:TypeDefaultValue" name="CharDefault0">
+    <data key="oracle" value="'0'"/>
+    <data key="java" value="'0'"/>
+    <data key="db2" value="'0'"/>
+    <data key="sqlserver" value="'0'"/>
+    <data key="c" value="'0'"/>
+  </items>
+  <items xsi:type="metadata:TypeDefaultValue" name="CharDefault1">
+    <data key="oracle" value="'1'"/>
+    <data key="java" value="'1'"/>
+    <data key="db2" value="'1'"/>
+    <data key="sqlserver" value="'1'"/>
+    <data key="c" value="'1'"/>
+  </items>
+  <items xsi:type="metadata:TypeDefaultValue" name="StrDefault">
+    <data key="oracle" value="' '"/>
+    <data key="java" value="&quot; &quot;"/>
+    <data key="db2" value="' '"/>
+    <data key="sqlserver" value="' '"/>
+    <data key="c" value="{0}"/>
+  </items>
+  <items xsi:type="metadata:TypeDefaultValue" name="IntDefault">
+    <data key="oracle" value="0"/>
+    <data key="java" value="0"/>
+    <data key="db2" value="0"/>
+    <data key="sqlserver" value="0"/>
+    <data key="c" value="0"/>
+  </items>
+  <items xsi:type="metadata:TypeDefaultValue" name="NumericDefault">
+    <data key="oracle" value="0.0"/>
+    <data key="java" value="0.0"/>
+    <data key="db2" value="0.0"/>
+    <data key="sqlserver" value="0.0"/>
+    <data key="c" value="0.0"/>
+  </items>
+  <items xsi:type="metadata:TypeDefaultValue" name="DateDefault">
+    <data key="oracle" value="to_number(to_char(sysdate,'yyyymmdd'))"/>
+    <data key="java" value="0"/>
+    <data key="db2" value=""/>
+    <data key="c" value="0"/>
+  </items>
+  <items xsi:type="metadata:TypeDefaultValue" name="TimeDefault">
+    <data key="oracle" value="to_number(to_char(sysdate,'hh24miss'))"/>
+    <data key="java" value="0"/>
+    <data key="db2" value=""/>
+    <data key="c" value="0"/>
+  </items>
+  <items xsi:type="metadata:TypeDefaultValue" name="DateTimeDefault">
+    <data key="oracle" value="sysdate"/>
+    <data key="java" value="0"/>
+    <data key="db2" value="current timestamp"/>
+    <data key="sqlserver" value="getdate()"/>
+    <data key="c" value="0"/>
+  </items>
+  <items xsi:type="metadata:TypeDefaultValue" name="ObjectDefault">
+    <data key="oracle" value="null"/>
+    <data key="db2" value="null"/>
+    <data key="sqlserver" value="null"/>
+    <data key="java" value="null"/>
+    <data key="c" value="null"/>
+  </items>
+</metadata:TypeDefaultValueList>

@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hsdoc version="1.1.0">
+  <Windows>
+    <control-MainWindow height="449" name="MainWin" templatePath="window.ftl" width="703">
+      <layout-fit>
+        <control-Panel height="200" name="Panel1" width="300">
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+          <layout-fit>
+            <control-Grid hasCheckColumn="true" singleSelect="true" enableCellTip="true" width="300" height="200" numberColumnWidth="33" dataSet="cacheInfoDataSet" name="cacheGrid" autoScroll="true">
+              <layout-GridToolbar>
+                <control-GridItem align="left" width="150" title="ID" dataIndex="cacheID" sortable="true" tipText="ID" name="GridItem4"/>
+                <control-GridItem align="left" width="100" title="大小" dataIndex="size" sortable="true" tipText="大小" name="GridItem1"/>
+                <control-GridItem align="left" width="100" title="状态" dataIndex="state" sortable="true" tipText="状态" name="GridItem5"/>
+                <control-GridItem align="left" width="100" title="已命中次数" dataIndex="hits" sortable="true" tipText="已命中次数" name="GridItem2"/>
+                <control-GridItem align="left" width="100" title="未命中次数" dataIndex="misses" sortable="true" tipText="未命中次数" name="GridItem3"/>
+              </layout-GridToolbar>
+              <Top>
+                <control-Toolbar name="Toolbar1">
+                  <layout-toolbar>
+                    <control-Button name="Button1" text="刷新" width="100" icon="bizframe/images/icons/refresh.png" tabIndex="1"/>
+                    <control-Button name="registBtn" text="注册" width="100" icon="bizframe/images/icons/user_in.png"/>
+                    <control-Button name="unregistBtn" text="注销" width="100" icon="bizframe/images/icons/user_out.png"/>
+                  </layout-toolbar>
+                </control-Toolbar>
+              </Top>
+              <Bottom/>
+              <Left/>
+              <Right/>
+            </control-Grid>
+          </layout-fit>
+        </control-Panel>
+      </layout-fit>
+    </control-MainWindow>
+    <control-Window title="缓存注册" height="178" name="Window1" width="360">
+      <Top/>
+      <Bottom/>
+      <Left/>
+      <Right/>
+      <layout-fit>
+        <control-FormPanel autoload="false" height="93" submitService="com.hundsun.jres.manage" name="Form" width="300" fileUpload="true">
+          <Top/>
+          <Bottom>
+            <control-ButtonGroup name="ButtonGroup1">
+              <layout-buttonGroup>
+                <control-Button name="registerButton" text="注册" width="100" tabIndex="1" icon="bizframe/images/icons/add.png"/>
+                <control-Button name="closeButton" text="关闭" width="100" tabIndex="1" icon="bizframe/images/close.png"/>
+              </layout-buttonGroup>
+            </control-ButtonGroup>
+          </Bottom>
+          <Left/>
+          <Right/>
+          <layout-table columns="2" fullWidth="true">
+            <control-TextField labelWidth="70" regexText="输入含非法字符" fieldName="cacheID" width="100.0%" height="22" regex="/^[A-Za-z0-9_]+$/" fieldLabel="缓存ID" colspan="2" name="cacheIdField" allowBlank="false" blankSuffixLabel=""/>
+            <control-HiddenField defaultValue="registerCache" fieldName="commandName" name="commandNameHiddenField"/>
+            <control-FileUploadField labelWidth="70" fieldName="cacheDefinition" width="100.0%" fieldLabel="缓存文件" allowBlank="false" name="fileUploadField" tabIndex="1" blankSuffixLabel=""/>
+            <control-HiddenField defaultValue="jres.cacheManager" fieldName="pluginId" name="pluginIdHiddenField"/>
+            <control-HiddenField defaultValue="bizSysStatus" fieldName="resCode" name="resCodeHiddenField"/>
+            <control-HiddenField defaultValue="registerCache" fieldName="opCode" name="opCodeHiddenField"/>
+            <control-HiddenField fieldName="nodeName" name="nodeNameHiddenField"/>
+          </layout-table>
+        </control-FormPanel>
+      </layout-fit>
+    </control-Window>
+  </Windows>
+  <Accessory>
+    <control-DataSet name="cacheInfoDataSet" service="com.hundsun.jres.manage" usingServiceName="true" window="MainWin">
+      <params>
+        <param name="resCode"><![CDATA["bizSysStatus"]]></param>
+        <param name="opCode"><![CDATA["getCacheInfo"]]></param>
+        <param name="pluginId"><![CDATA["jres.cacheManager"]]></param>
+        <param name="commandName"><![CDATA["getCacheInfo"]]></param>
+        <param name="nodeName"><![CDATA[nodeName]]></param>
+      </params>
+      <fields>
+        <field name="size" type="String"/>
+        <field name="hits" type="String"/>
+        <field name="misses" type="String"/>
+        <field name="cacheID" type="String"/>
+        <field name="state" type="String"/>
+      </fields>
+    </control-DataSet>
+  </Accessory>
+  <WindowScripts>
+    <WindowScript window="MainWin"><![CDATA[service com.hundsun.jres.manage as Mg;
+private nodeName = getStringFromURLPath("nodeName");
+
+public function getNodeName(){
+   return nodeName;
+}
+event registBtn_click(Button thisComp, Ext.EventObject e) {
+  var window1 = new Window1();  
+  window1.show();
+}
+
+event unregistBtn_click(Button thisComp, Ext.EventObject e) {
+   if(cacheGrid.getSelectionData()){
+       var data = cacheGrid.getSelectionData().data;
+       var params = {
+                   cacheID : data.cacheID,
+                   commandName : "unregisterCache",
+                   pluginId : "jres.cacheManager",
+                   resCode : "bizSysStatus",
+                   opCode : "unregisterCache" ,
+                   nodeName : nodeName                  
+                 };  
+       Mg.asynExecute(params
+                 ,function(result,opts){
+                    if(result.returnCode == 0){
+                       cacheInfoDataSet.load();
+                    }else{
+                       Ext.Msg.alert('错误',result.errorInfo);
+                    }   
+                 },function(result,opts){
+                    Ext.Msg.alert('错误',"网络连接失败");
+                 }
+                );         
+                    
+  }else{
+      Ext.Msg.show({
+          title:'提示',
+          msg: '请先选中一行再操作',
+          buttons: Ext.Msg.OK,
+          icon: Ext.MessageBox.WARNING
+     });
+  }
+}
+
+
+event GridItem5_renderer(Object value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store) {
+    if(value == "true"){
+      return "正常";
+    }else if(value == "false"){
+      return "异常";
+    }else{
+      return value;
+    }
+}
+
+
+event Button1_click(Button thisComp, Ext.EventObject e) {
+   cacheInfoDataSet.load();
+}]]></WindowScript>
+    <WindowScript window="Window1"><![CDATA[private nodeName = MainWin.getNodeName();
+
+public function setNodeName(value){
+      nodeName = value;
+}
+event closeButton_click(Button thisComp, Ext.EventObject e) {
+  close();
+}
+event registerButton_click(Button thisComp, Ext.EventObject e) {
+   if(Form.isValid()){
+       var cacheId = cacheIdField.getValue();
+       var cachePath = fileUploadField.getValue();
+       if(null != cacheId && "" != cacheId && null !=cachePath&&""!=cachePath){
+           var params = {
+                   commandName : "registerCache",
+                   pluginId : "jres.cacheManager",
+                   resCode : "bizSysStatus",
+                   opCode : "registerCache",
+                   nodeName : nodeName                   
+                 };
+           nodeNameHiddenField.setValue(nodeName);
+           Form.doFileUpload(); 
+       }else{
+         Ext.Msg.alert('错误',"发现有输入项不符合规范!");
+       }
+                             
+   }else{
+      Ext.Msg.alert('错误',"发现有输入项不符合规范!");
+   }
+   
+}
+event Form_uploadSuccess(object response) {
+ 
+     if(response.returnCode == 0){
+        MainWin.cacheInfoDataSet.load();
+        
+     }else{
+       Ext.Msg.alert('错误',response.errorInfo);
+     }
+     
+      close();
+}
+event Form_uploadFailure(object response) {
+    Ext.Msg.alert('错误',response.errorInfo);
+    close();
+}]]></WindowScript>
+  </WindowScripts>
+</hsdoc>

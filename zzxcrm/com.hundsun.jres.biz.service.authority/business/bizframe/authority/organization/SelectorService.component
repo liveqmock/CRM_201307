@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.hundsun.ares.studio.jres.component:HSComponent_EMF xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:com.hundsun.ares.studio.jres.component="http://com.hundsun.ares.studio.jres.hsobject" name="组织管理服务构件"
+    className="com.hundsun.jres.bizframe.core.authority.selector.SelectorService">
+  <methodList methodName="findBranchCodeTree" alias="findBranchCodeTree" desc="findBranchCodeTree">
+    <paramList id="branchCode" name="branchCode" type="String" rename="branchCode"/>
+    <paramList id="context" name="context" type="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext"
+        rename="context">
+      <children id="globalMap" type="java.util.Map&lt;java.lang.String,java.lang.Object>"/>
+      <children id="flow" type="java.util.Map&lt;java.lang.Object,java.lang.Object>"/>
+    </paramList>
+    <result id="findBranchCodeTree_result" type="java.util.List&lt;com.hundsun.jres.bizframe.core.authority.bean.SysBranch>"/>
+    <resultDescList id="branchCode" type="String" rename="branchCode"/>
+    <resultDescList id="branchLevel" type="String" rename="branchLevel"/>
+    <resultDescList id="branchName" type="String" rename="branchName"/>
+    <resultDescList id="shortName" type="String" rename="shortName"/>
+    <resultDescList id="parentCode" type="String" rename="parentCode"/>
+    <resultDescList id="branchPath" type="String" rename="branchPath"/>
+    <resultDescList id="remark" type="String" rename="remark"/>
+    <resultDescList id="extField1" type="String" rename="extField1"/>
+    <resultDescList id="extField2" type="String" rename="extField2"/>
+    <resultDescList id="extField3" type="String" rename="extField3"/>
+    <resultDescList id="name" type="String" rename="name"/>
+    <resultDescList id="indexLocation" type="String" rename="indexLocation"/>
+    <resultDescList id="parentId" type="String" rename="parentId"/>
+    <resultDescList id="id" type="String" rename="id"/>
+    <resultDescList id="type" type="String" rename="type"/>
+    <resultDescList id="belongGroup" type="com.hundsun.jres.bizframe.service.protocal.UserGroupDTP"
+        rename="belongGroup"/>
+    <resultDescList id="management" type="com.hundsun.jres.bizframe.service.protocal.UserGroupDTP"
+        rename="management"/>
+    <resultDescList id="responsible" type="com.hundsun.jres.bizframe.service.protocal.UserGroupDTP"
+        rename="responsible"/>
+  </methodList>
+  <methodList methodName="listDepByBranch" alias="listDepByBranch" desc="listDepByBranch">
+    <paramList id="branchCode" name="branchCode" type="String" rename="branchCode"/>
+    <paramList id="start" name="start" type="int" rename="start"/>
+    <paramList id="limit" name="limit" type="int" rename="limit"/>
+    <paramList id="context" name="context" type="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext"
+        rename="context">
+      <children id="globalMap" type="java.util.Map&lt;java.lang.String,java.lang.Object>"/>
+      <children id="flow" type="java.util.Map&lt;java.lang.Object,java.lang.Object>"/>
+    </paramList>
+    <result id="listDepByBranch_result" type="com.hundsun.jres.interfaces.share.dataset.IDataset"/>
+  </methodList>
+  <methodList methodName="listOfficeByDep" alias="listOfficeByDep" desc="listOfficeByDep">
+    <paramList id="context" name="context" type="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext"
+        rename="context">
+      <children id="globalMap" type="java.util.Map&lt;java.lang.String,java.lang.Object>"/>
+      <children id="flow" type="java.util.Map&lt;java.lang.Object,java.lang.Object>"/>
+    </paramList>
+    <result id="listOfficeByDep_result" type="java.util.List&lt;com.hundsun.jres.bizframe.core.authority.bean.SysOffice>"/>
+    <resultDescList id="officeCode" type="String" rename="officeCode"/>
+    <resultDescList id="officeName" type="String" rename="officeName"/>
+    <resultDescList id="shortName" type="String" rename="shortName"/>
+    <resultDescList id="parentCode" type="String" rename="parentCode"/>
+    <resultDescList id="branchCode" type="String" rename="branchCode"/>
+    <resultDescList id="depCode" type="String" rename="depCode"/>
+    <resultDescList id="officePath" type="String" rename="officePath"/>
+    <resultDescList id="remark" type="String" rename="remark"/>
+    <resultDescList id="extField1" type="String" rename="extField1"/>
+    <resultDescList id="extField2" type="String" rename="extField2"/>
+    <resultDescList id="extField3" type="String" rename="extField3"/>
+    <resultDescList id="name" type="String" rename="name"/>
+    <resultDescList id="indexLocation" type="String" rename="indexLocation"/>
+    <resultDescList id="parentId" type="String" rename="parentId"/>
+    <resultDescList id="id" type="String" rename="id"/>
+    <resultDescList id="type" type="String" rename="type"/>
+  </methodList>
+  <methodList methodName="listGUserByDep" alias="listGUserByDep" desc="listGUserByDep">
+    <paramList id="branch_code" name="branch_code" type="String"/>
+    <paramList id="start" name="start" type="int"/>
+    <paramList id="limit" name="limit" type="int"/>
+    <paramList id="context" name="context" type="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext"/>
+    <result id="listGUserByDep_result" type="com.hundsun.jres.interfaces.share.dataset.IDataset"/>
+  </methodList>
+  <methodList methodName="listUserAuthedRoles" alias="listUserAuthedRoles" desc="查询用户有权的角色">
+    <paramList id="context" name="context" type="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext"
+        rename="context">
+      <children id="globalMap" type="java.util.Map&lt;java.lang.String,java.lang.Object>"/>
+      <children id="flow" type="java.util.Map&lt;java.lang.Object,java.lang.Object>"/>
+    </paramList>
+    <result id="listUserAuthedRoles_result" type="com.hundsun.jres.interfaces.share.dataset.IDataset"/>
+  </methodList>
+  <methodList methodName="listUserAuthedPositions" alias="listUserAuthedPositions"
+      desc="listUserAuthedPositions">
+    <paramList id="context" name="context" type="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext"/>
+    <result id="listUserAuthedPositions_result" type="com.hundsun.jres.interfaces.share.dataset.IDataset"/>
+  </methodList>
+  <methodList methodName="findSubOrgsByOrgId" alias="findSubOrgsByOrgId" desc="findSubOrgsByOrgId">
+    <paramList id="context" name="context" type="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext"
+        rename="context">
+      <children id="globalMap" type="java.util.Map&lt;java.lang.String,java.lang.Object>"/>
+      <children id="flow" type="java.util.Map&lt;java.lang.Object,java.lang.Object>"/>
+    </paramList>
+    <result id="findSubOrgsByOrgId_result" type="com.hundsun.jres.interfaces.share.dataset.IDataset"/>
+  </methodList>
+</com.hundsun.ares.studio.jres.component:HSComponent_EMF>

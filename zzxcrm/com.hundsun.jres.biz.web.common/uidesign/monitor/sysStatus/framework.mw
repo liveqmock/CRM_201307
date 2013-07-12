@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hsdoc version="1.1.0">
+  <Windows>
+    <control-MainWindow height="481" name="MainWin" templatePath="window.ftl" width="944">
+      <layout-fit>
+        <control-Panel border="false" height="200" name="frameworkPanel" width="300">
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+          <layout-fit>
+            <control-TabPanel border="false" name="frameworkTabPanel" width="300" activeTab="0">
+              <layout-tab>
+                <control-Panel title="所有插件信息" border="false" height="200" autoScroll="true" name="allpluginPanel" width="300">
+                  <Top/>
+                  <Bottom/>
+                  <Left/>
+                  <Right/>
+                  <layout-fit>
+                    <control-Grid enableCellTip="true" width="300" height="200" numberColumnWidth="33" dataSet="pluginsDataset" name="pluginsGrid" border="false" autoScroll="true">
+                      <layout-GridToolbar>
+                        <control-GridItem align="left" width="100" title="插件名" dataIndex="serviceId" sortable="true" tipText="插件名" name="GridItem1"/>
+                        <control-GridItem align="left" width="100" title="版本" dataIndex="version" sortable="true" tipText="版本" name="GridItem2"/>
+                        <control-GridItem align="left" width="100" title="依赖项" dataIndex="dependServices" sortable="true" tipText="所依赖的其他插件" name="GridItem4"/>
+                        <control-GridItem align="left" width="100" title="启动等级" dataIndex="loadLevel" sortable="true" tipText="启动等级" name="GridItem5"/>
+                        <control-GridItem align="left" width="100" title="是否被加载" dataIndex="loaded" sortable="true" tipText="是否被加载" name="GridItem6"/>
+                        <control-GridItem align="left" width="100" title="实现类" dataIndex="serviceClass" sortable="true" tipText="插件实现类" name="GridItem7"/>
+                        <control-GridItem align="left" width="100" title="描述" dataIndex="note" sortable="true" tipText="描述" name="GridItem3"/>
+                      </layout-GridToolbar>
+                      <Top/>
+                      <Bottom/>
+                      <Left/>
+                      <Right/>
+                    </control-Grid>
+                  </layout-fit>
+                </control-Panel>
+              </layout-tab>
+              <Top/>
+              <Bottom/>
+              <Left/>
+              <Right/>
+            </control-TabPanel>
+          </layout-fit>
+        </control-Panel>
+      </layout-fit>
+    </control-MainWindow>
+  </Windows>
+  <Accessory>
+    <control-DataSet name="pluginsDataset" service="com.hundsun.jres.manage" usingServiceName="true" window="MainWin">
+      <params>
+        <param name="nodeName"><![CDATA[nodeName]]></param>
+        <param name="commandName"><![CDATA["queryAllPluginInfo"]]></param>
+        <param name="pluginId"><![CDATA["jres.framework"]]></param>
+        <param name="resCode"><![CDATA["bizSysStatus"]]></param>
+        <param name="opCode"><![CDATA["queryAllPluginInfo"]]></param>
+      </params>
+      <fields>
+        <field name="id" type="String"/>
+        <field name="serviceId" type="String"/>
+        <field name="loaded" type="String"/>
+        <field name="text" type="String"/>
+        <field name="dependServices" type="String"/>
+        <field name="serviceClass" type="String"/>
+        <field name="pid" type="String"/>
+        <field name="leaf" type="String"/>
+        <field name="isStarted" type="String"/>
+        <field name="note" type="String"/>
+        <field name="loadLevel" type="String"/>
+        <field name="version" type="String"/>
+      </fields>
+    </control-DataSet>
+  </Accessory>
+  <WindowScripts>
+    <WindowScript window="MainWin"><![CDATA[private nodeName = getStringFromURLPath("nodeName");
+
+event GridItem6_renderer(Object value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store) {
+   if(value == "true"){
+       return "加载";
+   }else if(value == "false"){
+       return "未加载";
+   }else{
+       return value;
+   }
+}
+
+event Button1_click(Button thisComp, Ext.EventObject e) {
+   var win1 = new Window1();
+   win1.show();
+}]]></WindowScript>
+  </WindowScripts>
+</hsdoc>

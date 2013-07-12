@@ -1,0 +1,1 @@
+genServiceAdapter.bat D:\Developer\jres\V1.1 E:\SVNROOT\hundsun\dev\jres\branches\test\com.hundsun.jres.biz.service.authority\..\. com.hundsun.jres.biz.service.authority

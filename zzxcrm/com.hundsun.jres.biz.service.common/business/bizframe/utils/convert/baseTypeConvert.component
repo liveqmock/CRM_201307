@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.hundsun.ares.studio.jres.component:HSComponent_EMF xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:com.hundsun.ares.studio.jres.component="http://com.hundsun.ares.studio.jres.hsobject" name="基本类型转换"
+    className="com.hundsun.jres.bizframe.common.utils.convert.BaseTypeConvertUtil">
+  <methodList methodName="object2String" alias="object2String" desc="object2String">
+    <paramList id="o" name="o" type="Object"/>
+    <result id="object2String_result" type="String"/>
+  </methodList>
+</com.hundsun.ares.studio.jres.component:HSComponent_EMF>

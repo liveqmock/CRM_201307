@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database:TableResourceData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:database="http://www.hundsun.com/ares/studio/jres/database/1.0.0" xmlns:oracle="http://www.hundsun.com/ares/studio/jres/database/oracle/1.0.0" xmlns:stock3="http://www.hundsun.com/ares/studio/jres/database/stock3/1.0.0" name="tsys_user_message" chineseName="用户消息表" description="用户消息表">
+  <data2 key="Oracle">
+    <value xsi:type="oracle:OracleTableProperty"/>
+  </data2>
+  <data2 key="Stock3">
+    <value xsi:type="stock3:Stock3TableProperty"/>
+  </data2>
+  <columns name="msg_id" primaryKey="true" nullable="false">
+    <data2 key="Stock3">
+      <value xsi:type="stock3:Stock3ColumnProperty"/>
+    </data2>
+  </columns>
+  <columns name="msg_title">
+    <data2 key="Stock3">
+      <value xsi:type="stock3:Stock3ColumnProperty"/>
+    </data2>
+  </columns>
+  <columns name="send_user_id" nullable="false">
+    <data2 key="Stock3">
+      <value xsi:type="stock3:Stock3ColumnProperty"/>
+    </data2>
+  </columns>
+  <columns name="receive_user_id" nullable="false">
+    <data2 key="Stock3">
+      <value xsi:type="stock3:Stock3ColumnProperty"/>
+    </data2>
+  </columns>
+  <columns name="send_date">
+    <data2 key="Stock3">
+      <value xsi:type="stock3:Stock3ColumnProperty"/>
+    </data2>
+  </columns>
+  <columns name="msg_content">
+    <data2 key="Stock3">
+      <value xsi:type="stock3:Stock3ColumnProperty"/>
+    </data2>
+  </columns>
+  <columns name="msg_type" nullable="false">
+    <data2 key="Stock3">
+      <value xsi:type="stock3:Stock3ColumnProperty"/>
+    </data2>
+  </columns>
+  <columns name="msg_isred" nullable="false">
+    <data2 key="Stock3">
+      <value xsi:type="stock3:Stock3ColumnProperty"/>
+    </data2>
+  </columns>
+  <columns name="ext_field">
+    <data2 key="Stock3">
+      <value xsi:type="stock3:Stock3ColumnProperty"/>
+    </data2>
+  </columns>
+</database:TableResourceData>

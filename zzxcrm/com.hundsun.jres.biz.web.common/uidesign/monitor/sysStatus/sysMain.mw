@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hsdoc version="1.1.0">
+  <Windows>
+    <control-MainWindow height="497" name="MainWin" templatePath="window.ftl" width="654">
+      <layout-fit>
+        <control-Panel border="false" height="200" name="sysMainPanel" width="300">
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+          <layout-border>
+            <control-Panel region="west" title="管理节点列表" height="180" name="connNodePanel" width="200" split="true">
+              <Top/>
+              <Bottom/>
+              <Left/>
+              <Right/>
+              <layout-fit>
+                <control-Tree border="false" rootFlag="false" height="300" name="connNodeTree" width="200">
+                  <layout-tree>
+                    <control-AsyncTreeNode id="local" dataSet="TreeDataSet1" qtip="管理树根节点" name="AsyncTreeNode1" text="管理树根节点">
+                      <layout-tree/>
+                    </control-AsyncTreeNode>
+                  </layout-tree>
+                  <Top>
+                    <control-Toolbar name="Toolbar1">
+                      <layout-toolbar>
+                        <control-Button name="Button1" text="展开" width="75" icon="bizframe/images/icons/arrow_out.png" tabIndex="1"/>
+                        <control-Button name="Button2" text="收缩" width="75" icon="bizframe/images/icons/arrow_in.png" tabIndex="1"/>
+                        <control-Button name="Button3" text="刷新" width="75" icon="bizframe/images/icons/refresh.png" tabIndex="1"/>
+                      </layout-toolbar>
+                    </control-Toolbar>
+                  </Top>
+                  <Bottom/>
+                  <Left/>
+                  <Right/>
+                </control-Tree>
+              </layout-fit>
+            </control-Panel>
+            <control-TabPanel region="center" name="pluginInfoTab" width="300" activeTab="0">
+              <layout-tab>
+                <control-Panel title="主页" border="false" height="200" name="Panel1" width="300">
+                  <layout-absolute/>
+                  <Top/>
+                  <Bottom/>
+                  <Left/>
+                  <Right/>
+                </control-Panel>
+              </layout-tab>
+              <Top/>
+              <Bottom/>
+              <Left/>
+              <Right/>
+            </control-TabPanel>
+          </layout-border>
+        </control-Panel>
+      </layout-fit>
+    </control-MainWindow>
+  </Windows>
+  <Accessory>
+    <control-TreeDataSet name="TreeDataSet1" service="com.hundsun.jres.manage" usingServiceName="true" window="MainWin">
+      <params>
+        <param name="resCode"><![CDATA["bizSysStatus"]]></param>
+        <param name="opCode"><![CDATA["queryConnectedNodes"]]></param>
+        <param name="pluginId"><![CDATA["jres.cepcore"]]></param>
+        <param name="commandName"><![CDATA["queryConnectedNodes"]]></param>
+        <param name="nodeName"><![CDATA["local"]]></param>
+        <param name="_rootId"><![CDATA["local"]]></param>
+      </params>
+      <fields>
+        <field name="text" type="String" mapping="text"/>
+        <field name="id" type="String" mapping="id"/>
+        <field name="pid" type="String" mapping="pid"/>
+      </fields>
+    </control-TreeDataSet>
+  </Accessory>
+  <WindowScripts>
+    <WindowScript window="MainWin"><![CDATA[private function  getNodeName(node){
+      var nodeName = null;
+      if(node.attributes._oldText){
+            nodeName = node.attributes._oldText;
+      }else{
+            var text = node.text;
+            var _address = node.attributes.address;
+            var _port = node.attributes.port;
+            var start = text.indexOf("["+_address+":"+_port+"]");
+            nodeName = text.substring(0,start);
+      }
+      return nodeName;  
+}
+
+
+private function onClickMenuItem(node){
+		if(node.attributes.serviceId =="jres.configurationHelper"){
+		
+		}else if(node.attributes.serviceId == "jres.framework"){
+		   var nodeName = node.attributes.pid;
+		   var url = ctxPath + "/monitor/sysStatus/framework.mw?resCode=bizSysStatus&opCode=bizframeworkStatus&nodeName="+nodeName;
+		}else if(node.attributes.serviceId == "jres.logFactory"){
+		
+		}else if(node.attributes.serviceId == "jres.bizLogFactory"){
+		
+		}else if(node.attributes.serviceId == "jres.dbSessionFactory"){
+		   var nodeName = node.attributes.pid;
+		   var url = ctxPath + "/monitor/sysStatus/DataBase.mw?resCode=bizSysStatus&opCode=bizDBStatus&nodeName="+nodeName;
+		}else if(node.attributes.serviceId == "jres.mockBizService"){
+		
+		}else if(node.attributes.serviceId == "jres.t2channel"){
+		
+		}else if(node.attributes.serviceId == "jres.localService"){
+		
+		}else if(node.attributes.serviceId == "jres.cepcore"){
+		  var nodeName = node.attributes.pid;
+		  var url = ctxPath + "/monitor/sysStatus/CEPPlugin.mw?opCode=bizCEPStatus&resCode=bizSysStatus&nodeName="+nodeName;
+		}else if(node.attributes.serviceId == "jres.bizkernel_plugin"){
+		  var nodeName = node.attributes.pid;
+		  var url = ctxPath + "/monitor/sysStatus/BizKernel.mw?opCode=bizKernelStatus&resCode=bizSysStatus&nodeName="+nodeName;
+		}else if(node.attributes.serviceId == "jres.filterlog"){
+		
+		}else if(node.attributes.serviceId == "jres.cacheManager"){
+		  var nodeName = node.attributes.pid;
+		  var url = ctxPath + "/monitor/sysStatus/Cache.mw?opCode=bizCacheStatus&resCode=bizSysStatus&nodeName="+nodeName;
+		}else if(node.attributes.serviceId == "jres.uiengine.jsonservice"){
+		 
+		}else if(node.attributes.serviceId == "jres.uiengine.engineservice"){
+		
+		}else if(node.attributes.serviceId == "jres.uiengine.fileupload"){
+		  
+		}
+		addTab(node.id,node.text,url,node);
+}
+private function addTab(id,name,url,node){
+    
+    if(!node.isLeaf()){
+       return;
+    }else{
+       if(url==""||null==url){
+         Ext.Msg.alert('提示','尚无此插件的监控页面');
+        return;
+       }
+    }
+    
+    var tab = pluginInfoTab.getComponent(id);
+    if(tab){
+        pluginInfoTab.setActiveTab(tab);
+    }else{
+    	var tab_length = pluginInfoTab.items.length;
+    	if(tab_length>6){
+    		Ext.Msg.alert("提示","打开TAB页个数过多，请关闭不用的TAB页提高访问速度");
+        	return;
+        }
+	    var html='<iframe  id="'+id+'_monitor_iframe" width="100%" height="100%" frameborder="0"  style="border-style:none #ffffff solid" src="'+url.replace("%26", "&")+'"></iframe>';
+	  	pluginInfoTab.add({
+	            id:id,
+	            iconCls:'icon_'+id,
+	            title: name,
+	            html : html,
+	            //autoLoad :{url:url,scripts: true},
+	            activeTab: id,
+	            closable:true
+   	 	}).show();
+	  	 
+ 	}
+}
+
+event MainWin_complete() {
+    connNodeTree.on('beforeload',function(node){
+        var tempName = node.attributes.nodeName;
+        var _nodeName = (node.id=="local")?node.id:tempName;
+        var _commandName = (node.id=="local")?"queryConnectedNodes":"queryAllPluginInfo";
+        var _pluginId = (node.id=="local")?"jres.cepcore":"jres.framework";
+        var rootId = (node.id=="local")?node.id:tempName;
+        var loader = connNodeTree.loader;
+        loader.baseParams.nodeName = _nodeName;
+        loader.baseParams.commandName = _commandName;
+        loader.baseParams.pluginId = _pluginId;
+       // loader.baseParams._rootId = rootId;
+        connNodeTree.setRootId(rootId);
+    });
+}  
+
+event connNodeTree_click(Node node, EventObject e) {
+  onClickMenuItem(node);
+}
+event connNodeTree_beforeappend(Tree tree, Node parent, Node node) {
+        
+        if(node.attributes.serviceId =="jres.configurationHelper"){
+		     node.hidden = true;
+		}else if(node.attributes.serviceId == "jres.framework"){
+		     
+		}else if(node.attributes.serviceId == "jres.logFactory"){
+		     node.hidden = true;
+		}else if(node.attributes.serviceId == "jres.bizLogFactory"){
+		     node.hidden = true;
+		}else if(node.attributes.serviceId == "jres.dbSessionFactory"){
+		}else if(node.attributes.serviceId == "jres.mockBizService"){
+		    node.hidden = true;
+		}else if(node.attributes.serviceId == "jres.t2channel"){
+		    node.hidden = true;
+		}else if(node.attributes.serviceId == "jres.localService"){
+		    node.hidden = true;
+		}else if(node.attributes.serviceId == "jres.cepcore"){
+		}else if(node.attributes.serviceId == "jres.bizkernel_plugin"){
+		}else if(node.attributes.serviceId == "jres.filterlog"){
+		   node.hidden = true;
+		}else if(node.attributes.serviceId == "jres.cacheManager"){
+		}else if(node.attributes.serviceId == "jres.uiengine.jsonservice"){
+		   node.hidden = true;
+		}else if(node.attributes.serviceId == "jres.uiengine.engineservice"){
+		   node.hidden = true;
+		}else if(node.attributes.serviceId == "jres.uiengine.fileupload"){
+		   node.hidden = true;
+		}else{
+		   //node.hidden = true;
+		}
+		/*
+		var _oldText = node.attributes.text;
+        var _address = node.attributes.address;
+        var _port = node.attributes.port;
+        node.setText(_oldText+"["+_address+":"+_port+"]");
+        node.attributes._oldText = _oldText;
+        */
+        
+}
+
+event Button1_click(Button thisComp, Ext.EventObject e) {
+    var selectNode=connNodeTree.getNodeById("local");
+   	if(!selectNode){
+   		Ext.Msg.alert('提示','请刷新');
+   		return;
+   	}
+    //TreeDataSet1.setParams({isSynTree : true});
+	selectNode.reload();
+	selectNode.expand(true,true);
+}
+event Button2_click(Button thisComp, Ext.EventObject e) {
+   connNodeTree.getNodeById("local").collapse(true,false);
+}
+event Button3_click(Button thisComp, Ext.EventObject e) {
+  connNodeTree.collapseAll();
+  connNodeTree.getNodeById("local").reload();
+}]]></WindowScript>
+  </WindowScripts>
+</hsdoc>

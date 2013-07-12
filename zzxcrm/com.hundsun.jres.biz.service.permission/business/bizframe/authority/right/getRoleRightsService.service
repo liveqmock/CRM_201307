@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service2:ServiceModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:flow2="http://www.hundsun.com/ares/studio/jres/flow2" xmlns:service2="http://www.hundsun.com/ares/studio/jres/service2" name="获取角色所有的权限">
+  <inputDefines id="roleCode" javaType="String">
+    <defaultValue2/>
+  </inputDefines>
+  <outputDefines id="trans_code" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="sub_trans_code" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="right_flag" type="TDict" javaType="String" name="授权标志" stdField="true" description="0-操作角色&#xA;1-授权角色">
+    <defaultValue2/>
+  </outputDefines>
+  <unit>
+    <info xsi:type="flow2:LogicUnitInfo"/>
+    <children id="getRoleRights1" name="getRoleRights" desc="getRoleRights">
+      <info xsi:type="flow2:ComponentMethodInfo" fullyQualifiedName="bizframe.authority.right.rightQuryComponent" methodName="getRoleRights">
+        <inputParameters id="context" javaType="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext" name="context"/>
+      </info>
+    </children>
+    <children id="resultAssignment1" name="结果赋值">
+      <info xsi:type="flow2:ResultAssignmentInfo" assignmentType="REFERENCE" resultType="com.hundsun.jres.interfaces.share.dataset.IDataset" expression="Result:getRoleRights1.getRoleRights_result"/>
+    </children>
+  </unit>
+</service2:ServiceModel>

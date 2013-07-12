@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hsdoc version="1.1.0">
+  <Windows>
+    <control-Window title="Window1" height="335" name="Window1" draggable="true" width="652">
+      <Top>
+        <control-Toolbar name="Toolbar1">
+          <layout-toolbar>
+            <control-Button name="Button4" text="转发" width="75" tabIndex="2"/>
+            <control-Button name="Button5" text="回复" width="75" tabIndex="3"/>
+          </layout-toolbar>
+        </control-Toolbar>
+      </Top>
+      <Bottom/>
+      <Left/>
+      <Right/>
+      <layout-border>
+        <control-Panel border="false" region="center" height="200" name="Panel4" width="300">
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+          <layout-border>
+            <control-FormPanel region="center" height="120" frame="true" name="FormPanel1" width="441">
+              <layout-form labelAlign="right" labelWidth="50">
+                <control-TextField fieldLabel="收件人" height="22" name="TextField1" width="250" tabIndex="4"/>
+                <control-TextField fieldLabel="发件人" height="22" name="TextField2" width="250" tabIndex="5"/>
+                <control-TextField fieldLabel="标   题" height="22" name="TextField3" width="250" tabIndex="6"/>
+                <control-TextArea height="184" name="TextArea1" showLabel="false" width="632" tabIndex="7"/>
+              </layout-form>
+              <Top/>
+              <Bottom/>
+              <Left/>
+              <Right/>
+            </control-FormPanel>
+          </layout-border>
+        </control-Panel>
+      </layout-border>
+    </control-Window>
+  </Windows>
+  <Accessory/>
+  <WindowScripts>
+    <WindowScript window="Window1"><![CDATA[var record = null;
+//转发
+event Button4_click(Button thisComp, Ext.EventObject e) {
+	setVisible(false);//原窗口隐藏
+	Ext.QuickTips.init();
+	
+	var sendEmailWin=new sendEmail();
+	sendEmailWin.window.show();
+
+}
+//回复
+event Button5_click(Button thisComp, Ext.EventObject e) {
+    setVisible(false);//原窗口隐藏
+    var sendEmailWin=new sendEmail();
+	sendEmailWin.window.show();
+}
+]]></WindowScript>
+  </WindowScripts>
+</hsdoc>

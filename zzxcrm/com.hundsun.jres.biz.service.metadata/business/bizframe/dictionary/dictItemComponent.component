@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.hundsun.ares.studio.jres.component:HSComponent_EMF xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:com.hundsun.ares.studio.jres.component="http://com.hundsun.ares.studio.jres.hsobject" name="数据字典构件"
+    constructCode="com.hundsun.jres.bizframe.core.system.cache.BizframeDictCache.getInstance()"
+    className="com.hundsun.jres.bizframe.core.system.cache.BizframeDictCache">
+  <methodList methodName="getSysDictItemDataset" alias="getSysDictItemDataset" desc="getSysDictItemDataset">
+    <paramList id="requestDataset" name="requestDataset" type="com.hundsun.jres.interfaces.share.dataset.IDataset"
+        rename="requestDataset"/>
+    <result id="getSysDictItemDataset_result" type="com.hundsun.jres.interfaces.share.dataset.IDataset"/>
+  </methodList>
+</com.hundsun.ares.studio.jres.component:HSComponent_EMF>

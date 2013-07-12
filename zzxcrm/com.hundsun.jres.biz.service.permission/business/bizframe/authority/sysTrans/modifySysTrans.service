@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:flow2="http://www.hundsun.com/ares/studio/jres/flow2" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.1/notation" xmlns:service2="http://www.hundsun.com/ares/studio/jres/service2">
+  <service2:ServiceModel xmi:id="_9px8sLmkEd-HA-4dp6BNLw" name="修改交易">
+    <inputDefines xmi:type="flow2:InputParameterDefine" xmi:id="_cc89QLyKEd-RFcZryA9HKA" id="resCode" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_cc89QbyKEd-RFcZryA9HKA"/>
+    </inputDefines>
+    <inputDefines xmi:type="flow2:InputParameterDefine" xmi:id="_dY2k0LyKEd-RFcZryA9HKA" id="opCode" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_dY2k0byKEd-RFcZryA9HKA"/>
+    </inputDefines>
+    <unit xmi:type="flow2:LogicUnit" xmi:id="_9px8sbmkEd-HA-4dp6BNLw">
+      <info xmi:type="flow2:LogicUnitInfo" xmi:id="_9px8srmkEd-HA-4dp6BNLw"/>
+      <children xmi:type="flow2:FlowNode" xmi:id="_fBdE4LyLEd-RFcZryA9HKA" id="action_3" name="action_3">
+        <info xmi:type="flow2:ComponentMethodInfo" xmi:id="_fBdE4ryLEd-RFcZryA9HKA" fullyQualifiedName="bizframe.authority.sysTrans.SysTransService" methodName="action">
+          <inputParameters xmi:type="flow2:InputParameter" xmi:id="_fBdE47yLEd-RFcZryA9HKA" id="context" javaType="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext" name="context"/>
+          <outputParameters xmi:type="flow2:OutputParameter" xmi:id="_fBdE5LyLEd-RFcZryA9HKA" id="action_result" javaType="com.hundsun.jres.interfaces.share.dataset.IDataset"/>
+        </info>
+      </children>
+    </unit>
+  </service2:ServiceModel>
+  <notation:Diagram xmi:id="_9swYM7mkEd-HA-4dp6BNLw" type="Flow2" element="_9px8sLmkEd-HA-4dp6BNLw" measurementUnit="Pixel">
+    <children xmi:type="notation:Node" xmi:id="_lOXywLodEd-ozqvoZdkxVQ" type="1001" element="_9px8sbmkEd-HA-4dp6BNLw">
+      <children xmi:type="notation:Node" xmi:id="_lOXyw7odEd-ozqvoZdkxVQ" type="5001">
+        <children xmi:type="notation:Node" xmi:id="_fBdE5byLEd-RFcZryA9HKA" type="2001" element="_fBdE4LyLEd-RFcZryA9HKA">
+          <children xmi:type="notation:Node" xmi:id="_fBdE6LyLEd-RFcZryA9HKA" type="4001"/>
+          <children xmi:type="notation:Node" xmi:id="_fBdE6byLEd-RFcZryA9HKA" type="5002">
+            <styles xmi:type="notation:DrawerStyle" xmi:id="_fBdE6ryLEd-RFcZryA9HKA"/>
+            <styles xmi:type="notation:SortingStyle" xmi:id="_fBdE67yLEd-RFcZryA9HKA"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_fBdE7LyLEd-RFcZryA9HKA"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_fBdE5ryLEd-RFcZryA9HKA" fontName="宋体"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_fBdE57yLEd-RFcZryA9HKA"/>
+        </children>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_lOXyxLodEd-ozqvoZdkxVQ"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_lOXyxbodEd-ozqvoZdkxVQ"/>
+      </children>
+      <styles xmi:type="notation:ShapeStyle" xmi:id="_lOXywbodEd-ozqvoZdkxVQ" fontName="宋体"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_lOXywrodEd-ozqvoZdkxVQ"/>
+    </children>
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_9swYNLmkEd-HA-4dp6BNLw"/>
+  </notation:Diagram>
+</xmi:XMI>

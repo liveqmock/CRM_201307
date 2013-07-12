@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hsdoc version="1.1.0">
+  <Windows>
+    <control-MainWindow height="406" name="MainWin" templatePath="window.ftl" width="635">
+      <layout-fit>
+        <control-Panel title="在线用户" height="200" name="Panel1" width="300">
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+          <layout-border>
+            <control-Grid region="center" height="327" dataSet="DataSet1" name="Grid1" width="633">
+              <layout-GridToolbar>
+                <control-GridItem title="用户编号" align="left" dataIndex="userId" name="GridItem1" sortable="true" width="100"/>
+                <control-GridItem title="用户昵称" align="left" dataIndex="userName" name="GridItem2" sortable="true" width="100"/>
+                <control-GridItem title="登录时间" align="left" dataIndex="lastLoginDate" name="GridItem3" sortable="true" width="160"/>
+                <control-GridItem title="登录IP" align="left" dataIndex="lastLoginIp" name="GridItem5" width="150" sortable="true"/>
+                <control-GridItem title="所属组织" align="left" dataIndex="orgName" name="GridItem4" width="150" sortable="true"/>
+              </layout-GridToolbar>
+              <Top/>
+              <Bottom/>
+              <Left/>
+              <Right/>
+            </control-Grid>
+            <control-FormPanel region="north" height="90" name="FormPanel1" width="300">
+              <Top/>
+              <Bottom>
+                <control-Toolbar name="Toolbar2">
+                  <layout-toolbar>
+                    <control-Button name="queryUser_btn" text="查询" width="75" icon="bizframe/images/icons/search.png" tabIndex="2"/>
+                    <control-Button tipText="清空查询条件" name="Button22" text="重置" width="75" icon="bizframe/images/icons/refresh.png" tabIndex="3"/>
+                  </layout-toolbar>
+                </control-Toolbar>
+              </Bottom>
+              <Left/>
+              <Right/>
+              <layout-table columns="2" fullWidth="true">
+                <control-TextField labelAlign="right" regexText="非法输入，只能输入英文、数字和下划线" fieldName="userId" width="250" height="22" regex="/^[\w\u4e00-\u9fa5\.\/\,\，\.\。\“\（\）\(\)\-\s]*$/" fieldLabel="用户编号" name="TextField2" tabIndex="4"/>
+                <control-TextField labelAlign="right" regexText="非法输入，只能输入中文、英文、小括号和下划线" fieldName="userName" width="250" height="22" regex="/^[\w\u4e00-\u9fa5\.\/\,\，\.\。\“\（\）\(\)\-\s]*$/" fieldLabel="用户昵称" name="TextField1" tabIndex="5"/>
+              </layout-table>
+            </control-FormPanel>
+          </layout-border>
+        </control-Panel>
+      </layout-fit>
+    </control-MainWindow>
+  </Windows>
+  <Accessory>
+    <control-DataSet start="start" name="DataSet1" service="bizframe.authority.user.viewOnlineUsers" limit="limit" usingServiceName="true" window="MainWin">
+      <params>
+        <param name="resCode"><![CDATA["bizOnlineUsers"]]></param>
+        <param name="opCode"><![CDATA["viewOnlineUsers"]]></param>
+      </params>
+      <fields>
+        <field name="userId" type="String"/>
+        <field name="userName" type="String"/>
+        <field name="orgId" type="String"/>
+        <field name="orgName" type="String"/>
+        <field name="lastLoginDate" type="String"/>
+        <field name="lastLoginIp" type="String"/>
+      </fields>
+    </control-DataSet>
+  </Accessory>
+  <WindowScripts>
+    <WindowScript window="MainWin"><![CDATA[include bizframe.js.checkRight;  	//引入公共权限校验js文件
+
+
+
+event MainWin_complete() {
+  
+}
+event GridItem3_renderer(Object value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store) {
+    var index = value.indexOf("/");
+    var v1 = value.substring(0,index);
+    var v2 = value.substring(index+1,value.length);
+    var now = "";
+    now = v1.substring(0,4)+"-"; 
+    now += v1.substring(4,6)+"-";
+    now += v1.substring(6,8)+" ";
+    
+    if(v2.length == 6){
+      now += v2.substring(0,2)+":";
+      now += v2.substring(2,4)+":";
+      now += v2.substring(4,6)+"";
+    }else if(v2.length == 5){
+      now += v2.substring(0,1)+":";
+      now += v2.substring(1,3)+":";
+      now += v2.substring(3,5)+"";
+    }  
+    return now;
+}
+event Button22_click(Button thisComp, Ext.EventObject e) {
+   FormPanel1.getForm().reset();
+}
+event queryUser_btn_click(Button thisComp, Ext.EventObject e) {
+ 
+  if(FormPanel1.isValid()){
+	     var p = FormPanel1.getValues();
+	     DataSet1.clearParams();
+	     Ext.apply(p,{
+	                   resCode:'bizOnlineUsers',
+	                   opCode:'viewOnlineUsers'
+	                 }
+	    );
+	    DataSet1.setParams(p);
+	    DataSet1.load();
+  }else{
+        Ext.Msg.alert('提示', '发现有输入项不符合规范');
+  }	     
+}]]></WindowScript>
+  </WindowScripts>
+</hsdoc>

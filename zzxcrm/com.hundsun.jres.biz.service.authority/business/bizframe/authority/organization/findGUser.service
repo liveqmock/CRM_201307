@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:flow2="http://www.hundsun.com/ares/studio/jres/flow2" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.1/notation" xmlns:service2="http://www.hundsun.com/ares/studio/jres/service2">
+  <service2:ServiceModel xmi:id="__inEEL_aEd-GMYSLWtlX4A" name="根据机构查找用户" desc="根据机构查找用户" outputCollection="true" outputCollectionID="def_listGUserByDep">
+    <inputDefines xmi:type="flow2:InputParameterDefine" xmi:id="_NBJooL_iEd-GMYSLWtlX4A" id="branch_code" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_NBJoob_iEd-GMYSLWtlX4A"/>
+    </inputDefines>
+    <inputDefines xmi:type="flow2:InputParameterDefine" xmi:id="_NBJoor_iEd-GMYSLWtlX4A" id="start" javaType="int">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_NBJoo7_iEd-GMYSLWtlX4A"/>
+    </inputDefines>
+    <inputDefines xmi:type="flow2:InputParameterDefine" xmi:id="_NBJopL_iEd-GMYSLWtlX4A" id="limit" javaType="int">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_NBJopb_iEd-GMYSLWtlX4A"/>
+    </inputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_7f2OoMCdEd-tuI0sk8AW8g" id="branch_code" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_7f2OocCdEd-tuI0sk8AW8g"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_AF2wcMCeEd-tuI0sk8AW8g" id="user_id" type="TStringID" javaType="String" name="用户标识">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_AF2wccCeEd-tuI0sk8AW8g"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_BO3m8MCeEd-tuI0sk8AW8g" id="user_name" type="TName" javaType="String" name="用户名称">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_BO3m8cCeEd-tuI0sk8AW8g"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_Dao68MCeEd-tuI0sk8AW8g" id="branch_name" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_Dao68cCeEd-tuI0sk8AW8g"/>
+    </outputDefines>
+    <unit xmi:type="flow2:LogicUnit" xmi:id="__inEEb_aEd-GMYSLWtlX4A">
+      <info xmi:type="flow2:LogicUnitInfo" xmi:id="__inEEr_aEd-GMYSLWtlX4A"/>
+      <children xmi:type="flow2:FlowNode" xmi:id="_2bcgoMCdEd-tuI0sk8AW8g" id="listGUserByDep" name="listGUserByDep">
+        <info xmi:type="flow2:ComponentMethodInfo" xmi:id="_2bcgosCdEd-tuI0sk8AW8g" fullyQualifiedName="bizframe.authority.organization.SelectorService" methodName="listGUserByDep">
+          <inputParameters xmi:type="flow2:InputParameter" xmi:id="_2bcgo8CdEd-tuI0sk8AW8g" id="branch_code" javaType="String" name="branch_code"/>
+          <inputParameters xmi:type="flow2:InputParameter" xmi:id="_2bcgpMCdEd-tuI0sk8AW8g" id="start" javaType="int" name="start"/>
+          <inputParameters xmi:type="flow2:InputParameter" xmi:id="_2bcgpcCdEd-tuI0sk8AW8g" id="limit" javaType="int" name="limit"/>
+          <inputParameters xmi:type="flow2:InputParameter" xmi:id="_2bcgpsCdEd-tuI0sk8AW8g" id="context" javaType="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext" name="context"/>
+          <outputParameters xmi:type="flow2:OutputParameter" xmi:id="_2bcgp8CdEd-tuI0sk8AW8g" id="listGUserByDep_result" javaType="com.hundsun.jres.interfaces.share.dataset.IDataset"/>
+        </info>
+      </children>
+      <children xmi:type="flow2:FlowNode" xmi:id="_2641sMCdEd-tuI0sk8AW8g" id="resultAssignment1" name="resultAssignment1">
+        <info xmi:type="flow2:ResultAssignmentInfo" xmi:id="_2641scCdEd-tuI0sk8AW8g" resultSet="true" resultType="com.hundsun.jres.interfaces.share.dataset.IDataset" expression="Result:listGUserByDep.listGUserByDep_result"/>
+      </children>
+    </unit>
+  </service2:ServiceModel>
+  <notation:Diagram xmi:id="_AS5RgL_bEd-GMYSLWtlX4A" type="Flow2" element="__inEEL_aEd-GMYSLWtlX4A" measurementUnit="Pixel">
+    <children xmi:type="notation:Node" xmi:id="_CnULML_bEd-GMYSLWtlX4A" type="1001" element="__inEEb_aEd-GMYSLWtlX4A">
+      <children xmi:type="notation:Node" xmi:id="_CndVIL_bEd-GMYSLWtlX4A" type="5001">
+        <children xmi:type="notation:Node" xmi:id="_2bcgqMCdEd-tuI0sk8AW8g" type="2001" element="_2bcgoMCdEd-tuI0sk8AW8g">
+          <children xmi:type="notation:Node" xmi:id="_2bmRoMCdEd-tuI0sk8AW8g" type="4001"/>
+          <children xmi:type="notation:Node" xmi:id="_2bmRocCdEd-tuI0sk8AW8g" type="5002">
+            <styles xmi:type="notation:DrawerStyle" xmi:id="_2bmRosCdEd-tuI0sk8AW8g"/>
+            <styles xmi:type="notation:SortingStyle" xmi:id="_2bmRo8CdEd-tuI0sk8AW8g"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_2bmRpMCdEd-tuI0sk8AW8g"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_2bcgqcCdEd-tuI0sk8AW8g" fontName="Segoe UI"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2bcgqsCdEd-tuI0sk8AW8g"/>
+        </children>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_CndVIb_bEd-GMYSLWtlX4A"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_CndVIr_bEd-GMYSLWtlX4A"/>
+      </children>
+      <styles xmi:type="notation:ShapeStyle" xmi:id="_CnULMb_bEd-GMYSLWtlX4A" fontName="Segoe UI"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CnULMr_bEd-GMYSLWtlX4A"/>
+    </children>
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_AS5Rgb_bEd-GMYSLWtlX4A"/>
+  </notation:Diagram>
+</xmi:XMI>

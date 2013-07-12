@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.hundsun.ares.studio.jres.component:HSComponent_EMF xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:com.hundsun.ares.studio.jres.component="http://com.hundsun.ares.studio.jres.hsobject" name="数据库访问构件"
+    className="com.hundsun.jres.bizframe.common.support.DatabaseSupport">
+  <methodList methodName="getSysDate" alias="getSysDate" desc="getSysDate">
+    <result id="getSysDate_result" type="java.util.Date"/>
+    <resultDescList id="year" type="int" rename="year"/>
+    <resultDescList id="month" type="int" rename="month"/>
+    <resultDescList id="date" type="int" rename="date"/>
+    <resultDescList id="hours" type="int" rename="hours"/>
+    <resultDescList id="minutes" type="int" rename="minutes"/>
+    <resultDescList id="seconds" type="int" rename="seconds"/>
+    <resultDescList id="time" type="long" rename="time"/>
+  </methodList>
+</com.hundsun.ares.studio.jres.component:HSComponent_EMF>

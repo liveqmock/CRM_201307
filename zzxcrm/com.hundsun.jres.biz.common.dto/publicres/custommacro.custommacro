@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root>
+  <definer>
+    <element_def>
+      <name>用户自定义宏</name>
+      <id>root</id>
+      <collection_def>
+        <ref_def>custommacro</ref_def>
+      </collection_def>
+    </element_def>
+    <element_def showAttr="true" mainAttr="name">
+      <name>自定义宏</name>
+      <id>custommacro</id>
+      <attr_def>
+        <name>名称</name>
+        <id>name</id>
+      </attr_def>
+      <attr_def>
+        <name>参数列表</name>
+        <id>param</id>
+      </attr_def>
+      <attr_def type="longtext">
+        <name>内容</name>
+        <id>content</id>
+      </attr_def>
+      <attr_def type="longtext">
+        <name>宏说明</name>
+        <id>desc</id>
+      </attr_def>
+    </element_def>
+  </definer>
+  <data id="custommacro">
+    <children/>
+    <attrs>
+      <name><![CDATA[判断记录存在]]></name>
+      <content><![CDATA[select count(*) 
+into @rowcount 
+from dual
+where exists(select * 
+             from [表名]
+             where [条件]);]]></content>
+      <desc><![CDATA[]]></desc>
+      <param><![CDATA[]]></param>
+    </attrs>
+  </data>
+  <data id="custommacro">
+    <children/>
+    <attrs>
+      <name><![CDATA[记录不存在]]></name>
+      <content><![CDATA[when NO_DATA_FOUND then
+  @error_no   := <E>[错误ID];
+  @error_info := substrb(<SP>[错误信息], 1, 500);
+  return (@error_no);]]></content>
+    </attrs>
+  </data>
+  <data id="custommacro">
+    <children/>
+    <attrs>
+      <name><![CDATA[记录已存在]]></name>
+      <content><![CDATA[when DUP_VAL_ON_INDEX then
+  @error_no := <E>[错误ID];
+  @error_info := substrb(<SP>[错误信息], 1, 500);
+  return (@error_no);]]></content>
+    </attrs>
+  </data>
+  <data id="custommacro">
+    <children/>
+    <attrs>
+      <name><![CDATA[报错返回]]></name>
+      <content><![CDATA[@error_no   := <E>[错误ID];
+@error_info := substrb(<SP>[错误信息], 1, 500);
+
+return(@error_no);]]></content>
+    </attrs>
+  </data>
+  <data id="custommacro">
+    <children/>
+    <attrs>
+      <name><![CDATA[自定义报错返回]]></name>
+      <content><![CDATA[when others then
+  @error_no   := <E>[错误ID];
+  @error_info := substrb(<SP>[错误信息], 1, 500);
+  @error_id   := SQLCODE;
+  @error_sysinfo := substr(SQLERRM,1,500);
+  return (@error_no);]]></content>
+    </attrs>
+  </data>
+  <data id="custommacro">
+    <children/>
+    <attrs>
+      <name><![CDATA[SQL报错返回]]></name>
+      <content><![CDATA[@error_no   := <E>[错误ID];
+@error_info := substrb(<SP>[错误信息], 1, 500);
+@error_id   := SQLCODE;
+@error_sysinfo := substr(SQLERRM,1,500);
+return(@error_no);]]></content>
+    </attrs>
+  </data>
+  <data id="custommacro">
+    <children/>
+    <attrs>
+      <name><![CDATA[游标报错返回]]></name>
+      <content><![CDATA[@error_no   := <E>[错误ID];
+@error_info := substrb(<SP>[错误信息], 1, 500);
+@error_id   := SQLCODE;
+@error_sysinfo := substr(SQLERRM,1,500);
+open @cursor for select @error_no as error_no, @error_info as error_info,@error_id as error_id,@error_sysinfo as error_sysinfo from dual;
+
+return(@error_no);]]></content>
+    </attrs>
+  </data>
+  <data id="custommacro">
+    <children/>
+    <attrs>
+      <name><![CDATA[记录不存在报错返回]]></name>
+      <content><![CDATA[if @rowcount = 0 then
+  @error_no   := <E>[错误ID];
+  @error_info := substrb(<SP>[错误信息], 1, 500);
+  return(@error_no);
+end if;]]></content>
+    </attrs>
+  </data>
+  <data id="custommacro">
+    <children/>
+    <attrs>
+      <name><![CDATA[记录存在报错返回]]></name>
+      <content><![CDATA[if @rowcount > 0 then
+  @error_no := <E>[错误ID];
+  @error_info := substrb(<SP>[错误信息], 1, 500);
+  return(@error_no);
+end if;]]></content>
+    </attrs>
+  </data>
+  <data id="custommacro">
+    <children/>
+    <attrs>
+      <name><![CDATA[更新记录不存在]]></name>
+      <content><![CDATA[if SQL%NOTFOUND then
+  @error_no   := <E>[错误ID];
+  @error_info := substrb(<SP>[错误信息], 1, 500);
+  rollback;
+  return(@error_no);
+end if;]]></content>
+    </attrs>
+  </data>
+  <data id="custommacro">
+    <children/>
+    <attrs>
+      <name><![CDATA[事务内记录不存在]]></name>
+      <content><![CDATA[when NO_DATA_FOUND then
+  @error_no   := <E>[错误ID];
+  @error_info := substrb(<SP>[错误信息], 1, 500);
+  @error_id   := SQLCODE;
+  @error_sysinfo := substr(SQLERRM,1,500);
+  rollback;
+  return (@error_no);]]></content>
+    </attrs>
+  </data>
+  <data id="custommacro">
+    <children/>
+    <attrs>
+      <name><![CDATA[事务内记录已存在]]></name>
+      <content><![CDATA[when DUP_VAL_ON_INDEX then
+  rollback;
+  @error_no   := <E>[错误ID];
+  @error_info := substrb(<SP>[错误信息], 1, 500);
+  @error_id   := SQLCODE;
+  @error_sysinfo := substr(SQLERRM,1,500);
+  return (@error_no);]]></content>
+    </attrs>
+  </data>
+  <data id="custommacro">
+    <children/>
+    <attrs>
+      <name><![CDATA[事务内业务报错返回]]></name>
+      <content><![CDATA[@error_no   := <E>[错误ID];
+@error_info := substrb(<SP>[错误信息], 1, 500);
+rollback;
+return(@error_no);]]></content>
+    </attrs>
+  </data>
+  <data id="custommacro">
+    <children/>
+    <attrs>
+      <name><![CDATA[事务内报错返回]]></name>
+      <content><![CDATA[@error_no   := <E>[错误ID];
+@error_info := substrb(<SP>[错误信息], 1, 500);
+@error_id   := SQLCODE;
+@error_sysinfo := substr(SQLERRM,1,500);
+rollback;
+return(@error_no);]]></content>
+    </attrs>
+  </data>
+  <data id="custommacro">
+    <children/>
+    <attrs>
+      <name><![CDATA[事务内游标报错返回]]></name>
+      <content><![CDATA[@error_no   := <E>[错误ID];
+@error_info := substrb(<SP>[错误信息], 1, 500);
+@error_id   := SQLCODE;
+@error_sysinfo := substr(SQLERRM,1,500);
+rollback;
+open @cursor for select @error_no as error_no, @error_info as error_info,@error_id as error_id,@error_sysinfo as error_sysinfo from dual;
+
+return(@error_no);]]></content>
+    </attrs>
+  </data>
+  <data id="custommacro">
+    <children/>
+    <attrs>
+      <name><![CDATA[事务内记录不存在报错返回]]></name>
+      <content><![CDATA[if @rowcount = 0 then
+  rollback;
+  @error_no   := <E>[错误ID];
+  @error_info := substrb(<SP>[错误信息], 1, 500);
+  return(@error_no);
+end if;]]></content>
+    </attrs>
+  </data>
+  <data id="custommacro">
+    <children/>
+    <attrs>
+      <name><![CDATA[事务内记录存在报错返回]]></name>
+      <content><![CDATA[if @rowcount > 0 then
+  rollback;
+  @error_no := <E>[错误ID];
+  @error_info := substrb(<SP>[错误信息], 1, 500);
+  return(@error_no);
+end if;]]></content>
+    </attrs>
+  </data>
+  <data id="custommacro">
+    <children/>
+    <attrs>
+      <name><![CDATA[事务内自定义异常返回]]></name>
+      <content><![CDATA[when others then
+  @error_no   := <E>[错误ID];
+  @error_info := substrb(<SP>[错误信息], 1, 500);
+  @error_id   := SQLCODE;
+  @error_sysinfo := substr(SQLERRM,1,500);
+  rollback;
+  return (@error_no);]]></content>
+    </attrs>
+  </data>
+  <data id="custommacro">
+    <children/>
+    <attrs>
+      <name><![CDATA[事务回滚]]></name>
+      <content><![CDATA[rollback;]]></content>
+    </attrs>
+  </data>
+  <data id="custommacro">
+    <children/>
+    <attrs>
+      <name><![CDATA[游标返回]]></name>
+      <content><![CDATA[begin
+  open @cursor for @sql_str;
+exception
+  when others then
+    @error_id   := SQLCODE;
+    @error_sysinfo := substr(SQLERRM,1,500);
+    open @cursor for select <E>[错误ID] as error_no,<SP>[错误信息] as error_info,@error_id as error_id,@error_sysinfo as error_sysinfo,@error_pathinfo as error_pathinfo from dual;
+    return <E>[错误ID];
+end;
+return 0;]]></content>
+    </attrs>
+  </data>
+  <data id="custommacro">
+    <children/>
+    <attrs>
+      <name><![CDATA[过程报错返回]]></name>
+      <content><![CDATA[open @cursor for select <E>[错误ID] as error_no,<SP>[错误信息] as error_info,@error_id as error_id,@error_sysinfo as error_sysinfo,@error_pathinfo as error_pathinfo from dual;
+return [错误ID];]]></content>
+    </attrs>
+  </data>
+  <data id="custommacro">
+    <children/>
+    <attrs>
+      <name><![CDATA[重置结束日期过程]]></name>
+      <content><![CDATA[if ([开始日期] > 0 and [时间间隔] > 0) then
+  if (to_char(to_date([开始日期],'YYYYMMDD')+[时间间隔],'YYYYMMDD') < [结束日期]) then
+    [结束日期] := to_char(to_date([开始日期],'YYYYMMDD')+[时间间隔],'YYYYMMDD');
+  end if;
+end if;]]></content>
+      <param><![CDATA[[开始日期][结束日期][时间间隔]]]></param>
+    </attrs>
+  </data>
+  <buttons/>
+</root>

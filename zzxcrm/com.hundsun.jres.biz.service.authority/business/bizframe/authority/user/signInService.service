@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service2:ServiceModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:flow2="http://www.hundsun.com/ares/studio/jres/flow2" xmlns:service2="http://www.hundsun.com/ares/studio/jres/service2" name="获取用户登录信息服务">
+  <inputDefines id="loginName" javaType="String" name="登陆ID">
+    <defaultValue2/>
+  </inputDefines>
+  <outputDefines id="user_id" type="TLongCode" javaType="String" name="授权用户" stdField="true">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="user_name" type="TName" javaType="String" name="用户名称" stdField="true">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="user_pwd" type="TName" javaType="String" name="用户密码" stdField="true">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="org_id" type="TOrgCode" javaType="String" name="所属组织" stdField="true">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="user_type" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="user_status" type="TDict" javaType="String" name="用户状态" stdField="true" description="用于表示此用户状态&#xA;字典[sys_biz_user_status]&#xA;0-正常&#xA;1-注销&#xA;2-禁用">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="lock_status" type="TDict" javaType="String" name="锁定状态" stdField="true" description="用于表示此用户是否被锁定&#xA;字典[sys_biz_lock_status]&#xA;0-签退&#xA;1-登录&#xA;2-非正常签退&#xA;3-锁定">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="create_date" type="TIntDateTime" javaType="int" name="分配时间" stdField="true">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="modify_date" type="TIntDateTime" javaType="int" name="最后修改时间" stdField="true">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="pass_modify_date" javaType="int">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="mobile" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="email" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="ext_flag" type="TDict" javaType="String" name="扩展标志" stdField="true" description="">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="remark" type="TDesc" javaType="String" name="备注" stdField="true" description="">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="ext_field_1" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="ext_field_2" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="ext_field_3" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="ext_field_4" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="ext_field_5" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="last_login_date" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="last_login_time" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="last_login_ip" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="login_fail_times" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="last_fail_date" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="ext_field" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <unit>
+    <info xsi:type="flow2:LogicUnitInfo"/>
+    <children id="signInService1" name="signInService" desc="signInService">
+      <info xsi:type="flow2:ComponentMethodInfo" fullyQualifiedName="bizframe.authority.user.userLoginComponent" methodName="signInService">
+        <inputParameters id="request" javaType="com.hundsun.jres.interfaces.share.dataset.IDataset" name="request"/>
+      </info>
+    </children>
+    <children id="resultAssignment1" name="结果赋值">
+      <info xsi:type="flow2:ResultAssignmentInfo" assignmentType="REFERENCE" resultType="com.hundsun.jres.interfaces.share.dataset.IDataset" expression="Result:signInService1.signInService_result"/>
+    </children>
+  </unit>
+</service2:ServiceModel>

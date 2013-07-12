@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:flow2="http://www.hundsun.com/ares/studio/jres/flow2" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.1/notation" xmlns:service2="http://www.hundsun.com/ares/studio/jres/service2">
+  <service2:ServiceModel xmi:id="_8j39ELi-Ed-Ob6kfIG5FbQ" name="删除机构" desc="删除机构" inputCollection="true">
+    <inputDefines xmi:type="flow2:InputParameterDefine" xmi:id="_eDrfALlfEd-zWf8YitF-aQ" id="branchCode" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_8raGMv3PEd-coM7C16WdFw"/>
+    </inputDefines>
+    <unit xmi:type="flow2:LogicUnit" xmi:id="_8j39Ebi-Ed-Ob6kfIG5FbQ">
+      <info xmi:type="flow2:LogicUnitInfo" xmi:id="_8j39Eri-Ed-Ob6kfIG5FbQ"/>
+      <children xmi:type="flow2:FlowNode" xmi:id="_f3lFkLlfEd-zWf8YitF-aQ" id="deleteService" name="deleteService">
+        <info xmi:type="flow2:ComponentMethodInfo" xmi:id="_f3lFkrlfEd-zWf8YitF-aQ" fullyQualifiedName="bizframe.authority.branch.SysBranchService" methodName="action">
+          <inputParameters xmi:type="flow2:InputParameter" xmi:id="_lxrJcFCREeCZqvmRaLmqww" id="context" javaType="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext" name="context"/>
+          <outputParameters xmi:type="flow2:OutputParameter" xmi:id="_f3uPgblfEd-zWf8YitF-aQ" javaType="void"/>
+        </info>
+      </children>
+    </unit>
+  </service2:ServiceModel>
+  <notation:Diagram xmi:id="_6BTc8LleEd-zWf8YitF-aQ" type="Flow2" element="_8j39ELi-Ed-Ob6kfIG5FbQ" measurementUnit="Pixel">
+    <children xmi:type="notation:Node" xmi:id="_6Ngs8LleEd-zWf8YitF-aQ" type="1001" element="_8j39Ebi-Ed-Ob6kfIG5FbQ">
+      <children xmi:type="notation:Node" xmi:id="_6Ngs87leEd-zWf8YitF-aQ" type="5001">
+        <children xmi:type="notation:Node" xmi:id="_f3uPgrlfEd-zWf8YitF-aQ" type="2001" element="_f3lFkLlfEd-zWf8YitF-aQ">
+          <children xmi:type="notation:Node" xmi:id="_f34AgLlfEd-zWf8YitF-aQ" type="4001"/>
+          <children xmi:type="notation:Node" xmi:id="_f34AgblfEd-zWf8YitF-aQ" type="5002">
+            <styles xmi:type="notation:DrawerStyle" xmi:id="_f34AgrlfEd-zWf8YitF-aQ"/>
+            <styles xmi:type="notation:SortingStyle" xmi:id="_f34Ag7lfEd-zWf8YitF-aQ"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_f34AhLlfEd-zWf8YitF-aQ"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_f3uPg7lfEd-zWf8YitF-aQ"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_f3uPhLlfEd-zWf8YitF-aQ"/>
+        </children>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_6Ngs9LleEd-zWf8YitF-aQ"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_6Ngs9bleEd-zWf8YitF-aQ"/>
+      </children>
+      <styles xmi:type="notation:ShapeStyle" xmi:id="_6Ngs8bleEd-zWf8YitF-aQ"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_6Ngs8rleEd-zWf8YitF-aQ"/>
+    </children>
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_6BTc8bleEd-zWf8YitF-aQ"/>
+  </notation:Diagram>
+</xmi:XMI>

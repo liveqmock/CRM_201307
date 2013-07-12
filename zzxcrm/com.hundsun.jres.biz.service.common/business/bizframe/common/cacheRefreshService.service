@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:flow2="http://www.hundsun.com/ares/studio/jres/flow2" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.1/notation" xmlns:service2="http://www.hundsun.com/ares/studio/jres/service2">
+  <service2:ServiceModel xmi:id="__VIZ0O4eEd-5P6gkFDbtRQ" name="缓存刷新" outputCollection="true" outputCollectionID="def_action">
+    <inputDefines xmi:type="flow2:InputParameterDefine" xmi:id="_ky3AwO45Ed-5P6gkFDbtRQ" id="cacheCodes" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_ky3Awe45Ed-5P6gkFDbtRQ"/>
+    </inputDefines>
+    <inputDefines xmi:type="flow2:InputParameterDefine" xmi:id="_uInPMO45Ed-5P6gkFDbtRQ" id="resCode" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_uInPMe45Ed-5P6gkFDbtRQ"/>
+    </inputDefines>
+    <inputDefines xmi:type="flow2:InputParameterDefine" xmi:id="_vQrDcO45Ed-5P6gkFDbtRQ" id="opCode" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_vQrDce45Ed-5P6gkFDbtRQ"/>
+    </inputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_1tYBIO45Ed-5P6gkFDbtRQ" id="cacheCode" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_1tYBIe45Ed-5P6gkFDbtRQ"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_3xxh0O45Ed-5P6gkFDbtRQ" id="isFreshSucess" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_3xxh0e45Ed-5P6gkFDbtRQ"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_5mMs0O45Ed-5P6gkFDbtRQ" id="freshInfo" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_5mMs0e45Ed-5P6gkFDbtRQ"/>
+    </outputDefines>
+    <outputDefines xmi:type="flow2:OutputParameterDefine" xmi:id="_7PdJoO45Ed-5P6gkFDbtRQ" id="freshLastTime" javaType="String">
+      <defaultValue2 xmi:type="flow2:ParameterValue" xmi:id="_7PdJoe45Ed-5P6gkFDbtRQ"/>
+    </outputDefines>
+    <unit xmi:type="flow2:LogicUnit" xmi:id="__VIZ0e4eEd-5P6gkFDbtRQ">
+      <info xmi:type="flow2:LogicUnitInfo" xmi:id="__VIZ0u4eEd-5P6gkFDbtRQ"/>
+      <children xmi:type="flow2:FlowNode" xmi:id="_GL3oIO4fEd-5P6gkFDbtRQ" id="componentMethod1" name="刷新缓存" desc="刷新缓存">
+        <info xmi:type="flow2:ComponentMethodInfo" xmi:id="_GL3oIu4fEd-5P6gkFDbtRQ" fullyQualifiedName="bizframe.common.cacheService" methodName="action">
+          <inputParameters xmi:type="flow2:InputParameter" xmi:id="_qSLH8O4fEd-5P6gkFDbtRQ" id="context" javaType="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext" name="context"/>
+        </info>
+      </children>
+      <children xmi:type="flow2:FlowNode" xmi:id="_25_mQO4uEd-5P6gkFDbtRQ" id="resultAssignment1" name="结果赋值">
+        <info xmi:type="flow2:ResultAssignmentInfo" xmi:id="_25_mQe4uEd-5P6gkFDbtRQ" resultSet="true" resultType="com.hundsun.jres.interfaces.share.dataset.IDataset" expression="Result:componentMethod1.action_result"/>
+      </children>
+    </unit>
+  </service2:ServiceModel>
+  <notation:Diagram xmi:id="__lM2IO4eEd-5P6gkFDbtRQ" type="Flow2" element="__VIZ0O4eEd-5P6gkFDbtRQ" measurementUnit="Pixel">
+    <children xmi:type="notation:Node" xmi:id="_AtgiAO4fEd-5P6gkFDbtRQ" type="1001" element="__VIZ0e4eEd-5P6gkFDbtRQ">
+      <children xmi:type="notation:Node" xmi:id="_AtgiA-4fEd-5P6gkFDbtRQ" type="5001">
+        <children xmi:type="notation:Node" xmi:id="_GMUUEO4fEd-5P6gkFDbtRQ" type="2001" element="_GL3oIO4fEd-5P6gkFDbtRQ">
+          <children xmi:type="notation:Node" xmi:id="_GMUUE-4fEd-5P6gkFDbtRQ" type="4001"/>
+          <children xmi:type="notation:Node" xmi:id="_GMUUFO4fEd-5P6gkFDbtRQ" type="5002">
+            <styles xmi:type="notation:DrawerStyle" xmi:id="_GMUUFe4fEd-5P6gkFDbtRQ"/>
+            <styles xmi:type="notation:SortingStyle" xmi:id="_GMUUFu4fEd-5P6gkFDbtRQ"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_GMUUF-4fEd-5P6gkFDbtRQ"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_GMUUEe4fEd-5P6gkFDbtRQ" fontName="微软雅黑"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_GMUUEu4fEd-5P6gkFDbtRQ"/>
+        </children>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_AtgiBO4fEd-5P6gkFDbtRQ"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_AtgiBe4fEd-5P6gkFDbtRQ"/>
+      </children>
+      <styles xmi:type="notation:ShapeStyle" xmi:id="_AtgiAe4fEd-5P6gkFDbtRQ" fontName="微软雅黑"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_AtgiAu4fEd-5P6gkFDbtRQ"/>
+    </children>
+    <styles xmi:type="notation:DiagramStyle" xmi:id="__lM2Ie4eEd-5P6gkFDbtRQ"/>
+  </notation:Diagram>
+</xmi:XMI>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<respath>
+  <entry kind="src" type="com.hundsun.ares.studio.publicres.rootpublicres" path="publicres"/>
+  <entry kind="src" type="com.hundsun.ares.studio.jres.database" path="database"/>
+  <entry kind="src" type="com.hundsun.ares.studio.jres.moduleroot.metadata" path="metadata"/>
+  <entry kind="src" type="com.hundsun.ares.studio.jres.moduleroot.commondata" path="commondata"/>
+  <entry kind="src" type="com.hundsun.ares.studio.jres.moduleroot.ui" path="uidesign"/>
+  <entry kind="src" type="com.hundsun.ares.studio.jres.moduleroot.business" path="business"/>
+  <entry kind="src" type="com.hundsun.ares.studio.jres.moduleroot.database" path="database"/>
+  <entry kind="src" type="com.hundsun.ares.studio.jres.moduleroot.appconfig" path="appconfig"/>
+  <entry kind="src" type="com.hundsun.ares.studio.jres.moduleroot.tools" path="tools"/>
+</respath>

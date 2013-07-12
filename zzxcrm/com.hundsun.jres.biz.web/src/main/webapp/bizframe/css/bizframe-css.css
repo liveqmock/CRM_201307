@@ -1,0 +1,106 @@
+@CHARSET "UTF-8";
+.x-shield-permission{
+  background-image:url("../bizframe/images/shieldPermission.png");
+}
+.x-own-permission{
+  background-image:url("../bizframe/images/ownPermission.png");
+}
+.x-no-permission{
+  background-image:url("../bizframe/images/noPermission.png");
+}
+div.hs-tree-keySelected a.x-tree-node-anchor span{
+    font-weight:bold;
+    color:blue!important;
+}
+div.hs-tree-keySelected a.hs-tree-node-disabled span{
+    /*color:#6699ff!important;*/
+    color:#ccc!important;
+}
+
+.bizframe-tab-panel-header {padding:0;border:0;}
+.bizframe-tab-strip-wrap {padding:8px 0 0;background:#fff;border:1px solid #99bbe8;}
+.bizframe-tab-strip-top span.x-tab-strip-text {padding:4px 0 3px;}
+.bizframe-tab-strip-top .x-tab-strip-active .x-tab-right span.x-tab-strip-text {padding:4px 0 3px;}
+.ext-border-box .ext-ie8 .bizframe-tab-strip .x-tab-right {top:0;}
+ul.bizframe-tab-strip-top {padding:1px 0 0 10px;height:21px;background:none;background:none transparent;border:0;line-height:21px;overflow-y:hidden;}
+ul.bizframe-tab-strip-top li {margin-left:0;height:21px;overflow-y:hidden;}
+.ext-ie8 ul.bizframe-tab-strip-top, .ext-ie6 ul.bizframe-tab-strip-top, .ext-ie7 ul.bizframe-tab-strip-top {height:22px;}
+.bizframe-tab-strip-top .x-tab-right, 
+.bizframe-tab-strip-top .x-tab-left {background:url(../images/bizframe-tabs-sprite.png) no-repeat left top;}
+.bizframe-tab-strip-top .x-tab-strip-inner {background:url(../images/bizframe-tabs-sprite.png) repeat-x left top;}
+/*---------------ForTNNDIE6---------------*/
+.ext-ie6 .bizframe-tab-strip-top .x-tab-right {background:url(../images/bizframe-tabs-sprite.gif) no-repeat left top;}
+.ext-ie6 .bizframe-tab-strip-top .x-tab-left {background:url(../images/bizframe-tabs-sprite.gif) no-repeat left top;}
+.ext-ie6 .bizframe-tab-strip-top .x-tab-strip-inner {background:url(../images/bizframe-tabs-sprite.gif) repeat-x left top;}
+/*---------------TabClosable---------------*/
+.bizframe-tab-strip-top .bizframe-tab-first-closable .x-tab-left {padding:0 0 0 14px;background-position:0 -44px;}
+.bizframe-tab-strip-top .bizframe-tab-first-closable .x-tab-strip-inner {padding:0 8px 0 9px;background-position:0 -88px;}
+.bizframe-tab-strip-top .bizframe-tab-first-closable .x-tab-right {padding:0 10px 0 0;background-position:right -22px;}
+.bizframe-tab-strip-top .bizframe-tab-norm-closable .x-tab-left {padding:0 0 0 10px;background-position:0 0;}
+.bizframe-tab-strip-top .bizframe-tab-norm-closable .x-tab-strip-inner {padding:0 8px 0 10px;background-position:0 -88px;}
+.bizframe-tab-strip-top .bizframe-tab-norm-closable .x-tab-right {padding:0 10px 0 0;background-position:right -22px;}
+.bizframe-tab-strip-top .bizframe-tab-last-closable .x-tab-left {padding:0 0 0 10px;background-position:0 0;}
+.bizframe-tab-strip-top .bizframe-tab-last-closable .x-tab-strip-inner {padding:0 11px 0 11px;background-position:0 -88px;}
+.bizframe-tab-strip-top .bizframe-tab-last-closable .x-tab-right {padding:0 14px 0 0;background-position:right -66px;}
+/*---------------TabActive---------------*/
+.bizframe-tab-strip-top .bizframe-tab-first-active .x-tab-left {padding:0 0 0 14px;background-position:0 -154px;}
+.bizframe-tab-strip-top .bizframe-tab-first-active .x-tab-strip-inner {padding:0 10px 0 5px;background-position:0 -198px;}
+.bizframe-tab-strip-top .bizframe-tab-first-active .x-tab-right {margin-bottom:0;padding:0 10px 0 0;background-position:right -132px;}
+.bizframe-tab-strip-top .bizframe-tab-norm-active .x-tab-left {padding:0 0 0 12px;background-position:0 -110px;}
+.bizframe-tab-strip-top .bizframe-tab-norm-active .x-tab-strip-inner {padding:0 10px 0 5px;background-position:0 -198px;}
+.bizframe-tab-strip-top .bizframe-tab-norm-active .x-tab-right {margin-bottom:0;padding:0 10px 0 0;background-position:right -132px;}
+.bizframe-tab-strip-top .bizframe-tab-last-active .x-tab-left {padding:0 0 0 12px;background-position:0 -110px;}
+.bizframe-tab-strip-top .bizframe-tab-last-active .x-tab-strip-inner {padding:0 10px 0 5px;background-position:0 -198px;}
+.bizframe-tab-strip-top .bizframe-tab-last-active .x-tab-right {margin-bottom:0;padding:0 14px 0 0;background-position:right -176px;}
+.bizframe-tab-strip-top .bizframe-tab-only-active .x-tab-right {margin-bottom:0;padding:0 14px 0 0;background-position:right -176px;}
+.bizframe-tab-strip-top .bizframe-tab-only-active .x-tab-strip-inner {padding:0 8px 0 5px;background-position:0 -198px;}
+.bizframe-tab-strip-top .bizframe-tab-norm-active {margin:0 0 0 -2px;}
+.bizframe-tab-strip-top .bizframe-tab-last-active {margin:0 0 0 -2px;}
+.bizframe-tab-strip-top .bizframe-tab-first-active span.x-tab-strip-text,
+.bizframe-tab-strip-top .bizframe-tab-norm-active span.x-tab-strip-text,
+.bizframe-tab-strip-top .bizframe-tab-last-active span.x-tab-strip-text {color:#15428B;font-weight:bold;}
+/*---------------TabClose---------------*/
+.x-tab-strip .bizframe-tab-first-closable a.x-tab-strip-close, 
+.x-tab-strip .bizframe-tab-first-closable a.x-tab-strip-close:link, 
+.x-tab-strip .bizframe-tab-first-closable a.x-tab-strip-close:visited {right:5px;background:url(../images/bizframe-tabs-sprite.png) no-repeat 0 -252px;}
+.x-tab-strip .bizframe-tab-first-closable a.x-tab-strip-close:hover {right:5px;background:url(../images/bizframe-tabs-sprite.png) no-repeat 0 -293px;}
+.x-tab-strip .bizframe-tab-norm-closable a.x-tab-strip-close,
+.x-tab-strip .bizframe-tab-norm-closable a.x-tab-strip-close:link,
+.x-tab-strip .bizframe-tab-norm-closable a.x-tab-strip-close:visited {right:5px;background:url(../images/bizframe-tabs-sprite.png) no-repeat 0 -252px;}
+.x-tab-strip .bizframe-tab-norm-closable a.x-tab-strip-close:hover {right:5px;background:url(../images/bizframe-tabs-sprite.png) no-repeat 0 -293px;}
+.x-tab-strip .bizframe-tab-last-closable a.x-tab-strip-close,
+.x-tab-strip .bizframe-tab-last-closable a.x-tab-strip-close:link, 
+.x-tab-strip .bizframe-tab-last-closable a.x-tab-strip-close:visited {right:11px;background:url(../images/bizframe-tabs-sprite.png) no-repeat 0 -252px;}
+.x-tab-strip .bizframe-tab-last-closable a.x-tab-strip-close:hover {right:11px;background:url(../images/bizframe-tabs-sprite.png) no-repeat 0 -293px;}
+.x-tab-strip .bizframe-tab-first-active a.x-tab-strip-close,
+.x-tab-strip .bizframe-tab-first-active a.x-tab-strip-close:link,
+.x-tab-strip .bizframe-tab-first-active a.x-tab-strip-close:visited {right:6px;background:url(../images/bizframe-tabs-sprite.png) no-repeat 0 -335px;}
+.x-tab-strip .bizframe-tab-first-active a.x-tab-strip-close:hover {right:6px;background:url(../images/bizframe-tabs-sprite.png) no-repeat 0 -376px;}
+.x-tab-strip .bizframe-tab-norm-active a.x-tab-strip-close,
+.x-tab-strip .bizframe-tab-norm-active a.x-tab-strip-close:link, 
+.x-tab-strip .bizframe-tab-norm-active a.x-tab-strip-close:visited {right:6px;background:url(../images/bizframe-tabs-sprite.png) no-repeat 0 -335px;}
+.x-tab-strip .bizframe-tab-norm-active a.x-tab-strip-close:hover {right:6px;background:url(../images/bizframe-tabs-sprite.png) no-repeat 0 -376px;}
+.x-tab-strip .bizframe-tab-last-active a.x-tab-strip-close,
+.x-tab-strip .bizframe-tab-last-active a.x-tab-strip-close:link,
+.x-tab-strip .bizframe-tab-last-active a.x-tab-strip-close:visited {right:10px;background:url(../images/bizframe-tabs-sprite.png) no-repeat 0 -335px;}
+.x-tab-strip .bizframe-tab-last-active a.x-tab-strip-close:hover {right:10px;background:url(../images/bizframe-tabs-sprite.png) no-repeat 0 -376px;}
+.x-tab-strip .bizframe-tab-only-active a.x-tab-strip-close,
+.x-tab-strip .bizframe-tab-only-active a.x-tab-strip-close:link,
+.x-tab-strip .bizframe-tab-only-active a.x-tab-strip-close:visited {right:10px;background:url(../images/bizframe-tabs-sprite.png) no-repeat 0 -335px;}
+.x-tab-strip .bizframe-tab-only-active a.x-tab-strip-close:hover {right:10px;background:url(../images/bizframe-tabs-sprite.png) no-repeat 0 -376px;}
+/*---------------TabCloseFotTNNDIE6---------------*/
+.ext-ie6 .x-tab-strip .bizframe-tab-first-closable a.x-tab-strip-close {right:5px;background:url(../images/bizframe-tabs-sprite.gif) no-repeat 0 -252px;}
+.ext-ie6 .x-tab-strip .bizframe-tab-first-closable a.x-tab-strip-close:hover {right:5px;background:url(../images/bizframe-tabs-sprite.gif) no-repeat 0 -293px;}
+.ext-ie6 .x-tab-strip .bizframe-tab-norm-closable a.x-tab-strip-close {right:5px;background:url(../images/bizframe-tabs-sprite.gif) no-repeat 0 -252px;}
+.ext-ie6 .x-tab-strip .bizframe-tab-norm-closable a.x-tab-strip-close:hover {right:5px;background:url(../images/bizframe-tabs-sprite.gif) no-repeat 0 -293px;}
+.ext-ie6 .x-tab-strip .bizframe-tab-last-closable a.x-tab-strip-close {right:11px;background:url(../images/bizframe-tabs-sprite.gif) no-repeat 0 -252px;}
+.ext-ie6 .x-tab-strip .bizframe-tab-last-closable a.x-tab-strip-close:hover {right:11px;background:url(../images/bizframe-tabs-sprite.gif) no-repeat 0 -293px;}
+.ext-ie6 .x-tab-strip .bizframe-tab-first-active a.x-tab-strip-close {right:6px;background:url(../images/bizframe-tabs-sprite.gif) no-repeat 0 -335px;}
+.ext-ie6 .x-tab-strip .bizframe-tab-first-active a.x-tab-strip-close:hover {right:6px;background:url(../images/bizframe-tabs-sprite.gif) no-repeat 0 -376px;}
+.ext-ie6 .x-tab-strip .bizframe-tab-norm-active a.x-tab-strip-close {right:6px;background:url(../images/bizframe-tabs-sprite.gif) no-repeat 0 -335px;}
+.ext-ie6 .x-tab-strip .bizframe-tab-norm-active a.x-tab-strip-close:hover {right:6px;background:url(../images/bizframe-tabs-sprite.gif) no-repeat 0 -376px;}
+.ext-ie6 .x-tab-strip .bizframe-tab-last-active a.x-tab-strip-close {right:10px;background:url(../images/bizframe-tabs-sprite.gif) no-repeat 0 -335px;}
+.ext-ie6 .x-tab-strip .bizframe-tab-last-active a.x-tab-strip-close:hover {right:10px;background:url(../images/bizframe-tabs-sprite.gif) no-repeat 0 -376px;}
+.ext-ie6 .x-tab-strip .bizframe-tab-only-active a.x-tab-strip-close {right:10px;background:url(../images/bizframe-tabs-sprite.gif) no-repeat 0 -335px;}
+.ext-ie6 .x-tab-strip .bizframe-tab-only-active a.x-tab-strip-close:hover {right:10px;background:url(../images/bizframe-tabs-sprite.gif) no-repeat 0 -376px;}
+/*------------------------------------------------------------*/

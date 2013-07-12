@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata:BusinessDataTypeList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:metadata="http://www.hundsun.com/ares/studio/jres/metadata/1.0.0">
+  <root/>
+  <items xsi:type="metadata:BusinessDataType" name="TCode" description="代码类型" stdType="HsVarChar" length="16" defaultValue="StrDefault"/>
+  <items xsi:type="metadata:BusinessDataType" name="TLongName" description="名称类型(长)" stdType="HsVarChar" length="64" defaultValue="StrDefault"/>
+  <items xsi:type="metadata:BusinessDataType" name="TOrgCode" description="代码类型(组织)" stdType="HsVarChar" length="40" defaultValue="StrDefault"/>
+  <items xsi:type="metadata:BusinessDataType" name="TIntDateTime" description="日期时间类型(整)" stdType="HsInteger" defaultValue="IntDefault"/>
+  <items xsi:type="metadata:BusinessDataType" name="TDesc" description="描述类型" stdType="HsVarChar" length="256" defaultValue="StrDefault"/>
+  <items xsi:type="metadata:BusinessDataType" name="TObject" description="对象类型" stdType="HsClob" length="4096" defaultValue="ObjectDefault"/>
+  <items xsi:type="metadata:BusinessDataType" name="TFlag" description="标志类型" stdType="HsVarChar" length="128" defaultValue="StrDefault"/>
+  <items xsi:type="metadata:BusinessDataType" name="TLongCode" description="代码类型(长)" stdType="HsVarChar" length="32" defaultValue="StrDefault"/>
+  <items xsi:type="metadata:BusinessDataType" name="TDate" description="日期时间类型" stdType="HsDatetime" defaultValue="IntDefault"/>
+  <items xsi:type="metadata:BusinessDataType" name="TDict" description="标志类型(字典)" stdType="HsVarChar" length="8" defaultValue="StrDefault"/>
+  <items xsi:type="metadata:BusinessDataType" name="TLongDesc" description="描述类型(长)" stdType="HsVarChar" length="1024" defaultValue="StrDefault"/>
+  <items xsi:type="metadata:BusinessDataType" name="TInt" description="整数类型" stdType="HsInteger" defaultValue="IntDefault"/>
+  <items xsi:type="metadata:BusinessDataType" name="TName" description="名称类型" stdType="HsVarChar" length="32" defaultValue="StrDefault"/>
+</metadata:BusinessDataTypeList>

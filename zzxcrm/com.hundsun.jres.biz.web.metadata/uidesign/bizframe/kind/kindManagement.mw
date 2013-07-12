@@ -1,0 +1,690 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+递交版本号 修改日期   修改人 修改原因           备注 
+1.1.8      2012/06/06 xujin  系统类别查询有问题      
+-->
+<hsdoc version="1.1.0">
+  <Windows>
+    <control-MainWindow height="546" name="MainWin" templatePath="window.ftl" width="964">
+      <layout-border>
+        <control-Panel region="west" width="235" height="600" title="分类树" collapsible="true" split="true" name="kindTreePanel" border="false">
+          <layout-border>
+            <control-Panel region="north" height="31" name="kindDimPanel" width="200">
+              <layout-table columns="1" fullWidth="true">
+                <control-ComboBox labelAlign="right" labelWidth="60" fieldName="dimensionCB" displayMode="true" width="100.0%" height="22" displayField="kind_name" dataSet="dimensionDataSet" valueField="kind_code" emptyText="请选择" fieldLabel="分类类型" name="dimensionCBox" tabIndex="2"/>
+              </layout-table>
+            </control-Panel>
+            <control-Tree region="center" border="false" height="400" name="kindTree" width="200">
+              <layout-tree>
+                <control-AsyncTreeNode id="kindRoot" dataSet="KindTreeDataSet" name="kindRootNode" text="-请选择一个分类类型-" expanded="true">
+                  <layout-tree/>
+                </control-AsyncTreeNode>
+              </layout-tree>
+              <Top>
+                <control-Toolbar name="Toolbar3">
+                  <layout-toolbar>
+                    <control-Button name="expendTreeBtn" text="展开" width="65" icon="bizframe/images/icons/arrow_out.png" tabIndex="3"/>
+                    <control-Button name="collTreeBtn" text="收缩" width="65" icon="bizframe/images/icons/arrow_in.png" tabIndex="4"/>
+                    <control-Button name="refreshTreeBtn" text="刷新" width="65" icon="bizframe/images/icons/refresh.png" tabIndex="5"/>
+                  </layout-toolbar>
+                </control-Toolbar>
+              </Top>
+            </control-Tree>
+          </layout-border>
+        </control-Panel>
+        <control-Panel region="center" height="600" name="kindPanel" width="600">
+          <layout-border>
+            <control-FormPanel collapseMode="mini" region="north" width="600" height="180" hideCollapseTool="true" collapsible="true" split="true" name="searchKindForm" submitService="bizframe.kind.deleteKindSvc">
+              <Top>
+                <control-Toolbar name="Toolbar1">
+                  <layout-toolbar>
+                    <control-Button name="addKindBtn" text="新增" width="75" icon="bizframe/images/icons/add.gif" tabIndex="13"/>
+                    <control-Button name="updateKindBtn" text="修改" width="75" icon="bizframe/images/icons/edit.png" tabIndex="14"/>
+                    <control-Button name="dltKindBtn" text="删除" width="75" icon="bizframe/images/icons/delete.gif" tabIndex="15"/>
+                  </layout-toolbar>
+                </control-Toolbar>
+              </Top>
+              <Bottom>
+                <control-ButtonGroup height="24" name="ButtonGroup1">
+                  <layout-buttonGroup>
+                    <control-Button name="searchKindBtn" text="查询" width="75" icon="bizframe/images/icons/search.png" tabIndex="6"/>
+                    <control-Button tipText="清空查询条件" name="searchResetBtn" text="重置" width="75" icon="bizframe/images/icons/refresh.png" tabIndex="7"/>
+                  </layout-buttonGroup>
+                </control-ButtonGroup>
+              </Bottom>
+              <layout-table columns="2" fullWidth="true">
+                <control-TextField labelAlign="right" regexText="非法输入，只能输入英文、数字和下划线" fieldName="kind_code" width="250" height="22" regex="/^[A-Za-z0-9_]+$/" fieldLabel="分类编号" name="kindCodeField" tabIndex="8"/>
+                <control-TextField labelAlign="right" regexText="非法输入，只能输入中文、英文、小括号和下划线" fieldName="kind_name" width="250" height="22" regex="/^[\w\u4e00-\u9fa5\.\/\,\，\.\。\“\（\）\(\)\-\s]*$/" fieldLabel="分类名称" name="kindNameField" tabIndex="9"/>
+                <control-TextField labelAlign="right" regexText="非法输入，只能输入英文、数字和下划线" fieldName="mnemonic" width="250" height="22" regex="/^[A-Za-z0-9_]+$/" fieldLabel="助记符" name="mnemonicField" tabIndex="10"/>
+                <control-TargetSelect labelAlign="right" targetWindow="kindTypeSelector" fieldName="parent_name" params="['parentNameField','parentIdField']" callFunction="rec" width="250" fieldLabel="上级分类" name="parentNameField" tabIndex="7"/>
+                <control-TextField labelAlign="right" regexText="非法输入，只能输入中文、英文、小括号和下划线" fieldName="remark" width="250" height="22" regex="/^[\w\u4e00-\u9fa5\.\/\,\，\.\。\“\（\）\(\)\-\s]*$/" fieldLabel="备注" name="remarkField" tabIndex="12"/>
+                <control-HiddenField fieldName="kind_type" name="dimensionField"/>
+                <control-HiddenField fieldName="parent_code" name="parentIdField"/>
+                <control-HiddenField fieldName="kindIdString" name="kindIdStringField"/>
+              </layout-table>
+            </control-FormPanel>
+            <control-Grid region="center" hasCheckColumn="true" remoteSort="true" enableCellTip="true" width="600" height="200" dataSet="kindDataSet" name="kindGrid" hasCustomPageSize="true" border="false" hasPagingBar="true">
+              <layout-GridToolbar>
+                <control-GridItem title="分类编号" align="left" dataIndex="kind_code" name="kindCodeItem" width="150"/>
+                <control-GridItem title="分类名称" align="left" dataIndex="kind_name" name="GridItem2" width="194"/>
+                <control-GridItem title="助记符" align="left" dataIndex="mnemonic" name="mnemonicItem" width="100"/>
+                <control-GridItem title="上级分类" align="left" dataIndex="parent_name" name="parentItem" width="150"/>
+                <control-GridItem title="平台标识名称" align="center" dataIndex="platform_name" name="GridItem3" width="100" sortable="true"/>
+                <control-GridItem align="center" width="100" title="平台标识" dataIndex="platform" sortable="true" hidden="true" name="GridItem1"/>
+                <control-GridItem title="备注" align="left" dataIndex="remark" name="remarkItem" width="200"/>
+              </layout-GridToolbar>
+            </control-Grid>
+          </layout-border>
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+        </control-Panel>
+      </layout-border>
+    </control-MainWindow>
+    <control-Window width="355" height="299" title="编辑分类" name="updateKindWindow" resizable="false" border="false" draggable="true">
+      <layout-fit>
+        <control-FormPanel border="false" height="130" frame="true" name="editKindForm" width="300">
+          <layout-form labelAlign="right" labelWidth="75">
+            <control-TextField msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" regexText="非法输入，只能输入英文、下划线和数字" fieldName="kind_code" width="320" height="22" regex="/^[A-Za-z0-9_]+$/" maxLength="32" fieldLabel="分类编号" name="kindCodeField" allowBlank="false"/>
+            <control-TextField msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" regexText="非法输入，只能输入中文、英文、小括号和下划线" fieldName="kind_name" width="320" height="22" regex="/^[\w\u4e00-\u9fa5\.\/\,\，\.\。\“\（\）\(\)\-\s]*$/" maxLength="12" fieldLabel="分类名称" name="kindNameField" allowBlank="false"/>
+            <control-TextField enabled="false" msgTarget="qtip" fieldName="parentName" width="320" height="22" fieldLabel="上级分类" name="parentNameField"/>
+            <control-TextField msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" regexText="非法输入，只能输入英文、下划线和数字" fieldName="mnemonic" width="320" height="22" regex="/^[A-Za-z0-9_]+$/" maxLength="8" fieldLabel="助记符" name="mnemonicField" allowBlank="false"/>
+            <control-TextField enabled="false" msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" fieldName="dimensionName" width="320" height="22" maxLength="8" fieldLabel="类      型" name="dimensionNameField" allowBlank="false"/>
+            <control-TextArea maxLength="256" fieldLabel="备     注" fieldName="remark" msgTarget="qtip" name="remarkArea" width="320"/>
+            <control-TextField fieldLabel="kind_type" height="22" fieldName="kind_type" visible="false" name="dimensionField" width="250"/>
+            <control-TextField fieldLabel="kind_code" height="22" fieldName="kind_code" visible="false" name="kindIdField" width="250"/>
+            <control-TextField fieldLabel="parent_code" height="22" fieldName="parent_code" visible="false" name="parentIdField" width="250"/>
+            <control-TextField defaultValue="bizSetKind" visible="false" fieldName="resCode" width="250" height="22" fieldLabel="resCode" name="resCodeField"/>
+            <control-TextField fieldLabel="opCode" height="22" fieldName="opCode" visible="false" name="opCodeField" width="250"/>
+            <control-TextField fieldLabel="tree_idx" height="22" fieldName="tree_idx" visible="false" name="treeIdxField" width="250"/>
+          </layout-form>
+        </control-FormPanel>
+      </layout-fit>
+      <Bottom>
+        <control-ButtonGroup name="editKindBtnGroup">
+          <layout-buttonGroup>
+            <control-Button name="saveBtn" text="确定" width="75" icon="bizframe/images/icons/accept.png"/>
+            <control-Button name="resetBtn" text="重置" width="75" icon="bizframe/images/icons/refresh.png"/>
+            <control-Button name="cancelBtn" text="取消" width="75" icon="bizframe/images/icons/cross.gif"/>
+          </layout-buttonGroup>
+        </control-ButtonGroup>
+      </Bottom>
+    </control-Window>
+  </Windows>
+  <Accessory>
+    <control-TreeDataSet name="KindTreeDataSet" service="bizframe.kind.fetchKindList" window="MainWin">
+      <params>
+        <param name="resCode"><![CDATA["bizSetKind"]]></param>
+        <param name="opCode"><![CDATA["bizSetKindFind"]]></param>
+      </params>
+      <fields>
+        <field name="kind_code" type="String" mapping="id"/>
+        <field name="kind_name" type="String" mapping="text"/>
+        <field name="parent_code" type="String" mapping="pid"/>
+        <field name="tree_idx" type="String"/>
+      </fields>
+    </control-TreeDataSet>
+    <control-DataSet name="kindDataSet" service="bizframe.kind.fetchKindList" usingServiceName="true" window="MainWin">
+      <params>
+        <param name="resCode"><![CDATA["bizSetKind"]]></param>
+        <param name="opCode"><![CDATA["bizSetKindFind"]]></param>
+        <param name="start"><![CDATA["0"]]></param>
+        <param name="limit"><![CDATA["10"]]></param>
+        <param name="kind_code"><![CDATA[""]]></param>
+        <param name="kind_name"><![CDATA[""]]></param>
+        <param name="kind_type"><![CDATA[""]]></param>
+        <param name="mnemonic"><![CDATA[""]]></param>
+        <param name="remark"><![CDATA[""]]></param>
+        <param name="parent_code"><![CDATA[""]]></param>
+      </params>
+      <fields>
+        <field name="kind_code" type="String"/>
+        <field name="kind_name" type="String"/>
+        <field name="parent_code" type="String"/>
+        <field name="kind_type" type="String"/>
+        <field name="mnemonic" type="String"/>
+        <field name="parent_name" type="String"/>
+        <field name="tree_idx" type="String"/>
+        <field name="remark" type="String"/>
+        <field name="platform" type="String"/>
+        <field name="platform_name" type="String"/>
+      </fields>
+    </control-DataSet>
+    <control-DataSet name="dimensionDataSet" service="bizframe.kind.fetchKindList" window="MainWin">
+      <params>
+        <param name="parent_code"><![CDATA["bizroot"]]></param>
+        <param name="resCode"><![CDATA["bizSetKind"]]></param>
+        <param name="opCode"><![CDATA["bizSetKindFind"]]></param>
+        <param name="start"><![CDATA["0"]]></param>
+        <param name="limit"><![CDATA["0"]]></param>
+      </params>
+      <fields>
+        <field name="kind_type" type="String"/>
+        <field name="kind_code" type="String"/>
+        <field name="kind_name" type="String"/>
+        <field name="mnemonic" type="String"/>
+        <field name="parent_code" type="String"/>
+        <field name="parent_name" type="String"/>
+        <field name="tree_idx" type="String"/>
+        <field name="remark" type="String"/>
+      </fields>
+    </control-DataSet>
+  </Accessory>
+  <WindowScripts>
+    <WindowScript window="MainWin"><![CDATA[import bizframe.authority.auth;
+public tDimensionName = "";
+public tDimension = "";
+public tParentId = "";
+public tParentName = "";
+public tRootId = "kindRoot";
+public tTreeIdx = "";
+remote bizframe.kind.deleteKindSvc as DELETEKIND;
+
+include bizframe.js.checkRight;
+include bizframe.js.commonUtil;		//引入公共工具包js文件
+
+import bizframe.kind.kindTypeSelector;
+
+public editMod = "";
+public kindType = "";
+public function loadKindGrid(){
+	var values =  searchKindForm.getValues();
+	kindDataSet.setParams(values);
+	kindDataSet.load();
+	
+}
+
+public function builderExpString(paramArray, key){
+	var count = paramArray.length;
+	if(count<1){		
+		return "";
+	}
+	var kindCodeArray=new Array();
+	var kindCodeString = "";
+	var flg = ',';
+	for(var i=0; i<count; i++){
+		var data = paramArray[i];
+		kindCodeString = kindCodeString + data.get(key)
+		if(i<count-1)
+			kindCodeString = kindCodeString + ",";
+	}
+	
+	return kindCodeString;	
+}
+
+public function transDimension(dim){
+	var name = "";
+	switch(dim){
+		case '0':
+			name = "数据字典";
+			break
+		case '1':
+			name = "系统参数";
+			break
+		case '2':
+			name = "标准字段";
+			break
+		case '3':
+			name = "系统资源";
+			break
+		case '4':
+			name = "系统菜单";
+			break
+		default:
+			name = dim;
+	}
+	
+	return name;
+}
+
+public function refreshNode(node){
+	var kindRootNode = kindTree.getNodeById(node);
+	if(kindRootNode){
+		kindRootNode.reload();
+		//如果刷新根节点，则清空保存的临时父节点ID
+		if(node == tRootId){
+			tParentId = "";
+			tParentName = "";
+			parentNameField.reset();
+			parentIdField.reset();
+		}
+	}
+}
+
+event searchKindBtn_click(Button thisComp, Ext.EventObject e) {
+	if(searchKindForm.getForm().isValid())
+		loadKindGrid();
+	else
+		Ext.Msg.alert('提示', '发现有输入项不符合规范');
+}
+
+event searchResetBtn_click(Button thisComp, Ext.EventObject e) {
+	searchKindForm.getForm().reset();
+	dimensionField.setValue(tDimension);
+}
+
+event dimensionCBox_select(Hs.HsCheckCombo combo, Ext.data.Record record, Number index) {
+	dimensionField.setValue(record.get('kind_type'));
+	kindGrid.setTitle(record.get('kind_name')+"列表");
+	
+	//保存维度信息
+	tDimension = record.get('kind_type');
+	kindType = record.get('kind_type');
+	var dimensionName = record.get('kind_name');
+	
+	if(dimensionName!=""){
+		if(dimensionName.indexOf("分类")>0)
+			tDimensionName = dimensionName.substring(0, dimensionName.indexOf("分类"));
+		else
+			tDimensionName = dimensionName;
+	}else{
+		tDimensionName = transDimension(record.get('kind_type'));
+	}
+	//---20111116--wangnan06675-BUG #1636::切换分类的时候，所有按钮都可用-begin-
+	enableButtons();
+	//---20111116--wangnan06675-BUG #1636::切换分类的时候，所有按钮都可用-end-
+	
+	//刷新树
+	var kindRootNode = kindTree.getNodeById(tRootId);
+	kindRootNode.setText(record.get('kind_name'));
+	tRootId = record.get('kind_code');
+	kindRootNode.setId(tRootId); 
+	refreshNode(tRootId);
+	
+	loadKindGrid();
+}
+
+event addKindBtn_click(Button thisComp, Ext.EventObject e) {
+	if(tDimension == ""){
+		Ext.Msg.alert('提示','请先选择一个分类类型');
+		return;
+	}
+	if(tParentId == ""){
+		Ext.Msg.alert('提示','请在分类树选择一个分类作为新建分类的父分类');
+		return;
+	}		
+	editMod = "add";
+		
+	var win = new updateKindWindow();
+	win.setTitle("新增分类");
+	win.editKindForm.setSubmitService('bizframe.kind.addKindSvc');
+	win.opCodeField.setValue("bizSetKindAdd");
+	
+	win.show();
+}
+public function addKindBtnCallback(){
+	alert("ok");
+}
+
+event updateKindBtn_click(Button thisComp, Ext.EventObject e) {
+	var paramCount = kindGrid.getSelectionModel().getSelections().length;
+	if(paramCount != 1){
+		Ext.Msg.alert('提示', '请选择一个分类');
+		return;
+	}
+
+	editMod = "update";
+	var win = new updateKindWindow();
+	win.setTitle("修改分类");
+	win.editKindForm.setSubmitService('bizframe.kind.updateKindSvc');		
+	win.opCodeField.setValue("bizSetKindEdit");
+	win.show();
+}
+event searchKindForm_submitSuccess(object response) {
+	var returnCode = "-1";
+	var errorInfo;
+	if(typeof response == 'object'){
+		returnCode = response.returnCode;
+		errorInfo = response.errorInfo;
+	}
+	
+	if(returnCode == "0"){
+		//清空删除分类信息栏
+		kindIdStringField.reset();
+		
+		//更新树
+		if(tParentId!=null && tParentId!="")
+			refreshNode(tParentId);
+		else{
+			refreshNode(tRootId);
+		}
+		
+		//更新列表
+		loadKindGrid();		
+		
+	}else{
+		Ext.Msg.alert('提示', '删除失败<br>原因：' + errorInfo);
+	}
+}
+event dltKindBtn_click(Button thisComp, Ext.EventObject e) {
+	
+	var paramArray = kindGrid.getSelectionModel().getSelections();	
+	var kindIdString = builderExpString(paramArray, 'kind_code');
+	if(kindIdString == ""){
+		Ext.Msg.alert('提示', '请选择至少一条系统类别信息进行删除');
+		return;
+	}
+	Ext.MessageBox.confirm('提示', '您确定删除此系统类别?', function(button, text) {
+		if (button == "yes") {
+			var authWindow = new auth(MainWin).window;
+			authWindow.needAuth(authWindow,'bizSetKind','bizSetKindDelete',MainWin, 
+				function(){
+					editMod = "delete";
+					//alert(kindIdString);	    
+					var result = DELETEKIND.synExecute({kind_code:kindIdString, resCode:"bizSetKind", opCode:"bizSetKindDelete"});
+					if(result.returnCode == 0){
+					        		//更新树
+						if(tParentId!=null && tParentId!="")
+							refreshNode(tParentId);
+						else{
+							refreshNode(tRootId);
+						}
+						//更新列表
+						//loadKindGrid();
+						kindGrid.refresh();	
+					 }else{
+					   Ext.Msg.alert('提示', '操作失败<br>原因：' + result.errorInfo);
+					}
+			});		     
+		}
+	});	
+
+}
+event expendTreeBtn_click(Button thisComp, Ext.EventObject e) {		
+	kindTree. expandAll();
+}
+event collTreeBtn_click(Button thisComp, Ext.EventObject e) {		
+	kindTree.collapseAll();
+}
+event refreshTreeBtn_click(Button thisComp, Ext.EventObject e) {
+	refreshNode(tRootId);
+	loadKindGrid();
+}
+event kindTree_click(Button thisComp, Ext.EventObject e) {		
+	tParentId = thisComp.id;
+	tParentName = thisComp.text;
+	tTreeIdx = thisComp.attributes.tree_idx;
+		
+	parentNameField.setValue(thisComp.text);
+	parentIdField.setValue(thisComp.id);
+	//loadKindGrid();
+	
+	kindDataSet.setParams({parent_code:thisComp.id,parentName:thisComp.text});
+	//---20111116--wangnan06675-BUG #1636::单击树的时候，所有按钮都可用-begin-
+    enableButtons();
+	//---20111116--wangnan06675-BUG #1636::单击树的时候，所有按钮都可用-end-
+	kindDataSet.load();
+}
+event kindGrid_rowclick(Hs.HsGrid thisComp ,Number rowIndex ,Ext.EventObject e ){
+	//var record = thisComp.getStore().getAt(rowIndex);
+	var dlt = true;
+	var paramArray = kindGrid.getSelectionModel().getSelections()
+	for(var i=0; i<paramArray.length; i++){
+		var record = paramArray[i];
+		if(record==null || record=="")
+			continue;
+		var parent = record.get('parent_code');
+		if(parent=="" || parent==null){
+			dlt = false;
+			break;
+		}
+	}
+	
+	dltKindBtn.setEnabled(dlt);
+	//---20111116--wangnan06675-BUG #1636::页面做控制，当为平台级别的，删除和修改按钮不可用-begin-
+	var record = kindGrid.getSelectionModel().getSelected();
+	var platform =(record)?record.get("platform"):"0";
+	if(platform=='1'){
+	   dltKindBtn.setEnabled(false);
+	   updateKindBtn.setEnabled(false);
+	}else{
+	   dltKindBtn.setEnabled(true);
+	   updateKindBtn.setEnabled(true);
+	}
+	//---20111116--wangnan06675-BUG #1636::页面做控制，当为平台级别的，删除和修改按钮不可用-end-
+}
+
+
+event parentNameField_change(Ext.form.Field thisComp, Mixed newValue, Mixed oldValue) {
+	if(newValue != oldValue){
+	//STORY #3231::[证券三部/周行康][XQ:2012052500004]【BIZ】HSKFFWZX-931/杨开郎【PMS】系统类别设置，查询有问题 xujin 20120606 begin
+		//alert ("newValue="+newValue+"|oldValue="+oldValue);
+		//parentIdField.reset();
+		parentIdField.setValue(newValue);
+	//STORY #3231::[证券三部/周行康][XQ:2012052500004]【BIZ】HSKFFWZX-931/杨开郎【PMS】系统类别设置，查询有问题 xujin 20120606 end
+	}
+}
+
+
+event MainWin_complete() {
+	//searchKindForm.collapse();
+	var operationMap = {"bizSetKind.bizSetKindAdd":addKindBtn,
+			   			   "bizSetKind.bizSetKindEdit":dltKindBtn,
+			   			   "bizSetKind.bizSetKindDelete":updateKindBtn,
+			   			   "bizSetKind.bizSetKindFind":searchKindBtn};
+	checkRights(operationMap);
+}
+//---20111116--wangnan06675-BUG #1636::显示全部按钮---begin---
+function enableButtons(){
+    addKindBtn.setEnabled(true);
+	updateKindBtn.setEnabled(true);
+	dltKindBtn.setEnabled(true);
+}
+//---20111116--wangnan06675-BUG #1636::显示全部按钮---end---]]></WindowScript>
+    <WindowScript window="updateKindWindow"><![CDATA[
+remote bizframe.kind.fetchKindList as FETCHKIND;
+
+public function checkKindCode(newValue){
+	var kind = {kind_code:newValue,opCode:'bizSetKindFind',resCode:'bizSetKind'};
+	var result = FETCHKIND.synExecute(kind);
+	
+	if(result.dataSetResult.length > 0 && result.dataSetResult[0].data!=null){
+		return false;
+	}
+	else{		
+		return true;
+	}
+}
+
+public function checkMnemonic(newValue){
+	if(newValue == ""){
+		return true;
+	}
+	var kind = {mnemonic:newValue,opCode:'bizSetKindFind',resCode:'bizSetKind'};
+	var result = FETCHKIND.synExecute(kind);
+	if(result.dataSetResult.length > 0){
+		if(result.dataSetResult[0].data==null || result.dataSetResult[0].data.length<1){
+			return true;
+		}else{
+			//在修改分类时，不检查自己的助记符
+			var dataArray = result.dataSetResult[0].data;
+			for(var i=0; i<dataArray.length; i++){				
+				var kindCode = kindCodeField.getValue();
+				if( dataArray[i].kind_code!="" && kindCode!=dataArray[i].kind_code){
+					return false;
+				}
+			}
+			return true;
+		}
+		
+	}
+	else
+		return true;
+}
+
+public function verifyEditKindForm(){
+	var result = "";
+	if(fieldEditable(kindCodeField) && !checkKindCode(kindCodeField.getValue())){
+		result="编号已存在,请重新输入";
+		kindCodeField.setValue("");
+	}
+	if(fieldEditable(mnemonicField) && !checkMnemonic(mnemonicField.getValue())){ 
+		result="助记符已存在,请重新输入";
+		mnemonicField.setValue("");
+	}
+	
+	return result;
+}
+
+public function fieldEditable(field){
+	if(field.isEditable() && field.isEnabled())
+		return true;
+	else
+		return false;
+}
+
+event updateKindWindow_complete() {
+	//更新分类
+	if(MainWin.editMod == "update"){	
+		var record = MainWin.kindGrid.getSelectionModel().getSelected();
+		kindNameField.setValue(record.get('kind_name'));
+		kindCodeField.setValue(record.get('kind_code'));
+		mnemonicField.setValue(record.get('mnemonic'));		
+		parentNameField.setValue(record.get('parent_name'));
+		remarkArea.setValue(record.get('remark'));
+		//kindIdField.setValue(record.get('kind_code'));
+		parentIdField.setValue(record.get('parent_code'));
+		dimensionField.setValue(record.get('kind_type'));
+		treeIdxField.setValue(record.get('tree_idx'));
+		kindCodeField.setEnabled(false);
+		
+		if(MainWin.tDimensionName == "")
+			dimensionNameField.setValue(MainWin.transDimension(record.get('kind_type')));
+		else
+			dimensionNameField.setValue(MainWin.tDimensionName);
+			
+		if(record.get('parent_code') != "")
+			MainWin.tParentId = record.get('parent_code');
+		else
+			MainWin.tParentId = MainWin.tRootId;
+	}
+	//新增分类
+	if(MainWin.editMod == "add"){
+		parentNameField.setValue(MainWin.tParentName);
+		dimensionNameField.setValue(MainWin.tDimensionName);
+		parentIdField.setValue(MainWin.tParentId);
+		dimensionField.setValue(MainWin.tDimension);	
+	}
+}
+event saveBtn_click(Button thisComp, Ext.EventObject e) {
+	
+	if(editKindForm.getForm().isValid()){
+		var check = verifyEditKindForm();
+		if(check!=""){
+			Ext.Msg.alert('提示', check);
+			return;
+		}			
+	}else{
+		Ext.Msg.alert('提示', '发现有输入项不符合规范');
+		return;
+	}
+			var authWindow = new auth(MainWin).window;
+			if(MainWin.editMod == "update"){
+			    
+				authWindow.needAuth(authWindow,'bizSetKind','bizSetKindEdit',MainWin, 
+				function(){
+					Ext.MessageBox.show({
+		        	title: '提示',
+		        	msg: '确认修改？',
+		       	 	buttons: Ext.MessageBox.YESNO,
+		        	icon: Ext.MessageBox.QUESTION,
+		        	fn: function(btn){
+			        	if(btn == 'yes'){
+			        			kindIdField.setValue(kindCodeField.getValue());	        	
+				     			editKindForm.commSubmit();
+			         	}
+					}
+		       		});
+		
+				});	
+				
+			}else{
+				treeIdxField.setValue(MainWin.tTreeIdx + kindCodeField.getValue() + "#");		
+				authWindow.needAuth(authWindow,'bizSetKind','bizSetKindAdd',MainWin, 
+				function(){
+						Ext.MessageBox.show({
+			        	title: '提示',
+			        	msg: '确认新增？',
+			       	 	buttons: Ext.MessageBox.YESNO,
+			        	icon: Ext.MessageBox.QUESTION,
+			        	fn: function(btn){
+				        	if(btn == 'yes'){
+				        		editKindForm.commSubmit();
+				         	}
+						}
+			       		});
+				});			
+			}     
+}
+event resetBtn_click(Button thisComp, Ext.EventObject e) {
+	//editKindForm.getForm().reset();
+	if(MainWin.editMod == "update"){
+		var record = MainWin.kindGrid.getSelectionModel().getSelected();
+		kindNameField.setValue(record.get("kind_name"));
+		mnemonicField.setValue(record.get("mnemonic"));
+		remarkArea.setValue(record.get("remark"));
+	}else{
+		kindNameField.reset();
+		if(fieldEditable(kindCodeField))
+			kindCodeField.reset();
+		mnemonicField.reset();
+		remarkArea.reset();
+	}
+}
+event cancelBtn_click(Button thisComp, Ext.EventObject e) {
+	hide();
+	editKindForm.getForm().reset();	
+}
+event editKindForm_submitSuccess(object response) {
+	var returnCode = "-1";
+	var errorInfo;
+	if(typeof response == 'object'){
+		returnCode = response.returnCode;
+		errorInfo = response.errorInfo;
+	}
+	
+	if(returnCode == "0"){
+		//更新成功
+		hide();
+		editKindForm.getForm().reset();
+		
+		//更新列表
+		MainWin.kindGrid.refresh()
+		
+		//更新树
+		//MainWin.refreshNode(MainWin.tParentId);
+		refreshTreeNode(MainWin.kindTree,MainWin.tParentId,MainWin.tRootId);
+		MainWin.editMod="";
+	}else{
+		Ext.Msg.alert('提示', '更新失败<br>原因：' + errorInfo);
+	}
+}
+event editKindForm_submitFailure(object response) {
+	Ext.Msg.alert('提示', '调用服务失败');
+}
+//校验编号
+event kindCodeField_change(Ext.form.Field thisComp, Mixed newValue, Mixed oldValue) {	
+	if(!checkKindCode(newValue)&&newValue!=''){
+		Ext.Msg.alert('提示','编号已存在，请重新输入');
+		kindCodeField.setValue("");
+	}
+}
+//校验助记符
+event mnemonicField_change(Ext.form.Field thisComp, Mixed newValue, Mixed oldValue) {	
+	if(!checkMnemonic(newValue)){
+		Ext.Msg.alert('提示','助记符已存在，请重新输入');
+		mnemonicField.setValue("");
+	}
+}
+]]></WindowScript>
+  </WindowScripts>
+  <EMF_RevisionHistories><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<core:RevisionHistory xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:core="http://www.hundsun.com/ares/studio/jres/core/1.0.0" xmlns:stock3="http://www.hundsun.com/ares/studio/jres/database/stock3/1.0.0" modifiedDate="2012/06/06" version="1.1.8" orderNumber="3231" modifiedBy="xujin" modifiedReason="系统类别查询有问题" comment="">
+  <data2 xmi:type="core:EStringToEObjectMapEntry" key="Stock3">
+    <value xmi:type="stock3:Stock3HistoryProperty" internalVersion="$Rev$"/>
+  </data2>
+</core:RevisionHistory>
+]]></EMF_RevisionHistories>
+</hsdoc>

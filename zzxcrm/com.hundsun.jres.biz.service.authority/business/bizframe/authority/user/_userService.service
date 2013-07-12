@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service2:ServiceModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:flow2="http://www.hundsun.com/ares/studio/jres/flow2" xmlns:service2="http://www.hundsun.com/ares/studio/jres/service2" name="用户服务" outputPagination="true">
+  <inputDefines id="resCode" javaType="String">
+    <defaultValue2/>
+  </inputDefines>
+  <inputDefines id="opCode" javaType="String">
+    <defaultValue2/>
+  </inputDefines>
+  <outputDefines id="user_id" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="user_name" type="TName" javaType="String" name="用户名称">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="user_pwd" type="TCode" javaType="String" name="登录密码">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="user_type" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="user_status" type="TDict" javaType="String" name="用户状态" stdField="true" description="用于表示此用户状态&#xA;取数据字典[sys_biz_user_status]&#xA;0-正常&#xA;1-注销">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="lock_status" type="TDict" javaType="String" name="锁定状态" stdField="true" description="用于表示此用户是否被锁定&#xA;取数据字典[sys_biz_yes_or_no]&#xA;0-否&#xA;1-是">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="create_date" type="TIntDateTime" javaType="int" name="创建时间" stdField="true">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="modify_date" type="TIntDateTime" javaType="int" name="最后修改时间" stdField="true">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="pass_modify_date" javaType="int">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="remark" type="TDesc" javaType="String" name="备注" stdField="true" description="模板位置">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="user_status_display" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="lock_status_display" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="user_type_display" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="ext_field_1" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="ext_field_2" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="ext_field_3" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="ext_field_4" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="ext_field_5" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="org_id" type="TStringID" javaType="String" name="组织标识" stdField="true">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="org_name" type="TName" javaType="String" name="组织名称" stdField="true">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="user_order" stdField="true">
+    <defaultValue2/>
+  </outputDefines>
+  <unit>
+    <info xsi:type="flow2:LogicUnitInfo"/>
+    <children id="action_3" name="用户构件">
+      <info xsi:type="flow2:ComponentMethodInfo" fullyQualifiedName="bizframe.authority.user._userComponent" methodName="action">
+        <inputParameters id="context" javaType="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext" name="context"/>
+        <outputParameters id="action_result" javaType="com.hundsun.jres.interfaces.share.dataset.IDataset"/>
+      </info>
+    </children>
+    <children id="resultAssignment1" name="赋值输出">
+      <info xsi:type="flow2:ResultAssignmentInfo" assignmentType="REFERENCE" resultType="com.hundsun.jres.interfaces.share.dataset.IDataset" expression="Result:action_3.action_result"/>
+    </children>
+  </unit>
+</service2:ServiceModel>

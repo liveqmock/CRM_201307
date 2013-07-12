@@ -1,0 +1,644 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hsdoc version="1.1.0">
+  <Windows>
+    <control-MainWindow height="568" name="MainWin" templatePath="window.ftl" width="966">
+      <layout-fit>
+        <control-Panel height="200" name="ParameterManagePanel" width="300">
+          <layout-border>
+            <control-Tree region="west" width="218" height="528" title="分类树" collapsible="true" split="true" name="kindTree">
+              <layout-tree>
+                <control-AsyncTreeNode id="0002" dataSet="DataSet1" name="AsyncTreeNode2" text="系统参数根节点">
+                  <layout-tree/>
+                </control-AsyncTreeNode>
+              </layout-tree>
+              <Top>
+                <control-Toolbar name="Toolbar3">
+                  <layout-toolbar>
+                    <control-Button name="expendTreeBtn" text="展开" width="65" icon="bizframe/images/icons/arrow_out.png" tabIndex="2"/>
+                    <control-Button name="collTreeBtn" text="收缩" width="65" icon="bizframe/images/icons/arrow_in.png" tabIndex="3"/>
+                    <control-Button name="refreshTreeBtn" text="刷新" width="65" icon="bizframe/images/icons/refresh.png" tabIndex="4"/>
+                  </layout-toolbar>
+                </control-Toolbar>
+              </Top>
+            </control-Tree>
+            <control-Panel region="center" height="200" name="ParameterPanel" width="300">
+              <layout-border>
+                <control-FormPanel collapseMode="mini" region="north" width="562" height="180" hideCollapseTool="true" dataSet="parameterDataSet" split="true" collapsible="true" name="SearchParamFormPanel">
+                  <layout-table columns="2" fullWidth="true">
+                    <control-TextField labelAlign="right" regexText="非法输入，只能输入中文、英文、小括号和下划线" fieldName="param_code" width="250" regex="/^[\w\u4e00-\u9fa5\.\/\,\，\.\。\“\（\）\(\)\-\s]*$/" fieldLabel="参数编号" name="TextField1" tabIndex="5"/>
+                    <control-TextField labelAlign="right" regexText="非法输入，只能输入中文、英文、小括号和下划线" fieldName="param_name" width="250" regex="/^[\w\u4e00-\u9fa5\.\/\,\，\.\。\“\（\）\(\)\-\s]*$/" fieldLabel="参数名称" name="paramNameField" tabIndex="6"/>
+                    <control-TextField labelAlign="right" regexText="非法输入，只能输入中文、英文、小括号和下划线" fieldName="param_value" width="250" height="22" regex="/^[\w\u4e00-\u9fa5\.\/\,\，\.\。\“\（\）\(\)\-\s]*$/" fieldLabel="参数值" name="paramValueField" tabIndex="7"/>
+                    <control-TargetSelect labelAlign="right" targetWindow="orgSelector" msgTarget="qtip" fieldName="org_name" params="['searchOrgId','searchOrgName',true]" callFunction="rec" width="250" minLength="1" fieldLabel="所属组织" name="searchOrgName" tabIndex="8" blankSuffixLabel=""/>
+                    <control-HiddenField fieldName="param_code" name="paramIdStringField"/>
+                    <control-HiddenField fieldName="rel_orgs" name="relOrgdField"/>
+                    <control-HiddenField defaultValue="bizSetParam" fieldName="resCode" name="resCodeField"/>
+                    <control-HiddenField defaultValue="bizSetParamFind" fieldName="opCode" name="opCodeField"/>
+                    <control-HiddenField fieldName="rel_org" name="searchOrgId"/>
+                    <control-TargetSelect labelAlign="right" targetWindow="kindTypeSelector" fieldName="kind_name" params="['kindNameField','kindCodeField']" callFunction="rec" width="250" fieldLabel="参数类别" name="kindNameField" tabIndex="7"/>
+                    <control-HiddenField fieldName="kind_code" name="kindCodeField"/>
+                  </layout-table>
+                  <Bottom>
+                    <control-ButtonGroup height="24" name="ButtonGroup2">
+                      <layout-buttonGroup>
+                        <control-Button name="searchParameterBtn" text="查询" width="75" icon="bizframe/images/icons/search.png" tabIndex="10"/>
+                        <control-Button tipText="清空查询条件" name="searchResetBtn" text="重置" width="75" icon="bizframe/images/icons/refresh.png" tabIndex="11"/>
+                      </layout-buttonGroup>
+                    </control-ButtonGroup>
+                  </Bottom>
+                  <Top>
+                    <control-Toolbar name="Toolbar1">
+                      <layout-toolbar>
+                        <control-Button name="addParameterBtn" text="新增" width="75" icon="bizframe/images/icons/add.gif" tabIndex="12"/>
+                        <control-Button name="modifyParameterBtn" text="修改" width="75" icon="bizframe/images/icons/edit.png" tabIndex="13"/>
+                        <control-Button name="dltParameterBtn" text="删除" width="75" icon="bizframe/images/icons/delete.gif" enabled="false" tabIndex="14"/>
+                      </layout-toolbar>
+                    </control-Toolbar>
+                  </Top>
+                  <Left/>
+                  <Right/>
+                </control-FormPanel>
+                <control-Grid region="center" hasCheckColumn="true" singleSelect="true" remoteSort="true" autoload="false" enableCellTip="true" width="300" height="200" dataSet="parameterDataSet" name="ParameterGrid" hasCustomPageSize="true" autoScroll="true" border="false" hasPagingBar="true">
+                  <layout-GridToolbar>
+                    <control-GridItem title="参数编号" dataIndex="param_code" name="paramCodeItem" width="128"/>
+                    <control-GridItem title="参数名称" align="left" dataIndex="param_name" name="paramNameItem" width="147"/>
+                    <control-GridItem title="参数值" align="left" dataIndex="param_value" name="paramValueItem" width="133"/>
+                    <control-GridItem title="类别名称" align="left" dataIndex="kind_name" name="kindNameItem" width="96"/>
+                    <control-GridItem title="所属组织" dataIndex="org_name" name="relOrgItem" width="134"/>
+                    <control-GridItem title="平台标识名称" align="center" dataIndex="platform_name" name="GridItem2" width="100" sortable="true"/>
+                    <control-GridItem align="left" width="100" title="平台标识" dataIndex="platform" sortable="true" hidden="true" name="GridItem3"/>
+                    <control-GridItem title="参数类别" align="left" dataIndex="kind_code" name="GridItem4" width="100" sortable="true"/>
+                    <control-GridItem title="备注" align="left" dataIndex="param_desc" name="paramDesc" width="100" sortable="true"/>
+                    <control-GridItem title="参数值验证正则" align="left" dataIndex="param_regex" name="GridItem5" width="100" sortable="true"/>
+                    <control-GridItem align="left" width="100" title="组织ID" dataIndex="rel_org" sortable="true" hidden="true" name="GridItem1"/>
+                  </layout-GridToolbar>
+                </control-Grid>
+              </layout-border>
+              <Top/>
+              <Bottom/>
+              <Left/>
+              <Right/>
+            </control-Panel>
+          </layout-border>
+        </control-Panel>
+      </layout-fit>
+    </control-MainWindow>
+    <control-Window title="修改参数" height="335" name="UpdateParameterWindow" draggable="true" width="373" resizable="false">
+      <Bottom>
+        <control-ButtonGroup height="27" name="ButtonGroup1">
+          <layout-buttonGroup>
+            <control-Button name="saveBtn" text="确定" width="75" icon="bizframe/images/icons/accept.png"/>
+            <control-Button name="resetBtn" text="重置" width="75" icon="bizframe/images/icons/refresh.png"/>
+            <control-Button name="cancelBtn" text="取消" width="75" icon="bizframe/images/icons/cross.gif"/>
+          </layout-buttonGroup>
+        </control-ButtonGroup>
+      </Bottom>
+      <layout-border>
+        <control-FormPanel region="center" width="365" height="186" name="UpdateParameterForm" border="false" frame="true" submitService="bizframe.parameter.paramEditSvc">
+          <layout-form labelAlign="right" labelWidth="71">
+            <control-TextField dataField="param_code" msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" regexText="非法输入，只能输入英文、数字和下划线" fieldName="param_code" width="320" regex="/^\w+$/" minLength="1" maxLength="64" fieldLabel="参数编号" name="uParameterCodeField" allowBlank="false"/>
+            <control-TextField dataField="param_name" msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" regexText="非法输入，只能输入中文、英文、小括号和下划线" fieldName="param_name" width="320" regex="/^[\w\u4e00-\u9fa5\.\/\,\，\.\。\“\（\）\(\)\-\s]*$/" maxLength="32" fieldLabel="参数名称" name="uParameterNameField" allowBlank="false"/>
+            <control-TextField dataField="kind_name" enabled="false" msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" fieldName="kind_name" width="320" fieldLabel="类别名称" name="uKindNameField" allowBlank="false"/>
+            <control-TextArea dataField="param_value" msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" fieldName="param_value" width="320" height="35" maxLength="1024" fieldLabel="参数值" name="uParamValueField" allowBlank="false"/>
+            <control-TargetSelect targetWindow="orgSelector" msgTarget="qtip" fieldName="org_name" params="['hrel_org','searchOrgName',true]" callFunction="rec" width="320" minLength="1" fieldLabel="所属组织" name="searchOrgName" allowBlank="false" blankSuffixLabel=""/>
+            <control-TextField fieldName="param_regex" width="320" height="22" fieldLabel="验证正则" maxLength="64" name="paramRegexField" tabIndex="1"/>
+            <control-TextArea dataField="param_desc" msgTarget="qtip" fieldName="param_desc" width="319" height="84" fieldLabel="备      注" maxLength="256" name="uParamDescField" tabIndex="1"/>
+            <control-HiddenField defaultValue="bizSetParam" fieldName="resCode" name="resCodeField"/>
+            <control-HiddenField fieldName="opCode" name="opCodeField"/>
+            <control-HiddenField name="HiddenField2"/>
+            <control-HiddenField dataField="kind_code" fieldName="kind_code" name="uKindIdField"/>
+            <control-HiddenField dataField="rel_org" fieldName="rel_org" name="hrel_org"/>
+          </layout-form>
+        </control-FormPanel>
+      </layout-border>
+    </control-Window>
+  </Windows>
+  <Accessory>
+    <control-DataSet name="parameterDataSet" service="bizframe.parameter.paramQuerySvc" limit="limit" usingServiceName="true" window="MainWin">
+      <params>
+        <param name="resCode"><![CDATA["bizSetParam"]]></param>
+        <param name="opCode"><![CDATA["bizSetParamFind"]]></param>
+      </params>
+      <fields>
+        <field name="param_code" type="String"/>
+        <field name="rel_org" type="String"/>
+        <field name="kind_code" type="String"/>
+        <field name="param_name" type="String"/>
+        <field name="param_value" type="String"/>
+        <field name="param_desc" type="String"/>
+        <field name="kind_name" type="String"/>
+        <field name="org_name" type="String"/>
+        <field name="platform" type="String"/>
+        <field name="platform_name" type="String"/>
+        <field name="param_regex" type="String"/>
+      </fields>
+    </control-DataSet>
+    <control-DataSet name="OrgDataSet" service="bizframe.authority.organization.findTreeOrg" window="MainWin">
+      <params/>
+      <fields>
+        <field name="organizationId" type="String"/>
+        <field name="dimension" type="String"/>
+        <field name="orgCate" type="String"/>
+        <field name="orgCode" type="String"/>
+        <field name="branch_name" type="String"/>
+        <field name="parentId" type="String"/>
+        <field name="manageId" type="String"/>
+        <field name="orgPath" type="String"/>
+        <field name="ssoOrgCode" type="String"/>
+        <field name="ssoParentCode" type="String"/>
+      </fields>
+    </control-DataSet>
+    <control-TreeDataSet name="DataSet1" service="bizframe.kind.fetchKindList" usingServiceName="true" window="MainWin">
+      <params>
+        <param name="resCode"><![CDATA["bizSetKind"]]></param>
+        <param name="opCode"><![CDATA["bizSetKindFind"]]></param>
+      </params>
+      <fields>
+        <field name="kind_code" type="String" mapping="id"/>
+        <field name="kind_name" type="String" mapping="text"/>
+        <field name="parent_code" type="String" mapping="pid"/>
+      </fields>
+    </control-TreeDataSet>
+    <control-DataSet name="OrgDataSet1" service="bizframe.authority.organization.findTreeOrg" window="UpdateParameterWindow">
+      <params/>
+      <fields>
+        <field name="organizationId" type="String"/>
+        <field name="dimension" type="String"/>
+        <field name="orgCate" type="String"/>
+        <field name="orgCode" type="String"/>
+        <field name="branch_name" type="String"/>
+        <field name="parentId" type="String"/>
+        <field name="manageId" type="String"/>
+        <field name="orgPath" type="String"/>
+      </fields>
+    </control-DataSet>
+  </Accessory>
+  <WindowScripts>
+    <WindowScript window="MainWin"><![CDATA[include bizframe.js.checkRight;  //引入公共js 文件
+include bizframe.js.commonUtil;		//引入公共工具包js文件
+
+import bizframe.authority.branchSelector;
+import bizframe.authority.auth;
+import bizframe.authority.orgSelector;
+import bizframe.kind.kindTypeSelector;
+
+remote bizframe.parameter.paramDeleteSvc as paramDeleteSvc;
+
+public editMod="null";
+public kindCode="";
+public kindName="";
+public kindType = "1";
+
+
+public function builderExpString(paramArray, key)
+{
+  var count = paramArray.length;
+  if(count<1)
+  {
+    return "";
+  }
+  var flg = ',';
+  var paramIdString = "";
+  for(var i=0; i<count; i++)
+  {
+    var data = paramArray[i];
+    paramIdString = paramIdString + data.get(key);
+    if(i != count-1)
+    {
+      paramIdString = paramIdString + flg;
+    }
+  }
+  return paramIdString;
+}
+
+public function loadParamGrid()
+{
+  var values =  SearchParamFormPanel.getValues();
+  parameterDataSet.setParams(values);
+  parameterDataSet.load();
+}
+
+event addParameterBtn_click(Button thisComp, Ext.EventObject e)
+{
+  editMod = "add";
+  
+  if(kindCode=="")
+  {
+    Ext.Msg.alert('提示', '请选择一个类别');
+    return;
+  }
+  
+  var win = new UpdateParameterWindow();
+  win.setTitle('新增参数');
+  win.UpdateParameterForm.setSubmitService('bizframe.parameter.paramAddSvc');
+  win.show();
+}
+event dltParameterBtn_click(Button thisComp, Ext.EventObject e)
+{
+  editMod = "delete";
+  var paramArray = ParameterGrid.getSelectionModel().getSelections();
+  
+  var paramIdString = builderExpString(paramArray, 'param_code');
+  var orgCodeString = builderExpString(paramArray, 'rel_org');
+  
+  if(paramIdString == "")
+  {
+    Ext.Msg.alert('提示', '请选择至少一条系统参数信息进行删除');
+    return;
+  }
+  Ext.MessageBox.confirm('提示', '您确定删除?', function(button, text)
+  {
+    if (button == "yes")
+    {
+      var authWindow = new auth(MainWin).window;
+      authWindow.needAuth(authWindow,'bizSetParam','bizSetParamDlt',MainWin,
+      function()
+      {
+        var params =
+        {
+          rel_orgs:orgCodeString,param_code: paramIdString,resCode:"bizSetParam", opCode:"bizSetParamDlt"
+        }
+        ;
+        var result = paramDeleteSvc.synExecute(params);
+        if(result.returnCode == 0)
+        {
+          //删除成功
+          paramIdStringField.reset();
+          relOrgdField.reset();
+          opCodeField.setValue("bizSetParamFind");
+          //更新列表
+          ParameterGrid.refresh();
+        }
+        else
+        {
+          Ext.Msg.alert('提示', '操作失败<br>原因：' + result.errorInfo);
+        }
+      }
+      );
+      
+    }
+  }
+  );
+}
+event modifyParameterBtn_click(Button thisComp, Ext.EventObject e)
+{
+  editMod = "update";
+  var win = new UpdateParameterWindow();
+  
+  var paramCount = ParameterGrid.getSelectionModel().getSelections().length;
+  if(paramCount != 1)
+  {
+    Ext.Msg.alert('提示', '请选择一条系统参数');
+    return;
+  }
+  win.show();
+}
+event searchParameterBtn_click(Button thisComp, Ext.EventObject e)
+{
+  if(SearchParamFormPanel.getForm().isValid())
+  {
+    loadParamGrid();
+  }
+  else
+  Ext.Msg.alert('提示', '发现有输入项不符合规范');
+}
+
+event expendTreeBtn_click(Button thisComp, Ext.EventObject e)
+{
+  kindTree. expandAll();
+}
+event collTreeBtn_click(Button thisComp, Ext.EventObject e)
+{
+  kindTree.collapseAll();
+}
+event refreshTreeBtn_click(Button thisComp, Ext.EventObject e)
+{
+  var rootNode = kindTree.getNodeById('0002');
+  rootNode.reload();
+  
+  kindCode = "";
+  kindName = "";
+  kindCodeField.reset();
+  kindNameField.reset();
+  loadParamGrid();
+}
+event kindTree_click(Button thisComp, Ext.EventObject e)
+{
+  kindCode = thisComp.id;
+  kindName = thisComp.text;
+  
+  kindNameField.setValue(thisComp.text);
+  kindCodeField.setValue(thisComp.id);
+  
+  //loadParamGrid();
+  
+  var values =
+  {
+    kind_code:thisComp.id
+  }
+  ;
+  Ext.apply(values,
+  {
+    start:0
+  }
+  );
+  Ext.apply(values,
+  {
+    limit:ParameterGrid.pageSize
+  }
+  );
+  parameterDataSet.setParams(values);
+  parameterDataSet.load();
+}
+
+event SearchParamFormPanel_submitSuccess(object response)
+{
+  var returnCode = "-1";
+  var errorInfo;
+  if(typeof response == 'object')
+  {
+    returnCode = response.returnCode;
+    errorInfo = response.errorInfo;
+  }
+  
+  if(returnCode == "0")
+  {
+    //删除成功
+    paramIdStringField.reset();
+    relOrgdField.reset();
+    opCodeField.setValue("bizSetParamFind");
+    ParameterGrid.refresh();
+  }
+  else
+  {
+    Ext.Msg.alert('提示', '操作失败<br>原因：' + errorInfo);
+  }
+}
+event SearchParamFormPanel_submitFailure(object response)
+{
+  Ext.Msg.alert('提示', '调用服务失败');
+}
+
+event searchResetBtn_click(Button thisComp, Ext.EventObject e)
+{
+  SearchParamFormPanel.getForm().reset();
+}
+
+event kindNameField_change(Ext.form.Field thisComp, Mixed newValue, Mixed oldValue)
+{
+  if(newValue != oldValue)
+  {
+    kindCodeField.reset();
+  }
+}
+event MainWin_complete()
+{
+  //SearchParamFormPanel.collapse();
+  var operationMap =
+  {
+    "bizSetParam.bizSetParamFind":searchParameterBtn,
+    "bizSetParam.bizSetParamAdd":addParameterBtn,
+    "bizSetParam.bizSetParamEdit":modifyParameterBtn,
+    "bizSetParam.bizSetParamDlt":dltParameterBtn
+  }
+  ;
+  checkRights(operationMap);
+  parameterDataSet.setParams(
+  {
+    start:1,limit:ParameterGrid.pageSize
+  }
+  );
+  parameterDataSet.load();
+}
+
+event ParameterGrid_rowclick(Hs.HsGrid thisComp, Number rowIndex, Ext.EventObject e)
+{
+  var selectRow=thisComp.getSelectionModel().getSelected();
+  if(selectRow)
+  {
+    var platform =selectRow.get("platform");
+    if(platform=='1')
+    {
+      modifyParameterBtn.setEnabled(true);
+      dltParameterBtn.setEnabled(false);
+      
+    }else if(platform=='2'){
+       modifyParameterBtn.setEnabled(false);
+       dltParameterBtn.setEnabled(false);
+    }
+    else
+    {
+      modifyParameterBtn.setEnabled(true);
+      dltParameterBtn.setEnabled(true);
+    }
+  }
+}]]></WindowScript>
+    <WindowScript window="UpdateParameterWindow"><![CDATA[remote bizframe.parameter.paramQuerySvc as GETPARAM;
+public function fieldEditable(field){
+	if(field.isEditable() && field.isEnabled())
+		return true;
+	else
+		return false;
+}
+public function checkParamCode(paramCode, relOrg){
+	var param = {param_code:paramCode, rel_org:relOrg, resCode:"bizSetParam", opCode:"bizSetParamFind"};
+	var result = GETPARAM.synExecute(param);
+	
+	if(result.dataSetResult.length > 0 && result.dataSetResult[0].data!=null)
+		return false;
+	else
+		return true;
+}    
+public function verifyEditParamForm(){
+	var result = "";
+	if(fieldEditable(uParameterCodeField) && !checkParamCode(uParameterCodeField.getValue(), hrel_org.getValue())){
+		result="参数代码已重复,请重新输入！";
+		uParameterCodeField.setValue("");
+	}
+	if(hrel_org.getValue()==""){
+		result="关联机构为必输项！";
+	}
+	
+	return result;
+}
+
+
+
+event resetBtn_click(Button thisComp, Ext.EventObject e) {
+	//UpdateParameterForm.getForm().reset();
+	if(MainWin.editMod == "update"){
+		var record = MainWin.ParameterGrid.getSelectionData();
+		uParameterNameField.setValue(record.get('param_name'));
+		uParameterCodeField.setValue(record.get('param_code'));
+		uParamValueField.setValue(record.get('param_value'));
+		searchOrgName.setValue(record.get('org_name'));
+		hrel_org.setValue(record.get('rel_org'));
+		uKindNameField.setValue(record.get('kind_name'));
+		uKindIdField.setValue(record.get('kind_code'));
+		opCodeField.setValue("bizSetParamEdit");
+		uParamDescField.setValue(record.get('param_desc'));
+	}else{
+		uParameterNameField.reset();
+		if(fieldEditable(uParameterCodeField))
+			uParameterCodeField.reset();
+		uParamValueField.reset();
+		hrel_org.reset();
+		searchOrgName.reset();
+	}
+}
+event cancelBtn_click(Button thisComp, Ext.EventObject e) {	
+	hide();
+	UpdateParameterForm.getForm().reset();
+}
+
+public function verifyParamValue(){
+	if(!paramRegexField)
+		return true;
+	var isCheckSucess=false;
+	var paramRegexValue=paramRegexField.getValue().trim();
+	if(paramRegexValue!=""){
+		var $_paramValue=uParamValueField.getValue();
+		try{
+			var regExp = new RegExp(paramRegexValue);
+			isCheckSucess=regExp.test($_paramValue);
+			if(!isCheckSucess){
+			Ext.Msg.show({
+			   title:'提示',
+			   msg: '参数值不符合验证规则，请重新输入',
+			   buttons: Ext.Msg.OK,
+			   fn: function(button, text) {
+					uParamValueField.focus(true);
+					},
+			   icon: Ext.MessageBox.ERROR
+			});
+
+			/**
+				Ext.MessageBox.confirm('提示', '参数值不符合验证规则，请重新输入',function(button, text) {
+					uParamValueField.focus(true);
+				});*/
+			}
+		}catch(err){
+			isCheckSucess=false;
+			Ext.Msg.alert('提示', '验证正则输入项不符合规范');
+		}
+	}else{
+		isCheckSucess=true;//没填正则时候不验证，则返回true
+	}
+	return isCheckSucess;
+	
+}
+
+event saveBtn_click(Button thisComp, Ext.EventObject e) {
+	if(UpdateParameterForm.getForm().isValid()){
+		var check = verifyEditParamForm();
+		if(check!=""){
+			Ext.Msg.alert('提示', check);
+			return;
+		}
+	}else{
+		Ext.Msg.alert('提示', '发现有输入项不符合规范');
+		return;
+	}
+	var isSucess=verifyParamValue();
+	if(!isSucess) return;
+	
+	Ext.MessageBox.confirm('提示', "确定提交？", function(button, text) {
+		if (button == "yes") {
+			var authWindow = new auth(MainWin).window;
+			if(MainWin.editMod == "update"){
+				authWindow.needAuth(authWindow,'bizSetParam','bizSetParamEdit',MainWin, 
+				function(){
+				    UpdateParameterForm.commSubmit();
+				});			
+			}else{
+				authWindow.needAuth(authWindow,'bizSetParam','bizSetParamAdd',MainWin, 
+				function(){
+					UpdateParameterForm.commSubmit();
+				});			
+			}
+		}
+	});
+}
+event UpdateParameterForm_submitSuccess(object response) {
+	var returnCode = "-1";
+	var errorInfo;
+	if(typeof response == 'object'){
+		returnCode = response.returnCode;
+		errorInfo = response.errorInfo;
+	}
+	
+	if(returnCode == "0"){
+		//更新成功
+		hide();
+		UpdateParameterForm.getForm().reset();
+		
+		//更新列表
+		//MainWin.ParameterGrid.clear();
+		//MainWin.ParameterGrid.refresh();
+		//MainWin.parameterDataSet.load();
+		MainWin.loadParamGrid();
+		
+		MainWin.editMod = "";
+	}else{
+		Ext.Msg.alert('提示', '更新失败<br>原因：' + errorInfo);
+	}
+	
+}
+event UpdateParameterForm_submitFailure(object response) {
+	Ext.Msg.alert('提示', '调用服务失败');
+}
+event dbKeywordDataSet1_load(Hs.HsDataSet dataSet) {
+	var record = MainWin.ParameterGrid.getSelectionModel().getSelected();
+}
+event OrgDataSet1_load(Hs.HsDataSet dataSet) {
+	var record = MainWin.ParameterGrid.getSelectionModel().getSelected();
+	//uRelCodeBox.setValue(record.get('rel_org'));
+}
+event UpdateParameterWindow_complete() {
+	//alert("editMod:" + MainWin.editMod);
+	//alert("kindCode:" + MainWin.kindCode + "\nkindName:" + MainWin.kindName);
+	//更新参数
+	if(MainWin.editMod == "update"){	
+			
+		var record = MainWin.ParameterGrid.getSelectionData();
+		uParameterNameField.setValue(record.get('param_name'));
+		uParameterCodeField.setValue(record.get('param_code'));
+		uParamValueField.setValue(record.get('param_value'));
+		uParamDescField.setValue(record.get('param_desc'));
+		searchOrgName.setValue(record.get('org_name'));
+		hrel_org.setValue(record.get('rel_org'));
+		uKindNameField.setValue(record.get('kind_name'));
+		uKindIdField.setValue(record.get('kind_code'));
+		opCodeField.setValue("bizSetParamEdit");
+		paramRegexField.setValue(record.get('param_regex'));
+		uParameterCodeField.setEditable(false);
+		searchOrgName.setEnabled(false);
+		paramRegexField.setEditable(false);
+	}
+	//新增参数
+	if(MainWin.editMod == "add"){
+		uKindIdField.setValue(MainWin.kindCode);
+		uKindNameField.setValue(MainWin.kindName);	
+		opCodeField.setValue("bizSetParamAdd");	
+	}
+}
+//校验代码
+event uParameterCodeField_change(Ext.form.Field thisComp, Mixed newValue, Mixed oldValue) {	
+	var relOrg = hrel_org.getValue();
+	if(relOrg!="" && !checkParamCode(newValue, relOrg)){
+		Ext.Msg.alert('提示','参数已存在，请重新输入代码');
+		uParameterCodeField.setValue("");
+		uParameterCodeField.focus();
+	}
+}
+
+
+event uRelCodeBox_change(Ext.form.Field thisComp, Mixed newValue, Mixed oldValue) {
+	var paramCode = uParameterCodeField.getValue();
+	if(MainWin.editMod == "add"&&paramCode!="" && !checkParamCode(paramCode, newValue)){
+		Ext.Msg.alert('提示','参数已存在，请重新输入关联组织');
+		searchOrgName.focus();
+	}
+}]]></WindowScript>
+  </WindowScripts>
+</hsdoc>

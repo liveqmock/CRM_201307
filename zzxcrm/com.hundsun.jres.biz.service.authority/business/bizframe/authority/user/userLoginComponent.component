@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.hundsun.ares.studio.jres.component:HSComponent_EMF xmlns:com.hundsun.ares.studio.jres.component="http://com.hundsun.ares.studio.jres.hsobject" name="userLoginComponent" className="com.hundsun.jres.bizframe.core.authority.service.SysUserLoginService">
+  <methodList methodName="signInService" alias="signInService" desc="signInService">
+    <paramList id="context" name="context" type="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext" rename="context"/>
+    <result id="signInService_result" type="com.hundsun.jres.interfaces.share.dataset.IDataset"/>
+  </methodList>
+  <methodList methodName="updateUserDataset" alias="updateUserDataset" desc="updateUserDataset">
+    <paramList id="context" name="context" type="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext" rename="context"/>
+    <result type="void"/>
+  </methodList>
+  <methodList methodName="signOutService" alias="signOutService" desc="signOutService">
+    <paramList id="context" name="context" type="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext" rename="context"/>
+    <result id="signOutService_result" type="com.hundsun.jres.interfaces.share.dataset.IDataset"/>
+  </methodList>
+  <methodList methodName="registerUserCache" alias="registerUserCache" desc="registerUserCache">
+    <paramList id="context" name="context" type="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext" rename="context"/>
+    <result type="void"/>
+  </methodList>
+</com.hundsun.ares.studio.jres.component:HSComponent_EMF>

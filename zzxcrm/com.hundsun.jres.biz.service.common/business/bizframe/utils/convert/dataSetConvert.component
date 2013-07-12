@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.hundsun.ares.studio.jres.component:HSComponent_EMF xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:com.hundsun.ares.studio.jres.component="http://com.hundsun.ares.studio.jres.hsobject" name="DataSet类型转换"
+    className="com.hundsun.jres.bizframe.common.utils.convert.DataSetConvertUtil">
+  <methodList methodName="map2DataSet" alias="map2DataSet" desc="map2DataSet">
+    <paramList id="map" name="map" type="java.util.Map"/>
+    <result id="map2DataSet_result" type="com.hundsun.jres.interfaces.share.dataset.IDataset"/>
+  </methodList>
+  <methodList methodName="object2DataSet" alias="object2DataSet" desc="object2DataSet">
+    <paramList id="instance" name="instance" type="Object"/>
+    <paramList id="clazz" name="clazz" type="Class"/>
+    <result id="object2DataSet_result" type="com.hundsun.jres.interfaces.share.dataset.IDataset"/>
+  </methodList>
+  <methodList methodName="object2DataSetByCamel" alias="object2DataSetByCamel" desc="object2DataSetByCamel">
+    <paramList id="instance" name="instance" type="Object"/>
+    <result id="object2DataSetByCamel_result" type="com.hundsun.jres.interfaces.share.dataset.IDataset"/>
+  </methodList>
+  <methodList methodName="object2DataSetWithPaging" alias="object2DataSetWithPaging"
+      desc="object2DataSetWithPaging">
+    <paramList id="instance" name="instance" type="Object"/>
+    <paramList id="clazz" name="clazz" type="Class"/>
+    <paramList id="start" name="start" type="int"/>
+    <paramList id="limit" name="limit" type="int"/>
+    <result id="object2DataSetWithPaging_result" type="com.hundsun.jres.interfaces.share.dataset.IDataset"/>
+  </methodList>
+  <methodList methodName="collection2DataSet" alias="collection2DataSet" desc="collection2DataSet">
+    <paramList id="instanceCollection" name="instanceCollection" type="java.util.Collection"/>
+    <paramList id="clazz" name="clazz" type="Class"/>
+    <result id="collection2DataSet_result" type="com.hundsun.jres.interfaces.share.dataset.IDataset"/>
+  </methodList>
+  <methodList methodName="collection2DataSetWithTotalCount" alias="collection2DataSetWithTotalCount"
+      desc="collection2DataSetWithTotalCount">
+    <paramList id="instanceCollection" name="instanceCollection" type="java.util.Collection"/>
+    <paramList id="totalCount" name="totalCount" type="Integer"/>
+    <paramList id="clazz" name="clazz" type="Class"/>
+    <result id="collection2DataSetWithTotalCount_result" type="com.hundsun.jres.interfaces.share.dataset.IDataset"/>
+  </methodList>
+  <methodList methodName="dataSet2String" alias="dataSet2String" desc="dataSet2String">
+    <paramList id="dataSet" name="dataSet" type="com.hundsun.jres.interfaces.share.dataset.IDataset"/>
+    <paramList id="columnName" name="columnName" type="String"/>
+    <result id="dataSet2String_result" type="String"/>
+  </methodList>
+  <methodList methodName="dataSet2ObjectWithPaging" alias="dataSet2ObjectWithPaging"
+      desc="dataSet2ObjectWithPaging">
+    <paramList id="dataSet" name="dataSet" type="com.hundsun.jres.interfaces.share.dataset.IDataset"/>
+    <paramList id="clazz" name="clazz" type="Class"/>
+    <result id="dataSet2ObjectWithPaging_result" type="com.hundsun.jres.bizframe.common.entity.BaseEntity"/>
+    <resultDescList id="id" type="java.io.Serializable"/>
+    <resultDescList id="start" type="Integer"/>
+    <resultDescList id="limit" type="Integer"/>
+  </methodList>
+  <methodList methodName="addTotalCount2DataSet" alias="addTotalCount2DataSet" desc="addTotalCount2DataSet">
+    <paramList id="dataset" name="dataset" type="com.hundsun.jres.interfaces.share.dataset.IDataset"/>
+    <paramList id="totalCount" name="totalCount" type="Integer"/>
+    <result id="addTotalCount2DataSet_result" type="com.hundsun.jres.interfaces.share.dataset.IDataset"/>
+  </methodList>
+  <methodList methodName="updateDatasetWithSession" alias="updateDatasetWithSession"
+      desc="updateDatasetWithSession">
+    <paramList id="dataset" name="dataset" type="com.hundsun.jres.interfaces.share.dataset.IDataset"/>
+    <paramList id="columnName" name="columnName" type="String"/>
+    <paramList id="sessionAttributeName" name="sessionAttributeName" type="String"/>
+    <result/>
+  </methodList>
+</com.hundsun.ares.studio.jres.component:HSComponent_EMF>

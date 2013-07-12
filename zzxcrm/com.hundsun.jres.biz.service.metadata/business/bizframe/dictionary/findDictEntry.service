@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service2:ServiceModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:flow2="http://www.hundsun.com/ares/studio/jres/flow2" xmlns:service2="http://www.hundsun.com/ares/studio/jres/service2" xmi:id="_seVmAKqeEd-E9O-ihdIKYg" name="模糊查询字典条目" inputCollection="true">
+  <inputDefines xmi:id="_Hkg5QKw4Ed-rusHgr1FFcQ" id="limit" javaType="int">
+    <defaultValue2 xmi:id="_5cy8ckywEeCxSJB_BAqavA"/>
+  </inputDefines>
+  <inputDefines xmi:id="_rBshkLr0Ed-jOcIMgIQRrQ" id="start" javaType="int">
+    <defaultValue2 xmi:id="_5cy8c0ywEeCxSJB_BAqavA"/>
+  </inputDefines>
+  <inputDefines id="resCode" javaType="String">
+    <defaultValue2/>
+  </inputDefines>
+  <inputDefines id="opCode" javaType="String">
+    <defaultValue2/>
+  </inputDefines>
+  <outputDefines id="dict_entry_code" type="TCode" javaType="String" name="字典条目代码" stdField="true" description="条目代码">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="kind_code" type="TCode" javaType="String" name="类别代码" stdField="true">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="dict_entry_name" type="TName" javaType="String" name="字典条目名称" stdField="true" description="条目名称">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="ctrl_flag" javaType="String">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="platform" type="TDict" javaType="String" name="平台标志" stdField="true" description="用于表示此记录是否平台设置&#xA;取数据字典[sys_biz_platform]&#xA;0-应用&#xA;1-平台">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="remark" type="TDesc" javaType="String" name="备注" stdField="true" description="模板位置">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="kind_name" type="TName" javaType="String" name="类别名称" stdField="true">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="platform_name" javaType="String" name="平台标识名称">
+    <defaultValue2/>
+  </outputDefines>
+  <unit xmi:id="_seVmEKqeEd-E9O-ihdIKYg" id="311">
+    <info xsi:type="flow2:LogicUnitInfo" xmi:id="_seVmEaqeEd-E9O-ihdIKYg"/>
+    <children xmi:id="_HqaZALr2Ed-jOcIMgIQRrQ" id="queryService" name="queryService">
+      <info xsi:type="flow2:ComponentMethodInfo" xmi:id="_Hqji8Lr2Ed-jOcIMgIQRrQ" fullyQualifiedName="bizframe.dictionary.SysDictEntryService" methodName="action">
+        <inputParameters xmi:id="_7-KF8EywEeCxSJB_BAqavA" id="context" javaType="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext" name="context"/>
+        <outputParameters xmi:id="_Hqji8rr2Ed-jOcIMgIQRrQ" id="queryService_result" javaType="com.hundsun.jres.interfaces.share.dataset.IDataset"/>
+      </info>
+    </children>
+    <children xmi:id="_Kd8QkLr2Ed-jOcIMgIQRrQ" id="resultAssignment1" name="resultAssignment1">
+      <info xsi:type="flow2:ResultAssignmentInfo" xmi:id="_Kd8Qkbr2Ed-jOcIMgIQRrQ" resultSet="true" resultType="com.hundsun.jres.interfaces.share.dataset.IDataset" expression="Result:queryService.action_result"/>
+    </children>
+  </unit>
+</service2:ServiceModel>
