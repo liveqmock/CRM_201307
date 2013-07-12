@@ -902,18 +902,19 @@ public class SysUserRightService implements IService {
 			info.setOrgs(session.getObjectListByMap(user_associate_org_sql, OrganizationEntity.class , map));
 			
 			//设置用户的关联角色信息
-			String user_associate_role_sql = " select role_code,role_name,creator,remark,parent_id,role_path from "+SysView.user_roles_view()+" tmp where  user_id = @userId";
+			String user_associate_role_sql = " select role_code,role_name,creator,remark,parent_id,role_path from "+user_roles_view2()+"  where  user_id = @userId";
 			info.setRoles(session.getObjectListByMap(user_associate_role_sql, SysRole.class, map));
 			
 			//设置用户的可操作角色信息
-			String user_associate_authrole_sql = " select role_code,role_name,creator,remark,parent_id,role_path from "+SysView.user_auth_role_view()+" tmp where  user_id = @userId";
+			String user_associate_authrole_sql = " select role_code,role_name,creator,remark,parent_id,role_path from "+user_auth_role_view()+"  where  user_id = @userId";
 			info.setAuthRoles(session.getObjectListByMap(user_associate_authrole_sql, SysRole.class, map));
 			
 			//设置用户的关联岗位信息
-			String user_associate_postion_sql = " select * from "+SysView.user_pos_view()+" tmp  where user_id = @userId ";
+			String user_associate_postion_sql = " select * from "+user_pos_view()+" tmp  where user_id = @userId ";
 			info.setPositions(session.getObjectListByMap(user_associate_postion_sql, SysPosition.class, map));
 			
 			UserTransCache userTransCache= new UserTransCache(userId,session);
+			
 			//设置用户的交易信息
 			info.setTransCache(userTransCache);
 			
@@ -931,6 +932,107 @@ public class SysUserRightService implements IService {
     		DBSessionAdapter.closeSession(session);
     	}
       return info;
+	}
+	
+	/**
+	 * 用户授权角色关联视图：<br>
+	 * “角色表”右连接“用户角色关联视图”的授权角色 <br>
+	 * 并<br>
+	 * “角色表”的“创建者”连接“用户表”的“用户ID”<br>
+	 * 
+	 * 原始SQL:<br>
+	 * select distinct urs.* from tsys_role_user ru ,(<br>
+	 * select distinct r.*,ru.right_flag,ru.user_code as user_id<br>
+	 * from tsys_role r left join tsys_role_user ru on ru.role_code=r.role_code<br>
+	 * union <br>
+	 * select distinct  r.*, d.dict_item_code as right_flag ,up.user_id from tsys_role r left join <br>
+	 * (select distinct  pos.* ,pu.user_id<br>
+	 * from tsys_position pos left join tsys_pos_user pu on pu.position_code=pos.position_code) up<br>
+	 * on r.role_code=up.role_code ,tsys_dict_item d <br>
+	 * ) urs where ru.role_code=urs.role_code and ru.right_flag='2' and urs.right_flag='2'<br>
+	 * union <br>
+	 * select distinct tr.*, '2' right_flag, tu.user_id as user_code from tsys_role tr, tsys_user tu where tr.creator=tu.user_id <br>
+	
+	 * 
+	 * 视图字段：<br>
+	 * tsys_role.* ,right_flag,user_id<br>
+	 * 
+	 * @return <br>
+	 */
+	public static String user_auth_role_view(){
+		StringBuffer sql=new StringBuffer();
+		sql.append(" (select distinct urs.*");
+		sql.append(" from tsys_role_user ru ,"+user_roles_view()+" urs");
+		sql.append(" where ru.role_code=urs.role_code");
+		sql.append(" and ru.right_flag='2' and urs.right_flag='2'");
+		sql.append(" union");
+		sql.append(" select distinct tr.*, '2' right_flag,");
+		sql.append(" tu.user_id as user_code");
+		sql.append(" from tsys_role tr, tsys_user tu");
+		sql.append(" where tr.creator=tu.user_id ) tur");
+		return sql.toString();
+	}
+	/**
+	 * 用户角色关联视图：<br>
+	 * “角色表”右连接“角色用户表”<br>
+	 * 并<br>
+	 * “角色表”右连接“用户岗位关联视图”<br>
+	 * <br>
+	 * 
+	 * 原始SQL:<br>
+	 * select distinct r.*,ru.right_flag,ru.user_code as user_id<br>
+	 * from tsys_role r left join tsys_role_user ru on ru.role_code=r.role_code<br>
+	 * union <br>
+	 * select distinct  r.*, d.dict_item_code as right_flag ,up.user_id from tsys_role r left join <br>
+	 * (select distinct  pos.* ,pu.user_id<br>
+	 * from tsys_position pos left join tsys_pos_user pu on pu.position_code=pos.position_code) up<br>
+	 * on r.role_code=up.role_code ,tsys_dict_item d <br>
+	 * where d.dict_entry_code='BIZ_RIGHT_FLAG'<br>
+	 * 
+	 * 视图字段：<br>
+	 * tsys_role.* ,right_flag,user_id<br>
+	 * @return<br>
+	 */
+	public static String user_roles_view(){
+		StringBuffer sql=new StringBuffer();
+		sql.append(" ( select distinct r.*,ru.right_flag,ru.user_code as user_id");
+		sql.append("  from tsys_role r left join tsys_role_user ru on ru.role_code=r.role_code");
+		sql.append("  union");
+		sql.append("  select distinct  r.*, d.dict_item_code as right_flag ,up.user_id");
+		sql.append("  from tsys_role r left join "+user_pos_view() +" up");
+		sql.append("  on r.role_code=up.role_code ,tsys_dict_item d");
+		sql.append("  where d.dict_entry_code='BIZ_RIGHT_FLAG') ");
+		return sql.toString();
+	}
+	
+	public static String user_roles_view2(){
+		StringBuffer sql=new StringBuffer();
+		sql.append(" ( select distinct r.*,ru.right_flag,ru.user_code as user_id");
+		sql.append("  from tsys_role r left join tsys_role_user ru on ru.role_code=r.role_code");
+		sql.append("  union");
+		sql.append("  select distinct  r.*, d.dict_item_code as right_flag ,up.user_id");
+		sql.append("  from tsys_role r left join "+user_pos_view() +" up");
+		sql.append("  on r.role_code=up.role_code ,tsys_dict_item d");
+		sql.append("  where d.dict_entry_code='BIZ_RIGHT_FLAG') tmp");
+		return sql.toString();
+	}
+	/**
+	 * 用户岗位关联视图：“岗位表”右连接“用户表”<br>
+	 * 
+	 * 原始SQL:<br>
+	 * select distinct  pos.* ,pu.user_id<br>
+	 * from tsys_position pos left join tsys_pos_user pu on pu.position_code=pos.position_code<br>
+	 * 
+	 * 视图字段：<br>
+	 * tsys_position.* , user_id<br>
+	 * @return<br>
+	 */
+	public static String user_pos_view(){
+		StringBuffer sql=new StringBuffer();
+		sql.append(" ( select distinct  pos.* ,pu.user_id");
+		sql.append(" from tsys_position pos left join tsys_pos_user pu");
+		sql.append(" on pu.position_code=pos.position_code) ");
+		return sql.toString();
 	}
 	
 	/**

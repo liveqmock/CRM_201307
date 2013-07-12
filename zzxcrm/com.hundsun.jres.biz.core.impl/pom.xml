@@ -7,7 +7,7 @@
 	</parent>
 	<groupId>com.hundsun.jres.biz</groupId>
 	<artifactId>com.hundsun.jres.biz.core.impl</artifactId>
-	<version>1.1.31-SNAPSHOT</version>
+	<version>1.1.30</version>
 	<name>JRES平台业务框架-业务接口实现模块</name>
 
 	<dependencies>

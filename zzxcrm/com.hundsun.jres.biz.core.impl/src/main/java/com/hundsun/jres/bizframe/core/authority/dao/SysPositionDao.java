@@ -138,6 +138,7 @@ public class SysPositionDao extends BizframeDao<SysPosition,String> {
 		/*count = session.accountByList(hss.getTotCountSqlString(), hss
 				.getParamList());*/
 		queryDataset.setTotalCount(count);
+		
 		return queryDataset;
 	}
 	
