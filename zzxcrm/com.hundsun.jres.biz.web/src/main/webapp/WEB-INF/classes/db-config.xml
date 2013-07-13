@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datasources>
+<datasource>
+		<name>ifm</name>
+		<type>dbcp</type>
+		<!-- 连接数据库的密码 -->
+		<username>teststudio</username>
+		<!-- 连接数据库的密码 -->
+		<password>tester@rd</password>
+		<jdbcurl>jdbc:oracle:thin:@192.168.71.52:1521:JRESSTUDIO
+		</jdbcurl>
+		<!-- 连接池的最大容纳链接数目默认15个 -->
+		<max>20</max>
+		<!-- 连接池的最小链接数目，默认3个 -->
+		<min>10</min>
+		<!-- 连接池取不到链接等待时间 -->
+		<wait>10000</wait>
+		<maxIdle>20</maxIdle>
+		<minIdle>1</minIdle>
+		<!-- 连接数据库驱动 -->
+		<driver>oracle.jdbc.driver.OracleDriver</driver>
+
+		<checkoutTimeout>20000</checkoutTimeout>
+		
+		<!-- 连接池连接有效性检测  -->
+		<!-- <validationQuery>select * from dual </validationQuery>
+		<testOnBorrow>true</testOnBorrow>
+		<testOnReturn>true</testOnReturn>
+		<testWhileIdle>true</testWhileIdle> -->
+		
+		<!-- 空闲连接检测时间间隔 单位毫秒-->
+		<minEvictableIdleTimeMillis>1800000</minEvictableIdleTimeMillis>
+		
+		<!-- 失效检查线程运行时间间隔，如果小于等于0，不会启动检查线程，默认-1  -->
+		<timeBetweenEvictionRunsMillis>-1</timeBetweenEvictionRunsMillis>
+		
+		<!-- 应用层中未主动释放的连接 强制中断开。 是否自我中断, 默认是 false 注意生产上这些选项  removeAbandoned  logAbandoned 要设置成false  -->
+		<removeAbandoned>true</removeAbandoned>
+		<!--  几秒后会自我中断单位秒, removeAbandoned 必须为 true  -->
+		<removeAbandonedTimeout>5</removeAbandonedTimeout>
+		<logAbandoned>true</logAbandoned>
+		
+		<!-- 是否默认连接池 -->
+		<default>true</default>
+		<enable>false</enable>
+		<dialect>oracle</dialect>
+		<dbtype>oracle</dbtype>
+		<secretpassword>false</secretpassword>
+		<iscursor>false</iscursor>
+ 	  <isscroll>false</isscroll>
+ 	  <autorollback>true</autorollback>
+	</datasource>
+
+<datasource>
+		<!-- 必填数据项 -->
+		<!-- 是否可用 -->
+		<name>default</name>
+		<enable>true</enable>
+		<!-- 数据源类型 c3p0 jndi dbcp -->
+		<type>c3p0</type>
+		<!-- 连接数据库的名字 -->
+		<username>root</username>
+		<!-- 连接数据库的密码 -->
+		<password>leixl</password>
+		<!-- 密码是否加密 -->
+		<secretpassword>false</secretpassword>
+		<!-- dialect -->
+		<dialect>mysql</dialect>
+		<!-- 数据库类型 -->
+		<dbtype>type-mysql</dbtype>
+		<!-- 连接数据库的url -->
+		<jdbcurl>jdbc:mysql://127.0.0.1:3306/crm_jres?characterEncoding=utf-8</jdbcurl>
+		<!-- 连接数据库驱动 -->
+		<driver>com.mysql.jdbc.Driver</driver>
+		<!-- 连接池的最大容纳链接数目默认15个 -->
+		<max>15</max>
+		<!-- 连接池的最小链接数目，默认3个 -->
+		<min>2</min>
+		<!-- 连接池取不到链接等待时间 -->
+		<wait>5000</wait>
+		<!-- 是否默认连接池 -->
+		<default>true</default>
+		<!--<mapping>alias</mapping>-->
+		<!-- 事务隔离机制 -->
+		<transactionisolation>read_committed</transactionisolation>
+		<!-- /必填数据项 -->
+
+		<!-- 非必填数据项 -->
+		<!-- 分页获取结果集是否采用游标模式,默认值为false -->
+		<iscursor>true</iscursor>
+		<!-- Resultset是否为TYPE_SCROLL_INSENSITIVE,默认值为false -->
+		<isscroll>false</isscroll>
+		<!-- 事务结束自动回滚，默认值为true -->
+		<autorollback>true</autorollback>
+		<!-- 是否监控session连接数及状况，默认值为false -->
+		<startmonitor>false</startmonitor>
+		<!-- 启动连接池时是否自动建立连接，默认值为true -->
+		<autoconnect>true</autoconnect>
+		<!-- /非必填数据项 -->
+		<preferredTestQuery>select 1 from dual</preferredTestQuery>
+		<testConnectionOnCheckin>true</testConnectionOnCheckin>
+	    <testConnectionOnCheckout>true</testConnectionOnCheckout>
+		<!-- <automaticTestTable>Test</automaticTestTable> -->
+		
+		<maxAdministrativeTaskTime>10</maxAdministrativeTaskTime>
+		
+		
+		<!-- 连接池连接有效性检测  -->
+		<!--
+		<validationQuery>select 1 from dual</validationQuery>
+		<testOnBorrow>true</testOnBorrow>
+		<testOnReturn>true</testOnReturn>
+		<testWhileIdle>true</testWhileIdle>
+		<maxStatements>5</maxStatements>
+		 -->
+	
+		<acquireIncrement>6</acquireIncrement>
+		<!-- 查询总记录数时是否去掉orderby 默认为 false -->
+		<cutOrderBy>true</cutOrderBy>
+
+	</datasource>
+	
+	<datasource>
+		<!-- 是否可用 -->
+		<enable>false</enable>
+		<name>bpm</name>
+		<!-- 数据源类型  c3p0 jndi dbcp -->
+		<type>dbcp</type>
+		<!-- 连接数据库的名字 -->
+		<username>jrestest</username>
+		<!-- 连接数据库的密码 -->
+		<password>jrestest2</password>
+		<!-- 连接数据库的url -->
+		<jdbcurl>jdbc:db2://192.168.71.52:50000/BZFRAME
+		</jdbcurl>
+		<!-- 连接池
+			的最大容纳链接数目默认15个 -->
+		<max>10</max>
+		<!-- 连接池的最小链接数目，默认3个 -->
+		<min>10</min>
+		<!-- 连接池取不到链接等待时间 -->
+		<wait>20000</wait>
+		<!-- 连接数据库驱动 -->
+		<driver>com.ibm.db2.jcc.DB2Driver</driver>
+
+		<!-- 连接池连接有效性检测  -->
+		<!--validationQuery>select * from tsys_menu </validationQuery-->
+		<testOnBorrow>true</testOnBorrow>
+		<testOnReturn>true</testOnReturn>
+		<testWhileIdle>true</testWhileIdle>
+
+		<!-- 数据库事务隔离级别 -->
+		<!--defaultTransactionIsolation>READ_UNCOMMITTED
+		</defaultTransactionIsolation-->
+			<!-- 事务隔离机制 -->
+		<transactionisolation>repeatable_read</transactionisolation>
+
+		<!-- 空闲连接检测时间间隔 单位毫秒-->
+		<minEvictableIdleTimeMillis>1800000
+		</minEvictableIdleTimeMillis>
+
+		<!-- 失效检查线程运行时间间隔，如果小于等于0，不会启动检查线程，默认-1  -->
+		<timeBetweenEvictionRunsMillis>-1</timeBetweenEvictionRunsMillis>
+
+		<!--
+			应用层中未主动释放的连接 强制中断开。 是否自我中断, 默认是 false 注意生产上这些选项 removeAbandoned
+			logAbandoned 要设置成false
+		-->
+		<removeAbandoned>true</removeAbandoned>
+		<!--  几秒后会自我中断,单位秒, removeAbandoned 必须为 true  -->
+		<removeAbandonedTimeout>3600</removeAbandonedTimeout>
+		<logAbandoned>true</logAbandoned>
+
+		<!-- 是否默认连接池 -->
+		<default>false</default>
+		<dialect>db2</dialect>
+		<dbtype>db2</dbtype>
+		<secretpassword>false</secretpassword>
+		<iscursor>true</iscursor>
+		<isscroll>true</isscroll>
+	</datasource>
+	
+	<datasource>
+		<!-- 是否可用 -->
+		<enable>false</enable>
+		<name>bpm2</name>
+		<!-- 数据源类型  c3p0 jndi dbcp -->
+		<type>dbcp</type>
+		<!-- 连接数据库的名字 -->
+		<username>dba</username>
+		<!-- 连接数据库的密码 -->
+		<password>dba</password>
+		<!-- 连接数据库的url -->
+		<jdbcurl>jdbc:db2://192.168.53.21:56000/bfm20
+		</jdbcurl>
+		<!-- 连接池
+			的最大容纳链接数目默认15个 -->
+		<max>10</max>
+		<!-- 连接池的最小链接数目，默认3个 -->
+		<min>10</min>
+		<!-- 连接池取不到链接等待时间 -->
+		<wait>10</wait>
+		<!-- 连接数据库驱动 -->
+		<driver>com.ibm.db2.jcc.DB2Driver
+		</driver>
+
+		<!-- 连接池连接有效性检测  -->
+		<validationQuery>select * from tsys_menu </validationQuery>
+		<testOnBorrow>true</testOnBorrow>
+		<testOnReturn>true</testOnReturn>
+		<testWhileIdle>true</testWhileIdle>
+
+		<!-- 数据库事务隔离级别 -->
+		<defaultTransactionIsolation>READ_UNCOMMITTED
+		</defaultTransactionIsolation>
+
+		<!-- 空闲连接检测时间间隔 单位毫秒-->
+		<minEvictableIdleTimeMillis>1800000
+		</minEvictableIdleTimeMillis>
+
+		<!-- 失效检查线程运行时间间隔，如果小于等于0，不会启动检查线程，默认-1  -->
+		<timeBetweenEvictionRunsMillis>-1</timeBetweenEvictionRunsMillis>
+
+		<!--
+			应用层中未主动释放的连接 强制中断开。 是否自我中断, 默认是 false 注意生产上这些选项 removeAbandoned
+			logAbandoned 要设置成false
+		-->
+		<removeAbandoned>true</removeAbandoned>
+		<!--  几秒后会自我中断,单位秒, removeAbandoned 必须为 true  -->
+		<removeAbandonedTimeout>3600</removeAbandonedTimeout>
+		<logAbandoned>true</logAbandoned>
+
+		<!-- 是否默认连接池 -->
+		<default>false</default>
+		<dialect>db2</dialect>
+		<dbtype>db2</dbtype>
+		<secretpassword>false</secretpassword>
+		<iscursor>true</iscursor>
+		<isscroll>true</isscroll>
+	</datasource>
+
+	<datasource>
+		<enable>false</enable>
+		<name>bpm3</name>
+		<type>dbcp</type>
+		<!-- 连接数据库的名字 -->
+		<username>bfm20</username>
+		<!-- 连接数据库的密码 -->
+		<password>bfm20</password>
+		<!-- 连接数据库的url -->
+		<jdbcurl>jdbc:oracle:thin:@10.160.2.106:1521:rcpfdb
+		</jdbcurl>
+		<!-- 连接池的最大容纳链接数目默认15个 -->
+		<max>10</max>
+		<!-- 连接池的最小链接数目，默认3个 -->
+		<min>10</min>
+		<!-- 连接池取不到链接等待时间 -->
+		<wait>1000</wait>
+		<!-- 连接数据库驱动 -->
+		<driver>oracle.jdbc.driver.OracleDriver
+		</driver>
+
+		<!-- 连接池连接有效性检测  -->
+		<validationQuery>select * from tsys_menu </validationQuery>
+		<testOnBorrow>true</testOnBorrow>
+		<testOnReturn>true</testOnReturn>
+		<testWhileIdle>true</testWhileIdle>
+
+		<!-- 空闲连接检测时间间隔 单位毫秒-->
+		<minEvictableIdleTimeMillis>1800000
+		</minEvictableIdleTimeMillis>
+
+		<!-- 失效检查线程运行时间间隔，如果小于等于0，不会启动检查线程，默认-1  -->
+		<timeBetweenEvictionRunsMillis>-1</timeBetweenEvictionRunsMillis>
+
+		<!--
+			应用层中未主动释放的连接 强制中断开。 是否自我中断, 默认是 false 注意生产上这些选项 removeAbandoned
+			logAbandoned 要设置成false
+		-->
+		<removeAbandoned>true</removeAbandoned>
+		<!--  几秒后会自我中断单位秒, removeAbandoned 必须为 true  -->
+		<removeAbandonedTimeout>3600</removeAbandonedTimeout>
+		<logAbandoned>true</logAbandoned>
+
+		<!-- 是否默认连接池 -->
+		<default>true</default>
+
+		<dialect>oracle</dialect>
+		<dbtype>oracle</dbtype>
+		<secretpassword>false</secretpassword>
+		<iscursor>true</iscursor>
+		<isscroll>true</isscroll>
+		<autorollback>true</autorollback>
+	</datasource>
+
+	<datasource>
+		<enable>false</enable>
+		<name>bpm4</name>
+		<type>dbcp</type>
+		<!-- 连接数据库的名字 -->
+		<username>bfm20t</username>
+		<!-- 连接数据库的密码 -->
+		<password>handsome</password>
+		<!-- 连接数据库的url -->
+		<jdbcurl>jdbc:oracle:thin:@192.168.53.26:1521:oradep1
+		</jdbcurl>
+		<!-- 连接池的最大容纳链接数目默认15个 -->
+		<max>10</max>
+		<!-- 连接池的最小链接数目，默认3个 -->
+		<min>10</min>
+		<!-- 连接池取不到链接等待时间 -->
+		<wait>1000</wait>
+		<!-- 连接数据库驱动 -->
+		<driver>oracle.jdbc.driver.OracleDriver
+		</driver>
+
+		<!-- 连接池连接有效性检测  -->
+		<validationQuery>select * from tsys_menu </validationQuery>
+		<testOnBorrow>true</testOnBorrow>
+		<testOnReturn>true</testOnReturn>
+		<testWhileIdle>true</testWhileIdle>
+
+		<!-- 空闲连接检测时间间隔 单位毫秒-->
+		<minEvictableIdleTimeMillis>1800000
+		</minEvictableIdleTimeMillis>
+
+		<!-- 失效检查线程运行时间间隔，如果小于等于0，不会启动检查线程，默认-1  -->
+		<timeBetweenEvictionRunsMillis>-1</timeBetweenEvictionRunsMillis>
+
+		<!--
+			应用层中未主动释放的连接 强制中断开。 是否自我中断, 默认是 false 注意生产上这些选项 removeAbandoned
+			logAbandoned 要设置成false
+		-->
+		<removeAbandoned>true</removeAbandoned>
+		<!--  几秒后会自我中断单位秒, removeAbandoned 必须为 true  -->
+		<removeAbandonedTimeout>3600</removeAbandonedTimeout>
+		<logAbandoned>true</logAbandoned>
+
+		<!-- 是否默认连接池 -->
+		<default>true</default>
+
+		<dialect>oracle</dialect>
+		<dbtype>oracle</dbtype>
+		<secretpassword>false</secretpassword>
+		<iscursor>false</iscursor>
+		<isscroll>true</isscroll>
+		<autorollback>true</autorollback>
+	</datasource>
+
+
+
+	<datasource>
+		<!-- 是否可用 -->
+		<enable>false</enable>
+		<name>bpm5</name>
+		<!-- 数据源类型  注使用JNDI时需要在web.xml中配置目录服务-->
+		<type>jndi</type>
+		<!-- jndisource的名字 -->
+		<sourcename>jndi/bfm</sourcename>
+		<default>true</default>
+		<dialect>oracle</dialect>
+		<dbtype>oracle</dbtype>
+		<iscursor>true</iscursor>
+		<isscroll>true</isscroll>
+		<secretpassword>false</secretpassword>
+
+	</datasource>
+</datasources>  

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+		<!--id:缓存的ID号,必须填写
+			name:缓存的名字
+			class:存储结构类名,必须实现com.hundsun.ares.cache.BasicCache接口
+		 -->
+<cache name="用户Session缓存"
+	class="com.hundsun.jres.impl.cache.DefaultBasicCacheImpl">
+	
+	<!-- 策略类 配置,
+			 class:策略类名 ,必须实现com.hundsun.ares.cache.Strategy接口
+			 name:策略类的属性名
+			 value:策略类属性所对应的值
+	-->
+	<strategy class="com.hundsun.jres.impl.cache.DefaultStrategyImpl">		
+			<propertys>
+			
+	</propertys>
+	</strategy>
+	<!-- 缓存的监听器 -->
+	<cache-listener-list>
+		<cache-listener class="com.hundsun.jres.impl.cache.listener.CachePutListener"/>
+	</cache-listener-list>
+</cache>

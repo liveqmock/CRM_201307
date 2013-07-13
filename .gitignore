@@ -1,12 +1,10 @@
-classes
 .class
-target
-bin
-build
-.settings
-.clover
 .classpath
 .project
+target
+bin
+.settings
+.clover
 .svn
 *.db
 /webapp/src/main/webapp/um/old
