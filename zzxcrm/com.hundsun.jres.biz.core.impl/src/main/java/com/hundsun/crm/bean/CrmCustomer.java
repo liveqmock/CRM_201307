@@ -1,18 +1,21 @@
-package com.hundsun.customer.bean;
+package com.hundsun.crm.bean;
 
 import java.util.HashSet;
 import java.util.Set;
-
 /**
- * CstCustomer entity.
- * 
- * @author MyEclipse Persistence Tools
+ * 客户
+ * @author leixl
+ * @email  leixl0324@163.com
+ * @date   2013年7月13日 上午11:25:24
+ * @version v1.0
  */
+public class CrmCustomer implements java.io.Serializable{
 
-public class CstCustomer implements java.io.Serializable {
-
-	// Fields
-
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 641004926963038102L;
+	
 	private String custNo;
 	private String custName;
 	private String custRegion;
@@ -36,30 +39,29 @@ public class CstCustomer implements java.io.Serializable {
 	private String custLocalTaxNo;
 	private String custNationalTaxNo;
 	private String custStatus;
-	private Set cstActivities = new HashSet(0);
-	private Set cstLinkmans = new HashSet(0);
-	private Set cstServices = new HashSet(0);
+	private Set activities = new HashSet(0);
+	private Set linkmans = new HashSet(0);
 
 	// Constructors
 
 	/** default constructor */
-	public CstCustomer() {
+	public CrmCustomer() {
 	}
 
 	/** minimal constructor */
-	public CstCustomer(String custName) {
+	public CrmCustomer(String custName) {
 		this.custName = custName;
 	}
 
 	/** full constructor */
-	public CstCustomer(String custName, String custRegion, Long custManagerId,
+	public CrmCustomer(String custName, String custRegion, Long custManagerId,
 			String custManagerName, Integer custLevel, String custLevelLabel,
 			Integer custSatisfy, Integer custCredit, String custAddr,
 			String custZip, String custTel, String custFax, String custWebsite,
 			String custLicenceNo, String custChieftain, Long custBankroll,
 			Long custTurnover, String custBank, String custBankAccount,
 			String custLocalTaxNo, String custNationalTaxNo, String custStatus,
-			Set cstActivities, Set cstLinkmans, Set cstServices) {
+			Set activities, Set linkmans) {
 		this.custName = custName;
 		this.custRegion = custRegion;
 		this.custManagerId = custManagerId;
@@ -82,9 +84,8 @@ public class CstCustomer implements java.io.Serializable {
 		this.custLocalTaxNo = custLocalTaxNo;
 		this.custNationalTaxNo = custNationalTaxNo;
 		this.custStatus = custStatus;
-		this.cstActivities = cstActivities;
-		this.cstLinkmans = cstLinkmans;
-		this.cstServices = cstServices;
+		this.activities = activities;
+		this.linkmans = linkmans;
 	}
 
 	// Property accessors
@@ -273,28 +274,34 @@ public class CstCustomer implements java.io.Serializable {
 		this.custStatus = custStatus;
 	}
 
-	public Set getCstActivities() {
-		return this.cstActivities;
+	/**
+	 * @return the activities
+	 */
+	public Set getActivities() {
+		return activities;
 	}
 
-	public void setCstActivities(Set cstActivities) {
-		this.cstActivities = cstActivities;
+	/**
+	 * @param activities the activities to set
+	 */
+	public void setActivities(Set activities) {
+		this.activities = activities;
 	}
 
-	public Set getCstLinkmans() {
-		return this.cstLinkmans;
+	/**
+	 * @return the linkmans
+	 */
+	public Set getLinkmans() {
+		return linkmans;
 	}
 
-	public void setCstLinkmans(Set cstLinkmans) {
-		this.cstLinkmans = cstLinkmans;
+	/**
+	 * @param linkmans the linkmans to set
+	 */
+	public void setLinkmans(Set linkmans) {
+		this.linkmans = linkmans;
 	}
 
-	public Set getCstServices() {
-		return this.cstServices;
-	}
-
-	public void setCstServices(Set cstServices) {
-		this.cstServices = cstServices;
-	}
+	
 
 }
