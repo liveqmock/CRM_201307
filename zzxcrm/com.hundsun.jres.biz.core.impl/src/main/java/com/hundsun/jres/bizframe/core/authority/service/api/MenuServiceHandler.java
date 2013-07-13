@@ -158,31 +158,40 @@ public class MenuServiceHandler extends ServiceHandler implements MenuService {
 			//解决授权菜单树形目录中只勾选了新建菜单，没有将其上级节点勾选起来
 			List<SysMenu> syslist = menuCache.getAllParentsMenu(kindCode, parentCode);
 			String userRightsql=" insert into tsys_user_right SELECT "
-            +"  ts.trans_code, ts.sub_trans_code, 'admin' user_id , "
-			+"  'admin' create_by ,  0 create_date ,  0 begin_date, "
-			+"  0 end_date, '2' right_flag,  '' right_enable "
+            +"  ts.trans_code, ts.sub_trans_code, 'admin' as user_id , "
+			+"  'admin' as create_by ,  0 as create_date ,  0 as begin_date, "
+			+"  0 as end_date, '2' as right_flag,  '' as right_enable "
 			+"  from tsys_subtrans ts where not exists ( "
 			+"  select * from tsys_user_right ur  "
 			+"  where ur.trans_code=ts.trans_code  "
 			+"  and ur.sub_trans_code=ts.sub_trans_code "
 			+"  and ur.right_flag='2'  and ur.user_id='admin' "
-			+"  ) and ts.trans_code||'$'||ts.sub_trans_code in('"+parentCode+"$"+parentCode+"'";
+			+"  ) and ts.trans_code in('"+parentCode+"'";
 			
 			String roleRightsql=" insert into tsys_role_right SELECT "
-			+"  ts.trans_code, ts.sub_trans_code, 'admin' role_code , "
-			+"  'admin' create_by ,  0 create_date ,  0 begin_date, "
-			+"  0 end_date, '2' right_flag,  '' right_enable"
+			+"  ts.trans_code, ts.sub_trans_code, 'admin' as role_code , "
+			+"  'admin' as create_by ,  0 as create_date ,  0 as begin_date, "
+			+"  0 as end_date, '2' as right_flag,  '' as right_enable"
 			+"  from tsys_subtrans ts where not exists ("
 			+"  select * from tsys_role_right ur "
 			+"  where ur.trans_code=ts.trans_code "
 			+"  and ur.sub_trans_code=ts.sub_trans_code "
 			+"  and ur.right_flag='2' and ur.role_code='admin' "
-			+"  )and ts.trans_code||'$'||ts.sub_trans_code in('"+parentCode+"$"+parentCode+"'";
+			+"  )and ts.trans_code in('"+parentCode+"'";
 			
 			for(int i=0;i<syslist.size();i++){
 				SysMenu menu=syslist.get(i);
-				userRightsql = userRightsql+",'"+menu.getTransCode()+"$"+menu.getSubTransCode()+"'";
-				roleRightsql = roleRightsql+",'"+menu.getSubTransCode()+"$"+menu.getSubTransCode()+"'";
+				userRightsql = userRightsql+",'"+menu.getTransCode()+"'";
+				roleRightsql = roleRightsql+",'"+menu.getSubTransCode()+"'";
+			}
+			userRightsql = userRightsql+")";
+			roleRightsql = roleRightsql+")";
+			userRightsql = userRightsql+" and ts.sub_trans_code in('"+parentCode+"'";
+			roleRightsql = roleRightsql+" and ts.sub_trans_code in('"+parentCode+"'";
+			for(int i=0;i<syslist.size();i++){
+				SysMenu menu=syslist.get(i);
+				userRightsql = userRightsql+",'"+menu.getSubTransCode()+"'";
+				roleRightsql = roleRightsql+",'"+menu.getSubTransCode()+"'";
 			}
 			userRightsql = userRightsql+")";
 			roleRightsql = roleRightsql+")";

@@ -7,7 +7,7 @@
 	</parent>
 	<groupId>com.hundsun.jres.biz</groupId>
 	<artifactId>com.hundsun.jres.biz.common.util</artifactId>
-	<version>1.1.15-SNAPSHOT</version>
+	<version>1.1.14</version>
 	<name>JRES平台业务框架-公共工具模块</name>
 
 	<dependencies>

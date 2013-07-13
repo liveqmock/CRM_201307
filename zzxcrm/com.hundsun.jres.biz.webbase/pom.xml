@@ -7,7 +7,7 @@
 	</parent>
 	<groupId>com.hundsun.jres.biz</groupId>
 	<artifactId>com.hundsun.jres.biz.webbase</artifactId>
-	<version>1.1.12-SNAPSHOT</version>
+	<version>1.1.11</version>
 	<name>JRES平台业务框架-表现层控制模块</name>
 
 	<dependencies>

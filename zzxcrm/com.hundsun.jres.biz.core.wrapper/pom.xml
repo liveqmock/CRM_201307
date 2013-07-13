@@ -7,7 +7,7 @@
 	</parent>
 	<groupId>com.hundsun.jres.biz</groupId>
 	<artifactId>com.hundsun.jres.biz.core.wrapper</artifactId>
-	<version>1.1.4-SNAPSHOT</version>
+	<version>1.1.3</version>
 	<name>JRES平台业务框架-业务接口远程调用包装模块</name>
 
 	<dependencies>
