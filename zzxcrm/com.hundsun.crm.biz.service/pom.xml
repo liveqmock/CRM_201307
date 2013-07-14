@@ -20,12 +20,6 @@
 			<version>${com.hundsun.jres.biz.common.util.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.hundsun.crm.biz</groupId>
-			<artifactId>com.hundsun.crm.biz.core.impl</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-
-		<dependency>
 			<groupId>com.hundsun.jres.common</groupId>
 			<artifactId>com.hundsun.jres.common.util</artifactId>
 			<version>${com.hundsun.jres.common.util.version}</version>
