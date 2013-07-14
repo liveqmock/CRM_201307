@@ -36,6 +36,10 @@
 		<module>com.hundsun.jres.biz.web.permission</module>
 		<module>com.hundsun.jres.biz.web.system</module>
 		<module>com.hundsun.jres.biz.webbase</module>
+		<module>com.hundsun.crm.biz.core.impl</module>
+		<module>com.hundsun.crm.biz.service</module>
+		<module>com.hundsun.crm.biz.web</module>
+		<module>com.hundsun.crm.plugin.cep</module>
 	</modules>
 
 	<reporting>

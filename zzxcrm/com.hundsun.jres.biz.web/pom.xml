@@ -104,6 +104,26 @@
 			<type>war</type>
 			<scope>runtime</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.hundsun.crm.biz</groupId>
+			<artifactId>com.hundsun.crm.biz.core.impl</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.hundsun.crm.biz</groupId>
+			<artifactId>com.hundsun.crm.biz.service</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.hundsun.crm.biz</groupId>
+			<artifactId>com.hundsun.crm.biz.web</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.hundsun.crm.biz</groupId>
+			<artifactId>com.hundsun.crm.plugin.cep</artifactId>
+			<version>1.0.0</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
