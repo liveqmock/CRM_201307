@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata:StandardDataTypeList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:metadata="http://www.hundsun.com/ares/studio/jres/metadata/1.0.0" name="defaulttype">
+  <root/>
+  <items xsi:type="metadata:StandardDataType" name="HsNumID">
+    <data key="c" value="int"/>
+    <data key="java" value="int"/>
+    <data key="oracle" value="number(10,0)"/>
+  </items>
+  <items xsi:type="metadata:StandardDataType" name="HsChar500">
+    <data key="c" value="char[500]"/>
+    <data key="oracle" value="varchar2(500)"/>
+    <data key="java" value="String"/>
+  </items>
+</metadata:StandardDataTypeList>

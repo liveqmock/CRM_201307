@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root>
+  <definer>
+    <element_def>
+      <name>ORACLE表空间</name>
+      <id>root</id>
+      <collection_def>
+        <ref_def>dbobject</ref_def>
+      </collection_def>
+    </element_def>
+    <element_def showAttr="true" mainAttr="name">
+      <name>数据库对象</name>
+      <id>dbobject</id>
+      <attr_def>
+        <name>名称</name>
+        <id>name</id>
+      </attr_def>
+      <attr_def>
+        <name>中文名</name>
+        <id>chinesename</id>
+      </attr_def>
+      <attr_def>
+        <name>逻辑名</name>
+        <id>logicname</id>
+      </attr_def>
+      <attr_def>
+        <name>数据库用户</name>
+        <id>user</id>
+      </attr_def>
+      <attr_def>
+        <name>数据库</name>
+        <id>db</id>
+      </attr_def>
+      <attr_def>
+        <name>索引所在数据库</name>
+        <id>idxdb</id>
+      </attr_def>
+      <attr_def>
+        <name>文件名</name>
+        <id>file</id>
+      </attr_def>
+      <attr_def>
+        <name>大小</name>
+        <id>size</id>
+      </attr_def>
+      <attr_def type="longtext">
+        <name>备注</name>
+        <id>desc</id>
+      </attr_def>
+    </element_def>
+  </definer>
+  <buttons>
+    <button text="生成sql">
+      <code><![CDATA[importPackage(java.lang);
+importPackage(java.lang);
+importPackage(java.io);
+importPackage(java.util);
+importPackage(org.eclipse.jface.dialogs);
+
+var begin = 
+"";
+
+var end = 
+"";
+
+var dbEnd = 
+"\nEXTENT MANAGEMENT LOCAL\n"+
+"SEGMENT SPACE MANAGEMENT AUTO;\n"+
+"------------------------------\n"+
+"\n"+
+"COMMIT;\n"+
+"/\n";
+
+var scriptUtils = classLoader.loadClass("com.hundsun.ares.studio.jres.util.ScriptUtils").newInstance();
+
+var fileName = sqlPath + "\\DB_DEVICES.sql";
+
+var sb = new StringBuffer();
+sb.append(begin);
+getDbDevices(sb);
+sb.append(end);
+
+var status = scriptUtils.genFile(shell, fileName, sb.toString(), "utf-8", true);
+if (!status.isOK()) {
+	MessageDialog.openError(shell, "生成失败", status.getMessage());
+} else {
+	MessageDialog.openInformation(shell, "生成成功", "文件生成完毕！生成路径：" + fileName);
+}
+
+function getDbDevicesInfo(project){
+	var res = project.findResource("dbobject", "dbobject");
+	if(res != null){
+		return res.getInfo();
+	}
+	return null;
+}
+
+function getDbDevices(sb){
+	var dbInfo = getDbDevicesInfo(project);
+	if(dbInfo != null){
+		for(var i = 0;i < dbInfo.getElements().size();i++){
+			if(dbInfo.getElements().get(i).getId().equals("dbobject")){
+				var dbObject = dbInfo.getElements().get(i);
+				genDbDevice(sb,dbObject);
+			}
+		}
+	}
+}
+
+
+function genDbDevice(sb,dbObject){
+	sb.append("CREATE TABLESPACE ");
+	sb.append(dbObject.getAttrs().get("db"));
+	sb.append(" '");
+	sb.append(dbObject.getAttrs().get("file"));
+	sb.append("' SIZE ");
+	sb.append(dbObject.getAttrs().get("size"));
+	sb.append(dbEnd);
+}]]></code>
+      <xmlCode><![CDATA[]]></xmlCode>
+    </button>
+  </buttons>
+  <revisions/>
+</root>

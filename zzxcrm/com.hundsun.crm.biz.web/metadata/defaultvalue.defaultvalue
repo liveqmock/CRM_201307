@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata:TypeDefaultValueList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:metadata="http://www.hundsun.com/ares/studio/jres/metadata/1.0.0" name="defaultvalue">
+  <root/>
+  <items xsi:type="metadata:TypeDefaultValue" name="StrDefault">
+    <data key="oracle" value="' '"/>
+    <data key="c" value="{0}"/>
+    <data key="java" value="&quot;&quot;"/>
+  </items>
+  <items xsi:type="metadata:TypeDefaultValue" name="NumericDefault">
+    <data key="oracle" value="0.0"/>
+    <data key="c" value="0.0"/>
+  </items>
+  <items xsi:type="metadata:TypeDefaultValue" name="IntDefault">
+    <data key="oracle" value="0"/>
+    <data key="java" value="0"/>
+    <data key="c" value="0"/>
+  </items>
+</metadata:TypeDefaultValueList>

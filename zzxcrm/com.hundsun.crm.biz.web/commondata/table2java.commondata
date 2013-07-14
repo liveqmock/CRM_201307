@@ -1,0 +1,892 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root>
+  <definer>
+    <element_def>
+      <name>root</name>
+      <id>root</id>
+      <collection_def>
+        <ref_def>package</ref_def>
+      </collection_def>
+    </element_def>
+    <element_def showAttr="true">
+      <name>顶层元素</name>
+      <id>table</id>
+      <attr_def>
+        <name>表名</name>
+        <id>tableName</id>
+      </attr_def>
+      <attr_def>
+        <name>类名</name>
+        <id>javaName</id>
+      </attr_def>
+      <attr_def type="check">
+        <name>启用</name>
+        <id>used</id>
+      </attr_def>
+    </element_def>
+    <element_def showAttr="false">
+      <name>java包信息</name>
+      <id>package</id>
+      <collection_def>
+        <ref_def>table</ref_def>
+      </collection_def>
+      <attr_def>
+        <name>bean包名</name>
+        <id>packageName</id>
+      </attr_def>
+      <attr_def>
+        <name>dao包名</name>
+        <id>daoPackageName</id>
+      </attr_def>
+    </element_def>
+  </definer>
+  <data id="package">
+    <children>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbissamt]]></tableName>
+          <javaName><![CDATA[test]]></javaName>
+          <used><![CDATA[true]]></used>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbprdextend]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbagio]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbfeerate]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbagiotmp]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbprdextendtmp]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbfeeratetmp]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbriskscore]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbriskmark]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbriskfit]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbissamttmp]]></tableName>
+        </attrs>
+      </data>
+    </children>
+    <attrs>
+      <packageName><![CDATA[test]]></packageName>
+      <daoPackageName><![CDATA[test]]></daoPackageName>
+    </attrs>
+  </data>
+  <data id="package">
+    <children>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbsalelimit]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbtailratio]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbsellerinfo]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbagiolimit]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbfarezone]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbsycleset]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbfundday]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbfarebelong]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbsplitschema]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbprofitschema]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbreturnset]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbtryset]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbtryresult]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbfunddelayset]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbissuegroup]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbsalenetstat]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbincome]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbsellerliqui]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbbonusstat]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbchangeliqui]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbdailyfee]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbtatransreq]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbtatranscfm]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbtacfmdetail]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbtadivdetail]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbfrozendetail]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbsharedetail1]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbsharedetail2]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbsharedetail3]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbsharedetail4]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbsharedetail5]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbpriceset]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbchgprdfare]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbshareadjust]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbmngfeeratio]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbshare1]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbshare2]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbshare3]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbshare4]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbshare5]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbsalestat]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbtypescheme]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbprdbelong]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbg06data]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbg06exchange]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbissuelimit]]></tableName>
+        </attrs>
+      </data>
+      <data id="table">
+        <children/>
+        <attrs>
+          <tableName><![CDATA[tbchglimit]]></tableName>
+        </attrs>
+      </data>
+    </children>
+    <attrs>
+      <packageName><![CDATA[test2]]></packageName>
+      <daoPackageName><![CDATA[test2]]></daoPackageName>
+    </attrs>
+  </data>
+  <buttons>
+    <button text="生成">
+      <code><![CDATA[importPackage(java.lang);
+importPackage(java.io);
+importPackage(java.util);
+
+var stds = project.findResource("stdfield","stdfield").getInfo();
+for(var i = 0;i < data.getElements().size();i++){
+	var element = data.getElements().get(i);
+	var beanPackageName = element.getAttrs().get("packageName");
+	createPackage(beanPackageName);
+	var daoPackageName = element.getAttrs().get("daoPackageName");
+	createPackage(daoPackageName);
+	for(var j=0 ; j < element.getChildren().size();j++){
+		var tableData = element.getChildren().get(j);
+		var tableName = tableData.getAttrs().get("tableName");
+		var beanName = tableData.getAttrs().get("javaName");
+		if("true".equals(tableData.getAttrs().get("used"))){
+			var table = project.getResources(tableName+".table");
+			if(table.length > 0){
+				var tableInfo = table[0].getInfo();
+				//创建javabean
+				createJava(tableInfo,beanPackageName,beanName);
+				//创建dao
+				createDao(tableInfo,daoPackageName,beanName,beanPackageName);
+			}
+		}
+	}
+}
+
+function createPackage(packageName){
+	var result = "";
+	var packs = packageName.split("\\.");
+	for(var i = 0;i < packs.length;i++){
+		try {
+			result += packs[i];
+			result += "\\";
+			var file = new File("c:\\"+result);
+			if(!file.exists()){
+				file.mkdir();
+			}
+		} catch (e) {
+			// TODO: handle exception
+		}
+
+	}
+}
+
+function createDao(tableInfo,packageName,beanName,beanPackageName){
+	var file = new File("c:\\"+packageName.replaceAll("\\.","\\\\") + "\\"+beanName+"Dao.java");
+	if(!file.exists()){
+		file.createNewFile();
+	}
+	
+	var sb = new StringBuffer();
+	//加头注释
+	addCommon(sb,beanName+"Dao");
+	
+	// 生成package
+	sb.append("package " + packageName + ";\n\n");
+
+	// 生成 import语句
+	sb.append("import java.lang.*;\n");
+	sb.append("import java.math.*;\n");
+	sb.append("import com.hundsun.jres.impl.db.session.DBSessionFactory;\n");
+	sb.append("import com.hundsun.jres.interfaces.db.session.IDBSession;\n");
+	sb.append("import java.sql.SQLException;\n");
+	sb.append("import " +beanPackageName+"."+ beanName+ ";\n");
+	// 生成
+	sb.append("public class ");
+	sb.append(beanName);
+	sb.append("Dao{\n");
+	
+	//生成insert函数
+	createAdd(tableInfo,sb,beanName);
+	//if(tableInfo.getUniqueIndex().length > 0){
+		//生成两个delete函数
+		createDelete(tableInfo,sb,beanName);
+		//生成两个update函数
+		createModify(tableInfo,sb,beanName);
+		//生成get函数
+		createGet(tableInfo,sb,beanName);
+	//}
+	
+	sb.append("\n}\n");
+	var print = new PrintWriter(new OutputStreamWriter(new FileOutputStream(file),"utf-8"));
+	print.print(sb);
+	print.flush();
+	print.close();
+}
+
+//生成dao 中的  insert函数
+function createAdd(tableInfo,sb,beanName){
+	var fieldList =new ArrayList();
+	for(var i=0;i<tableInfo.getFields().size();i++){
+		fieldList.add(tableInfo.getFields().get(i).getFieldName());
+	}
+	var fields = fieldList.toArray();
+	for(var i = 0;i<fields.length;i++){
+		fieldList.set(i,"?");
+	}
+	var questions = fieldList.toArray();
+	for(var i = 0;i<fields.length;i++){
+		fieldList.set(i,"obj.get" + convertFirst(convertDbFieldToBeanField(tableInfo.getFields().get(i).getFieldName()))+"()");
+	}
+	var getMethods = fieldList.toArray();
+
+	sb.append("\npublic int add" + beanName + "(" + beanName +" obj) throws SQLException {\n");
+	sb.append("	IDBSession session=DBSessionFactory.getSession();\n");
+	sb.append("	return session.execute(\"insert into " + tableInfo.getEnglishName() + "(");
+	sb.append(join(fields,",",0) + ")values(");
+	sb.append(join(questions,",",0) + ")\",\n	");
+	sb.append(join(getMethods,",",4) + ");\n}\n");
+}
+
+//生成dao 中的  delete函数
+function createDelete(tableInfo,sb,beanName){
+	var hasKey = (tableInfo.getUniqueIndex().length > 0);
+	var fieldList =new ArrayList();
+	for(var i=0;i<tableInfo.getUniqueIndex().length;i++){
+		fieldList.add(tableInfo.getUniqueIndex()[i].getFieldName());
+	}
+	var fields = fieldList.toArray();
+	for(var i = 0;i<fields.length;i++){
+		fields[i] = fields[i] + "=?";
+	}
+	var getMethods = fieldList.toArray();
+	for(var i = 0;i<fields.length;i++){
+		getMethods[i] = "obj.get" + convertFirst(convertDbFieldToBeanField(getMethods[i]))+"()";
+	}
+	sb.append("\npublic int delete" + beanName + "(" + beanName +" obj) throws SQLException {\n");
+	sb.append("	IDBSession session=DBSessionFactory.getSession();\n");
+	sb.append("	return session.execute(\"delete from " + tableInfo.getEnglishName() + " where ");
+	sb.append(join(fields," and ",0) + "\",");
+	sb.append(join(getMethods,",",4) + ");\n}\n");
+	if(hasKey){
+		var inPara = fieldList.toArray();
+		for(var i = 0;i<inPara.length;i++){
+			inPara[i] = convertDbFieldToBeanField(inPara[i]);
+		}
+		var typeVar = fieldList.toArray();
+		for(var i = 0;i<typeVar.length;i++){
+			var stdField = stds.getStdField(typeVar[i]);
+			if(stdField != null){
+				var type = getType(stdField);
+				typeVar[i] = type + " " + convertDbFieldToBeanField(typeVar[i]);
+			}
+		}
+		
+		sb.append("\npublic int delete" + beanName + "(" + join(typeVar,",",0) +") throws SQLException {\n");
+		sb.append("	IDBSession session=DBSessionFactory.getSession();\n");
+		sb.append("	return session.execute(\"delete from " + tableInfo.getEnglishName() + " where ");
+		sb.append(join(fields," and ",0) + "\",");
+		sb.append(join(inPara,",",4) + ");\n}\n");
+	}
+}
+
+//生成dao 中的  update函数
+function createModify(tableInfo,sb,beanName){
+	var hasKey = (tableInfo.getUniqueIndex().length > 0);
+	var fieldout =new ArrayList();
+	for(var i=0;i<tableInfo.getUniqueIndex().length;i++){
+		fieldout.add(tableInfo.getUniqueIndex()[i].getFieldName());
+	}
+	
+	var fieldin = new ArrayList();
+	for(var i=0;i<tableInfo.getFields().size();i++){
+		var name = tableInfo.getFields().get(i).getFieldName()
+		var exist = false;
+		for(var j=0;j<fieldout.size();j++){
+			if(fieldout.get(j).equals(name)){
+				exist = true;
+				break;
+			}
+		}
+		if(!exist){
+			fieldin.add(name);
+		}
+	}
+	
+	var outArray = fieldout.toArray();
+	for(var i = 0;i<outArray.length;i++){
+		outArray[i] = outArray[i] + "=?";
+	}
+	
+	var inArray = fieldin.toArray();
+	for(var i = 0;i<inArray.length;i++){
+		inArray[i] = inArray[i] + "=?";
+	}
+	
+	sb.append("\npublic int modify" + beanName + "(" + beanName +" obj) throws SQLException {\n");
+	sb.append("	IDBSession session=DBSessionFactory.getSession();\n");
+	sb.append("	return session.execute(\"update " + tableInfo.getEnglishName() + " set ");
+	sb.append(join(inArray,",",0) + " ");
+	if(hasKey){
+		sb.append("where ");
+	}
+	sb.append(join(outArray," and ",0) + "\",\n	");
+	var k = 0;
+	for(var i=0;i<fieldin.size();i++){
+		sb.append("obj.get" + convertFirst(convertDbFieldToBeanField(fieldin.get(i)))+"()");
+		if((i != fieldin.size()-1) || (hasKey)){
+			sb.append(",");
+			k++;
+			if(k % 4 == 0){
+				sb.append("\n	");
+			}
+		}
+	}
+	for(var i=0;i<fieldout.size();i++){
+		sb.append("obj.get" + convertFirst(convertDbFieldToBeanField(fieldout.get(i)))+"()");
+		if(i != fieldout.size()-1){
+			sb.append(",");
+			k++;
+			if(k % 4 == 0){
+				sb.append("\n	");
+			}
+		}
+	}
+	sb.append(");\n}\n");
+	
+	//------------
+	if(hasKey){
+		var typeVar = fieldout.toArray();
+		for(var i = 0;i<typeVar.length;i++){
+			var stdField = stds.getStdField(typeVar[i]);
+			if(stdField != null){
+				var type = getType(stdField);
+				typeVar[i] = type + " " + convertDbFieldToBeanField(typeVar[i]);
+			}
+		}
+		
+		sb.append("\npublic int modify" + beanName + "("+ beanName + " obj,"+ join(typeVar,",",0) +") throws SQLException {\n");
+		sb.append("	IDBSession session=DBSessionFactory.getSession();\n");
+		sb.append("	return session.execute(\"update " + tableInfo.getEnglishName() + " set ");
+		sb.append(join(inArray,",",0) + " ");
+		sb.append("where " + join(outArray," and ",0) + "\",\n	");
+		k = 0;
+		for(var i=0;i<fieldin.size();i++){
+			sb.append("obj.get" + convertFirst(convertDbFieldToBeanField(fieldin.get(i)))+"()");
+			sb.append(",");
+			k++;
+			if(k % 4 == 0){
+				sb.append("\n	");
+			}
+		}
+		for(var i=0;i<fieldout.size();i++){
+			sb.append(convertDbFieldToBeanField(fieldout.get(i)));
+			if(i != fieldout.size()-1){
+				sb.append(",");
+				k++;
+				if(k % 4 == 0){
+					sb.append("\n	");
+				}
+			}
+		}
+		sb.append(");\n}\n");
+	}
+}
+
+function createGet(tableInfo,sb,beanName){
+	var hasKey = (tableInfo.getUniqueIndex().length > 0);
+	var fieldList =new ArrayList();
+	for(var i=0;i<tableInfo.getUniqueIndex().length;i++){
+		fieldList.add(tableInfo.getUniqueIndex()[i].getFieldName());
+	}
+
+	var typeVar = fieldList.toArray();
+	for(var i = 0;i<typeVar.length;i++){
+		var stdField = stds.getStdField(typeVar[i]);
+		if(stdField != null){
+			var type = getType(stdField);
+			typeVar[i] = type + " " + convertDbFieldToBeanField(typeVar[i]);
+		}
+	}
+	
+	var fields = fieldList.toArray();
+	for(var i = 0;i<fields.length;i++){
+		fields[i] = fields[i] + "=?";
+	}
+	
+	sb.append("\npublic "+ beanName +" get" + beanName + "(" + join(typeVar,",",0) +") throws SQLException {\n");
+	sb.append("	IDBSession session=DBSessionFactory.getSession();\n");
+	sb.append("	" + beanName + " obj = ");
+	sb.append("("+beanName+")"+"session.getObject(\"select * from " + tableInfo.getEnglishName());
+	if(hasKey){
+		sb.append(" where ");
+	}
+	sb.append(join(fields," and ",0) + "\",");
+	sb.append(beanName + ".class");
+	if(hasKey){
+		sb.append(",");
+	}
+	var values = fieldList.toArray();
+	for(var i = 0;i<values.length;i++){
+		values[i] = convertDbFieldToBeanField(values[i]);
+	}
+	sb.append(join(values,",",4) + ");\n	return obj;\n}\n");
+}
+
+//将字符数组连接起来
+function join(input,s,newLine){
+	var result = "";
+	for(var i = 0;i < input.length;i++){
+		result += input[i];
+		if(i != (input.length-1)){
+			result += s;
+			if(newLine > 0 && (i % newLine == 0) && i != 0){
+				result += "\n	";
+			}
+		}
+	}
+	return result;
+}
+
+//生成javabean文件
+function createJava(tableInfo,packageName,beanName){
+	var file = new File("c:\\"+packageName.replaceAll("\\.","\\\\") + "\\"+beanName+".java");
+	if(!file.exists()){
+		file.createNewFile();
+	}
+	var sb = new StringBuffer();
+	//加头注释
+	addCommon(sb,beanName);
+	
+	// 生成package
+	sb.append("package " + packageName + ";\n\n");
+
+	// 生成 import语句
+	sb.append("import java.lang.*;\n");
+	sb.append("import java.math.*;\n\n");
+	// 生成
+	sb.append("public class ");
+	sb.append(beanName);
+	sb.append("{\n");
+	
+	for(var i = 0; i < tableInfo.getFields().size(); i ++){
+		createFieldJava(tableInfo.getFields().get(i),sb);
+	}
+	
+	sb.append("\n}\n");
+	
+	var print = new PrintWriter(new OutputStreamWriter(new FileOutputStream(file),"utf-8"));
+	print.print(sb);
+	print.flush();
+	print.close();
+}
+
+//生成javabean中的一个java字段
+function createFieldJava(field,sb){
+	var stdField = stds.getStdField(field.getFieldName());
+	var type = getType(stdField);
+	var name = convertDbFieldToBeanField(field.getFieldName());
+	var stdField = stds.getStdField(field.getFieldName());
+	if(stdField != null){
+		var defaultStr = getDefaultValue(type);
+		
+		//生成注释
+		sb.append("	//"+stdField.getChineseName()+ "\n");
+		//生成定义语句
+		sb.append("	private "+type + " " + name + defaultStr);
+		sb.append(";\n");
+		//生成get方法
+		sb.append("	public " + type + " get" + convertFirst(name) + "(){\n");
+		sb.append("		return " + name + ";\n");
+		sb.append("	}\n");
+		//生成set方法
+		sb.append("	public void set" + convertFirst(name) + "("+ type + " " + name+"){\n");
+		sb.append("		this." + name + " = " + name + ";\n");
+		sb.append("	}\n\n");
+	}
+}
+
+function getDefaultValue(type){
+	if(type.equals("String")){
+		return " = \" \"";
+	}else if(type.equals("int")||type.equals("long")){
+		return " = 0";
+	}else if(type.equals("double")||type.equals("float")){
+		return " = 0.0";
+	}else{
+		return "";
+	}
+}
+
+//根据标准字段获得真实的JAVA类型
+function getType(stdField){
+	var javaType = stdField.getRealType("java",project);
+	var oracleType = stdField.getRealType("oracle",project);
+	if(oracleType.startsWith("number") || oracleType.startsWith("numeric")){
+		if(oracleType.indexOf("(") > 0 && oracleType.indexOf(")") > 0){
+			var len = 0;
+			var scale = 0;
+			len = Integer.valueOf(oracleType.substring(oracleType.indexOf("(") + 1, oracleType.indexOf(",")).trim());
+			scale = Integer.valueOf(oracleType.substring(oracleType.indexOf(",") + 1, oracleType.indexOf(")")).trim());
+			if(scale == 0){
+				if(len > 10){
+					return "long";
+				}else{
+					return "int";
+				}
+			}else{
+				return "double";
+			}
+		}
+	}
+	return javaType;
+}
+
+//将字符串第一个字符转化成大写
+function convertFirst(name){
+	if(!name.equals("")){
+		return name.substring(0, 1).toUpperCase() + name.substring(1);
+	}
+	return name;
+}
+
+//转化表字段名 to java字段名
+function convertDbFieldToBeanField(dbFieldName) {
+	var str = new String("");
+	var beanFieldName = dbFieldName.split("\\_");
+	for(var i = 0; i < beanFieldName.length ;i++){
+		if(i != 0){
+			str += convertFirst(beanFieldName[i]);
+		}else{
+			str += beanFieldName[i];
+		}
+	}
+	return str;
+}
+
+//加头注释
+function addCommon(sb,beanName){
+	sb.append("/********************************************\n");
+	sb.append("* 文件名称: "+beanName+".java\n");
+	sb.append("* 系统名称: 综合理财系统\n");
+	sb.append("* 模块名称:\n");
+	sb.append("* 软件版权: 恒生电子股份有限公司\n");
+	sb.append("* 功能说明: \n");
+	sb.append("* 系统版本: 3.0.0.1\n");
+	sb.append("* 开发人员: \n");
+	sb.append("* 开发时间:  \n");
+	sb.append("* 审核人员:\n");
+	sb.append("* 相关文档:\n");
+	sb.append("* 修改记录: 修改日期    修改人员    修改说明\n");
+	sb.append("*********************************************/\n");
+}
+
+]]></code>
+      <xmlCode><![CDATA[]]></xmlCode>
+    </button>
+    <button text="导入">
+      <code><![CDATA[importPackage(java.lang);
+importPackage(java.io);
+importPackage(java.util);
+
+var date = new Date();
+var map = new HashMap();
+var tableType = new Array(["table"]);
+var tables = project.getResources(tableType);
+for(var i = 0;i < tables.length;i++){
+	var moduleName = tables[i].getModule().getElementName();
+	if(map.get(moduleName) == null){
+		var element = data.createNewElement();
+		element.setId("package");
+		element.getAttrs().put("packageName",moduleName);
+		element.getAttrs().put("daoPackageName",moduleName);
+		data.getElements().add(element);
+		map.put(moduleName,element);
+	}
+	var child = data.createNewElement();
+	child.setParent(element);
+	child.setId("table");
+	child.getAttrs().put("tableName",tables[i].getName());
+	map.get(moduleName).getChildren().add(child);
+}
+editor.refresh();
+
+]]></code>
+      <xmlCode><![CDATA[]]></xmlCode>
+    </button>
+  </buttons>
+</root>

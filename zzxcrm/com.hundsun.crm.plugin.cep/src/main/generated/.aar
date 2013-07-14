@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<aar>
+  <info>
+    <id>plugin_cep</id>
+    <name></name>
+    <version></version>
+    <provider></provider>
+    <contact></contact>
+    <note>JRES2-工作流平台-CEP插件包</note>
+    <publisher>JRES Builder</publisher>
+    <pubtime>2013-7-12 14:53:59</pubtime>
+    <type></type>
+  </info>
+  <respath>
+    <entry kind="src" type="com.hundsun.ares.studio.jres.moduleroot.tools" path="tools"/>
+  </respath>
+  <dependencies/>
+  <extended/>
+</aar>

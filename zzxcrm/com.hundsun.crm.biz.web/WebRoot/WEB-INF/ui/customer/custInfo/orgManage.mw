@@ -1,0 +1,1238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hsdoc version="1.1.0">
+  <Windows>
+    <control-MainWindow height="461" name="MainWin" templatePath="window.ftl" width="936">
+      <layout-border>
+        <control-Panel region="west" width="253" height="200" title="组织树" collapsible="true" split="true" name="Panel1">
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+          <layout-border>
+            <control-Panel region="north" height="30" name="Panel2" width="100">
+              <Top/>
+              <Bottom/>
+              <Left/>
+              <Right/>
+              <layout-table columns="1" fullWidth="true">
+                <control-DictComboBox defaultValue="0" labelAlign="right" labelWidth="75" fieldName="dimension" displayMode="true" width="100.0%" fieldLabel="组织维度" name="dimensionCBox" tabIndex="2" group="BIZ_ORG_DIMEN"/>
+              </layout-table>
+            </control-Panel>
+            <control-Tree region="center" height="300" name="OrgTree" width="100">
+              <layout-tree>
+                <control-AsyncTreeNode id="bizroot" dataSet="OrgTreeDataSet" name="AsyncTreeNode1" text="组织">
+                  <layout-tree/>
+                </control-AsyncTreeNode>
+              </layout-tree>
+              <Top>
+                <control-Toolbar name="Toolbar2">
+                  <layout-toolbar>
+                    <control-Button name="expandButton" text="展开" width="75" tabIndex="3" icon="bizframe/images/icons/arrow_out.png"/>
+                    <control-Button name="closeButton" text="收缩" width="75" tabIndex="4" icon="bizframe/images/icons/arrow_in.png"/>
+                    <control-Button name="resetButton" text="刷新" width="75" icon="bizframe/images/icons/refresh.png" tabIndex="5"/>
+                  </layout-toolbar>
+                </control-Toolbar>
+              </Top>
+              <Bottom/>
+              <Left/>
+              <Right/>
+            </control-Tree>
+          </layout-border>
+        </control-Panel>
+        <control-Panel region="center" height="200" name="Panel3" width="300">
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+          <layout-border>
+            <control-FormPanel collapseMode="mini" region="north" width="300" height="180" hideCollapseTool="true" collapsible="true" split="true" name="searchFormPanel">
+              <Top>
+                <control-Toolbar name="Toolbar1">
+                  <layout-toolbar>
+                    <control-Button name="addButton" text="新增" width="75" tabIndex="6" icon="bizframe/images/icons/add.gif"/>
+                    <control-Button name="editButton" text="修改" width="75" tabIndex="7" icon="bizframe/images/icons/edit.png"/>
+                    <control-Button name="deleteButton" text="删除" width="75" tabIndex="8" icon="bizframe/images/icons/delete.gif"/>
+                    <control-Button name="allotUserButton" text="分配用户" width="75" icon="bizframe/images/icons/branchAllot.png" tabIndex="9"/>
+                    <control-Button name="previousBtn" text="上移" width="75" icon="bizframe/images/icons/arrow_up.png" tabIndex="10" enabled="false"/>
+                    <control-Button name="nextBtn" text="下移" width="75" icon="bizframe/images/icons/arrow_down.png" tabIndex="11" enabled="false"/>
+                    <control-Button name="downButton" text="下载" width="75" icon="bizframe/images/icons/download.png" tabIndex="12" menu="Menu1"/>
+                  </layout-toolbar>
+                </control-Toolbar>
+              </Top>
+              <Bottom>
+                <control-ButtonGroup name="ButtonGroup1">
+                  <layout-buttonGroup>
+                    <control-Button name="searchButton" text="查询" width="75" tabIndex="13" icon="bizframe/images/icons/search.png"/>
+                    <control-Button name="Button6" text="重置" width="75" tabIndex="14" icon="bizframe/images/icons/refresh.png"/>
+                  </layout-buttonGroup>
+                </control-ButtonGroup>
+              </Bottom>
+              <Left/>
+              <Right/>
+              <layout-table columns="2" fullWidth="true">
+                <control-TextField labelAlign="right" labelWidth="75" regexText="只能输入英文、数字和下划线" fieldName="org_code" width="250" height="22" regex="/^\w+$/" fieldLabel="组织编码" maxLength="32" name="searchOrgCode" tabIndex="15"/>
+                <control-TextField labelAlign="right" labelWidth="75" regexText="只能输入中文、英文、小括号和下划线" fieldName="org_name" width="250" height="22" regex="/^[\w\u4e00-\u9fa5\（\）\(\)\-\s]*$/" fieldLabel="组织名称" maxLength="32" name="searchOrgName" tabIndex="16"/>
+                <control-DictComboBox labelAlign="right" containBlankValue="true" labelWidth="75" fieldName="org_cate" displayMode="true" width="250" fieldLabel="组织分类" name="addOrgCate" tabIndex="17" group="BIZ_ORG_CATE"/>
+                <control-DictComboBox labelAlign="right" containBlankValue="true" labelWidth="75" fieldName="org_level" displayMode="true" width="250" fieldLabel="组织级别" name="addOrgLevel" tabIndex="18" group="BIZ_ORG_LEVEL"/>
+                <control-TargetSelect labelAlign="right" targetWindow="orgSelector" msgTarget="qtip" labelWidth="75" fieldName="parent_name" params="['searchParentId','searchParentName',true,'dimensionCBox']" callFunction="rec" width="250" minLength="1" fieldLabel="上级组织" name="searchParentName" tabIndex="19"/>
+                <control-HiddenField fieldName="parent_id" name="searchParentId"/>
+                <control-HiddenField fieldName="manage_id" name="searchManageId"/>
+                <control-TargetSelect labelAlign="right" targetWindow="orgSelector" msgTarget="qtip" labelWidth="75" fieldName="manage_name" params="['searchManageId','searchManageName',true,'dimensionCBox']" callFunction="rec" width="250" minLength="1" fieldLabel="主管组织" name="searchManageName" tabIndex="20"/>
+                <control-HiddenField defaultValue="0" fieldName="dimension" name="addDimension"/>
+              </layout-table>
+            </control-FormPanel>
+            <control-Grid hasCheckColumn="true" region="center" remoteSort="true" autoload="false" enableCellTip="true" width="300" height="200" dataSet="OrgDataSet" name="Grid1" hasCustomPageSize="true" hasPagingBar="true">
+              <layout-GridToolbar>
+                <control-GridItem title="组织编码" dataIndex="org_code" name="orgCode" width="108"/>
+                <control-GridItem title="组织名称" dataIndex="org_name" name="orgName" width="161"/>
+                <control-GridItem title="上级组织" align="left" dataIndex="parent_name" name="parentName" width="156"/>
+                <control-GridItem title="主管组织" align="left" dataIndex="manage_name" name="manageName" width="164"/>
+                <control-GridItem title="组织分类" align="center" dataIndex="org_cate_name" name="orgCateDesc" width="100"/>
+                <control-GridItem title="组织级别" align="center" dataIndex="org_level_name" name="orgLevelDesc" width="100"/>
+                <control-GridItem title="组织维度" align="left" dataIndex="dimension_name" name="dimensionDesc" width="100"/>
+                <control-GridItem title="负责岗位" align="left" dataIndex="position_name" name="GridItem1" width="100" sortable="true"/>
+                <control-GridItem title="备注" hidden="true" dataIndex="remark" name="remark" width="100"/>
+                <control-GridItem align="left" width="100" title="负责岗位编号" dataIndex="position_code" sortable="true" hidden="true" name="GridItem2"/>
+                <control-GridItem title="组织ID" hidden="true" align="left" dataIndex="org_id" name="organizationId" width="100"/>
+                <control-GridItem align="left" width="100" title="组织索引" dataIndex="org_path" sortable="true" hidden="true" name="GridItem3"/>
+              </layout-GridToolbar>
+              <Top/>
+              <Bottom/>
+              <Left/>
+              <Right/>
+            </control-Grid>
+          </layout-border>
+        </control-Panel>
+      </layout-border>
+    </control-MainWindow>
+    <control-Window title="修改组织机构" height="326" name="editWindow" draggable="true" width="366" resizable="false">
+      <Top/>
+      <Bottom>
+        <control-ButtonGroup name="ButtonGroup1">
+          <layout-buttonGroup>
+            <control-Button name="Button1" text="确定" width="75" icon="bizframe/images/icons/accept.png" tabIndex="30"/>
+            <control-Button name="Button2" text="重置" width="75" icon="bizframe/images/icons/refresh.png" tabIndex="31"/>
+            <control-Button name="Button3" text="取消" width="75" icon="bizframe/images/icons/cross.gif" tabIndex="32"/>
+          </layout-buttonGroup>
+        </control-ButtonGroup>
+      </Bottom>
+      <Left/>
+      <Right/>
+      <layout-fit>
+        <control-FormPanel height="200" name="addFormPanel" width="300">
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+          <layout-form labelAlign="right" labelWidth="75">
+            <control-TextField msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" regexText="只能输入英文、数字和下划线" editable="false" fieldName="org_code" width="320" regex="/^\w+$/" fieldLabel="组织编码" maxLength="32" name="addOrgCode" allowBlank="false" tabIndex="33"/>
+            <control-TextField msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" regexText="只能输入中文、英文、小括号、下划线和中划线" fieldName="org_name" width="320" regex="/^[\w\u4e00-\u9fa5\（\）\(\)\-\s]*$/" minLength="1" fieldLabel="组织名称" maxLength="32" name="addOrgName" allowBlank="false" tabIndex="34"/>
+            <control-DictComboBox msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" fieldName="org_cate" displayMode="true" width="320" fieldLabel="组织分类" name="addOrgCate" allowBlank="false" tabIndex="35" group="BIZ_ORG_CATE"/>
+            <control-DictComboBox msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" fieldName="org_level" displayMode="true" width="320" fieldLabel="组织级别" name="addOrgLevel" allowBlank="false" tabIndex="36" group="BIZ_ORG_LEVEL"/>
+            <control-TargetSelect targetWindow="orgSelector" msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" fieldName="parent_name" params="['addParentId','addParentName',true,'addDimension',true]" callFunction="rec" width="320" minLength="1" fieldLabel="上级组织" name="addParentName" allowBlank="false" tabIndex="37"/>
+            <control-TargetSelect targetWindow="orgSelector" msgTarget="qtip" fieldName="manage_name" params="['addManageId','addManageName',true,'addDimension']" callFunction="rec" width="320" minLength="1" fieldLabel="主管组织" name="addManageName" tabIndex="38"/>
+            <control-NumberField dataField="org_order" fieldName="org_order" width="320" height="22" fieldLabel="排序字段" name="orgOrder" tabIndex="50"/>
+            <control-TextArea msgTarget="qtip" fieldName="remark" width="320" fieldLabel="备注" maxLength="256" name="TextArea1" tabIndex="39"/>
+            <control-HiddenField fieldName="dimension" name="addDimension"/>
+            <control-HiddenField fieldName="org_id" name="addOrgId"/>
+            <control-HiddenField fieldName="manage_id" name="addManageId"/>
+            <control-HiddenField fieldName="parent_id" name="addParentId"/>
+            <control-HiddenField dataField="position_code" fieldName="position_code" name="positionCode"/>
+            <control-HiddenField fieldName="org_path" name="orgPath"/>
+          </layout-form>
+        </control-FormPanel>
+      </layout-fit>
+    </control-Window>
+    <control-Window title="新增组织机构" height="327" name="addOrgWindow" draggable="true" width="367" resizable="false">
+      <Top/>
+      <Bottom>
+        <control-ButtonGroup name="ButtonGroup1">
+          <layout-buttonGroup>
+            <control-Button name="Button1" text="确定" width="75" icon="bizframe/images/icons/accept.png" tabIndex="40"/>
+            <control-Button name="Button2" text="重置" width="75" icon="bizframe/images/icons/refresh.png" tabIndex="41"/>
+            <control-Button name="Button3" text="取消" width="75" icon="bizframe/images/icons/cross.gif" tabIndex="42"/>
+          </layout-buttonGroup>
+        </control-ButtonGroup>
+      </Bottom>
+      <Left/>
+      <Right/>
+      <layout-fit>
+        <control-FormPanel height="200" name="addFormPanel" width="300">
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+          <layout-form labelAlign="right" labelWidth="75">
+            <control-TextField msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" regexText="只能输入英文、数字和下划线" fieldName="org_code" width="320" regex="/^\w+$/" fieldLabel="组织编码" maxLength="32" name="addOrgCode" allowBlank="false" tabIndex="43"/>
+            <control-TextField msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" regexText="只能输入中文、英文、小括号、下划线和中划线" fieldName="org_name" width="320" regex="/^[\w\u4e00-\u9fa5\（\）\(\)\-\s]*$/" minLength="1" fieldLabel="组织名称" maxLength="32" name="addOrgName" allowBlank="false" tabIndex="44"/>
+            <control-DictComboBox msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" fieldName="org_cate" displayMode="true" width="320" fieldLabel="组织分类" name="addOrgCate" allowBlank="false" tabIndex="45" group="BIZ_ORG_CATE"/>
+            <control-DictComboBox msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" fieldName="org_level" displayMode="true" width="320" fieldLabel="组织级别" name="addOrgLevel" allowBlank="false" tabIndex="46" group="BIZ_ORG_LEVEL"/>
+            <control-TargetSelect targetWindow="orgSelector" msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" fieldName="parent_name" params="['addParentId','addParentName',true,'addDimension',true]" callFunction="rec" width="320" minLength="1" fieldLabel="上级组织" name="addParentName" allowBlank="false" tabIndex="47"/>
+            <control-TargetSelect targetWindow="orgSelector" msgTarget="qtip" fieldName="manage_name" params="['addManageId','addManageName',true,'addDimension']" callFunction="rec" width="320" minLength="1" fieldLabel="主管组织" name="addManageName" tabIndex="48"/>
+            <control-HiddenField fieldName="dimension" name="addDimension"/>
+            <control-HiddenField fieldName="parent_id" name="addParentId"/>
+            <control-HiddenField fieldName="manage_id" name="addManageId"/>
+            <control-TextArea msgTarget="qtip" fieldName="remark" width="320" fieldLabel="备注" maxLength="256" name="TextArea1" tabIndex="49"/>
+          </layout-form>
+        </control-FormPanel>
+      </layout-fit>
+    </control-Window>
+    <control-Window title="分配用户" height="427" name="allotUserWin" draggable="true" width="663">
+      <Top>
+        <control-Toolbar name="Toolbar3">
+          <layout-toolbar>
+            <control-Button name="Button4" text="分配" width="75" icon="bizframe/images/icons/table_add.png" tabIndex="21"/>
+            <control-ToolbarSeparator name="ToolbarSeparator1"/>
+            <control-Button height="30" name="Button5" text="取消" width="75" icon="bizframe/images/icons/table_delete.png" tabIndex="22"/>
+          </layout-toolbar>
+        </control-Toolbar>
+      </Top>
+      <Bottom/>
+      <Left/>
+      <Right/>
+      <layout-border>
+        <control-FormPanel collapseMode="mini" region="north" width="649" height="140" hideCollapseTool="true" collapsible="true" split="true" name="FormPanel1">
+          <Top/>
+          <Bottom>
+            <control-ButtonGroup height="29" name="ButtonGroup2">
+              <layout-buttonGroup>
+                <control-Button name="Button7" text="查询" width="75" tabIndex="23"/>
+                <control-Button name="Button8" text="重置" width="75" tabIndex="24"/>
+              </layout-buttonGroup>
+            </control-ButtonGroup>
+          </Bottom>
+          <Left/>
+          <Right/>
+          <layout-table columns="2" fullWidth="true" cellspacing="3">
+            <control-TextField labelAlign="right" fieldName="userId" width="250" height="22" fieldLabel="用户编号" name="userId" tabIndex="25"/>
+            <control-TextField labelAlign="right" fieldName="userName" width="250" height="22" fieldLabel="用户昵称" name="TextField2" tabIndex="26"/>
+            <control-HiddenField fieldName="orgId" name="searchOrgId"/>
+            <control-DictComboBox labelAlign="right" fieldName="userType" displayMode="true" width="250" fieldLabel="用户类别" name="DictComboBox1" tabIndex="27" group="BIZ_USER_CATE"/>
+            <control-TargetSelect labelAlign="right" targetWindow="orgSelector" fieldName="orgName" callFunction="rec" width="250" params="['searchOrgId','searchOrgName',true]" fieldLabel="所属组织" name="searchOrgName" tabIndex="28"/>
+            <control-DictComboBox labelAlign="right" fieldName="auth_type" displayMode="true" width="250" fieldLabel="是否分配" name="DictComboBox2" tabIndex="29" group="BIZ_ALLOT_TYPE"/>
+          </layout-table>
+        </control-FormPanel>
+        <control-Grid region="center" hasCheckColumn="true" remoteSort="true" autoload="false" enableCellTip="true" width="300" height="203" dataSet="DataSet1" name="userGrid" hasCustomPageSize="true" hasPagingBar="true">
+          <layout-GridToolbar>
+            <control-GridItem title="用户昵称" align="left" dataIndex="user_name" name="userNameItem" width="100" sortable="true"/>
+            <control-GridItem title="用户编号" align="left" dataIndex="user_id" name="userIdItem" width="100" sortable="true"/>
+            <control-GridItem title="是否已分配" align="center" dataIndex="auth_type_name" name="GridItem71" width="100" sortable="true"/>
+            <control-GridItem title="用户类别" align="center" dataIndex="user_type_display" name="GridItem6" width="100" sortable="true"/>
+            <control-GridItem title="所属组织" align="left" dataIndex="org_name" name="GridItem9" width="100" sortable="true"/>
+            <control-GridItem align="left" width="100" title="组织编号" dataIndex="org_id" sortable="true" hidden="true" name="GridItem4"/>
+          </layout-GridToolbar>
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+        </control-Grid>
+      </layout-border>
+    </control-Window>
+  </Windows>
+  <Accessory>
+    <control-DataSet name="OrgDataSet" service="bizframe.authority.organization.findOrgService" usingServiceName="true" window="MainWin">
+      <params>
+        <param name="resCode"><![CDATA["bizOrgSet"]]></param>
+        <param name="opCode"><![CDATA["bizOrgFind"]]></param>
+        <param name="checkOrgPermission"><![CDATA["true"]]></param>
+      </params>
+      <fields>
+        <field name="org_code" type="String"/>
+        <field name="org_name" type="String"/>
+        <field name="parent_id" type="String"/>
+        <field name="manage_id" type="String"/>
+        <field name="org_cate" type="String"/>
+        <field name="org_level" type="String"/>
+        <field name="org_order" type="String"/>
+        <field name="sso_org_code" type="String"/>
+        <field name="sso_parent_code" type="String"/>
+        <field name="ext_id" type="String"/>
+        <field name="remark" type="String"/>
+        <field name="parent_code" type="String"/>
+        <field name="parent_name" type="String"/>
+        <field name="manage_name" type="String"/>
+        <field name="manage_code" type="String"/>
+        <field name="org_id" type="String"/>
+        <field name="dimension" type="String"/>
+        <field name="dimension_name" type="String"/>
+        <field name="org_level_name" type="String"/>
+        <field name="org_cate_name" type="String"/>
+        <field name="leaf" type="String"/>
+        <field name="position_code" type="String"/>
+        <field name="position_name" type="String"/>
+        <field name="org_path" type="String"/>
+      </fields>
+    </control-DataSet>
+    <control-Menu window="MainWin" name="Menu1">
+      <layout-menu>
+        <control-MenuItem name="currentDown" text="当页下载" icon="bizframe/images/icons/currentPageDownload.png">
+          <layout-menuitem/>
+        </control-MenuItem>
+        <control-MenuItem name="allDown" text="全量下载" icon="bizframe/images/icons/allPageDownload.png">
+          <layout-menuitem/>
+        </control-MenuItem>
+      </layout-menu>
+    </control-Menu>
+    <control-TreeDataSet start="start" name="OrgTreeDataSet" service="bizframe.authority.organization.finSubOrg" limit="limit" usingServiceName="true" window="MainWin">
+      <params>
+        <param name="resCode"><![CDATA["bizOrgSet"]]></param>
+        <param name="opCode"><![CDATA["bizOrgFindFromCache"]]></param>
+      </params>
+      <fields>
+        <field name="org_id" type="String" mapping="id"/>
+        <field name="org_code" type="String" mapping=""/>
+        <field name="org_name" type="String" mapping="text"/>
+        <field name="org_cate" type="String" mapping=""/>
+        <field name="dimension" type="String" mapping=""/>
+        <field name="parent_id" type="String" mapping="pid"/>
+        <field name="manage_id" type="String" mapping=""/>
+        <field name="org_level" type="String" mapping=""/>
+        <field name="leaf" type="String" mapping="leaf"/>
+      </fields>
+    </control-TreeDataSet>
+    <control-DataSet name="DataSet1" service="bizframe.authority.organization.findAllotUsersService" usingServiceName="true" window="allotUserWin">
+      <params>
+        <param name="opCode"><![CDATA["bizOrgFindAllot"]]></param>
+        <param name="resCode"><![CDATA["bizOrgSet"]]></param>
+      </params>
+      <fields>
+        <field name="org_name" type="String"/>
+        <field name="org_id" type="String"/>
+        <field name="ext_field_5" type="String"/>
+        <field name="ext_field_4" type="String"/>
+        <field name="ext_field_3" type="String"/>
+        <field name="ext_field_2" type="String"/>
+        <field name="ext_field_1" type="String"/>
+        <field name="user_type_display" type="String"/>
+        <field name="lock_status_display" type="String"/>
+        <field name="user_status_display" type="String"/>
+        <field name="remark" type="String"/>
+        <field name="pass_modify_date" type="int"/>
+        <field name="modify_date" type="int"/>
+        <field name="create_date" type="int"/>
+        <field name="lock_status" type="String"/>
+        <field name="user_status" type="String"/>
+        <field name="user_type" type="String"/>
+        <field name="user_pwd" type="String"/>
+        <field name="user_name" type="String"/>
+        <field name="user_id" type="String"/>
+        <field name="auth_type" type="String"/>
+        <field name="auth_type_name" type="String"/>
+      </fields>
+    </control-DataSet>
+  </Accessory>
+  <WindowScripts>
+    <WindowScript window="MainWin"><![CDATA[remote bizframe.authority.organization.deleteOrgService as delOrgSvc;
+remote bizframe.authority.organization.findOrgService   as findOrgSvc;
+remote bizframe.authority.organization.sortOrgService   as sortOrgSvc;
+
+include bizframe.js.checkRight;  	//引入公共权限校验js文件
+include bizframe.js.commonUtil;		//引入公共工具包js文件
+import bizframe.authority.auth;
+import bizframe.authority.orgSelector;
+
+public editMod = "";
+public tOrgRootId = "bizroot";
+public tOrgRootName = "";
+
+public orgDimension='0';
+public tOrgParentId = "";
+public tOrgParentName = "";
+
+public $_minIndex = 0;
+public $_maxIndex = 0;
+public $_currIndex = -1 ;
+
+//展开
+event expandButton_click(Button thisComp, Ext.EventObject e)
+{
+  if(tOrgParentId=='')
+  {
+    Ext.Msg.alert('提示','请先选择所属组织');
+    return;
+  }
+  var selectNode=OrgTree.getNodeById(tOrgParentId);
+  if(!selectNode)
+  {
+    Ext.Msg.alert('提示','请刷新');
+    return;
+  }
+  OrgTreeDataSet.setParams(
+  {
+    isSynTree : true
+  }
+  );
+  selectNode.reload();
+  selectNode.expand(true,false);
+  
+  //var paths=selectNode.getPath().split("/");
+  //if(paths.length>=2+2){
+  //}else{
+  //	Ext.Msg.alert('提示','此菜单不支持展开,两层或两层以外节点可展开');
+  //}
+}
+//收缩
+event closeButton_click(Button thisComp, Ext.EventObject e)
+{
+  if(tOrgParentId=='')
+  {
+    Ext.Msg.alert('提示','请先选择所属组织');
+    return;
+  }
+  OrgTree.getNodeById(tOrgParentId).collapse(true,false);
+}
+//刷新
+event resetButton_click(Button thisComp, Ext.EventObject e)
+{
+  tOrgParentId='';
+  tOrgParentName='';
+  searchFormPanel.getForm().reset();
+  OrgTree.collapseAll();
+  initRoot();
+  OrgTree.getNodeById(tOrgRootId).reload();
+}
+
+event searchButton_click(Button thisComp, Ext.EventObject e)
+{
+  var param=searchFormPanel.getValues();
+  Ext.apply(param,
+  {
+    dimension:  orgDimension
+  }
+  )
+  Ext.apply(param,
+  {
+    resCode:'bizOrgSet'
+  }
+  );
+  Ext.apply(param,
+  {
+    opCode:'bizOrgFind'
+  }
+  );
+  OrgDataSet.setParams(param);
+  OrgDataSet.load();
+}
+event Button6_click(Button thisComp, Ext.EventObject e)
+{
+  searchFormPanel.getForm().reset();
+}
+
+event dimensionCBox_select(Hs.HsCheckCombo combo, Ext.data.Record record, Number index)
+{
+  tOrgParentId='';
+  tOrgParentName='';
+  
+  orgDimension=record.get('dictItemCode');
+  addDimension.setValue(orgDimension);
+  OrgTreeDataSet.setParams(
+  {
+    dimension: orgDimension
+  }
+  );
+  OrgTreeDataSet.setParams(
+  {
+    parent_id: tOrgRootId
+  }
+  );
+  OrgTree.getNodeById(tOrgRootId).reload();
+  
+  searchFormPanel.getForm().reset();
+  var param=searchFormPanel.getValues();
+  Ext.apply(param,
+  {
+    dimension :  orgDimension
+  }
+  );
+  Ext.apply(param,
+  {
+    parent_id :  tOrgRootId
+  }
+  )
+  //Ext.apply(param,{resCode:'bizOrgSet'});
+  //Ext.apply(param,{opCode:'bizOrgFind'});;
+  //OrgDataSet.clearParams();
+  OrgDataSet.setParams(param);
+  OrgDataSet.load();
+  
+  
+}
+//当页下载
+event currentDown_click(Ext.menu.BaseItem baseItem, Ext.EventObject e)
+{
+  Ext.MessageBox.confirm('提示', '您确定下载当前页面组织机构数据?', function(button, text)
+  {
+    if (button == "yes")
+    {
+      var start = Grid1.getStart();
+      var limit = Grid1.getLimit();
+      //var action = ctxPath+'/bizframe.authority.organization.downloadOrgService.service?resCode=bizOrgSet&opCode=bizOrgDownload&downType=0'
+      //					+ '&start=' + start
+      //					+ '&limit=' + limit;
+      var action = ctxPath+'/downloadExcel?resCode=bizOrgSet&opCode=bizOrgDownload&downType=0'
+      + '&start=' + start
+      + '&limit=' + limit;
+      var authWin = new auth(MainWin).window;
+      authWin.needAuth(authWin,'bizOrgSet','bizOrgDownload',MainWin, function()
+      {
+        down(action);
+      }
+      );
+    }
+  }
+  );
+}
+
+//全量下载
+event allDown_click(Ext.menu.BaseItem baseItem, Ext.EventObject e)
+{
+  Ext.MessageBox.confirm('提示', '您确定全量下载组织数据?', function(button, text)
+  {
+    if (button == "yes")
+    {
+      //var action = ctxPath+'/bizframe.authority.organization.downloadOrgService.service?resCode=bizOrgSet&opCode=bizOrgDownload';
+      var action = ctxPath+'/downloadExcel?resCode=bizOrgSet&opCode=bizOrgDownload';
+      var authWin = new auth(MainWin).window;
+      authWin.needAuth(authWin,'bizOrgSet','bizOrgDownload',MainWin, function()
+      {
+        down(action);
+      }
+      );
+    }
+  }
+  );
+}
+
+//下载提交
+public function down(action)
+{
+  searchFormPanel.getForm().getEl().dom.action = action;
+  searchFormPanel.getForm().getEl().dom.method = 'post';
+  searchFormPanel.getForm().getEl().dom.submit();
+}
+//新增
+event addButton_click(Button thisComp, Ext.EventObject e)
+{
+  if(""==orgDimension)
+  {
+    Ext.Msg.alert('提示','请先选择组织维度');
+    return;
+  }
+  if(tOrgParentId=='')
+  {
+    Ext.Msg.alert('提示','请先选择上级组织');
+    return;
+  }
+  var win=new addOrgWindow();
+  win.show();
+}
+
+//修改
+event editButton_click(Button thisComp, Ext.EventObject e)
+{
+  if (Grid1.getSelectionModel().getSelections().length == 1)
+  {
+    var win = new editWindow();
+    win.show();
+  }
+  else
+  {
+    Ext.Msg.alert('提示','请选择一条组织机构');
+  }
+}
+
+//删除
+event deleteButton_click(Button thisComp, Ext.EventObject e)
+{
+  if (Grid1.getSelectionModel().getSelections().length > 0)
+  {
+    Ext.MessageBox.confirm('提示', '删除组织信息?', function(button, text)
+    {
+      if (button == "yes")
+      {
+        var orgList = Grid1.getSelectionDatas();
+        var orgIds = "";
+        for(var i=0;i<orgList.length;i++)
+        {
+          orgIds += orgList[i].get("org_id");
+          if(i<orgList.length-1)
+          {
+            orgIds +=',';
+          }
+        }
+        var obj =
+        {
+          orgIds : orgIds
+        }
+        ;
+        Ext.apply(obj,
+        {
+          dimension:  orgDimension
+        }
+        )
+        Ext.apply(obj,
+        {
+          resCode:'bizOrgSet'
+        }
+        );
+        Ext.apply(obj,
+        {
+          opCode:'bizOrgDel'
+        }
+        );;
+        var succ = function(response, options)
+        {
+          if(typeof response == 'object')
+          {
+            returnCode = response.returnCode;
+            errorInfo = response.errorInfo;
+          }
+          if(returnCode=='0')
+          {
+            Ext.Msg.alert('提示','删除成功');
+            refreshGrid(Grid1);
+            //Grid1.refresh();
+            for(var i=0;i<orgList.length;i++)
+            {
+              var orgId = orgList[i].get("org_id");
+              var deleteNode=OrgTree.getNodeById(orgId);
+              if(deleteNode)
+              {
+                deleteNode.remove()
+              }
+            }
+          }
+          else
+          {
+            Ext.Msg.alert("提示",errorInfo);
+          }
+        }
+        var fail = function(response, options)
+        {
+          Ext.Msg.alert('提示','删除失败');
+        }
+        delOrgSvc.asynExecute(obj,succ,fail);
+      }
+    }
+    );
+  }
+  else
+  {
+    Ext.Msg.alert('提示','请选择至少一条组织信息进行删除');
+  }
+  
+  
+  
+}
+event OrgTree_click(Node thisComp, EventObject e)
+{
+  
+  searchFormPanel.getForm().reset();
+  
+  tOrgParentId=thisComp.id;
+  tOrgParentName=thisComp.text;
+  searchParentName.setValue(tOrgParentName);
+  searchParentId.setValue(tOrgParentId);
+  var param =searchFormPanel.getValues();
+  
+  Ext.apply(param,
+  {
+    dimension:  orgDimension
+  }
+  );
+  OrgDataSet.setParams(param);
+  OrgDataSet.load();
+}
+
+event MainWin_complete()
+{
+  //searchFormPanel.collapse();
+  initRoot();
+  OrgTreeDataSet.setParams(
+  {
+    dimension:  orgDimension
+  }
+  );
+  
+  //-20111122-wangnan06675@hundsun.com-BUG #1637::组织机构设置中下载当前页，下载数据不正确-begin-
+  //OrgDataSet.setParams({parent_id:  tOrgRootId});
+  addDimension.setValue(orgDimension);
+  //-20111122-wangnan06675@hundsun.com-BUG #1637::组织机构设置中下载当前页，下载数据不正确-end-
+  OrgDataSet.setParams(
+  {
+    dimension:  orgDimension
+  }
+  );
+  //OrgDataSet.load();
+  
+  var operationMap =
+  {
+    "bizOrgSet.bizOrgAdd":addButton,
+    "bizOrgSet.bizOrgEdit":editButton,
+    "bizOrgSet.bizOrgDel":deleteButton,
+    "bizOrgSet.bizOrgFindAllot":allotUserButton,
+    "bizOrgSet.bizOrgSort":previousBtn,
+    "bizOrgSet.bizOrgSort":nextBtn,
+    "bizOrgSet.bizOrgFind":searchButton
+  }
+  ;
+  checkRights(operationMap);
+  
+  setPreviousAndNextBtn();
+}
+
+function initRoot()
+{
+  var obj =
+  {
+    "parent_id":"bizroot","resCode":"bizOrgSet","opCode":"bizOrgFind"
+  }
+  ;
+  var succ = function(response, options)
+  {
+    var returnCode="";
+    var errorInfo="";
+    if(typeof response == 'object')
+    {
+      returnCode = response.returnCode;
+      errorInfo =  response.errorInfo;
+    }
+    if(returnCode=='0')
+    {
+      var root = OrgTree.getNodeById(tOrgRootId);
+      tOrgRootId=response.dataSetResult[0].data[0].org_id;
+      tOrgRootName=response.dataSetResult[0].data[0].org_name;
+      root.setId(tOrgRootId);
+      root.setText(tOrgRootName);
+      root.expand(false,false);
+      
+    }
+    else
+    {
+      Ext.Msg.alert("提示",errorInfo);
+    }
+  }
+  ;
+  var fail = function(response, options)
+  {
+    Ext.Msg.alert('提示',response.errorInfo);
+  }
+  ;
+  findOrgSvc.asynExecute(obj,succ,fail);
+}
+
+//分配用户
+event allotUserButton_click(Button thisComp, Ext.EventObject e)
+{
+  if (Grid1.getSelectionModel().getSelections().length == 1)
+  {
+    var win =new allotUserWin();
+    var org=Grid1.getSelectionData().data['org_name'];
+    win.setTitle('给组织机构【'+org+'】分配用户');
+    win.show();
+  }
+  else
+  {
+    Ext.Msg.alert('提示','请选择一个组织');
+  }
+}
+
+//下移
+event nextBtn_click(Button thisComp, Ext.EventObject e)
+{
+  setPreviousAndNextBtn();
+  var selectIndex = Grid1.getSelectionIndex();
+  var length = Grid1.getSelectionDatas().length;
+  if(length==0 || length>1)
+  {
+    Ext.Msg.alert('提示', '请选择一条需要排序的组织');
+    return;
+  }
+  var currtData = Grid1.getSelectionData().data;
+  $_currIndex = selectIndex + 1;
+  //Grid1.selectRow(selectIndex,false);
+  Ext.apply(currtData,
+  {
+    resCode:'bizOrgSet', opCode:'bizOrgSort',sort_type:'asc'
+  }
+  );//升序
+  var result = sortOrgSvc.synExecute(currtData);
+  if(result.returnCode == 0)
+  {
+    Grid1.refresh();
+    //refreshTreeNode(OrgTree,tOrgParentId,tOrgRootId);
+    
+    //---20120110--huhl----上移下移组织机构时，左边树结点顺序未调整---bengin---
+    OrgTree.getNodeById(tOrgRootId).reload();
+    //---20120110--huhl----上移下移组织机构时，左边树结点顺序未调整---end---
+  }
+  else
+  {
+    Ext.Msg.alert('提示', '排序失败<br>原因：' + result.errorInfo);
+  }
+  //Grid1.getSelectionModel().selectRow(selectIndex+1,false);
+  //setPreviousAndNextBtn(selectIndex+1);
+}
+
+//上移
+event previousBtn_click(Button thisComp, Ext.EventObject e)
+{
+  setPreviousAndNextBtn();
+  var selectIndex = Grid1.getSelectionIndex();
+  var length = Grid1.getSelectionDatas().length;
+  if(length==0 || length>1)
+  {
+    Ext.Msg.alert('提示', '请选择一条需要排序的组织');
+    return;
+  }
+  var currtData = Grid1.getSelectionData().data;
+  $_currIndex = selectIndex - 1;
+  //Grid1.selectRow(selectIndex,false);
+  Ext.apply(currtData,
+  {
+    resCode:'bizOrgSet', opCode:'bizOrgSort',sort_type:'dec'
+  }
+  );//降序
+  var result = sortOrgSvc.synExecute(currtData);
+  if(result.returnCode == 0)
+  {
+    Grid1.refresh();
+    
+    //refreshTreeNode(OrgTree,tOrgParentId,tOrgRootId);
+    
+    //---20120110--huhl----上移下移组织机构时，左边树结点顺序未调整---bengin---
+    OrgTree.getNodeById(tOrgRootId).reload();
+    //---20120110--huhl----上移下移组织机构时，左边树结点顺序未调整---end---
+  }
+  else
+  {
+    Ext.Msg.alert('提示', '排序失败<br>原因：' + result.errorInfo);
+  }
+  //Grid1.getSelectionModel().selectRow(selectIndex-1,false);
+  //setPreviousAndNextBtn(selectIndex-1);
+}
+
+event OrgDataSet_loadsuccess(Hs.HsDataSet dataSet)
+{
+  setPreviousAndNextBtn();
+}
+event OrgTree_beforeload(Node node)
+{
+  OrgTreeDataSet.setParams(
+  {
+    isSynTree : true
+  }
+  );
+}
+event Grid1_mouseup(Ext.EventObject e)
+{
+  var records=Grid1.getSelectionDatas();
+  var totalCount=OrgDataSet.getTotalCount();
+  if(totalCount!=1)
+  {
+    if(records && records.length && records.length==1)
+    {
+      setPreviousAndNextBtn(Grid1.getSelectionIndex());
+    }
+    else
+    {
+      setPreviousAndNextBtn();
+    }
+  }
+  else
+  {
+    setPreviousAndNextBtn();
+  }
+}
+
+event Grid1_change(Hs.HsPagingToolbar pagingToolbar, Object pageData)
+{
+  $_minIndex = 0;
+  $_maxIndex = Grid1.getAllData().length;
+}
+
+public function setPreviousAndNextBtn(selectIndex)
+{
+  if( selectIndex==undefined || $_minIndex==$_maxIndex
+  ||selectIndex<$_minIndex||selectIndex>$_maxIndex)
+  {
+    previousBtn.setEnabled(false);
+    nextBtn.setEnabled(false);
+  }
+  else if(selectIndex==$_minIndex)
+  {
+    previousBtn.setEnabled(false);
+    nextBtn.setEnabled(true);
+  }
+  else if(selectIndex==$_maxIndex-1)
+  {
+    previousBtn.setEnabled(true);
+    nextBtn.setEnabled(false);
+  }
+  else
+  {
+    previousBtn.setEnabled(true);
+    nextBtn.setEnabled(true);
+  }
+}
+
+event Grid1_refresh(Hs.HsGrid thisCmp)
+{
+  if($_currIndex>=0)
+  {
+    if($_currIndex>Grid1.getAllData().length-1)
+    {
+      $_currIndex = Grid1.getAllData().length-1;
+    }
+    Grid1.selectRow($_currIndex,false);
+    setPreviousAndNextBtn($_currIndex);
+    $_currIndex=-1;
+  }
+}
+event Toolbar1_beforeadd(Ext.Container thisComp, Ext.Component component, Number index)
+{
+  
+}]]></WindowScript>
+    <WindowScript window="editWindow"><![CDATA[remote bizframe.authority.organization.updateOrgService   as editSvc;
+
+event Button1_click(Button thisComp, Ext.EventObject e) {
+	if(addFormPanel.getForm().isValid()){
+		if(addParentId.getValue()==addOrgId.getValue()){
+			Ext.Msg.alert('提示', '上级组织不能为当前组织');
+			return;
+		}
+		var authWindow = new auth(MainWin).window;
+		authWindow.needAuth(authWindow,'bizOrgSet','bizOrgEdit',MainWin, 
+		function(){
+				Ext.MessageBox.show({
+		        	title: '提示',
+		        	msg: '确认修改?',
+		       	 	buttons: Ext.MessageBox.YESNO,
+		        	icon: Ext.MessageBox.QUESTION,
+		        	fn: function(btn){
+			        	if(btn == 'yes'){        		      	
+			        		var data=addFormPanel.getValues();
+			        		Ext.apply(data,{resCode:"bizOrgSet",opCode:"bizOrgEdit"});
+					        var Result = editSvc.synExecute(data);
+					        if(Result == ""){
+								Ext.Msg.alert('提示', '服务没有响应');
+								return;
+							}
+							if(!(Result.returnCode == 0)){
+								Ext.Msg.alert('错误','修改失败！<br>错误信息：'+Result.errorInfo);
+							}else{
+								Ext.Msg.alert('提示','修改成功');
+								
+								MainWin.Grid1.clear();
+								MainWin.Grid1.refresh();
+								
+								refreshTreeNode(MainWin.OrgTree,MainWin.tOrgParentId,MainWin.tOrgRootId);
+								var $_parentId=addParentId.getValue();
+								if($_parentId!=MainWin.tOrgParentId){//修改了上级组织
+									refreshTreeNode(MainWin.OrgTree,$_parentId,MainWin.tOrgRootId);
+								}
+								close();
+							}
+			         	}
+					}
+		       	});		
+		});
+	}else{
+		Ext.Msg.alert('提示', '发现有输入项不符合规范');
+		return;
+	}
+}
+event Button2_click(Button thisComp, Ext.EventObject e) {
+	addFormPanel.getForm().reset();
+}
+event Button3_click(Button thisComp, Ext.EventObject e) {
+	close();
+}
+event editWindow_complete() {
+	var record = MainWin.Grid1.getSelectionModel().getSelected();
+    var code=record.get("org_code");
+    addOrgCode.setValue(code);
+    addOrgCode.defaultValue=code;
+    
+    var name=record.get("org_name");
+    addOrgName.setValue(name);
+    addOrgName.defaultValue=name;
+    
+    var cate=record.get("org_cate");
+    addOrgCate.setValue(cate);
+    addOrgCate.defaultValue=cate;
+    
+    var level=record.get("org_level");
+    addOrgLevel.setValue(level);
+    addOrgLevel.defaultValue=level;
+    
+    var _dimension=record.get("dimension");
+    addDimension.setValue(_dimension);
+    addDimension.defaultValue=_dimension;
+    
+    var parent_id=record.get("parent_id");
+    addParentId.setValue(parent_id);
+    addParentId.defaultValue=parent_id;
+    
+    var parent_name=record.get("parent_name");
+    addParentName.setValue(parent_name);
+    addParentName.defaultValue=parent_name;
+    
+    var manage_id=record.get("manage_id");
+    addManageId.setValue(manage_id);
+    addManageId.defaultValue=manage_id;
+    
+    var manage_name=record.get("manage_name");
+    addManageName.setValue(manage_name);
+    addManageName.defaultValue=manage_name;
+    
+    var remark_=record.get("remark");
+    TextArea1.setValue(remark_);
+    TextArea1.defaultValue=remark_;
+    
+    var position_code=record.get("position_code");
+    positionCode.setValue(position_code);
+    positionCode.defaultValue=position_code;
+    
+    var org_path=record.get("org_path");
+    orgPath.setValue(org_path);
+    orgPath.defaultValue=org_path;
+    
+    var org_order = record.get("org_order");
+    orgOrder.setValue(org_order);
+    orgOrder.defaultValue=org_order;
+    
+    var id=record.get("org_id");
+	addOrgId.setValue(id);
+    addOrgId.defaultValue=id;
+    if(MainWin.tOrgRootId==id){
+        addManageName.setValue('无');
+        addParentName.setValue('无');
+        addParentId.setValue('bizroot');
+        addManageId.setValue('bizroot');
+    	addManageName.setEnabled(false);
+    	addParentName.setEnabled(false);
+    }
+}
+]]></WindowScript>
+    <WindowScript window="addOrgWindow"><![CDATA[remote bizframe.authority.organization.addOrgService   as addSvc;
+remote bizframe.common.generateUniqueCodeService as codeSvc;
+
+event Button1_click(Button thisComp, Ext.EventObject e) {
+	if(addFormPanel.getForm().isValid()){
+		var authWindow = new auth(MainWin).window;
+		authWindow.needAuth(authWindow,'bizOrgSet','bizOrgAdd',MainWin, 
+		function(){
+				Ext.MessageBox.show({
+		        	title: '提示',
+		        	msg: '确认新增？',
+		       	 	buttons: Ext.MessageBox.YESNO,
+		        	icon: Ext.MessageBox.QUESTION,
+		        	fn: function(btn){
+			        	if(btn == 'yes'){        		      	
+			        		var data=addFormPanel.getValues();
+			        		Ext.apply(data,{resCode:"bizOrgSet",opCode:"bizOrgAdd"});
+					        var Result = addSvc.synExecute(data);
+					        if(Result == ""){
+								Ext.Msg.alert('提示', '服务没有响应');
+								return;
+							}
+							if(!(Result.returnCode == 0)){
+								Ext.Msg.alert('错误','新增失败！<br>错误信息：'+Result.errorInfo);
+							}else{
+								Ext.Msg.alert('提示','新增成功');
+								//MainWin.Grid1.refresh();
+								MainWin.OrgDataSet.load();
+								var pid=addParentId.getValue();
+								var text=addOrgName.getValue();
+								var id="";
+								if(top.uniqueOrgCode){//定义在pageConfig.js.jsp中 
+									id=addOrgCode.getValue();
+								}else{
+									id=addDimension.getValue()+"_"+addOrgCode.getValue();
+								}
+								addTreeNode(MainWin.OrgTree,MainWin.tOrgParentId,{"id":id,"pid":pid,"text":text,"leaf":"true"},MainWin.tOrgRootId);
+								//refreshTreeNode(MainWin.OrgTree,MainWin.tOrgParentId,MainWin.tOrgRootId);
+								close();
+							}
+			         	}
+					}
+		       	});		
+		});
+	}else{
+		Ext.Msg.alert('提示', '发现有输入项不符合规范');
+		return;
+	}
+
+
+}
+event Button2_click(Button thisComp, Ext.EventObject e) {
+	addFormPanel.getForm().reset();
+}
+event Button3_click(Button thisComp, Ext.EventObject e) {
+	close();
+}
+
+function initCode(){
+	var obj = {"biz_type_code":"org","resCode":"bizSetCommon","opCode":"uniqueCode"};
+	var succ = function(response, options){
+	        var returnCode="";
+	        var errorInfo="";
+			if(typeof response == 'object'){
+					returnCode = response.returnCode;
+					errorInfo =  response.errorInfo;
+			}
+			if(returnCode=='0'){
+				 var bizCode = response.dataSetResult[0].data[0].biz_code;   
+				 addOrgCode.setValue(bizCode);
+			}else{
+				  Ext.Msg.alert("提示",errorInfo);
+			}
+		};
+	var fail = function(response, options){
+		Ext.Msg.alert('提示',response.errorInfo);
+	};
+	codeSvc.asynExecute(obj,succ,fail);	
+}
+
+event addOrgWindow_complete() {
+	addParentName.setValue(MainWin.tOrgParentName);
+	addParentId.setValue(MainWin.tOrgParentId);
+	
+	addManageId.setValue(MainWin.tOrgParentId);
+	addManageName.setValue(MainWin.tOrgParentName);
+	addDimension.setValue(MainWin.orgDimension);
+	//initCode();
+}]]></WindowScript>
+    <WindowScript window="allotUserWin"><![CDATA[remote bizframe.authority.organization.allotOrgToUserService  as allotSvc2;
+remote bizframe.authority.organization.cancelUserOrgService    as cancelSvc2;
+
+ var _selectOrgId='';
+event allotUserWin_complete() {
+	//FormPanel1.collapse();
+	var record = MainWin.Grid1.getSelectionData();
+	var recodeData=record.data;
+	_selectOrgId=recodeData['org_id'];
+	
+	DataSet1.setParams({authOrgId : _selectOrgId});
+	DataSet1.load();
+}
+event GridItem71_renderer(Object value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store) {
+   	if(record.get('auth_type')!="1"){//授权
+		 value='<font  color="#FF0000">'+value+'</font>';
+    }else{
+     	 value='<font  color="#008000">'+value+'</font>';
+    }
+    return value;
+}
+event Button7_click(Button thisComp, Ext.EventObject e) {
+	var param=FormPanel1.getValues();
+	
+	//Ext.apply(param,{resCode : 'bizOrgSet' , opCode: 'bizOrgFindAllot' });
+	//DataSet1.clearParams();
+	DataSet1.setParams({authOrgId : _selectOrgId});
+	DataSet1.setParams(param);
+	DataSet1.setParams({resCode : 'bizOrgSet' , opCode: 'bizOrgFindAllot' });
+	DataSet1.load();
+}
+event Button8_click(Button thisComp, Ext.EventObject e) {
+	FormPanel1.getForm().reset();
+}
+event Button4_click(Button thisComp, Ext.EventObject e) {
+
+	var record = userGrid.getSelectionModel().getSelected();
+	if (record == null) {
+		Ext.Msg.alert('提示', '请选择一条待分配用户记录');
+		return;
+	}
+	var codes = userGrid.getSelectionDatas();
+	var userIds='';//选中的用户ID
+	for(var i=0;i<codes.length;i++){
+	    var authType=codes[i].get("auth_type") ;
+	   	if( authType && "1"==authType){
+	   	  var _userName=codes[i].get("user_name") ;
+	   	  Ext.Msg.alert('提示','用户：'+_userName+'  已经分配了此机构，无需再次分配!');
+	   	  return;
+	   	}
+		userIds=userIds+codes[i].get("user_id");
+		if(i<codes.length-1){
+			userIds=userIds+",";
+		}
+	}
+	
+	var params={};
+	Ext.apply(params,{userIds: userIds});
+	Ext.apply(params,{authOrgId : _selectOrgId});
+	Ext.apply(params,{resCode : 'bizOrgSet' , opCode: 'bizOrgAllot' });
+	
+	var authWin = new auth(MainWin).window;
+	authWin.needAuth(authWin,'bizOrgSet','bizOrgAllot',MainWin, function(){
+		var result1 = allotSvc2.synExecute(params);
+		if(result1 == ""){
+			Ext.Msg.alert('提示', '服务没有响应');
+			return;
+		}
+		if(!(result1.returnCode == 0)){
+			Ext.Msg.alert('错误','分配失败！<br>错误信息：'+result1.errorInfo);
+		}else{
+			Ext.Msg.alert('提示','机构分配成功');
+			refreshGrid(userGrid);
+			//userGrid.clear();
+			//userGrid.refresh();
+			//DataSet1.load();
+		}
+	});
+	
+}
+event Button5_click(Button thisComp, Ext.EventObject e) {
+	var record = userGrid.getSelectionModel().getSelected();
+	if (record == null) {
+		Ext.Msg.alert('提示', '请选择一条待取消分配的用户记录');
+		return;
+	}
+	var codes = userGrid.getSelectionDatas();
+	var userIds='';//选中的用户ID
+	for(var i=0;i<codes.length;i++){
+		var authType=codes[i].get("auth_type") ;
+	   	if( authType && "1"!=authType){
+	   	  var _userName=codes[i].get("user_name") ;
+	   	  Ext.Msg.alert('提示','用户：'+_userName+' 没有分配此机构，无需取消!');
+	   	  return;
+	   	}
+	   	//alert(codes[i].get("org_id"));
+	   	//alert(_selectOrgId);
+	   	if(codes[i].get("org_id")==_selectOrgId ){
+	   	  var _userName=codes[i].get("user_name") ;
+	   	  Ext.Msg.alert('提示','用户：'+_userName+' 直属机构，不能取消!');
+	   	  return;
+	   	}
+	   	
+		userIds=userIds+codes[i].get("user_id");
+		if(i<codes.length-1){
+			userIds=userIds+",";
+		}
+	}
+	var params={};
+	Ext.apply(params,{userIds: userIds});
+	Ext.apply(params,{authOrgId : _selectOrgId});
+	Ext.apply(params,{resCode : 'bizOrgSet' , opCode: 'bizOrgCancel' });
+	var authWin = new auth(MainWin).window;
+	authWin.needAuth(authWin,'bizOrgSet','bizOrgCancel',MainWin, function(){
+		var result1 = cancelSvc2.synExecute(params);
+		if(result1 == ""){
+			Ext.Msg.alert('提示', '服务没有响应');
+			return;
+		}
+		if(!(result1.returnCode == 0)){
+			Ext.Msg.alert('错误','取消失败！<br>错误信息：'+result1.errorInfo);
+		}else{
+			Ext.Msg.alert('提示','取消机构分配成功');
+			//userGrid.refresh();
+			//DataSet1.load();
+			refreshGrid(userGrid);
+		}
+	});
+}]]></WindowScript>
+  </WindowScripts>
+</hsdoc>

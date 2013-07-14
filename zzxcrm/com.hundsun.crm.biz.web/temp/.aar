@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<aar>
+  <info>
+    <id>authority</id>
+    <name>JRES平台基础业务框架-用户管理表现层模块</name>
+    <version>1.1.1-SNAPSHOT</version>
+    <provider></provider>
+    <contact></contact>
+    <note>此模块包含以下内容：
+用户管理
+组织结构管理
+岗位管理</note>
+    <publisher>JRES Builder</publisher>
+    <pubtime>2013-7-14 10:49:00</pubtime>
+    <type></type>
+  </info>
+  <respath>
+    <entry kind="src" type="com.hundsun.ares.studio.jres.moduleroot.ui" path="uidesign"/>
+    <entry kind="src" type="com.hundsun.ares.studio.jres.moduleroot.metadata" path="metadata"/>
+    <entry kind="src" type="com.hundsun.ares.studio.jres.moduleroot.commondata" path="commondata"/>
+    <entry kind="src" type="com.hundsun.ares.studio.jres.moduleroot.business" path="business"/>
+    <entry kind="src" type="com.hundsun.ares.studio.jres.moduleroot.database" path="database"/>
+    <entry kind="src" type="com.hundsun.ares.studio.jres.moduleroot.appconfig" path="appconfig"/>
+    <entry kind="src" type="com.hundsun.ares.studio.jres.moduleroot.tools" path="tools"/>
+  </respath>
+  <dependencies/>
+  <extended/>
+</aar>

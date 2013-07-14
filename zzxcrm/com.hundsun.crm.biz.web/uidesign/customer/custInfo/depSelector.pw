@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hsdoc version="1.1.0">
+  <Windows>
+    <control-Window title="部门选择" height="437" name="Window1" draggable="true" width="573">
+      <Top/>
+      <Bottom>
+        <control-ButtonGroup name="ButtonGroup1" width="250">
+          <layout-buttonGroup>
+            <control-Button name="button_submit" text="确  认" width="75" icon="bizframe/images/icons/accept.png"/>
+            <control-Button name="button_cancel" text="关  闭" width="75" icon="bizframe/images/icons/cross.gif"/>
+          </layout-buttonGroup>
+        </control-ButtonGroup>
+      </Bottom>
+      <Left/>
+      <Right/>
+      <layout-border>
+        <control-Tree region="west" height="300" name="dep_tree" width="200" split="true">
+          <layout-tree>
+            <control-AsyncTreeNode id="zzjg" dataSet="dataset_branchTree" name="branchTree_node" text="组织机构">
+              <layout-tree/>
+            </control-AsyncTreeNode>
+          </layout-tree>
+          <Top>
+            <control-Toolbar name="Toolbar1">
+              <layout-toolbar>
+                <control-Button name="Button1" text="展开" width="75" tabIndex="1"/>
+                <control-ToolbarSeparator name="ToolbarSeparator1"/>
+                <control-Button name="Button2" text="收缩" width="75" tabIndex="1"/>
+              </layout-toolbar>
+            </control-Toolbar>
+          </Top>
+          <Bottom/>
+          <Left/>
+          <Right/>
+        </control-Tree>
+        <control-Grid region="center" hasCheckColumn="true" singleSelect="true" autoload="false" width="300" height="200" dataSet="dep_grid_dataset" name="dep_grid" hasPagingBar="true">
+          <layout-GridToolbar>
+            <control-GridItem title="部门代码" align="left" dataIndex="dep_code" name="dep_code" width="100" sortable="true"/>
+            <control-GridItem title="部门名称" align="left" dataIndex="dep_name" name="GridItem2" width="100" sortable="true"/>
+            <control-GridItem title="机构名称" align="left" dataIndex="branch_name" name="GridItem3" width="100" sortable="true"/>
+          </layout-GridToolbar>
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+        </control-Grid>
+      </layout-border>
+    </control-Window>
+  </Windows>
+  <Accessory>
+    <control-TreeDataSet serviceAlias="bizSetBranch$bizSubBranchFind" window="Window1" name="dataset_branchTree" service="bizframe.authority.organization.findSubBranch">
+      <params>
+        <param name="branchCode"><![CDATA[]]></param>
+        <param name="resCode"><![CDATA["bizSetBranch"]]></param>
+        <param name="opCode"><![CDATA["bizSubBranchFind"]]></param>
+      </params>
+      <fields>
+        <field name="branchCode" type="String" mapping="id"/>
+        <field name="branchLevel" type="String" mapping=""/>
+        <field name="branchName" type="String" mapping="text"/>
+        <field name="shortName" type="String" mapping=""/>
+        <field name="parentCode" type="String" mapping="pid"/>
+        <field name="branchPath" type="String" mapping=""/>
+      </fields>
+    </control-TreeDataSet>
+    <control-DataSet serviceAlias="bizSetBranch$bizDepBranchFind" window="Window1" name="dep_grid_dataset" service="bizframe.authority.organization.findDepByBranch">
+      <params>
+        <param name="branchCode"><![CDATA[]]></param>
+        <param name="start"><![CDATA[]]></param>
+        <param name="limit"><![CDATA[]]></param>
+      </params>
+      <fields>
+        <field name="branch_name" type="String"/>
+        <field name="branch_code" type="String"/>
+        <field name="dep_code" type="String"/>
+        <field name="dep_name" type="String"/>
+      </fields>
+    </control-DataSet>
+  </Accessory>
+  <WindowScripts>
+    <WindowScript window="Window1"><![CDATA[remote bizframe.authority.branch.findBranch as FINDBANCH;
+
+private params=null;
+private selectValue=null;
+private branchCode='';
+private branchName='';
+private t_branchCode='';
+private t_branchName='';
+private fromUserMgn=false;
+
+private branchRoot='zzjg';
+
+
+public function rec(obj){
+	params=obj;
+	if(obj[0].getValue()){
+		selectValue=obj[0].getValue();
+	}
+	if(params[2] && params[2].getValue){
+		t_branchCode = params[2].getValue();
+	}
+	if(params[3] && params[3].getValue){
+		t_branchName = params[3].getValue();
+	}
+	if(params[2] && params[2].getCmpName){
+		if('searchBranchCode'==params[2].getCmpName())
+			fromUserMgn=true;
+	}
+}
+event button_submit_click(Button thisComp, Ext.EventObject e) {
+    var t=dep_grid.getSelectionData();
+    if(t){
+		params[0].setValue(t.get("dep_code"));
+		
+		if(!fromUserMgn && params[2] && params[2].setValue && branchCode!=''){
+			params[2].setValue(branchCode);
+		}
+		if(!fromUserMgn && params[3] && params[3].setValue && branchName!=''){
+			var array = branchName.split(":");
+			if(array[1])
+				params[3].setValue(array[1]);
+		}
+	}else {
+		params[0].setValue('');
+		if(!fromUserMgn && params[2] && params[2].setValue){
+			params[2].setValue('');
+		}
+		if(!fromUserMgn && params[3] && params[3].setValue){
+			params[3].setValue('');
+		}
+	}
+	close();
+}
+event button_cancel_click(Button thisComp, Ext.EventObject e) {
+	close();
+}
+event dep_tree_click(Node node, EventObject e) {
+	dep_grid_dataset.setParams({branchCode:node.id});
+	dep_grid_dataset.load();
+	
+	branchCode = node.id;
+	branchName = node.text;
+}
+
+event dep_code_renderer(string value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store) {
+	if(value==selectValue){
+		dep_grid.getSelectionModel().selectRow(rowIndex);
+	}
+	return value;
+}
+event dep_grid_dataset_loadfailure(Hs.HsDataSet dataSet) {
+
+}
+event Window1_complete() {
+	var treenode = dep_tree.getNodeById(branchRoot);
+	if(!treenode)
+	   return ;
+	if(t_branchCode!=''){
+		treenode.setId(t_branchCode);
+		if(t_branchName!='')
+			treenode.setText(t_branchCode+":"+t_branchName);
+	}else{
+		 	var obj = {"parentCode":"bizroot","resCode":"bizSetBranch","opCode":"bizBranchFind"};
+			var succ = function(response, options){
+			        var returnCode="";
+			        var errorInfo="";
+					if(typeof response == 'object'){
+							returnCode = response.returnCode;
+							errorInfo =  response.errorInfo;
+					}
+					if(returnCode=='0'){
+		                     branchRoot=response.dataSetResult[0].data[0].branch_code;
+		                     treenode.setId(branchRoot);
+		                     treenode.setText(branchRoot+':'+response.dataSetResult[0].data[0].branch_name);
+					}else{
+						   Ext.Msg.alert("提示",errorInfo);
+					}
+				};
+			var fail = function(response, options){
+						   Ext.Msg.alert('提示',response.errorInfo);
+			};
+			FINDBANCH.asynExecute(obj,succ,fail);	
+	}
+}
+event Button1_click(Button thisComp, Ext.EventObject e) {
+	dep_tree.expandAll();
+}
+event Button2_click(Button thisComp, Ext.EventObject e) {
+	dep_tree.collapseAll()
+}]]></WindowScript>
+  </WindowScripts>
+</hsdoc>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata:StandardFieldList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:metadata="http://www.hundsun.com/ares/studio/jres/metadata/1.0.0" name="stdfield">
+  <root>
+    <children name="异常处理默认" description="用于存储过程中的出错处理的默认变量" items="//@items.3 //@items.1 //@items.2 //@items.0 //@items.5 //@items.4"/>
+  </root>
+  <items xsi:type="metadata:StandardField" name="error_pathinfo" chineseName="错误路径信息" dataType="HsChar500"/>
+  <items xsi:type="metadata:StandardField" name="error_no" chineseName="错误代码" dataType="HsNumID"/>
+  <items xsi:type="metadata:StandardField" name="error_info" chineseName="错误提示" dataType="HsChar500"/>
+  <items xsi:type="metadata:StandardField" name="error_id" chineseName="错误序号" dataType="HsNumID"/>
+  <items xsi:type="metadata:StandardField" name="error_sysinfo" chineseName="系统错误信息" dataType="HsChar500"/>
+  <items xsi:type="metadata:StandardField" name="error_pathinfo_tmp" chineseName="错误路径信息临时变量" dataType="HsChar500"/>
+</metadata:StandardFieldList>

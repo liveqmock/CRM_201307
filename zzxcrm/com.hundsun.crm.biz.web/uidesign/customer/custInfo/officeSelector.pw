@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hsdoc version="1.1.0">
+  <Windows>
+    <control-Window title="岗位选择" height="418" name="Window1" draggable="true" width="526">
+      <Top/>
+      <Bottom>
+        <control-ButtonGroup name="ButtonGroup1">
+          <layout-buttonGroup>
+            <control-Button name="button_submit" text="确  认" width="75" icon="bizframe/images/icons/accept.png"/>
+            <control-Button name="button_cancel" text="关  闭" width="75" icon="bizframe/images/icons/cross.gif"/>
+          </layout-buttonGroup>
+        </control-ButtonGroup>
+      </Bottom>
+      <Left/>
+      <Right/>
+      <layout-border>
+        <control-Panel region="north" height="58" name="Panel1" width="300">
+          <layout-absolute>
+            <control-TargetSelect targetWindow="depWin" editable="true" params="['dep_code_search']" callFunction="rec" width="333" x="22" y="15" fieldLabel="部门选择" name="dep_code_search"/>
+            <control-Button x="372" y="15" name="button_search" text="查  询" width="75"/>
+          </layout-absolute>
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+        </control-Panel>
+        <control-Grid region="center" hasCheckColumn="true" singleSelect="true" width="300" height="200" dataSet="office_grid_dataset" name="office_grid">
+          <layout-GridToolbar>
+            <control-GridItem title="岗位代码" align="left" dataIndex="officeCode" name="dep_code" width="100" sortable="true"/>
+            <control-GridItem title="岗位名称" align="left" dataIndex="officeName" name="GridItem2" width="100" sortable="true"/>
+            <control-GridItem title="部门代码" align="left" dataIndex="depCode" name="GridItem3" width="100" sortable="true"/>
+          </layout-GridToolbar>
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+        </control-Grid>
+      </layout-border>
+    </control-Window>
+  </Windows>
+  <Accessory>
+    <control-DataSet serviceAlias="bizSetBranch$bizOfficeFind2" window="Window1" name="office_grid_dataset" service="bizframe.authority.organization.findOfficeByDep" usingServiceName="false">
+      <params/>
+      <fields>
+        <field name="officeCode" type="String"/>
+        <field name="officeName" type="String"/>
+        <field name="shortName" type="String"/>
+        <field name="parentCode" type="String"/>
+        <field name="branchCode" type="String"/>
+        <field name="depCode" type="String"/>
+      </fields>
+    </control-DataSet>
+  </Accessory>
+  <WindowScripts>
+    <WindowScript window="Window1"><![CDATA[private params=null;
+private selectValue=null;
+private depWin=function(ParentWin){
+ParentWin = MainWin;
+//window 函数
+var close = function(){	
+self.close();
+};
+var show = function(){	
+self.show();
+};
+var hide = function(){	
+self.hide();
+};
+var setTitle = function(title){	
+self.setTitle(title);
+};
+var getTitle = function(){	
+return self.getTitle();
+};
+var mask  = function(){	
+return self.mask();
+};
+var unmask  = function(){	
+return self.unmask();
+};
+var setHtml  = function(html){	
+return self.setHtml(html);
+};
+//completeEventInfo定义
+var completeEventInfo = {
+hasBindDataSet : false ,
+widgetCount : 0,
+dsCount :0,
+hasFireComplete : false
+ };
+var _this = this;
+var params = null;
+var selectValue = null;
+var rec = function (obj){
+	params=obj;
+	if(obj[0].getValue()){
+		selectValue=obj[0].getValue();
+	}
+	
+}
+function button_submit_click(thisComp,e) {
+    var t=dep_grid.getSelectionData();
+    if(t){
+		params[0].setValue(t.get("dep_code"));
+	}
+	close();
+}
+function button_cancel_click(thisComp,e) {
+	close();
+}
+function dep_tree_click(node,e) {
+	dep_grid_dataset.setParams({branchCode:node.id});
+	dep_grid_dataset.load();
+	
+}
+
+function dep_code_renderer(value,metaData,record,rowIndex,colIndex,store) {
+	if(value==selectValue){
+		dep_grid.getSelectionModel().selectRow(rowIndex);
+	}
+	return value;
+}
+function dep_grid_dataset_loadfailure(dataSet) {
+
+}
+//complete事件代码
+var $_complete = null;
+
+var dep_grid_dataset = new Hs.HsDataSet({
+serviceAlias:'bizSetBranch$bizDepBranchFind',
+params:{},
+_name:'dep_grid_dataset',
+$_complete:$_complete,
+listeners:{
+
+loadfailure:dep_grid_dataset_loadfailure},
+fields:[
+
+{type:'String',name:'dep_code'},
+
+{type:'String',name:'dep_name'},
+
+{type:'String',name:'short_name'},
+
+{type:'String',name:'parent_code'},
+
+{type:'String',name:'branch_code'},
+
+{type:'String',name:'remark'}],
+completeEventInfo:completeEventInfo});
+var dataset_branchTree = new Hs.HsTreeDataSet({
+serviceAlias:'bizSetBranch$bizSubBranchFind',
+params:{},
+_name:'dataset_branchTree',
+$_complete:$_complete,
+fields:[
+
+{mapping:'id',type:'String',name:'branchCode'},
+
+{mapping:'text',type:'String',name:'branchName'},
+
+{mapping:'pid',type:'String',name:'parentCode'},
+
+{mapping:'',type:'String',name:'branchPath'}],
+completeEventInfo:completeEventInfo});
+var button_submit_config = {
+xtype : 'hsbutton',
+ id : Ext.id(),
+
+text:'确  认',
+width:'75',
+_name:'button_submit',
+listeners:{
+
+click:button_submit_click},
+hiddenWin:_this
+};
+var button_cancel_config = {
+xtype : 'hsbutton',
+ id : Ext.id(),
+
+text:'关  闭',
+width:'75',
+_name:'button_cancel',
+listeners:{
+
+click:button_cancel_click},
+hiddenWin:_this
+};
+var ButtonGroup1_config = {
+xtype : 'hstoolbar',
+id : Ext.id(),
+
+width:'250',
+_name:'ButtonGroup1',items:[button_submit_config,button_cancel_config]
+};
+var branchTree_node_config = {
+xtype : 'hsasynctreenode',
+_varName : '11',
+
+text:'组织机构',
+_name:'branchTree_node',
+dataSet:dataset_branchTree,
+expanded:true,
+id:'zzjg'
+};
+var dep_tree_config = {
+xtype : 'hstree',
+id : Ext.id(),
+
+width:'200',
+height:'300',
+_name:'dep_tree',
+region:'west',
+listeners:{
+
+click:dep_tree_click},
+split:true,items:[branchTree_node_config]
+};
+var dep_code_config = {
+xtype : 'hsgriditem',
+ id : Ext.id(),
+
+width:'100',
+title:'部门代码',
+_name:'dep_code',
+align:'left',
+listeners:{
+
+renderer:dep_code_renderer},
+dataIndex:'dep_code',
+hiddenWin:_this,
+sortable:true
+};
+var GridItem2_config = {
+xtype : 'hsgriditem',
+ id : Ext.id(),
+
+width:'100',
+title:'部门名称',
+_name:'GridItem2',
+align:'left',
+dataIndex:'dep_name',
+hiddenWin:_this,
+sortable:true
+};
+var GridItem3_config = {
+xtype : 'hsgriditem',
+ id : Ext.id(),
+
+width:'100',
+title:'部门简称',
+_name:'GridItem3',
+align:'left',
+dataIndex:'short_name',
+hiddenWin:_this,
+sortable:true
+};
+var dep_grid_config = {
+xtype : 'hsgrid',
+id : Ext.id(),
+
+singleSelect:true,
+autoload:false,
+width:'300',
+height:'200',
+hasCheckColumn:true,
+_name:'dep_grid',
+region:'center',
+dataSet:dep_grid_dataset,items:[dep_code_config,GridItem2_config,GridItem3_config]
+};
+var self = new Hs.HsWindow({
+width:'526',
+height:'418',
+layout:'border',
+title:'部门选择',
+_name:'self',
+$_complete:$_complete,
+completeEventInfo:completeEventInfo,fbar:ButtonGroup1_config,items:[dep_tree_config,dep_grid_config]});
+this.window = self;
+self.dep_grid_dataset = dep_grid_dataset;
+self.dataset_branchTree = dataset_branchTree;
+var button_submit = Ext.getCmp(button_submit_config.id);
+self.button_submit = button_submit;
+var button_cancel = Ext.getCmp(button_cancel_config.id);
+self.button_cancel = button_cancel;
+var ButtonGroup1 = Ext.getCmp(ButtonGroup1_config.id);
+self.ButtonGroup1 = ButtonGroup1;
+var branchTree_node = branchTree_node_config.id;
+var dep_tree = Ext.getCmp(dep_tree_config.id);
+self.dep_tree = dep_tree;
+var dep_code = Ext.getCmp(dep_code_config.id);
+self.dep_code = dep_code;
+var GridItem2 = Ext.getCmp(GridItem2_config.id);
+self.GridItem2 = GridItem2;
+var GridItem3 = Ext.getCmp(GridItem3_config.id);
+self.GridItem3 = GridItem3;
+var dep_grid = Ext.getCmp(dep_grid_config.id);
+self.dep_grid = dep_grid;
+self.rec=rec;
+};
+
+public function rec(obj){
+	params=obj;
+	if(obj[0].getValue()){
+		selectValue=obj[0].getValue();
+	}
+	
+}
+event button_submit_click(Button thisComp, Ext.EventObject e) {
+    var t=office_grid.getSelectionData();
+    if(t){
+		params[0].setValue(t.get("officeCode"));
+	}else{
+		params[0].setValue('');
+	}
+	close();
+}
+event button_cancel_click(Button thisComp, Ext.EventObject e) {
+	close();
+}
+
+
+event dep_code_renderer(string value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store) {
+	if(value==selectValue){
+		office_grid.getSelectionModel().selectRow(rowIndex);
+	}
+	return value;
+}
+
+event button_search_click(Button thisComp, Ext.EventObject e) {
+	office_grid_dataset.setParams({depCode:dep_code_search.getValue()});
+	office_grid_dataset.load();
+}]]></WindowScript>
+  </WindowScripts>
+</hsdoc>

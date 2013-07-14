@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata:BusinessDataTypeList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:metadata="http://www.hundsun.com/ares/studio/jres/metadata/1.0.0" name="datatype">
+  <root/>
+  <items xsi:type="metadata:BusinessDataType" name="HsChar500" chineseName="HsChar500" stdType="HsChar500" defaultValue="StrDefault"/>
+  <items xsi:type="metadata:BusinessDataType" name="HsNumID" chineseName="HsNumID" stdType="HsNumID" defaultValue="IntDefault"/>
+</metadata:BusinessDataTypeList>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<procedure:ProcedureMacroList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:procedure="http://www.hundsun.com/ares/studio/jres/business/procedure/1.0.0" xmlns:stock3="http://www.hundsun.com/ares/studio/jres/database/stock3/1.0.0" name="custommacro.xml">
+  <histories modifiedDate="2012-09-17 19:34" version="1.6.0.4" modifiedBy="未注册用户">
+    <data2 key="Stock3">
+      <value xsi:type="stock3:Stock3HistoryProperty" internalVersion="$Rev$"/>
+    </data2>
+  </histories>
+  <histories modifiedDate="2012-09-17 19:34" version="1.6.0.1" modifiedBy="未注册用户">
+    <data2 key="Stock3">
+      <value xsi:type="stock3:Stock3HistoryProperty" internalVersion="$Rev$"/>
+    </data2>
+  </histories>
+  <macros name="判断记录存在" content="select count(*) &#xA;into @rowcount &#xA;from dual&#xA;where exists(select * &#xA;             from [表名]&#xA;             where [条件]);"/>
+  <macros name="记录不存在" content="when NO_DATA_FOUND then&#xA;  @error_no   := &lt;E>[错误ID];&#xA;  @error_info := substrb(&lt;SP>[错误信息], 1, 500);&#xA;  return (@error_no);"/>
+  <macros name="记录已存在" content="when DUP_VAL_ON_INDEX then&#xA;  @error_no := &lt;E>[错误ID];&#xA;  @error_info := substrb(&lt;SP>[错误信息], 1, 500);&#xA;  return (@error_no);"/>
+  <macros name="报错返回" content="@error_no   := &lt;E>[错误ID];&#xA;@error_info := substrb(&lt;SP>[错误信息], 1, 500);&#xA;&#xA;return(@error_no);"/>
+  <macros name="自定义报错返回" content="when others then&#xA;  @error_no   := &lt;E>[错误ID];&#xA;  @error_info := substrb(&lt;SP>[错误信息], 1, 500);&#xA;  @error_id   := SQLCODE;&#xA;  @error_sysinfo := substr(SQLERRM,1,500);&#xA;  return (@error_no);"/>
+  <macros name="SQL报错返回" content="@error_no   := &lt;E>[错误ID];&#xA;@error_info := substrb(&lt;SP>[错误信息], 1, 500);&#xA;@error_id   := SQLCODE;&#xA;@error_sysinfo := substr(SQLERRM,1,500);&#xA;return(@error_no);"/>
+  <macros name="游标报错返回" content="@error_no   := &lt;E>[错误ID];&#xA;@error_info := substrb(&lt;SP>[错误信息], 1, 500);&#xA;@error_id   := SQLCODE;&#xA;@error_sysinfo := substr(SQLERRM,1,500);&#xA;open @cursor for select @error_no as error_no, @error_info as error_info,@error_id as error_id,@error_sysinfo as error_sysinfo from dual;&#xA;&#xA;return(@error_no);"/>
+  <macros name="记录不存在报错返回" content="if @rowcount = 0 then&#xA;  @error_no   := &lt;E>[错误ID];&#xA;  @error_info := substrb(&lt;SP>[错误信息], 1, 500);&#xA;  return(@error_no);&#xA;end if;"/>
+  <macros name="记录存在报错返回" content="if @rowcount > 0 then&#xA;  @error_no := &lt;E>[错误ID];&#xA;  @error_info := substrb(&lt;SP>[错误信息], 1, 500);&#xA;  return(@error_no);&#xA;end if;"/>
+  <macros name="更新记录不存在" content="if SQL%NOTFOUND then&#xA;  @error_no   := &lt;E>[错误ID];&#xA;  @error_info := substrb(&lt;SP>[错误信息], 1, 500);&#xA;  rollback;&#xA;  return(@error_no);&#xA;end if;"/>
+  <macros name="事务内记录不存在" content="when NO_DATA_FOUND then&#xA;  @error_no   := &lt;E>[错误ID];&#xA;  @error_info := substrb(&lt;SP>[错误信息], 1, 500);&#xA;  @error_id   := SQLCODE;&#xA;  @error_sysinfo := substr(SQLERRM,1,500);&#xA;  rollback;&#xA;  return (@error_no);"/>
+  <macros name="事务内记录已存在" content="when DUP_VAL_ON_INDEX then&#xA;  rollback;&#xA;  @error_no   := &lt;E>[错误ID];&#xA;  @error_info := substrb(&lt;SP>[错误信息], 1, 500);&#xA;  @error_id   := SQLCODE;&#xA;  @error_sysinfo := substr(SQLERRM,1,500);&#xA;  return (@error_no);"/>
+  <macros name="事务内业务报错返回" content="@error_no   := &lt;E>[错误ID];&#xA;@error_info := substrb(&lt;SP>[错误信息], 1, 500);&#xA;rollback;&#xA;return(@error_no);"/>
+  <macros name="事务内报错返回" content="@error_no   := &lt;E>[错误ID];&#xA;@error_info := substrb(&lt;SP>[错误信息], 1, 500);&#xA;@error_id   := SQLCODE;&#xA;@error_sysinfo := substr(SQLERRM,1,500);&#xA;rollback;&#xA;return(@error_no);"/>
+  <macros name="事务内游标报错返回" content="@error_no   := &lt;E>[错误ID];&#xA;@error_info := substrb(&lt;SP>[错误信息], 1, 500);&#xA;@error_id   := SQLCODE;&#xA;@error_sysinfo := substr(SQLERRM,1,500);&#xA;rollback;&#xA;open @cursor for select @error_no as error_no, @error_info as error_info,@error_id as error_id,@error_sysinfo as error_sysinfo from dual;&#xA;&#xA;return(@error_no);"/>
+  <macros name="事务内记录不存在报错返回" content="if @rowcount = 0 then&#xA;  rollback;&#xA;  @error_no   := &lt;E>[错误ID];&#xA;  @error_info := substrb(&lt;SP>[错误信息], 1, 500);&#xA;  return(@error_no);&#xA;end if;"/>
+  <macros name="事务内记录存在报错返回" content="if @rowcount > 0 then&#xA;  rollback;&#xA;  @error_no := &lt;E>[错误ID];&#xA;  @error_info := substrb(&lt;SP>[错误信息], 1, 500);&#xA;  return(@error_no);&#xA;end if;"/>
+  <macros name="事务内自定义异常返回" content="when others then&#xA;  @error_no   := &lt;E>[错误ID];&#xA;  @error_info := substrb(&lt;SP>[错误信息], 1, 500);&#xA;  @error_id   := SQLCODE;&#xA;  @error_sysinfo := substr(SQLERRM,1,500);&#xA;  rollback;&#xA;  return (@error_no);"/>
+  <macros name="事务回滚" content="rollback;"/>
+  <macros name="游标返回" content="begin&#xA;  open @cursor for @sql_str;&#xA;exception&#xA;  when others then&#xA;    @error_id   := SQLCODE;&#xA;    @error_sysinfo := substr(SQLERRM,1,500);&#xA;    open @cursor for select &lt;E>[错误ID] as error_no,&lt;SP>[错误信息] as error_info,@error_id as error_id,@error_sysinfo as error_sysinfo,@error_pathinfo as error_pathinfo from dual;&#xA;    return &lt;E>[错误ID];&#xA;end;&#xA;return 0;"/>
+  <macros name="过程报错返回" content="open @cursor for select &lt;E>[错误ID] as error_no,&lt;SP>[错误信息] as error_info,@error_id as error_id,@error_sysinfo as error_sysinfo,@error_pathinfo as error_pathinfo from dual;&#xA;return [错误ID];"/>
+  <macros name="重置结束日期过程" parameters="[开始日期][结束日期][时间间隔]" content="if ([开始日期] > 0 and [时间间隔] > 0) then&#xA;  if (to_char(to_date([开始日期],'YYYYMMDD')+[时间间隔],'YYYYMMDD') &lt; [结束日期]) then&#xA;    [结束日期] := to_char(to_date([开始日期],'YYYYMMDD')+[时间间隔],'YYYYMMDD');&#xA;  end if;&#xA;end if;"/>
+</procedure:ProcedureMacroList>

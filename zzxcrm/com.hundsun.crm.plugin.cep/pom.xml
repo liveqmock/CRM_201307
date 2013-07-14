@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+ 
+  <modelVersion>4.0.0</modelVersion> 
+   <parent>
+		<artifactId>biz</artifactId>
+		<groupId>com.hundsun.jres</groupId>
+		<version>1.0.0</version>
+	</parent>
+	<groupId>com.hundsun.crm.biz</groupId>
+	<artifactId>com.hundsun.crm.plugin.cep</artifactId>
+	<packaging>jar</packaging>
+	<version>1.0.0</version>
+  <name>客户管理平台-CEP插件包</name>
+
+	<dependencies>
+		
+		<dependency>
+			<groupId>com.hundsun.crm.biz</groupId>
+			<artifactId>com.hundsun.crm.biz.core.impl</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.hundsun.jres.impl</groupId>  
+	  		<artifactId>com.hundsun.jres.impl.cep.filter</artifactId>
+	  		<version>${com.hundsun.jres.impl.cep.filter.version}</version>
+		</dependency>
+				
+		<dependency>
+			<groupId>com.hundsun.jres.impl</groupId>  
+	  		<artifactId>com.hundsun.jres.impl.pluginFramework</artifactId>  
+  			<version>${com.hundsun.jres.impl.pluginFramework.version}</version>
+  			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.hundsun.jres.impl</groupId>  
+	  		<artifactId>com.hundsun.jres.impl.configuration</artifactId>
+	  		<version>${com.hundsun.jres.impl.configuration.version}</version>
+	  		<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.hundsun.jres.impl</groupId>  
+	  		<artifactId>com.hundsun.jres.impl.db</artifactId>
+	  		<version>${com.hundsun.jres.impl.db.version}</version>
+		</dependency>
+	</dependencies>
+	
+</project>
+
+

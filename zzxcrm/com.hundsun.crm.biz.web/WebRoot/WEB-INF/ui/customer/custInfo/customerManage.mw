@@ -1,0 +1,1440 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hsdoc version="1.1.0">
+  <Windows>
+    <control-MainWindow height="468" name="MainWin" templatePath="window.ftl" width="1103">
+      <layout-fit>
+        <control-Panel height="200" name="Panel1" width="300">
+          <layout-border>
+            <control-Panel region="center" border="false" height="200" name="Panel2" width="300">
+              <layout-border>
+                <control-Grid hasCheckColumn="true" region="center" remoteSort="true" enableCellTip="true" width="300" height="169" name="Grid1" hasCustomPageSize="true" border="false" hasPagingBar="true">
+                  <layout-GridToolbar>
+                    <control-GridItem title="客户编号" align="left" dataIndex="user_id" name="GridItem1" width="89"/>
+                    <control-GridItem title="客户名" align="left" dataIndex="user_name" name="GridItem2" width="128"/>
+                    <control-GridItem title="电话号码" align="left" dataIndex="org_name" name="GridItem9" width="138" sortable="true"/>
+                    <control-GridItem title="客户状态" align="center" dataIndex="user_status_display" name="GridItem5" width="80"/>
+                    <control-GridItem title="客户类别" align="center" dataIndex="user_type_display" name="GridItem8" width="77"/>
+                    <control-GridItem title="描述" align="left" dataIndex="remark" name="GridItem11" width="219" sortable="true"/>
+                  </layout-GridToolbar>
+                </control-Grid>
+                <control-FormPanel collapseMode="mini" region="north" width="800" height="77" hideCollapseTool="true" collapsible="true" split="true" name="FormPanel1" border="false" submitService="bizframe.authority.user.queryUser">
+                  <Top/>
+                  <Bottom>
+                    <control-ButtonGroup name="ButtonGroup3" buttonAlign="left">
+                      <layout-buttonGroup>
+                        <control-Button visible="false" name="addUser_btn" text="新增" width="75" icon="bizframe/images/icons/add.gif" tabIndex="10"/>
+                        <control-Button visible="false" name="editUser_btn" text="修改" width="75" icon="bizframe/images/icons/edit.png" tabIndex="11"/>
+                        <control-Button visible="false" name="delUser_btn" text="删除" width="75" icon="bizframe/images/icons/delete.gif" tabIndex="12"/>
+                      </layout-buttonGroup>
+                    </control-ButtonGroup>
+                  </Bottom>
+                  <Left/>
+                  <Right/>
+                  <layout-table columns="4" fullWidth="true">
+                    <control-TextField labelAlign="right" msgTarget="qtip" regexText="非法输入，只能输入英文、数字和下划线" fieldName="userId" width="250" height="22" regex="/^[\w\u4e00-\u9fa5\.\/\,\，\.\。\“\（\）\(\)\-\s]*$/" fieldLabel="客户名" name="TextField2" tabIndex="4"/>
+                    <control-TextField labelAlign="right" msgTarget="qtip" regexText="非法输入，只能输入中文、英文、小括号和下划线" fieldName="userName" width="250" height="22" regex="/^[\w\u4e00-\u9fa5\.\/\,\，\.\。\“\（\）\(\)\-\s]*$/" fieldLabel="电话号码" name="TextField1" tabIndex="5"/>
+                    <control-HiddenField fieldName="orgId" name="searchOrgId"/>
+                    <control-Button visible="false" name="queryUser_btn" text="查询" width="75" icon="bizframe/images/icons/search.png" tabIndex="2"/>
+                    <control-Button tipText="清空查询条件" name="Button22" text="重置" width="75" icon="bizframe/images/icons/refresh.png" tabIndex="3"/>
+                  </layout-table>
+                </control-FormPanel>
+              </layout-border>
+              <Top/>
+              <Bottom/>
+              <Left/>
+              <Right/>
+            </control-Panel>
+          </layout-border>
+          <Top/>
+        </control-Panel>
+      </layout-fit>
+    </control-MainWindow>
+    <control-Window title="新增" height="477" name="Window1" draggable="true" width="800" resizable="false">
+      <layout-fit>
+        <control-FormPanel width="300" autoHeight="true" height="200" autoWidth="true" name="FormPanel2" border="false" autoScroll="true" frame="true" submitService="bizframe.authority.user.insertUser">
+          <layout-form labelAlign="right" labelWidth="75">
+            <control-HiddenField fieldName="orgId" name="addOrgId"/>
+            <control-Panel title="基本信息" height="160" name="baseInfo" width="790">
+              <layout-absolute/>
+              <Top/>
+              <Bottom/>
+              <Left/>
+              <Right/>
+              <layout-table columns="3" fullWidth="true" cellspacing="3">
+                <control-TextField fieldLabel="TextField6" height="22" name="TextField6" width="250" tabIndex="91"/>
+                <control-TextField fieldLabel="TextField7" height="22" name="TextField7" width="250" tabIndex="92"/>
+                <control-DateField fieldLabel="DateField3" height="22" name="DateField3" width="250" tabIndex="94"/>
+                <control-ComboBox fieldLabel="ComboBox1" height="22" name="ComboBox1" width="250" tabIndex="93"/>
+                <control-TextField fieldLabel="TextField8" height="22" name="TextField8" width="250" tabIndex="97"/>
+                <control-NumberField fieldLabel="NumberField2" height="22" name="NumberField2" width="250" tabIndex="95"/>
+                <control-DateField fieldLabel="DateField4" height="22" name="DateField4" width="250" tabIndex="96"/>
+                <control-TextField fieldLabel="TextField9" height="22" name="TextField9" width="250" tabIndex="98"/>
+                <control-TextField fieldLabel="TextField11" height="22" name="TextField11" width="250" tabIndex="100"/>
+                <control-TextField fieldLabel="TextField10" height="22" name="TextField10" width="250" tabIndex="99"/>
+                <control-CheckCombo fieldLabel="CheckCombo1" height="22" name="CheckCombo1" width="250" tabIndex="101"/>
+                <control-Radio fieldLabel="Radio1" name="Radio1" boxLabel="Radio1" width="250" tabIndex="102"/>
+              </layout-table>
+            </control-Panel>
+            <control-Panel title="地址信息" height="115" name="Panel3" width="790">
+              <layout-absolute/>
+              <Top/>
+              <Bottom/>
+              <Left/>
+              <Right/>
+              <layout-table columns="3" fullWidth="true" cellspacing="3">
+                <control-TextField fieldLabel="TextField3" height="22" name="TextField3" width="250" tabIndex="85"/>
+                <control-NumberField fieldLabel="NumberField1" height="22" name="NumberField1" width="250" tabIndex="88"/>
+                <control-TextField fieldLabel="TextField4" height="22" name="TextField4" width="250" tabIndex="86"/>
+                <control-TextField fieldLabel="TextField5" height="22" name="TextField5" width="250" tabIndex="87"/>
+                <control-DateField fieldLabel="DateField1" height="22" name="DateField1" width="250" tabIndex="89"/>
+                <control-DateField fieldLabel="DateField2" height="22" name="DateField2" width="250" tabIndex="90"/>
+              </layout-table>
+            </control-Panel>
+            <control-Panel title="描述信息" height="219" name="Panel4" width="790">
+              <layout-absolute>
+                <control-TextArea width="516" height="68" x="20" y="5" fieldLabel="描述" name="TextArea1" tabIndex="84"/>
+              </layout-absolute>
+              <Top/>
+              <Bottom/>
+              <Left/>
+              <Right/>
+            </control-Panel>
+          </layout-form>
+        </control-FormPanel>
+      </layout-fit>
+      <Bottom>
+        <control-ButtonGroup name="Toolbar2">
+          <layout-buttonGroup>
+            <control-Button name="Button8" text="继续添加" width="75" icon="bizframe/images/icons/add2.png" tabIndex="80"/>
+            <control-Button name="Button5" text="确定" width="75" icon="bizframe/images/icons/accept.png" tabIndex="81"/>
+            <control-Button name="Button7" text="重置" width="75" icon="bizframe/images/icons/refresh.png" tabIndex="82"/>
+            <control-Button name="Button6" text="取消" width="75" icon="bizframe/images/icons/cross.gif" tabIndex="83"/>
+          </layout-buttonGroup>
+        </control-ButtonGroup>
+      </Bottom>
+    </control-Window>
+    <control-Window title="修改用户" height="337" name="Window2" draggable="true" width="800" resizable="false">
+      <layout-fit>
+        <control-FormPanel submitServiceAlias="bizSetUser$bizUserModfiy" autoload="false" width="300" height="200" dataSet="DataSet3" name="FormPanel3" frame="true">
+          <layout-form labelAlign="right" labelWidth="75">
+            <control-HiddenField fieldName="orgId" name="addOrgId"/>
+            <control-Panel title="基本信息" height="160" name="baseInfo" width="790">
+              <layout-absolute/>
+              <Top/>
+              <Bottom/>
+              <Left/>
+              <Right/>
+              <layout-table columns="3" fullWidth="true" cellspacing="3">
+                <control-TextField fieldLabel="TextField6" height="22" name="TextField6" width="250" tabIndex="91"/>
+                <control-TextField fieldLabel="TextField7" height="22" name="TextField7" width="250" tabIndex="92"/>
+                <control-DateField fieldLabel="DateField3" height="22" name="DateField3" width="250" tabIndex="94"/>
+                <control-ComboBox fieldLabel="ComboBox1" height="22" name="ComboBox1" width="250" tabIndex="93"/>
+                <control-TextField fieldLabel="TextField8" height="22" name="TextField8" width="250" tabIndex="97"/>
+                <control-NumberField fieldLabel="NumberField2" height="22" name="NumberField2" width="250" tabIndex="95"/>
+                <control-DateField fieldLabel="DateField4" height="22" name="DateField4" width="250" tabIndex="96"/>
+                <control-TextField fieldLabel="TextField9" height="22" name="TextField9" width="250" tabIndex="98"/>
+                <control-TextField fieldLabel="TextField11" height="22" name="TextField11" width="250" tabIndex="100"/>
+                <control-TextField fieldLabel="TextField10" height="22" name="TextField10" width="250" tabIndex="99"/>
+                <control-CheckCombo fieldLabel="CheckCombo1" height="22" name="CheckCombo1" width="250" tabIndex="101"/>
+                <control-Radio fieldLabel="Radio1" name="Radio1" boxLabel="Radio1" width="250" tabIndex="102"/>
+              </layout-table>
+            </control-Panel>
+            <control-Panel title="地址信息" height="115" name="Panel3" width="790">
+              <layout-absolute/>
+              <Top/>
+              <Bottom/>
+              <Left/>
+              <Right/>
+              <layout-table columns="3" fullWidth="true" cellspacing="3">
+                <control-TextField fieldLabel="TextField3" height="22" name="TextField3" width="250" tabIndex="85"/>
+                <control-NumberField fieldLabel="NumberField1" height="22" name="NumberField1" width="250" tabIndex="88"/>
+                <control-TextField fieldLabel="TextField4" height="22" name="TextField4" width="250" tabIndex="86"/>
+                <control-TextField fieldLabel="TextField5" height="22" name="TextField5" width="250" tabIndex="87"/>
+                <control-DateField fieldLabel="DateField1" height="22" name="DateField1" width="250" tabIndex="89"/>
+                <control-DateField fieldLabel="DateField2" height="22" name="DateField2" width="250" tabIndex="90"/>
+              </layout-table>
+            </control-Panel>
+            <control-Panel title="描述信息" height="219" name="Panel4" width="790">
+              <layout-absolute>
+                <control-TextArea width="516" height="68" x="20" y="5" fieldLabel="描述" name="TextArea1" tabIndex="84"/>
+              </layout-absolute>
+              <Top/>
+              <Bottom/>
+              <Left/>
+              <Right/>
+            </control-Panel>
+          </layout-form>
+        </control-FormPanel>
+      </layout-fit>
+      <Bottom>
+        <control-ButtonGroup name="ButtonGroup1">
+          <layout-buttonGroup>
+            <control-Button name="Button9" text="确定" width="75" icon="bizframe/images/icons/accept.png" tabIndex="70"/>
+            <control-Button name="Button7" text="重置" width="75" icon="bizframe/images/icons/refresh.png" tabIndex="71"/>
+            <control-Button name="Button10" text="取消" width="75" icon="bizframe/images/icons/cross.gif" tabIndex="72"/>
+          </layout-buttonGroup>
+        </control-ButtonGroup>
+      </Bottom>
+    </control-Window>
+  </Windows>
+  <Accessory>
+    <control-DataSet serviceAlias="bizSetUser$bizSetUserFind" name="DataSet1" usingServiceName="true" window="MainWin">
+      <params>
+        <param name="resCode"><![CDATA["bizSetUser"]]></param>
+        <param name="opCode"><![CDATA["bizSetUserFind"]]></param>
+      </params>
+      <fields>
+        <field name="user_id" type="String"/>
+        <field name="user_name" type="String"/>
+        <field name="user_pwd" type="String"/>
+        <field name="user_type" type="String"/>
+        <field name="user_status" type="String"/>
+        <field name="lock_status" type="String"/>
+        <field name="create_date" type="int"/>
+        <field name="modify_date" type="int"/>
+        <field name="pass_modify_date" type="int"/>
+        <field name="remark" type="String"/>
+        <field name="user_status_display" type="String"/>
+        <field name="lock_status_display" type="String"/>
+        <field name="user_type_display" type="String"/>
+        <field name="ext_field_1" type="String"/>
+        <field name="ext_field_2" type="String"/>
+        <field name="ext_field_3" type="String"/>
+        <field name="ext_field_4" type="String"/>
+        <field name="ext_field_5" type="String"/>
+        <field name="org_id" type="String"/>
+        <field name="org_name" type="String"/>
+        <field name="user_order" type="int"/>
+      </fields>
+    </control-DataSet>
+    <control-DataSet name="roleDataSet" usingServiceName="true" window="MainWin">
+      <params>
+        <param name="resCode"><![CDATA["bizSetRole"]]></param>
+        <param name="opCode"><![CDATA["bizSetRoleFind"]]></param>
+        <param name="role_code"><![CDATA[""]]></param>
+        <param name="role_name"><![CDATA[""]]></param>
+        <param name="right_flag"><![CDATA[""]]></param>
+        <param name="remark"><![CDATA[""]]></param>
+        <param name="start"><![CDATA[]]></param>
+        <param name="limit"><![CDATA[]]></param>
+      </params>
+      <fields>
+        <field name="role_code" type="String"/>
+        <field name="role_name" type="String"/>
+        <field name="right_flag" type="String"/>
+        <field name="rflag_name" type="String"/>
+        <field name="remark" type="String"/>
+      </fields>
+    </control-DataSet>
+    <control-DataSet name="DataSet3" service="bizframe.authority.user._userService" usingServiceName="true" window="Window2">
+      <params>
+        <param name="resCode"><![CDATA[]]></param>
+        <param name="opCode"><![CDATA[]]></param>
+      </params>
+      <fields>
+        <field name="user_id" type="String"/>
+        <field name="user_name" type="String"/>
+        <field name="user_pwd" type="String"/>
+        <field name="user_type" type="String"/>
+        <field name="user_status" type="String"/>
+        <field name="lock_status" type="String"/>
+        <field name="create_date" type="int"/>
+        <field name="modify_date" type="int"/>
+        <field name="pass_modify_date" type="int"/>
+        <field name="remark" type="String"/>
+        <field name="user_status_display" type="String"/>
+        <field name="lock_status_display" type="String"/>
+        <field name="user_type_display" type="String"/>
+        <field name="ext_field_1" type="String"/>
+        <field name="ext_field_2" type="String"/>
+        <field name="ext_field_3" type="String"/>
+        <field name="ext_field_4" type="String"/>
+        <field name="ext_field_5" type="String"/>
+        <field name="org_id" type="String"/>
+        <field name="org_name" type="String"/>
+      </fields>
+    </control-DataSet>
+  </Accessory>
+  <WindowScripts>
+    <WindowScript window="MainWin"><![CDATA[remote bizframe.authority.user._userService as uService;
+remote bizframe.authority.organization.findOrgService   as findOrgSvc;
+include bizframe.js.checkRight;  	//引入公共权限校验js文件
+include bizframe.js.commonUtil;		//引入公共工具包js文件
+import bizframe.authority.auth;
+import bizframe.authority.branchSelector;
+import bizframe.authority.depSelector;
+import bizframe.authority.orgSelector;
+
+public extID_visible="false";
+public extID_text='';
+public extID_dbFieldName='';
+public extID_fieldName='';
+public main_authUserId="";
+public main_Right_flag="1";
+
+public tOrgRootId = "bizroot";
+public tOrgRootName = "";
+
+public orgDimension='0';
+public tOrgId = "";
+public tOrgName = "";
+private hasCheckAlllotRights=false;
+
+//"bizSetRight.bizToOpAuth":opAuthUserBtn,
+//"bizSetRight.bizToRightAuth":rightAuthUserBtn,
+
+
+
+
+event MainWin_complete()
+{
+  //FormPanel1.collapse();
+  OrgTreeDataSet.setParams(
+  {
+    dimension:  orgDimension
+  }
+  );
+  initRoot();
+  checkRights(
+  {
+    "bizSetUser.bizUserAdd":addUser_btn,
+    "bizSetUser.bizUserModfiy":editUser_btn,
+    "bizSetUser.bizSetUserFind":queryUser_btn,
+    "bizSetUser.bizUserRemove":delUser_btn,
+    "bizSetUser.bizUserActivate":activButton,
+    "bizSetUser.bizUserLock":lockUserBtn,
+    "bizSetUser.bizUserUnLock":unlockUserBtn,
+    "bizSetUser.bizResetPass":Button3,
+    "bizSetUser.userAssigned":Button2,
+    "bizSetUser.userView":Button1,
+    "bizSetUser.bizUserDownlaod":downButton
+  }
+  );
+  
+  if(top.userManageMw)
+  extID_visible=top.userManageMw.uiExtUserID_visible;
+  
+  if("true"==extID_visible.toLowerCase())
+  {
+    extID_text=top.userManageMw.uiExtUserID_text;
+    extID_dbFieldName=top.userManageMw.uiExtUserID_dbFieldName;
+    extID_fieldName=top.userManageMw.uiExtUserID_fieldName;
+    UserJobNum.setVisible(true);
+    UserJobNum.setEnabled(true);
+    UserJobNum.setLabel(extID_text);
+    UserJobNum.fieldName=extID_fieldName;
+    
+    // 读取配置文件的配置项，为UI属性项设值。
+    UserJobNum.regex=top.userManageMw.uiExtUserID_validate;// 设置字段验证的正则表达式。
+    UserJobNum.regexText=top.userManageMw.uiExtUserID_validateText;// 设置字段验证失败后的提示信息。
+    
+    Grid1.insertColumn(
+    {
+      header:extID_text,width:100,dataIndex : extID_dbFieldName.toLowerCase()
+    }
+    ,1);
+  }
+}
+
+//当前页面下载
+event currentDown_click(Ext.menu.BaseItem baseItem, Ext.EventObject e)
+{
+  var start = Grid1.getStart();
+  var limit = Grid1.getLimit();
+  //var action = ctxPath+'/bizframe.authority.user._userService.service?resCode=bizSetUser&opCode=bizUserDownlaod&downType=0'
+  //					+ '&start=' + start
+  //					+ '&limit=' + limit;
+  var action = ctxPath+'/downloadExcel?resCode=bizSetUser&opCode=bizUserDownlaod&downType=0'
+  + '&start=' + start
+  + '&limit=' + limit;
+  down(action);
+}
+
+//全量下载
+event allDown_click(Ext.menu.BaseItem baseItem, Ext.EventObject e)
+{
+  //var action = ctxPath+'/bizframe.authority.user._userService.service?resCode=bizSetUser&opCode=bizUserDownlaod';
+  var action = ctxPath+'/downloadExcel?resCode=bizSetUser&opCode=bizUserDownlaod';
+  down(action);
+}
+
+
+
+//下载提交
+public function down(action)
+{
+  FormPanel1.getForm().getEl().dom.action = action;
+  FormPanel1.getForm().getEl().dom.method = 'post';
+  FormPanel1.getForm().getEl().dom.submit();
+}
+
+//查询用户列表
+event queryUser_btn_click(Button thisComp, Ext.EventObject e)
+{
+  if(FormPanel1.isValid())
+  {
+    var _param=FormPanel1.getValues();
+    Ext.apply(_param,
+    {
+      opCode:'bizSetUserFind'
+    }
+    );
+    Ext.apply(_param,
+    {
+      resCode:'bizSetUser'
+    }
+    );
+    DataSet1.setParams(_param);
+    DataSet1.load();
+  }
+  else
+  {
+    Ext.Msg.alert('提示', '发现有输入项不符合规范');
+  }
+}
+
+event addUser_btn_click(Button thisComp, Ext.EventObject e)
+{
+  if(tOrgId=='' || tOrgName=='')
+  {
+    Ext.Msg.alert('提示','请先选择所属组织');
+    return;
+  }
+  var win = new Window1();
+  win.show();
+}
+
+event editUser_btn_click(Button thisComp, Ext.EventObject e)
+{
+  var win = new Window2();
+  var counts = Grid1.getSelectionModel().getSelections().length;
+  if(counts!= 1)
+  {
+    Ext.Msg.alert('提示', '请选择一条用户记录');
+    return;
+  }
+  win.show();
+}
+
+event delUser_btn_click(Button thisComp, Ext.EventObject e)
+{
+  if (Grid1.getSelectionModel().getSelected() != null)
+  {
+    var userIds = Grid1.getSelectionDatas();
+    var userIdsArray = '';
+    for(var i=0;i<userIds.length;i++)
+    {
+      var selectUserID= userIds[i].get("user_id");
+      userIdsArray += selectUserID;
+      if(i<userIds.length-1)
+      {
+        userIdsArray += ',';
+      }
+      if(top.currUserId && top.currUserId==selectUserID)
+      {
+        Ext.Msg.alert('提示', '用户不能注销自己账户');
+        return ;
+      }
+      if(top.sysUser && top.sysUser==selectUserID)
+      {
+        Ext.Msg.alert('提示', '用户不能注销系统管理员账户');
+        return ;
+      }
+    }
+    Ext.MessageBox.confirm('提示', '您真的要注销选中用户?', function(button, text)
+    {
+      if (button == "yes")
+      {
+        var authWin = new auth(MainWin).window;
+        authWin.needAuth(authWin,'bizSetUser','bizUserRemove',MainWin, function()
+        {
+          var Result = uService.synExecute(
+          {
+            userIds:userIdsArray,resCode:"bizSetUser",opCode:"bizUserRemove"
+          }
+          );
+          if(!(Result.returnCode == 0))
+          {
+            Ext.Msg.alert('错误',Result.errorInfo);
+          }
+          else
+          {
+            Ext.Msg.alert('提示','注销成功');
+            refreshGrid(Grid1);
+            //Grid1.refresh();
+          }
+        }
+        );
+      }
+    }
+    );
+  }
+  else
+  {
+    Ext.Msg.alert('提示','请选择至少一条用户信息进行注销');
+  }
+}
+
+function rightCheckWithServiceEntryAndResCodeAndOpCode(servEntryValue,resCodeValue,opCodeValue,Button)
+{
+  var Result = checkRightService1.synExecute(
+  {
+    servEntry:servEntryValue,resCode:resCodeValue,opCode:opCodeValue
+  }
+  );
+  try
+  {
+    if(Result.dataSetResult[0].data[0].result=='true')
+    {
+      Button.setVisible(true);
+    }
+  }
+  catch(err)
+  {
+    alert(err);
+  }
+}
+
+function rightCheckWithResCodeAndOpCode(resCodeValue,opCodeValue,Button)
+{
+  var Result = checkRightByResCodeAndOpCode.synExecute(
+  {
+    resCode:resCodeValue,opCode:opCodeValue
+  }
+  );
+  try
+  {
+    if(Result.dataSetResult[0].data[0].result=='true')
+    {
+      Button.setVisible(true);
+    }
+  }
+  catch(err)
+  {
+    alert(err);
+  }
+}
+
+
+
+event Button22_click(Button thisComp, Ext.EventObject e)
+{
+  FormPanel1.getForm().reset();
+}
+
+//锁定
+event lockUserBtn_click(Button thisComp, Ext.EventObject e)
+{
+  if (Grid1.getSelectionModel().getSelected() != null)
+  {
+    var userIds = Grid1.getSelectionDatas();
+    var userIdsArray = "";
+    for(var i=0;i<userIds.length;i++)
+    {
+      
+      //----20110927---huhl@hundsun.com--用户状态-----bengin--
+      /**
+      if('3'==userIds[i].get("lock_status")||'4'==userIds[i].get("lock_status")){
+      Ext.MessageBox.alert('错误','【'+userIds[i].get("user_name")+'】用户已锁定，无需锁定!');
+      return;
+    }
+    */
+    if('2'==userIds[i].get("user_status"))
+    {
+      Ext.MessageBox.alert('错误','【'+userIds[i].get("user_name")+'】用户已锁定，无需锁定!');
+      return;
+    }
+    //----20110927---huhl@hundsun.com--用户状态-----end--
+    
+    var selectUserID=userIds[i].get("user_id");
+    if(top.currUserId && top.currUserId==selectUserID)
+    {
+      Ext.Msg.alert('提示', '用户不能锁定自己账户');
+      return ;
+    }
+    if(top.sysUser && top.sysUser==selectUserID)
+    {
+      Ext.Msg.alert('提示', '用户不能锁定系统管理员账户');
+      return ;
+    }
+    //--20111201---huhl@hundsun.com ---BUG #1800::选中多个用户，改成锁定，或者解锁，只能完成一个用户的操作--bengin
+    userIdsArray += userIds[i].get("user_id");
+    if(i<userIds.length-1)
+    {
+      userIdsArray +=",";
+    }
+    //--20111201---huhl@hundsun.com ---BUG #1800::选中多个用户，改成锁定，或者解锁，只能完成一个用户的操作--end
+  }
+  Ext.MessageBox.confirm('提示', '您真的要锁定选中用户?', function(button, text)
+  {
+    if (button == "yes")
+    {
+      var authWin = new auth(MainWin).window;
+      authWin.needAuth(authWin,'bizSetUser','bizUserLock',MainWin, function()
+      {
+        var Result = uService.synExecute(
+        {
+          userIds:userIdsArray,resCode:"bizSetUser",opCode:"bizUserLock"
+        }
+        );
+        if(!(Result.returnCode == 0))
+        {
+          Ext.Msg.alert('错误',Result.errorInfo);
+        }
+        else
+        {
+          Ext.Msg.alert('提示','锁定成功');
+          Grid1.refresh();
+        }
+      }
+      );
+    }
+  }
+  );
+}
+else
+{
+  Ext.Msg.alert('提示','请选择您需要锁定的用户');
+}
+}
+
+//解锁
+event unlockUserBtn_click(Button thisComp, Ext.EventObject e)
+{
+if (Grid1.getSelectionModel().getSelected() != null)
+{
+  var userIds = Grid1.getSelectionDatas();
+  var userIdsArray = "";
+  for(var i=0;i<userIds.length;i++)
+  {
+    //----20110927---huhl@hundsun.com--用户状态-----bengin--
+    /**
+    if('3'!=userIds[i].get("lock_status")&&'4'!=userIds[i].get("lock_status")){
+    Ext.MessageBox.alert('错误','【'+userIds[i].get("user_name")+'】用户未锁定，无需解锁!');
+    return;
+  }
+  */
+  if('2'!=userIds[i].get("user_status"))
+  {
+    Ext.MessageBox.alert('提示','【'+userIds[i].get("user_name")+'】用户未锁定，无需解锁!');
+    return;
+  }
+  if('1'==userIds[i].get("user_status"))
+  {
+    Ext.MessageBox.alert('提示','【'+userIds[i].get("user_name")+'】用户是注销用户，请先激活!');
+    return;
+  }
+  //----20110927---huhl@hundsun.com--用户状态-----end--
+  
+  //--20111201---huhl@hundsun.com ---BUG #1800::选中多个用户，改成锁定，或者解锁，只能完成一个用户的操作--bengin
+  userIdsArray += userIds[i].get("user_id");
+  if(i<userIds.length-1)
+  {
+    userIdsArray += ",";
+  }
+  //--20111201---huhl@hundsun.com ---BUG #1800::选中多个用户，改成锁定，或者解锁，只能完成一个用户的操作--end
+}
+Ext.MessageBox.confirm('提示', '您真的要解锁选中用户?', function(button, text)
+{
+  if (button == "yes")
+  {
+    var authWin = new auth(MainWin).window;
+    authWin.needAuth(authWin,'bizSetUser','bizUserUnLock',MainWin, function()
+    {
+      var Result = uService.synExecute(
+      {
+        userIds:userIdsArray,resCode:"bizSetUser",opCode:"bizUserUnLock"
+      }
+      );
+      if(!(Result.returnCode == 0))
+      {
+        Ext.Msg.alert('错误',Result.errorInfo);
+      }
+      else
+      {
+        Ext.Msg.alert('提示','解锁成功');
+        Grid1.refresh();
+      }
+    }
+    );
+  }
+}
+);
+}
+else
+{
+Ext.Msg.alert('提示','请选择您需要解锁的用户');
+}
+}
+event GridItem3_renderer(string value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store)
+{
+return changeDatePattern(value);
+}
+function changeDatePattern(value)
+{
+value = ''+value;
+if(value==''||value=='0')
+return '';
+var year = value.substring(0,4);
+var month = value.substring(4,6);
+var day = value.substring(6,8);
+return year+"-"+month+"-"+day;
+}
+event GridItem4_renderer(string value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store)
+{
+return changeDatePattern(value);
+}
+event GridItem7_renderer(string value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store)
+{
+return changeDatePattern(value);
+}
+
+event Button1_click(Button thisComp, Ext.EventObject e)
+{
+var counts = Grid1.getSelectionModel().getSelections().length;
+if(counts!= 1)
+{
+Ext.Msg.alert('提示', '请选择一条用户记录');
+return;
+}
+
+var win=new Window7();
+win.show();
+}
+event Button3_click(Button thisComp, Ext.EventObject e)
+{
+if (Grid1.getSelectionModel().getSelected() != null)
+{
+var userIds = Grid1.getSelectionDatas();
+//--20111213--wangnan06675@hundsun.com---TASK #2708::[证券三部/郭宁][XQ:2011120500006]HSZQYXFWPT-1799/郭宁 用户设置密码批量重置--begin-
+var userIdsArray = "";
+for(var i=0;i<userIds.length;i++)
+{
+  if(top.sysUser && top.sysUser==userIds[i].get("user_id"))
+  {
+    Ext.MessageBox.alert('错误','管理员密码不可重置!');
+    return;
+  }
+  userIdsArray  += userIds[i].get("user_id");
+  if(i<userIds.length-1)
+  {
+    userIdsArray  += ","
+  }
+}
+//--20111213--wangnan06675@hundsun.com---TASK #2708::[证券三部/郭宁][XQ:2011120500006]HSZQYXFWPT-1799/郭宁 用户设置密码批量重置--end-
+Ext.MessageBox.confirm('提示', '您真的要重置选中用户密码?', function(button, text)
+{
+  if (button == "yes")
+  {
+    var authWin = new auth(MainWin).window;
+    authWin.needAuth(authWin,'bizSetUser','bizResetPass',MainWin, function()
+    {
+      var Result = uService.synExecute(
+      {
+        userIds:userIdsArray,resCode:"bizSetUser",opCode:"bizResetPass"
+      }
+      );
+      if(!(Result.returnCode == 0))
+      {
+        Ext.Msg.alert('错误',Result.errorInfo);
+      }
+      else
+      {
+        //--2012.01.05-huhl@hundsun.com--在重置密码后给管理员显示重置后的密码---bengin-----
+        
+        /**格式如下：
+        { dataSetResult : [{"totalCount":-1,"dataSetName":"result","data":[{"defaultPwd":"111111"}]}],
+        returnCode : 0,errorNo : "0",errorInfo : null}*/
+        var   biz_defaultPwd=null;
+        if(Result.dataSetResult && Result.dataSetResult[0]
+        && Result.dataSetResult[0].data && Result.dataSetResult[0].data[0]
+        && Result.dataSetResult[0].data[0].defaultPwd )
+        {
+          biz_defaultPwd=Result.dataSetResult[0].data[0].defaultPwd;
+        }
+        //--2012.01.05-huhl@hundsun.com--在重置密码后给管理员显示重置后的密码---end-----
+        if(biz_defaultPwd==undefined || biz_defaultPwd==null)
+        {
+          Ext.Msg.alert('提示','重置密码成功');
+        }
+        else
+        {
+          Ext.Msg.alert('提示','重置密码成功,密码为:\"'+biz_defaultPwd+'\"');
+        }
+        Grid1.refresh();
+      }
+    }
+    );
+  }
+}
+);
+}
+else
+{
+Ext.Msg.alert('提示','请选择您需要重置密码的用户');
+}
+}
+
+//根据菜单号操作授权
+event opRightMenuItem_click(Ext.menu.BaseItem baseItem, Ext.EventObject e)
+{
+var counts = Grid1.getSelectionModel().getSelections();
+if(counts!= null&&counts.length!=1)
+{
+Ext.Msg.alert('提示', '请选择一条用户记录');
+return;
+}
+main_authUserId=Grid1.getSelectionModel().getSelected().get('user_id');
+var win = new menuRightWindow();
+
+win.show();
+}
+//根据功能点操作授权
+event opRightTranceItem_click(Ext.menu.BaseItem baseItem, Ext.EventObject e)
+{
+var counts = Grid1.getSelectionModel().getSelections();
+if(counts!= null&&counts.length!=1)
+{
+Ext.Msg.alert('提示', '请选择一条用户记录');
+return;
+}
+var win = new Window3();
+win.show();
+}
+//根据菜单号权限授权
+event authRightMenuItem_click(Ext.menu.BaseItem baseItem, Ext.EventObject e)
+{
+var counts = Grid1.getSelectionModel().getSelections();
+if(counts!= null&&counts.length!=1)
+{
+Ext.Msg.alert('提示', '请选择一条用户记录');
+return;
+}
+main_authUserId=Grid1.getSelectionModel().getSelected().get('user_id');
+var win = new menuRightWindow();
+win.show();
+
+}
+//根据功能点权限授权
+event authRightTranceItem_click(Ext.menu.BaseItem baseItem, Ext.EventObject e)
+{
+var counts = Grid1.getSelectionModel().getSelections();
+if(counts!= null&&counts.length!=1)
+{
+Ext.Msg.alert('提示', '请选择一条用户记录');
+return;
+}
+var win = new Window5();
+win.show();
+}
+
+event OrgTree_click(Node node, EventObject e)
+{
+OrgTreeDataSet.setParams(
+{
+dimension: orgDimension
+}
+);
+
+tOrgId=node.id;
+tOrgName=node.text;
+
+FormPanel1.getForm().reset();
+searchOrgName.setValue(tOrgName);
+searchOrgId.setValue(tOrgId);
+/*
+var _limit=Grid1.getLimit();
+var _start=1;
+
+var param = {};
+Ext.apply(param,{resCode:'bizSetUser'});
+Ext.apply(param,{opCode:'bizSetUserFind'});
+Ext.apply(param,{orgId: tOrgId});
+Ext.apply(param,{orgName: tOrgName});
+
+Ext.apply(param,{start :_start});
+Ext.apply(param,{limit :_limit});
+*/
+var pa=FormPanel1.getValues();
+//DataSet1.clearParams();
+//Grid1.clear();
+
+DataSet1.setParams(pa);
+//增加全部按钮可用
+unEnableButtonsOnToolBar();
+DataSet1.load();
+
+}
+//组织维度改变
+event dimensionCBox_select(Hs.HsCheckCombo combo, Ext.data.Record record, Number index)
+{
+tOrgId='';
+tOrgName='';
+orgDimension=record.get('dictItemCode');
+OrgTreeDataSet.setParams(
+{
+dimension: orgDimension
+}
+);
+OrgTreeDataSet.setParams(
+{
+parent_id: tOrgRootId
+}
+);
+OrgTree.getNodeById(tOrgRootId).reload();
+}
+function initRoot(){
+	var obj = {"parent_id":"bizroot","resCode":"bizOrgSet","opCode":"bizOrgFind"};
+	var succ = function(response, options){
+	        var returnCode="";
+	        var errorInfo="";
+			if(typeof response == 'object'){
+					returnCode = response.returnCode;
+					errorInfo =  response.errorInfo;
+			}
+			if(returnCode=='0'){
+			         var root = OrgTree.getNodeById(tOrgRootId);
+                     tOrgRootId=response.dataSetResult[0].data[0].org_id;
+                     tOrgRootName=response.dataSetResult[0].data[0].org_name;
+                     root.setId(tOrgRootId);
+                     root.setText(tOrgRootName);
+                     root.expand(false,false);
+				     
+			}else{
+				   Ext.Msg.alert("提示",errorInfo);
+			}
+		};
+	var fail = function(response, options){
+				   Ext.Msg.alert('提示',response.errorInfo);
+	};
+	findOrgSvc.asynExecute(obj,succ,fail);	
+}
+
+//分配权限
+event allotRightMenu_click(Ext.menu.BaseItem baseItem, Ext.EventObject e)
+{
+var counts = Grid1.getSelectionModel().getSelections();
+if(counts!= null&&counts.length!=1)
+{
+Ext.Msg.alert('提示', '请选择一条用户记录');
+return;
+}
+main_authUserId=Grid1.getSelectionModel().getSelected().get('user_id');
+var win = new menuRightWindow();
+win.setTitle('给用户【'+Grid1.getSelectionModel().getSelected().get('user_name')+'】分配权限');
+win.show();
+}
+//分配角色
+event allotRoleMenu_click(Ext.menu.BaseItem baseItem, Ext.EventObject e)
+{
+var counts = Grid1.getSelectionModel().getSelections();
+if(counts!= null&&counts.length!=1)
+{
+Ext.Msg.alert('提示', '请选择一个用户');
+return;
+}
+var win = new Window4();
+win.setTitle('给用户【'+Grid1.getSelectionModel().getSelected().get('user_name')+'】分配角色');
+win.show();
+}
+//分配组织
+event allotOrgMenu_click(Ext.menu.BaseItem baseItem, Ext.EventObject e)
+{
+var counts = Grid1.getSelectionModel().getSelections();
+if(counts!= null&&counts.length!=1)
+{
+Ext.Msg.alert('提示', '请选择一条用户记录');
+return;
+}
+var win = new Window6();
+win.setTitle('给用户【'+Grid1.getSelectionModel().getSelected().get('user_name')+'】分配组织');
+win.show();
+}
+
+event allotMenu_beforeshow(Ext.Component thisComp)
+{
+if(!hasCheckAlllotRights)
+{
+checkRights(
+{
+  "bizSetUser.bizGiveUR":allotRoleMenu,
+  "bizSetUser.bizAssoOrg":allotOrgMenu,
+  "bizSetUser.bizAssoPos":allotPosMenu,
+  "bizSetUser.userMenuRightFind":allotRightMenu
+}
+);
+hasCheckAlllotRights=true;
+}
+}
+
+event userStatuMenu_beforeshow(Ext.Component thisComp)
+{
+if(!hasCheckUserStatus)
+{
+}
+hasCheckUserStatus=true;
+}
+//分配岗位
+event allotPosMenu_click(Ext.menu.BaseItem baseItem, Ext.EventObject e)
+{
+var counts = Grid1.getSelectionModel().getSelections();
+if(counts!= null&&counts.length!=1)
+{
+Ext.Msg.alert('提示', '请选择一条用户记录');
+return;
+}
+var win = new allotPosWin();
+win.setTitle('给用户 【'+Grid1.getSelectionModel().getSelected().get('user_name')+'】分配岗位');
+win.show();
+}
+
+
+
+event expandButton_click(Button thisComp, Ext.EventObject e)
+{
+if(tOrgId=='')
+{
+Ext.Msg.alert('提示','请先选择所属组织');
+return;
+}
+var selectNode=OrgTree.getNodeById(tOrgId);
+if(!selectNode)
+{
+Ext.Msg.alert('提示','请刷新');
+return;
+}
+OrgTreeDataSet.setParams(
+{
+isSynTree : true
+}
+);
+selectNode.reload();
+selectNode.expand(true,false);
+
+//var paths=selectNode.getPath().split("/");
+//if(paths.length>=2+2){
+//}else{
+//	Ext.Msg.alert('提示','此菜单不支持展开,两层或两层以外节点可展开');
+//}
+}
+
+
+
+event closeButton_click(Button thisComp, Ext.EventObject e)
+{
+if(tOrgId=='')
+{
+Ext.Msg.alert('提示','请先选择所属组织');
+return;
+}
+OrgTree.getNodeById(tOrgId).collapse(true,false);
+}
+event resetButton_click(Button thisComp, Ext.EventObject e)
+{
+tOrgId='';
+tOrgName='';
+OrgTree.collapseAll();
+initRoot();
+OrgTree.getNodeById(tOrgRootId).reload();
+
+}
+
+event activButton_click(Button thisComp, Ext.EventObject e)
+{
+if (Grid1.getSelectionModel().getSelected() != null)
+{
+var userIds = Grid1.getSelectionDatas();
+var userIdsArray = '';
+for(var i=0;i<userIds.length;i++)
+{
+  var selectUserID= userIds[i].get("user_id");
+  userIdsArray += selectUserID;
+  if(i<userIds.length-1)
+  {
+    userIdsArray +=',';
+  }
+  if(top.currUserId && top.currUserId==selectUserID)
+  {
+    Ext.Msg.alert('提示', '用户不能激活自己账户');
+    return ;
+  }
+  if(top.sysUser && top.sysUser==selectUserID)
+  {
+    Ext.Msg.alert('提示', '用户不能激活系统管理员账户');
+    return ;
+  }
+  if('0'==userIds[i].get("user_status"))
+  {
+    Ext.MessageBox.alert('提示','用户【'+userIds[i].get("user_name")+'】已经是正常用户,无需激活!');
+    return;
+  }
+  if('2'==userIds[i].get("user_status"))
+  {
+    Ext.MessageBox.alert('提示','用户【'+userIds[i].get("user_name")+'】是锁定用户,请先解锁!');
+    return;
+  }
+  
+}
+Ext.MessageBox.confirm('提示', '您真的要激活选中用户?', function(button, text)
+{
+  if (button == "yes")
+  {
+    var authWin = new auth(MainWin).window;
+    authWin.needAuth(authWin,'bizSetUser','bizUserActivate',MainWin, function()
+    {
+      var Result = uService.synExecute(
+      {
+        userIds:userIdsArray,resCode:"bizSetUser",opCode:"bizUserActivate"
+      }
+      );
+      if(!(Result.returnCode == 0))
+      {
+        Ext.Msg.alert('错误',Result.errorInfo);
+      }
+      else
+      {
+        Ext.Msg.alert('提示','激活成功');
+        refreshGrid(Grid1);
+        //Grid1.refresh();
+      }
+    }
+    );
+  }
+}
+);
+}
+else
+{
+Ext.Msg.alert('提示','请选择至少一条注销用户信息进行激活操作');
+}
+}
+
+
+
+/**event Grid1_rowclick(Hs.HsGrid thisComp, Number rowIndex, Ext.EventObject e) {
+var records=Grid1.getSelectionDatas();
+for(var i=0;i<records.length;i++){
+var userStatus =  records[i].get("user_status");
+if(userStatus && userStatus=='1'){
+enableButtonsOnToolBar();
+return;
+}
+
+}
+unEnableButtonsOnToolBar();
+}*/
+
+event OrgTree_beforeload(Node node)
+{
+OrgTreeDataSet.setParams(
+{
+isSynTree : true
+}
+);
+}
+event GridItem5_renderer(Object value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store)
+{
+var status=record.get('user_status');
+if(status=="1")
+{
+//注销
+value='<font  color="#FF0000">'+value+'</font>';
+}
+if(status=="2")
+{
+//锁定
+value='<font  color="#008000">'+value+'</font>';
+}
+return value;
+}
+//除了激活的按钮，其他都不显示
+function enableButtonsOnToolBar()
+{
+addUser_btn.setEnabled(false);
+editUser_btn.setEnabled(false);
+delUser_btn.setEnabled(false);
+lockUserBtn.setEnabled(false);
+unlockUserBtn.setEnabled(false);
+Button1.setEnabled(false);
+Button2.setEnabled(false);
+Button3.setEnabled(false);
+downButton.setEnabled(false);
+}
+//全部按钮显示
+function unEnableButtonsOnToolBar()
+{
+addUser_btn.setEnabled(true);
+editUser_btn.setEnabled(true);
+delUser_btn.setEnabled(true);
+lockUserBtn.setEnabled(true);
+unlockUserBtn.setEnabled(true);
+activButton.setEnabled(true);
+Button2.setEnabled(true);
+Button1.setEnabled(true);
+Button3.setEnabled(true);
+downButton.setEnabled(true);
+}
+
+event Grid1_mouseup(Ext.EventObject e)
+{
+var records=Grid1.getSelectionDatas();
+for(var i=0;i<records.length;i++)
+{
+var userStatus =  records[i].get("user_status");
+if(userStatus && userStatus=='1')
+{
+enableButtonsOnToolBar();
+return;
+}
+
+}
+unEnableButtonsOnToolBar();
+}
+event Grid1_refresh(Hs.HsGrid thisCmp)
+{
+unEnableButtonsOnToolBar();
+}
+]]></WindowScript>
+    <WindowScript window="Window1"><![CDATA[remote bizframe.authority.user._userService as uService;
+
+event Window1_complete() {
+     if("true"==MainWin.extID_visible.toLowerCase()){
+        UserJobNum.setVisible(true);
+        UserJobNum.setEnabled(true);
+        UserJobNum.setLabel(MainWin.extID_text);
+        UserJobNum.fieldName=MainWin.extID_fieldName;
+        
+        // 读取配置文件的配置项，为UI属性项设值。
+        UserJobNum.regex=top.userManageMw.uiExtUserID_validate;// 设置字段验证的正则表达式。
+        UserJobNum.regexText=top.userManageMw.uiExtUserID_validateText;// 设置字段验证失败后的提示信息。
+        
+     }
+     addOrgName.setValue(MainWin.tOrgName);
+     addOrgName.defaultValue=MainWin.tOrgName;
+     addOrgId.setValue(MainWin.tOrgId);
+     addOrgId.defaultValue=MainWin.tOrgId;
+     //searchDepCode.setEnabled(false);
+}
+
+event Button5_click(Button thisComp, Ext.EventObject e) {
+	if(FormPanel2.getForm().isValid()){
+		var authWin = new auth(MainWin).window;
+		authWin.needAuth(authWin,'bizSetUser','bizUserAdd',MainWin, function(){
+			var _values=FormPanel2.getValues();
+			Ext.apply(_values,{resCode:"bizSetUser",opCode:"bizUserAdd"});
+			Ext.apply(_values,{userStatus : UIUserStatus.getValue()});
+			var response = uService.synExecute(_values);
+			if(!(response.returnCode == 0)){
+				Ext.Msg.alert('错误',response.errorInfo);
+			}else{
+				Ext.Msg.alert('提示','新增用户成功',
+					function(){
+						
+						var _userId=UIUserId.getValue();
+						var _orgName=addOrgName.getValue();
+						var _orgId=addOrgId.getValue();
+						var _uIUserStatus=UIUserStatus.getValue();
+						
+						MainWin.FormPanel1.getForm().reset();			
+						//新增后查询该机构下所有的用户记录			
+						//MainWin.TextField2.setValue(_userId);
+						MainWin.searchOrgName.setValue(_orgName);
+						MainWin.searchOrgId.setValue(_orgId);
+						MainWin.DictComboBox1.setValue(_uIUserStatus);
+						
+						var _param=MainWin.FormPanel1.getValues();
+						MainWin.DataSet1.setParams(_param);
+						MainWin.Grid1.refresh();
+						//var param = {};
+						//Ext.apply(param,{userId:_userId});					
+						//Ext.apply(param,{resCode:'bizSetUser'});
+						//Ext.apply(param,{opCode:'bizSetUserFind'});
+						//MainWin.DataSet1.clearParams();
+						//MainWin.DataSet1.setParams(param);
+						//MainWin.DataSet1.load();
+						//FormPanel2.getForm().reset();
+						close();		
+					}
+				);
+			}
+		});
+	}
+	else
+		Ext.Msg.alert('错误',"发现有输入项不符合规范!");
+}
+event Button7_click(Button thisComp, Ext.EventObject e) {
+	FormPanel2.getForm().reset();
+	addOrgId.setValue(addOrgId.defaultValue);
+}
+event Button6_click(Button thisComp, Ext.EventObject e) {
+	FormPanel2.getForm().reset();
+	close();
+}
+event Button8_click(Button thisComp, Ext.EventObject e) {
+	if(FormPanel2.getForm().isValid()){
+		var authWin = new auth(MainWin).window;
+		authWin.needAuth(authWin,'bizSetUser','bizUserAdd',MainWin, function(){
+			var _values=FormPanel2.getValues();
+			Ext.apply(_values,{resCode:"bizSetUser",opCode:"bizUserAdd"});
+			Ext.apply(_values,{userStatus : UIUserStatus.getValue()});
+			var response = uService.synExecute(_values);
+			if(!(response.returnCode == 0)){
+				Ext.Msg.alert('错误',response.errorInfo);
+			}else{
+				Ext.Msg.alert('提示','新增用户成功',
+					function(){
+						//MainWin.Grid1.refresh();
+						var _userId=UIUserId.getValue();
+						var _orgName=addOrgName.getValue();
+						var _orgId=addOrgId.getValue();
+						
+						MainWin.FormPanel1.getForm().reset();						
+						MainWin.TextField2.setValue(_userId);
+						MainWin.searchOrgName.setValue(_orgName);
+						MainWin.searchOrgId.setValue(_orgId);
+
+						var _param=MainWin.FormPanel1.getValues();
+						MainWin.DataSet1.setParams(_param);
+						//MainWin.Grid1.refresh();
+						//var param = {};
+						//Ext.apply(param,{userId:_userId});					
+						
+						//Ext.apply(param,{resCode:'bizSetUser'});
+						//Ext.apply(param,{opCode:'bizSetUserFind'});
+						//MainWin.DataSet1.clearParams();
+						
+						//MainWin.DataSet1.setParams(param);
+						MainWin.DataSet1.load();
+						UIUserId.setValue('');
+						UIUserName.setValue('');
+						UIRemark.setValue('');
+					}
+				);
+			}
+		});
+	}
+	else
+		Ext.Msg.alert('错误',"发现有输入项不符合规范!");
+}
+
+event searchDepCode_triggerclick(Hs.HsTargetSelect thisComp) {
+	if(searchBranchCode.getValue()!=''){
+		return true;
+	}
+	
+	Ext.Msg.alert('提示','选择部门前请先选择一个机构')
+	return false;
+}
+
+
+]]></WindowScript>
+    <WindowScript window="Window2"><![CDATA[remote bizframe.authority.user._userService as uService;
+event Button9_click(Button thisComp, Ext.EventObject e) {
+	if(FormPanel3.getForm().isValid()){
+	var authWin = new auth(MainWin).window;
+		authWin.needAuth(authWin,'bizSetUser','bizUserModfiy',MainWin, function(){
+			//var _values=FormPanel2.getValues();
+			//Ext.apply(_values,{resCode:"bizSetUser",opCode:"bizUserModfiy"});
+			//Ext.apply(_values,{userStatus : UIUserStatus.getValue(), lockStatus : UILockStatus.getValue()});
+			var values=FormPanel3.getValues();
+			Ext.apply(values,{resCode:"bizSetUser",opCode:"bizUserModfiy"});
+			
+			var response = uService.synExecute(values);
+			if(!(response.returnCode == 0)){
+				Ext.Msg.alert('错误',response.errorInfo);
+			}else{
+				Ext.Msg.alert('提示','修改用户成功',
+					function(){
+					
+						//MainWin.Grid1.clear();
+						MainWin.Grid1.refresh();
+							
+					 /*
+					 var _param=	MainWin.DataSet1.getParams();
+					 var _limit=MainWin.Grid1.getLimit();
+				     var _start=MainWin.Grid1.getStart();
+				     Ext.apply(_param,{start :_start});
+				     Ext.apply(_param,{limit :_limit});
+					 MainWin.DataSet1.load();
+					 */
+					 close();					
+					}
+				);
+			}
+		});
+	
+	/*
+		
+		var authWin = new auth(MainWin).window;
+		authWin.needAuth(authWin,'bizSetUser','bizUserModfiy',MainWin, function(){
+		var values=FormPanel3.getValues();
+		Ext.apply(values,{resCode:"bizSetUser",opCode:"bizUserModfiy"});
+		FormPanel3.commSubmit(values);
+		
+		});
+		*/
+	}
+	else
+		Ext.Msg.alert('错误',"发现有输入项不符合规范!");
+}
+event Button10_click(Button thisComp, Ext.EventObject e) {
+	close();
+}
+event Window2_complete() {
+	
+    if("true"==MainWin.extID_visible.toLowerCase()){
+        UserJobNum.setVisible(true);
+        UserJobNum.setEnabled(true);
+        UserJobNum.setLabel(MainWin.extID_text);
+        UserJobNum.fieldName=MainWin.extID_fieldName;
+        
+        // 读取配置文件的配置项，为UI属性项设值。
+        UserJobNum.regex=top.userManageMw.uiExtUserID_validate;// 设置字段验证的正则表达式。
+        UserJobNum.regexText=top.userManageMw.uiExtUserID_validateText;// 设置字段验证失败后的提示信息。
+    }
+    var record = MainWin.Grid1.getSelectionModel().getSelected();
+    UIUserId.setValue(record.get('user_id'));
+	UIUserId.defaultValue=record.get('user_id');
+	
+	UserJobNum.setValue(record.get('ext_field_1'));
+	UserJobNum.defaultValue=record.get('ext_field_1');
+	
+    UIUserName.setValue(record.get('user_name'));
+	UIUserName.defaultValue=record.get('user_name');
+	
+	addOrgName.setValue(record.get('org_name'));
+	addOrgName.defaultValue=record.get('org_name');
+	
+	addOrgId.setValue(record.get('org_id'));
+	addOrgId.defaultValue=record.get('org_id');
+	
+	UIUserType.setValue(record.get('user_type'));
+	UIUserType.defaultValue=record.get('user_type');
+	
+	UIUserStatus.setValue(record.get('user_status'));
+	UIUserStatus.defaultValue=record.get('user_status');
+	
+	UIUserOrder.setValue(record.get('user_order'));
+	UIUserOrder.defaultValue=record.get('user_order');
+	
+	/**
+	UILockStatus.setValue(record.get('lock_status'));
+	UILockStatus.defaultValue=record.get('lock_status');*/
+	
+	UIRemark.setValue(record.get('remark'));
+	UIRemark.defaultValue=record.get('remark');
+	
+	/**20111111 huhl@hundsun.com  用用户昵称登陆   bengin**/
+	if(top.BIZ_USER_LOGIN_NAME && "user_name"==top.BIZ_USER_LOGIN_NAME){
+		UIUserName.setEditable(false);
+	}
+	/**20111111 huhl@hundsun.com  用用户昵称登陆   end **/
+}
+
+event Button7_click(Button thisComp, Ext.EventObject e) {
+     FormPanel3.getForm().reset();
+}
+]]></WindowScript>
+  </WindowScripts>
+</hsdoc>

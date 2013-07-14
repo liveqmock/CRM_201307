@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root>
+  <definer>
+    <element_def mainAttr="id">
+      <name>系统参数</name>
+      <id>root</id>
+      <collection_def>
+        <ref_def>sysParam</ref_def>
+      </collection_def>
+    </element_def>
+    <element_def showAttr="true">
+      <name>系统参数</name>
+      <id>sysParam</id>
+      <attr_def type="assittext">
+        <name>参数名</name>
+        <id>id</id>
+      </attr_def>
+      <attr_def>
+        <name>中文名</name>
+        <id>name</id>
+      </attr_def>
+      <attr_def>
+        <name>Java类型</name>
+        <id>javaType</id>
+      </attr_def>
+      <attr_def>
+        <name>描述</name>
+        <id>desc</id>
+      </attr_def>
+    </element_def>
+  </definer>
+  <buttons/>
+  <revisions/>
+</root>

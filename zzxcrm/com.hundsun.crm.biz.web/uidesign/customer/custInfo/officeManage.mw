@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hsdoc version="1.1.0">
+  <Windows>
+    <control-MainWindow height="437" name="MainWin" width="990">
+      <layout-fit>
+        <control-Panel height="600" name="OfficePanel" width="800">
+          <layout-border>
+            <control-Tree region="west" width="200" height="600" title="分类树" split="true" collapsible="true" name="OfficeTree">
+              <layout-tree>
+                <control-AsyncTreeNode id="bizroot" dataSet="OfficeTreeDataSet" name="AsyncTreeNode1" text="岗位树根节点"/>
+              </layout-tree>
+              <Top>
+                <control-Toolbar name="TreeToolbar">
+                  <layout-toolbar>
+                    <control-Button name="expandTree_btn" text="展开" width="65"/>
+                    <control-Button name="collapseTree_btn" text="收缩" width="65"/>
+                    <control-Button name="refreshTree_btn" text="刷新" width="65"/>
+                  </layout-toolbar>
+                </control-Toolbar>
+              </Top>
+            </control-Tree>
+            <control-Panel region="center" border="false" height="600" name="OffPanel" width="600">
+              <layout-border>
+                <control-Panel region="center" height="307" name="OffGridPanel" width="855">
+                  <layout-border>
+                    <control-Grid hasCheckColumn="true" region="center" width="653" height="307" dataSet="OffDataSet" name="OffGrid" hasCustomPageSize="true" border="false" hasPagingBar="true">
+                      <layout-GridToolbar>
+                        <control-GridItem title="岗位编号" dataIndex="office_code" name="offCode" width="108"/>
+                        <control-GridItem title="岗位名称" dataIndex="office_name" name="offName" width="110"/>
+                        <control-GridItem title="岗位简称" dataIndex="short_name" name="shortName" width="100"/>
+                        <control-GridItem title="所属机构" dataIndex="branch_name" name="branch_name" width="100"/>
+                        <control-GridItem title="所属部门" dataIndex="dep_name" name="dep_name" width="100"/>
+                        <control-GridItem title="上级岗位" dataIndex="parent_name" name="parent_name" width="100"/>
+                        <control-GridItem title="备注" dataIndex="remark" name="remark" width="100"/>
+                        <control-GridItem title="岗位内码" hidden="true" dataIndex="office_path" name="offPath" width="100"/>
+                        <control-GridItem title="parentCode" hidden="true" dataIndex="parent_code" name="parentCode" width="100"/>
+                        <control-GridItem title="branchCode" hidden="true" dataIndex="branch_code" name="branchCode" width="100"/>
+                        <control-GridItem title="depCode" hidden="true" dataIndex="dep_code" name="depCode" width="100"/>
+                      </layout-GridToolbar>
+                    </control-Grid>
+                    <control-FormPanel region="north" title="查询条件" collapsible="true" height="150" name="FormPanel1" width="300">
+                      <Top>
+                        <control-Toolbar name="Toolbar1">
+                          <layout-toolbar>
+                            <control-Button visible="false" name="addOff_btn" text="新增" width="75" icon="bizframe/images/icons/add.gif"/>
+                            <control-Button visible="false" name="editOff_btn" text="修改" width="75" icon="bizframe/images/icons/edit.png"/>
+                            <control-Button visible="false" name="delOff_btn" text="删除" width="75" icon="bizframe/images/icons/delete.gif"/>
+                            <control-Button visible="false" name="downButton" text="下载" width="75" menu="downMenu" icon="bizframe/images/icons/download.png"/>
+                          </layout-toolbar>
+                        </control-Toolbar>
+                      </Top>
+                      <Bottom>
+                        <control-ButtonGroup height="25" name="ButtonGroup2">
+                          <layout-buttonGroup>
+                            <control-Button visible="false" name="searchOff_btn" text="查询" width="75" icon="bizframe/images/icons/search.png"/>
+                            <control-Button tipText="清空查询条件" name="searchResetBtn" text="重置" width="75" icon="bizframe/images/icons/refresh.png"/>
+                          </layout-buttonGroup>
+                        </control-ButtonGroup>
+                      </Bottom>
+                      <Left/>
+                      <Right/>
+                      <layout-table columns="2" fullWidth="true">
+                        <control-TargetSelect labelAlign="right" targetWindow="branchSelector" editable="true" params="['searchBranchCode',true]" callFunction="rec" width="250" fieldLabel="所属机构" name="searchBranchCode"/>
+                        <control-TargetSelect labelAlign="right" targetWindow="depSelector" editable="true" params="['searchDepCode',true]" callFunction="rec" width="250" fieldLabel="所属部门" name="searchDepCode"/>
+                        <control-TargetSelect labelAlign="right" targetWindow="officeSelector" editable="true" params="['searchOffCode',true]" callFunction="rec" width="250" fieldLabel="岗位编号" name="searchOffCode"/>
+                        <control-HiddenField fieldName="parentCode" name="parentCodeHiddenField"/>
+                        <control-TextField labelAlign="right" regexText="非法输入，只能输入中文、英文、小括号和下划线" fieldName="offName" width="250" height="22" regex="/^[\w\u4e00-\u9fa5\（\）\(\)\-\s]*$/" fieldLabel="岗位名称" maxLength="32" name="searchOffName"/>
+                      </layout-table>
+                    </control-FormPanel>
+                  </layout-border>
+                  <Top/>
+                  <Bottom/>
+                  <Left/>
+                  <Right/>
+                </control-Panel>
+              </layout-border>
+            </control-Panel>
+          </layout-border>
+        </control-Panel>
+      </layout-fit>
+    </control-MainWindow>
+    <control-Window title="新增岗位" height="310" name="OffWindow" draggable="true" width="355" resizable="false">
+      <layout-fit>
+        <control-FormPanel border="false" height="260" frame="true" submitService="bizframe.authority.organization.insertOrg" name="OffFormPanel" width="300">
+          <layout-form labelAlign="right" labelWidth="75">
+            <control-TextField msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" regexText="非法输入，只能输入英文、数字和下划线" fieldName="officeCode" width="320" regex="/^\w+$/" minLength="1" fieldLabel="岗位编号" maxLength="16" name="addOffCode" allowBlank="false"/>
+            <control-TextField msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" regexText="非法输入，只能输入中文、英文、小括号和下划线" fieldName="officeName" width="320" regex="/^[\w\u4e00-\u9fa5\（\）\(\)\-\s]*$/" minLength="1" fieldLabel="岗位名称" maxLength="64" name="addOffName" allowBlank="false"/>
+            <control-TextField msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" regexText="非法输入，只能输入中文、英文、小括号和下划线" fieldName="shortName" width="320" regex="/^[\w\u4e00-\u9fa5\（\）\(\)\-\s]*$/" fieldLabel="岗位简称" maxLength="32" name="addShortName" allowBlank="false"/>
+            <control-TargetSelect targetWindow="branchSelector" msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" fieldName="branchCode" params="['addBranchCode',true,'branchNameField','addDepCode']" callFunction="rec" width="320" minLength="1" fieldLabel="所属机构" maxLength="16" name="addBranchCode" allowBlank="false"/>
+            <control-TargetSelect targetWindow="depSelector" msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" fieldName="depCode" params="['addDepCode',true,'addBranchCode','branchNameField']" callFunction="rec" width="320" minLength="1" fieldLabel="所属部门" maxLength="16" name="addDepCode" allowBlank="false"/>
+            <control-TargetSelect targetWindow="officeSelector" msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" fieldName="parentCode" params="['addParentCode',true]" callFunction="rec" width="320" minLength="1" fieldLabel="上级岗位" maxLength="16" name="addParentCode" allowBlank="false"/>
+            <control-TextArea fieldLabel="备      注" maxLength="256" fieldName="remark" msgTarget="qtip" name="addRemark" width="320"/>
+            <control-HiddenField name="branchNameField"/>
+          </layout-form>
+        </control-FormPanel>
+      </layout-fit>
+      <Bottom>
+        <control-ButtonGroup name="ButtonGroup1">
+          <layout-buttonGroup>
+            <control-Button name="save_btn" text="确定" width="75" icon="bizframe/images/icons/accept.png"/>
+            <control-Button name="reset_btn" text="重置" width="75" icon="bizframe/images/icons/refresh.png"/>
+            <control-Button name="cancel_btn" text="取消" width="75" icon="bizframe/images/icons/cross.gif"/>
+          </layout-buttonGroup>
+        </control-ButtonGroup>
+      </Bottom>
+    </control-Window>
+  </Windows>
+  <Accessory>
+    <control-TreeDataSet name="OfficeTreeDataSet" service="bizframe.authority.office.findOffice" window="MainWin">
+      <params>
+        <param name="resCode"><![CDATA["bizSetOffice"]]></param>
+        <param name="opCode"><![CDATA["bizOfficeFind"]]></param>
+      </params>
+      <fields>
+        <field name="office_code" type="String" mapping="id"/>
+        <field name="office_name" type="String" mapping="text"/>
+        <field name="parent_code" type="String" mapping="pid"/>
+      </fields>
+    </control-TreeDataSet>
+    <control-DataSet name="OffDataSet" service="bizframe.authority.office.findOffice" window="MainWin">
+      <params>
+        <param name="start"><![CDATA[0]]></param>
+        <param name="limit"><![CDATA[10]]></param>
+        <param name="resCode"><![CDATA["bizSetOffice"]]></param>
+        <param name="opCode"><![CDATA["bizOfficeFind"]]></param>
+      </params>
+      <fields>
+        <field name="office_code" type="String"/>
+        <field name="office_name" type="String"/>
+        <field name="short_name" type="String"/>
+        <field name="parent_code" type="String"/>
+        <field name="branch_code" type="String"/>
+        <field name="dep_code" type="String"/>
+        <field name="office_path" type="String"/>
+        <field name="remark" type="String"/>
+        <field name="parent_name" type="String"/>
+        <field name="branch_name" type="String"/>
+        <field name="dep_name" type="String"/>
+      </fields>
+    </control-DataSet>
+    <control-Menu window="MainWin" name="downMenu">
+      <layout-menu>
+        <control-MenuItem name="currentDown" text="当页下载" icon="bizframe/images/icons/currentPageDownload.png">
+          <layout-menuitem/>
+        </control-MenuItem>
+        <control-MenuItem name="allDown" text="全量下载" icon="bizframe/images/icons/allPageDownload.png">
+          <layout-menuitem/>
+        </control-MenuItem>
+      </layout-menu>
+    </control-Menu>
+  </Accessory>
+  <WindowScripts>
+    <WindowScript window="MainWin"><![CDATA[remote bizframe.authority.office.delOffice as DELOFFICE;
+remote bizframe.authority.office.findOffice as FINDOFFICE;
+
+include bizframe.js.checkRight;
+include bizframe.js.commonUtil;
+
+import bizframe.authority.auth;
+import bizframe.authority.branchSelector;
+import bizframe.authority.depSelector;
+import bizframe.authority.officeSelector;
+public editMod = "";    
+public tOffId = "";
+public tOffName = "";
+public officeRoot="bizroot";
+
+//当前页面下载
+event currentDown_click(Ext.menu.BaseItem baseItem, Ext.EventObject e) {
+	Ext.MessageBox.confirm('提示', '您确定下载当前页岗位数据?', function(button, text) {
+		if (button == "yes") {
+			var start = OffGrid.getStart();
+			var limit = OffGrid.getLimit();
+			//var action = ctxPath+'/bizframe.authority.office.downloadOffice.service?resCode=bizSetOffice&opCode=bizOfficeDownload&downType=0' + 
+			//					+ '&start=' + start
+			//					+ '&limit=' + limit;
+			var action = ctxPath+'/downloadExcel?resCode=bizSetOffice&opCode=bizOfficeDownload&downType=0' + 
+								+ '&start=' + start
+								+ '&limit=' + limit;
+			var authWin = new auth(MainWin).window;
+			authWin.needAuth(authWin,'bizSetOffice','bizOfficeDownload',MainWin, function(){					 
+				down(action);
+			});     
+		}
+	});
+
+}
+
+//全量下载
+event allDown_click(Ext.menu.BaseItem baseItem, Ext.EventObject e) {
+	Ext.MessageBox.confirm('提示', '您确定全量下载岗位数据?', function(button, text) {
+		if (button == "yes") {
+			//var action = ctxPath+'/bizframe.authority.office.downloadOffice.service?resCode=bizSetOffice&opCode=bizOfficeDownload';
+			var action = ctxPath+'/downloadExcel?resCode=bizSetOffice&opCode=bizOfficeDownload';
+			var authWin = new auth(MainWin).window;
+			authWin.needAuth(authWin,'bizSetOffice','bizOfficeDownload',MainWin, function(){					 
+				down(action);
+			});     
+		}
+	});
+}
+
+//下载提交
+public function down(action){
+	FormPanel1.getForm().getEl().dom.action = action;
+	FormPanel1.getForm().getEl().dom.method = 'post'; 
+	FormPanel1.getForm().getEl().dom.submit(); 
+}
+
+event addOff_btn_click(Button thisComp, Ext.EventObject e) {
+	editMod = "add";
+	
+	var OffWindow = new OffWindow();
+	OffWindow.setTitle("新增岗位");
+	OffWindow.OffFormPanel.setSubmitService("bizframe.authority.office.addOffice");
+	OffWindow.show();
+}
+event editOff_btn_click(Button thisComp, Ext.EventObject e) {
+	editMod = "update";
+	if (OffGrid.getSelectionModel().getSelections().length == 1) {
+		var OffWindow = new OffWindow();
+		OffWindow.setTitle("修改岗位");	
+		OffWindow.show();		
+	} else {
+		Ext.Msg.alert('提示','请选择一条岗位信息进行修改');
+	}
+}
+
+
+event delOff_btn_click(Button thisComp, Ext.EventObject e) {
+	if (OffGrid.getSelectionModel().getSelections().length >= 1) {
+			var officeCode = OffGrid.getSelectionModel().getSelected().get("office_code");
+			Ext.MessageBox.confirm('提示', '您确定要删除岗位信息?', function(button, text) {
+					if (button == "yes") {
+						var officeList = OffGrid.getSelectionDatas();
+						var officePaths = "";
+						for(var i=0;i<officeList.length;i++){
+							officePaths = officePaths + officeList[i].get("office_path")+"#";
+						}
+						var officeCodes = "";
+						for(var i=0;i<officeList.length;i++){
+							officeCodes = officeCodes + officeList[i].get("office_code")+"#";
+						}
+						var obj = {"officePath":officePaths,"officeCode":officeCodes,"resCode":"bizSetOffice","opCode":"bizOfficeDel"};
+						var succ = function(response, options){
+						if(typeof response == 'object'){
+							returnCode = response.returnCode;
+							errorInfo = response.errorInfo;
+						}
+							if(returnCode=='0'){
+								Ext.Msg.alert('提示','删除成功');
+								//OffDataSet.load();
+								OffGrid.refresh();
+								OfficeTree.getNodeById(officeRoot).reload();
+							}else{
+								Ext.Msg.alert("提示",errorInfo);
+							}
+						}
+						var fail = function(response, options){
+							Ext.Msg.alert('提示','删除失败');
+						}
+						var authWindow = new auth(MainWin).window;
+						authWindow.needAuth(authWindow,'bizSetOffice','bizOfficeDel',MainWin,
+						function(){
+							DELOFFICE.asynExecute(obj,succ,fail);
+						});
+						
+					}
+				});
+		} else {
+			Ext.Msg.alert('提示','请选择至少一条岗位信息进行删除');
+		}
+}
+event searchOff_btn_click(Button thisComp, Ext.EventObject e) {
+	var param = {};
+	if(searchBranchCode.getValue()!=null){
+	var value = searchBranchCode.getValue();
+		Ext.apply(param,{branchCode:value});
+	}
+	if(searchDepCode.getValue()!=null){
+	var value = searchDepCode.getValue();
+		Ext.apply(param,{depCode:value});
+	}
+	if(searchOffCode.getValue()!=null){
+	var value = searchOffCode.getValue();
+		Ext.apply(param,{officeCode:value});
+	}
+	if(searchOffName.getValue()!=null){
+		var value= searchOffName.getValue();
+		Ext.apply(param,{officeName:value});
+	}
+	Ext.apply(param,{"resCode":"bizSetOffice","opCode":"bizOfficeFind"});
+	OffDataSet.clearParams();
+	OffDataSet.setParams(param);
+	OffDataSet.load();
+}
+event searchResetBtn_click(Button thisComp, Ext.EventObject e) {
+	searchOffCode.reset();
+	searchDepCode.reset();
+	searchBranchCode.reset();
+	searchOffName.reset();
+}
+event expandTree_btn_click(Button thisComp, Ext.EventObject e) {
+	OfficeTree.root.expand(true,false);
+}
+event collapseTree_btn_click(Button thisComp, Ext.EventObject e) {
+	OfficeTree.root.collapse(true,false);
+}
+event refreshTree_btn_click(Button thisComp, Ext.EventObject e) {
+	OfficeTree.collapseAll();
+	initRoot();
+}
+event OfficeTree_click(Node thisComp, EventObject e) {
+	parentCodeHiddenField.setValue(thisComp.id);
+	var param = {};
+	Ext.apply(param,{parentCode:thisComp.id});
+	Ext.apply(param,{"resCode":"bizSetOffice","opCode":"bizOfficeFind"});
+	OffDataSet.setParams(param);
+	OffDataSet.load();
+}
+event MainWin_complete(){
+	FormPanel1.collapse();
+	initRoot();
+	var operationMap = {"bizSetOffice.bizOfficeAdd":addOff_btn,
+			   			  "bizSetOffice.bizOfficeEdit":editOff_btn,
+			   			   "bizSetOffice.bizOfficeDel":delOff_btn,
+			   			   "bizSetOffice.bizOfficeFind":searchOff_btn,
+			   			   "bizSetOffice.bizOfficeDownload":downButton};
+	checkRights(operationMap);
+}
+
+function initRoot(){
+	var obj = {"parentCode":"bizroot","resCode":"bizSetOffice","opCode":"bizOfficeFind"};
+	var succ = function(response, options){
+		    var returnCode="";
+	        var errorInfo="";
+			if(typeof response == 'object'){
+					returnCode = response.returnCode;
+					errorInfo =  response.errorInfo;
+			}
+			if(returnCode=='0'){
+			         var root = OfficeTree.getNodeById(officeRoot);
+                     officeRoot=response.dataSetResult[0].data[0].office_code;
+                     root.setId(officeRoot);
+                     root.setText(response.dataSetResult[0].data[0].office_name);
+			}else{
+				   Ext.Msg.alert("提示",errorInfo);
+			}
+		};
+	var fail = function(response, options){
+				   Ext.Msg.alert('提示',response.errorInfo);
+	};
+	FINDOFFICE.asynExecute(obj,succ,fail);	
+}]]></WindowScript>
+    <WindowScript window="OffWindow"><![CDATA[
+public officeCode = "";
+event cancel_btn_click(Button thisComp, Ext.EventObject e) {
+	close();
+	OffFormPanel.getForm().reset();
+}
+event reset_btn_click(Button thisComp, Ext.EventObject e) {
+	var record = MainWin.OffGrid.getSelectionModel().getSelected();
+	if(MainWin.editMod=='add'){
+	    OffFormPanel.getForm().reset();
+	}else if(MainWin.editMod=='update'){
+		addOffName.setValue(record.get("office_name"));
+	    addShortName.setValue(record.get("short_name"));
+	    addRemark.setValue(record.get("remark"));
+	}
+
+}
+
+event save_btn_click(Button thisComp, Ext.EventObject e) {
+	if(OffFormPanel.getForm().isValid()){
+	            if(addParentCode.getValue()==addOffCode.getValue()){
+	            		Ext.Msg.alert('错误', '上级岗位不能为本岗位');
+				     	addParentCode.setValue('');
+				     	return;
+	            }
+				if(MainWin.editMod == "update"){
+					var authWindow = new auth(MainWin).window;
+					authWindow.needAuth(authWindow,'bizSetOffice','bizOfficeEdit',MainWin,
+					function(){
+						OffFormPanel.commSubmit({"officeCode":officeCode,"resCode":"bizSetOffice","opCode":"bizOfficeEdit"});
+					});
+				}else if(MainWin.editMod == "add"){
+					var parentCode = addParentCode.getValue();
+					var branchCode = addBranchCode.getValue();
+					var depCode = addDepCode.getValue();
+					var authWindow = new auth(MainWin).window;
+					authWindow.needAuth(authWindow,'bizSetOffice','bizOfficeAdd',MainWin,
+					function(){
+						OffFormPanel.commSubmit({"parentCode":parentCode,"branchCode":branchCode,"depCode":depCode,"resCode":"bizSetOffice","opCode":"bizOfficeAdd"});
+					});
+				}     
+	}else{
+		Ext.Msg.alert('提示', '发现有输入项不符合规范');
+		return;
+	}
+}
+event OffWindow_complete() {
+		OffFormPanel.getForm().reset();
+		if(MainWin.editMod == "update"){
+		var record = MainWin.OffGrid.getSelectionModel().getSelected();
+		addOffCode.setValue(record.get("office_code"));
+		officeCode = addOffCode.getValue();
+		addOffCode.setDisabled(true);
+		addOffName.setValue(record.get("office_name"));
+		addShortName.setValue(record.get("short_name"));
+		addParentCode.setValue(record.get("parent_code"));
+		addRemark.setValue(record.get("remark"));
+		addBranchCode.setValue(record.get("branch_code"));
+		addDepCode.setValue(record.get("dep_code"));
+		addDepCode.setDisabled(true);
+		addBranchCode.setDisabled(true);
+		OffFormPanel.setSubmitService("bizframe.authority.office.editOffice");
+		}
+}
+event OffFormPanel_submitSuccess(object response) {
+	var returnCode = "-1";
+	var errorInfo;
+	if(typeof response == 'object'){
+		returnCode = response.returnCode;
+		errorInfo = response.errorInfo;
+	}
+	if(response.returnCode=='0'){
+		close();
+		MainWin.OffGrid.refresh();
+		MainWin.OfficeTree.getNodeById(MainWin.officeRoot).reload();
+		MainWin.editmod = "";
+	}else{
+		Ext.Msg.alert('提示', '更新失败<br>原因：' + errorInfo);
+	}
+}
+event OffFormPanel_submitFailure(object response) {
+	Ext.Msg.alert('提示', '调用服务失败');
+	
+	
+}
+event addDepCode_triggerclick(Hs.HsTargetSelect thisComp) {
+	if(addBranchCode.getValue()!=''){
+		return true;
+	}	
+	Ext.Msg.alert('提示','选择部门前请先选择一个机构')
+	return false;
+}]]></WindowScript>
+  </WindowScripts>
+</hsdoc>
