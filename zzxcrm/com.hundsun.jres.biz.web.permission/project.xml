@@ -20,7 +20,7 @@
     <entity>
       <key>JRESModuleCommonProperty</key>
       <value><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
-<core:JRESModuleCommonProperty xmlns:core="http://www.hundsun.com/ares/studio/jres/core/1.0.0" webContentPath="src\main\webapp"/>
+<core:JRESModuleCommonProperty xmlns:core="http://www.hundsun.com/ares/studio/jres/core/1.0.0"/>
 ]]></value>
     </entity>
   </extendMap>
