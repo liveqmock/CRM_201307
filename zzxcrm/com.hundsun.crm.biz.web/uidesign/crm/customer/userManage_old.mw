@@ -1,0 +1,2632 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hsdoc version="1.1.0">
+  <Windows>
+    <control-MainWindow height="468" name="MainWin" templatePath="window.ftl" width="1103">
+      <layout-fit>
+        <control-Panel height="200" name="Panel1" width="300">
+          <layout-border>
+            <control-Panel region="center" border="false" height="200" name="Panel2" width="300">
+              <layout-border>
+                <control-Grid hasCheckColumn="true" region="center" remoteSort="true" enableCellTip="true" width="300" height="169" dataSet="DataSet1" name="Grid1" hasCustomPageSize="true" border="false" hasPagingBar="true">
+                  <layout-GridToolbar>
+                    <control-GridItem title="用户编号" align="left" dataIndex="user_id" name="GridItem1" width="89"/>
+                    <control-GridItem title="用户昵称" align="left" dataIndex="user_name" name="GridItem2" width="128"/>
+                    <control-GridItem title="所属组织" align="left" dataIndex="org_name" name="GridItem9" width="138" sortable="true"/>
+                    <control-GridItem title="用户状态" align="center" dataIndex="user_status_display" name="GridItem5" width="80"/>
+                    <control-GridItem title="用户类别" align="center" dataIndex="user_type_display" name="GridItem8" width="77"/>
+                    <control-GridItem title="备注" align="left" dataIndex="remark" name="GridItem11" width="219" sortable="true"/>
+                    <control-GridItem title="创建日期" hidden="true" align="right" dataIndex="create_date" name="GridItem3" width="100"/>
+                    <control-GridItem title="修改日期" hidden="true" align="right" dataIndex="modify_date" name="GridItem4" width="100"/>
+                    <control-GridItem title="密码修改日期" hidden="true" align="right" dataIndex="pass_modify_date" name="GridItem7" width="100"/>
+                    <control-GridItem align="left" width="100" title="组织标识" dataIndex="org_id" sortable="true" hidden="true" name="GridItem28"/>
+                    <control-GridItem align="left" width="100" title="用户状态标识" dataIndex="user_status" sortable="true" hidden="true" name="GridItem19"/>
+                    <control-GridItem align="left" width="100" title="用户类别标识" dataIndex="user_type" sortable="true" hidden="true" name="GridItem34"/>
+                  </layout-GridToolbar>
+                </control-Grid>
+                <control-FormPanel collapseMode="mini" region="north" width="800" height="135" hideCollapseTool="true" collapsible="true" split="true" name="FormPanel1" border="false" submitService="bizframe.authority.user.queryUser">
+                  <Top/>
+                  <Bottom>
+                    <control-ButtonGroup name="ButtonGroup3">
+                      <layout-buttonGroup>
+                        <control-Button visible="false" name="queryUser_btn" text="查询" width="75" icon="bizframe/images/icons/search.png" tabIndex="2"/>
+                        <control-Button tipText="清空查询条件" name="Button22" text="重置" width="75" icon="bizframe/images/icons/refresh.png" tabIndex="3"/>
+                      </layout-buttonGroup>
+                    </control-ButtonGroup>
+                  </Bottom>
+                  <Left/>
+                  <Right/>
+                  <layout-table columns="2" fullWidth="true">
+                    <control-TextField labelAlign="right" msgTarget="qtip" regexText="非法输入，只能输入英文、数字和下划线" fieldName="userId" width="250" height="22" regex="/^[\w\u4e00-\u9fa5\.\/\,\，\.\。\“\（\）\(\)\-\s]*$/" fieldLabel="用户编号" name="TextField2" tabIndex="4"/>
+                    <control-TextField labelAlign="right" msgTarget="qtip" regexText="非法输入，只能输入中文、英文、小括号和下划线" fieldName="userName" width="250" height="22" regex="/^[\w\u4e00-\u9fa5\.\/\,\，\.\。\“\（\）\(\)\-\s]*$/" fieldLabel="用户昵称" name="TextField1" tabIndex="5"/>
+                    <control-DictComboBox labelAlign="right" containBlankValue="true" msgTarget="qtip" fieldName="userType" displayMode="true" width="250" fieldLabel="用户类别" name="UIUserType" tabIndex="6" group="BIZ_USER_CATE"/>
+                    <control-TargetSelect labelAlign="right" targetWindow="orgSelector" msgTarget="qtip" fieldName="orgName" params="['searchOrgId','searchOrgName',true]" callFunction="rec" width="250" minLength="1" fieldLabel="所属组织" name="searchOrgName" tabIndex="7"/>
+                    <control-HiddenField fieldName="orgId" name="searchOrgId"/>
+                    <control-DictComboBox defaultValue="0" labelAlign="right" msgTarget="qtip" fieldName="userStatus" displayMode="true" width="250" fieldLabel="用户状态" name="DictComboBox1" tabIndex="8" group="BIZ_USER_STATUS"/>
+                    <control-TextField labelAlign="right" enabled="false" visible="false" msgTarget="qtip" regexText="非法输入，请输入长度4位的数字" fieldName="extField1" width="250" regex="/^[0-9]{4}$/" height="22" fieldLabel="UserJobNum" name="UserJobNum" tabIndex="9"/>
+                  </layout-table>
+                </control-FormPanel>
+              </layout-border>
+              <Top>
+                <control-Toolbar name="Toolbar9">
+                  <layout-toolbar>
+                    <control-Button visible="false" name="addUser_btn" text="新增" width="75" icon="bizframe/images/icons/add.gif" tabIndex="10"/>
+                    <control-Button visible="false" name="editUser_btn" text="修改" width="75" icon="bizframe/images/icons/edit.png" tabIndex="11"/>
+                    <control-Button visible="false" name="delUser_btn" text="注销" width="75" icon="bizframe/images/icons/delete.gif" tabIndex="12"/>
+                    <control-Button visible="false" name="activButton" text="激活" width="75" icon="bizframe/images/icons/user.gif" tabIndex="13"/>
+                    <control-Button visible="false" name="lockUserBtn" text=" 锁定" width="75" icon="bizframe/images/icons/lock.png" tabIndex="14"/>
+                    <control-Button visible="false" name="unlockUserBtn" text="解锁" width="75" icon="bizframe/images/icons/user.gif" tabIndex="15"/>
+                    <control-Button visible="false" name="Button3" text="密码重置" width="75" icon="bizframe/images/icons/passReset.png" tabIndex="16"/>
+                    <control-Button name="Button2" text="用户分配" width="75" icon="bizframe/images/icons/branchAllot.png" menu="allotMenu" tabIndex="17"/>
+                    <control-Button name="Button1" text="信息查看" width="75" icon="bizframe/images/icons/user.gif" tabIndex="18"/>
+                    <control-Button name="downButton" text="下载" width="75" menu="downMenu" icon="bizframe/images/icons/download.png" tabIndex="19"/>
+                  </layout-toolbar>
+                </control-Toolbar>
+              </Top>
+              <Bottom/>
+              <Left/>
+              <Right/>
+            </control-Panel>
+            <control-Panel region="west" width="234" height="200" title="组织树" collapsible="true" split="true" name="XPanel">
+              <Top/>
+              <Bottom/>
+              <Left/>
+              <Right/>
+              <layout-border>
+                <control-Panel region="north" height="30" name="Panel3" width="100">
+                  <Top/>
+                  <Bottom/>
+                  <Left/>
+                  <Right/>
+                  <layout-table columns="1" fullWidth="true">
+                    <control-DictComboBox defaultValue="0" labelAlign="right" labelWidth="75" fieldName="dimension" displayMode="true" width="100.0%" fieldLabel="组织维度" name="dimensionCBox" tabIndex="20" group="BIZ_ORG_DIMEN"/>
+                  </layout-table>
+                </control-Panel>
+                <control-Tree region="center" collapsible="true" height="300" name="OrgTree" width="100">
+                  <layout-tree>
+                    <control-AsyncTreeNode id="bizroot" dataSet="OrgTreeDataSet" name="AsyncTreeNode1" text="组织">
+                      <layout-tree/>
+                    </control-AsyncTreeNode>
+                  </layout-tree>
+                  <Top>
+                    <control-Toolbar name="Toolbar2">
+                      <layout-toolbar>
+                        <control-Button name="expandButton" text="展开" width="75" tabIndex="21" icon="bizframe/images/icons/arrow_out.png"/>
+                        <control-Button name="closeButton" text="收缩" width="75" tabIndex="22" icon="bizframe/images/icons/arrow_in.png"/>
+                        <control-Button name="resetButton" text="刷新" width="75" icon="bizframe/images/icons/refresh.png" tabIndex="23"/>
+                      </layout-toolbar>
+                    </control-Toolbar>
+                  </Top>
+                  <Bottom/>
+                  <Left/>
+                  <Right/>
+                </control-Tree>
+              </layout-border>
+            </control-Panel>
+          </layout-border>
+          <Top/>
+        </control-Panel>
+      </layout-fit>
+    </control-MainWindow>
+    <control-Window title="新增用户" height="329" name="Window1" draggable="true" width="416" resizable="false">
+      <layout-fit>
+        <control-FormPanel border="false" height="200" frame="true" submitService="bizframe.authority.user.insertUser" name="FormPanel2" width="300">
+          <layout-form labelAlign="right" labelWidth="75">
+            <control-TextField msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" regexText="非法输入，请输入长度4-32位的数字或英文字母" fieldName="userId" width="370" height="22" regex="/^[a-zA-Z0-9]{4,32}$/" minLength="1" fieldLabel="用户编号" maxLength="32" name="UIUserId" allowBlank="false" tabIndex="73"/>
+            <control-TextField enabled="false" msgTarget="qtip" visible="false" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" regexText="非法输入，请输入长度4位的数字" fieldName="extField1" width="370" regex="/^[0-9]{4}$/" height="22" fieldLabel="UserJobNum" name="UserJobNum" allowBlank="false" tabIndex="74"/>
+            <control-TextField msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" regexText="非法输入，只能输入中文、英文、数字和下划线" fieldName="userName" width="370" height="22" regex="/^[\w\u4e00-\u9fa5\.\/\,\，\.\。\“\（\）\(\)\-\s]*$/" minLength="1" fieldLabel="用户昵称" maxLength="32" name="UIUserName" allowBlank="false" tabIndex="75"/>
+            <control-TargetSelect targetWindow="orgSelector" labelSeparator=":" msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" fieldName="orgName" params="['addOrgId','addOrgName',true]" callFunction="rec" width="370" minLength="1" fieldLabel="所属组织" name="addOrgName" allowBlank="false" tabIndex="76"/>
+            <control-DictComboBox defaultValue="0" serviceName="" msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" fieldName="userType" displayMode="true" width="370" fieldLabel="用户分类" name="UIUserType" allowBlank="false" tabIndex="77" group="BIZ_USER_CATE"/>
+            <control-DictComboBox defaultValue="0" serviceName="" msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" fieldName="userStatus" displayMode="true" width="370" fieldLabel="用户状态" name="UIUserStatus" allowBlank="false" tabIndex="78" group="BIZ_USER_STATUS"/>
+            <control-TextArea msgTarget="qtip" fieldName="remark" width="370" height="46" fieldLabel="备      注" maxLength="256" name="UIRemark" tabIndex="79"/>
+            <control-HiddenField fieldName="orgId" name="addOrgId"/>
+          </layout-form>
+        </control-FormPanel>
+      </layout-fit>
+      <Bottom>
+        <control-ButtonGroup name="Toolbar2">
+          <layout-buttonGroup>
+            <control-Button name="Button8" text="继续添加" width="75" icon="bizframe/images/icons/add2.png" tabIndex="80"/>
+            <control-Button name="Button5" text="确定" width="75" icon="bizframe/images/icons/accept.png" tabIndex="81"/>
+            <control-Button name="Button7" text="重置" width="75" icon="bizframe/images/icons/refresh.png" tabIndex="82"/>
+            <control-Button name="Button6" text="取消" width="75" icon="bizframe/images/icons/cross.gif" tabIndex="83"/>
+          </layout-buttonGroup>
+        </control-ButtonGroup>
+      </Bottom>
+    </control-Window>
+    <control-Window title="修改用户" height="337" name="Window2" draggable="true" width="412" resizable="false">
+      <layout-fit>
+        <control-FormPanel submitServiceAlias="bizSetUser$bizUserModfiy" autoload="false" width="300" height="200" dataSet="DataSet3" name="FormPanel3" frame="true">
+          <layout-form labelAlign="right" labelWidth="75">
+            <control-TextField dataField="user_id" msgTarget="qtip" editable="false" fieldName="userId" width="370" height="22" minLength="1" fieldLabel="用户编号" maxLength="32" name="UIUserId" allowBlank="false" tabIndex="63"/>
+            <control-TextField dataField="ext_field_1" enabled="false" msgTarget="qtip" visible="false" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" regexText="非法输入，请输入长度4位的数字" editable="false" fieldName="extField1" width="370" regex="/^[0-9]{4}$/" height="22" fieldLabel="UserJobNum" name="UserJobNum" allowBlank="false" tabIndex="64"/>
+            <control-TextField dataField="user_name" msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" regexText="非法输入，只能输入中文、英文、数字和下划线" fieldName="userName" width="370" height="22" regex="/^[\w\u4e00-\u9fa5\.\/\,\，\.\。\“\（\）\(\)\-\s]*$/" minLength="1" fieldLabel="用户昵称" maxLength="32" name="UIUserName" allowBlank="false" tabIndex="65"/>
+            <control-TargetSelect dataField="org_name" targetWindow="orgSelector" labelSeparator=":" msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" fieldName="orgName" params="['addOrgId','addOrgName',true]" callFunction="rec" width="370" minLength="1" fieldLabel="所属组织" name="addOrgName" allowBlank="false" tabIndex="66"/>
+            <control-DictComboBox defaultValue="0" serviceName="" msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" fieldName="userType" displayMode="true" width="370" fieldLabel="用户分类" name="UIUserType" allowBlank="false" tabIndex="67" group="BIZ_USER_CATE"/>
+            <control-DictComboBox dataField="user_status" serviceName="" msgTarget="qtip" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" fieldName="userStatus" displayMode="true" width="370" fieldLabel="用户状态" name="UIUserStatus" allowBlank="false" tabIndex="68" group="BIZ_USER_STATUS"/>
+            <control-TextArea dataField="remark" msgTarget="qtip" fieldName="remark" width="370" height="58" fieldLabel="备      注" maxLength="256" name="UIRemark" tabIndex="69"/>
+            <control-HiddenField dataField="branch_name" fieldName="branchName" name="branchNameField"/>
+            <control-HiddenField dataField="org_id" fieldName="orgId" name="addOrgId"/>
+          </layout-form>
+        </control-FormPanel>
+      </layout-fit>
+      <Bottom>
+        <control-ButtonGroup name="ButtonGroup1">
+          <layout-buttonGroup>
+            <control-Button name="Button9" text="确定" width="75" icon="bizframe/images/icons/accept.png" tabIndex="70"/>
+            <control-Button name="Button7" text="重置" width="75" icon="bizframe/images/icons/refresh.png" tabIndex="71"/>
+            <control-Button name="Button10" text="取消" width="75" icon="bizframe/images/icons/cross.gif" tabIndex="72"/>
+          </layout-buttonGroup>
+        </control-ButtonGroup>
+      </Bottom>
+    </control-Window>
+    <control-Window title="角色分配" height="400" name="Window4" draggable="true" width="853">
+      <Top/>
+      <Bottom/>
+      <Left/>
+      <Right/>
+      <layout-border>
+        <control-Panel collapseMode="mini" region="north" width="300" height="102" hideCollapseTool="true" split="true" name="Panel3">
+          <Top/>
+          <Bottom>
+            <control-Toolbar name="Toolbar4">
+              <layout-toolbar>
+                <control-Button name="Button4" text="查询" width="75" icon="bizframe/images/icons/search.png" tabIndex="32"/>
+                <control-Button name="Button11" text="重置" width="75" icon="bizframe/images/icons/refresh.png" tabIndex="33"/>
+                <control-Button name="Button12" text="分配角色" width="75" icon="bizframe/images/icons/addRight.png" tabIndex="34"/>
+                <control-Button name="Button14" text="取消分配" width="75" icon="bizframe/images/icons/deleteRight.png" tabIndex="35"/>
+              </layout-toolbar>
+            </control-Toolbar>
+          </Bottom>
+          <Left/>
+          <Right/>
+          <layout-table columns="2" fullWidth="true">
+            <control-TextField labelAlign="right" regexText="非法输入，只能输入英文、数字和下划线" fieldName="roleCode" width="250" height="22" regex="/^[\w\u4e00-\u9fa5\.\/\,\，\.\。\“\（\）\(\)\-\s]*$/" fieldLabel="角色代码" name="TextField3" tabIndex="36"/>
+            <control-TextField labelAlign="right" regexText="非法输入，只能输入中文、英文、数字和下划线" fieldName="roleName" width="250" height="22" regex="/^[\w\u4e00-\u9fa5\.\/\,\，\.\。\“\（\）\(\)\-\s]*$/" fieldLabel="角色名称" name="TextField4" tabIndex="37"/>
+            <control-DictComboBox labelAlign="right" fieldName="rightFlag" displayMode="true" width="250" fieldLabel="权限类型" name="DictComboBox1" tabIndex="38" group="BIZ_RIGHT_FLAG"/>
+          </layout-table>
+        </control-Panel>
+        <control-Panel region="center" height="200" name="Panel4" width="300">
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+          <layout-border>
+            <control-Grid pageSize="20" region="west" hasCheckColumn="true" width="422" height="200" title="待分配角色" split="true" name="Grid4">
+              <layout-GridToolbar>
+                <control-GridItem title="角色代码" align="left" dataIndex="roleCode" name="GridItem14" width="100" sortable="true"/>
+                <control-GridItem title="角色名称" align="left" dataIndex="roleName" name="GridItem15" width="121" sortable="true"/>
+                <control-GridItem title="权限类型" align="center" dataIndex="rightName" name="GridItem22" width="86" sortable="true"/>
+                <control-GridItem align="center" width="100" title="授权标志" dataIndex="rightFlag" sortable="true" hidden="true" name="GridItem26"/>
+              </layout-GridToolbar>
+              <Top/>
+              <Bottom/>
+              <Left/>
+              <Right/>
+            </control-Grid>
+            <control-Panel region="center" height="200" name="Panel5" width="300" split="true">
+              <Top/>
+              <Bottom/>
+              <Left/>
+              <Right/>
+              <layout-fit>
+                <control-Grid hasCheckColumn="true" title="已分配角色" height="296" pageSize="20" name="Grid5" width="417">
+                  <layout-GridToolbar>
+                    <control-GridItem title="角色代码" align="right" dataIndex="roleCode" name="GridItem17" width="100" sortable="true"/>
+                    <control-GridItem title="角色名称" align="center" dataIndex="roleName" name="GridItem18" width="142" sortable="true"/>
+                    <control-GridItem title="权限类型" align="center" dataIndex="rightName" name="GridItem23" width="100" sortable="true"/>
+                    <control-GridItem align="center" width="100" title="授权标志" dataIndex="rightFlag" sortable="true" hidden="true" name="GridItem27"/>
+                  </layout-GridToolbar>
+                  <Top/>
+                  <Bottom/>
+                  <Left/>
+                  <Right/>
+                </control-Grid>
+              </layout-fit>
+            </control-Panel>
+          </layout-border>
+        </control-Panel>
+      </layout-border>
+    </control-Window>
+    <control-Window title="分配组织" maximizable="true" height="395" name="Window6" draggable="true" width="659">
+      <Top>
+        <control-Toolbar name="Toolbar6">
+          <layout-toolbar>
+            <control-Button name="allotButton" text="分配" width="75" icon="bizframe/images/icons/add.gif" tabIndex="39"/>
+            <control-Button name="deleteButton" text="取消分配" width="75" icon="bizframe/images/icons/edit.png" tabIndex="40"/>
+          </layout-toolbar>
+        </control-Toolbar>
+      </Top>
+      <Bottom/>
+      <Left/>
+      <Right/>
+      <layout-border>
+        <control-FormPanel collapseMode="mini" region="north" width="200" height="149" hideCollapseTool="true" split="true" name="rearchFormPanel">
+          <Top/>
+          <Bottom>
+            <control-ButtonGroup height="38" name="ButtonGroup2">
+              <layout-buttonGroup>
+                <control-Button name="searchButton" text="查询" width="75" icon="bizframe/images/icons/search.png" tabIndex="41"/>
+                <control-Button name="resetButton" text="重置" width="75" icon="bizframe/images/icons/refresh.png" tabIndex="42"/>
+              </layout-buttonGroup>
+            </control-ButtonGroup>
+          </Bottom>
+          <Left/>
+          <Right/>
+          <layout-table columns="2" fullWidth="true">
+            <control-TextField labelAlign="right" labelWidth="75" regexText="只能输入英文、数字和下划线" fieldName="org_code" width="250" height="22" regex="/^\w+$/" fieldLabel="组织编码" maxLength="32" name="searchOrgCode" tabIndex="43"/>
+            <control-TextField labelAlign="right" labelWidth="75" regexText="只能输入中文、英文、小括号和下划线" fieldName="org_name" width="250" height="22" regex="/^[\w\u4e00-\u9fa5\（\）\(\)\-\s]*$/" fieldLabel="组织名称" maxLength="32" name="searchOrgName" tabIndex="44"/>
+            <control-DictComboBox labelAlign="right" containBlankValue="true" labelWidth="75" fieldName="org_cate" displayMode="true" width="250" fieldLabel="组织分类" name="addOrgCate" tabIndex="45" group="BIZ_ORG_CATE"/>
+            <control-DictComboBox labelAlign="right" containBlankValue="true" labelWidth="75" fieldName="org_level" displayMode="true" width="250" fieldLabel="组织级别" name="addOrgLevel" tabIndex="46" group="BIZ_ORG_LEVEL"/>
+            <control-DictComboBox labelAlign="right" containBlankValue="true" labelWidth="75" fieldName="dimension" displayMode="true" width="250" fieldLabel="组织维度" name="dimensionCBox" tabIndex="47" group="BIZ_ORG_DIMEN"/>
+            <control-DictComboBox labelAlign="right" containBlankValue="true" labelWidth="75" fieldName="auth_type" displayMode="true" width="250" fieldLabel="是否分配" name="authTypeComboBox" tabIndex="48" group="BIZ_ALLOT_TYPE"/>
+          </layout-table>
+        </control-FormPanel>
+        <control-Grid region="center" hasCheckColumn="true" remoteSort="true" autoload="false" width="300" height="200" dataSet="DataSet6" name="Grid6" hasCustomPageSize="true" hasPagingBar="true">
+          <layout-GridToolbar>
+            <control-GridItem title="组织编码" align="left" dataIndex="org_code" name="GridItem16" width="100" sortable="true"/>
+            <control-GridItem title="组织名称" align="left" dataIndex="org_name" name="GridItem24" width="186" sortable="true"/>
+            <control-GridItem title="是否分配" align="center" dataIndex="auth_type_name" name="GridItem31" width="90" sortable="true"/>
+            <control-GridItem title="组织级别" align="center" dataIndex="org_level_name" name="GridItem25" width="100" sortable="true"/>
+            <control-GridItem title="组织分类" align="center" dataIndex="org_cate_name" name="GridItem29" width="85" sortable="true"/>
+            <control-GridItem title="组织维度" align="left" dataIndex="dimension_name" name="GridItem30" width="100" sortable="true"/>
+            <control-GridItem align="left" width="100" title="组织ID" dataIndex="org_id" sortable="true" hidden="true" name="GridItem32"/>
+          </layout-GridToolbar>
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+        </control-Grid>
+      </layout-border>
+    </control-Window>
+    <control-Window title="用户授权" height="466" name="menuRightWindow" draggable="true" width="727">
+      <Top/>
+      <Bottom>
+        <control-ButtonGroup name="ButtonGroup1">
+          <layout-buttonGroup>
+            <control-Button name="sureButton" text="确定" width="75" tabIndex="24" icon="bizframe/images/icons/accept.png"/>
+            <control-Button name="exitButton" text="取消" width="75" tabIndex="25" icon="bizframe/images/icons/cross.gif"/>
+          </layout-buttonGroup>
+        </control-ButtonGroup>
+      </Bottom>
+      <Left/>
+      <Right/>
+      <layout-border>
+        <control-Panel region="north" width="300" height="72" title="权限操作说明" collapsible="true" name="Panel8" html="如果此权限来之于角色则权限名为&lt;font color=&quot;#ff0000&quot;&gt;红色&lt;/font&gt;；在节点中&lt;font color=&quot;#ff0000&quot;&gt;选中&lt;/font&gt;则授于此权限，&lt;font color=&quot;#ff0000&quot;&gt;不选中&lt;/font&gt;取消权限。单击&quot;确定&quot;提交授权请求，取消则关闭窗口" frame="true">
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+          <layout-fit/>
+        </control-Panel>
+        <control-AccordionPanel region="east" title="授权权限" height="300" name="AccordionPanel1" width="50.0%" split="true">
+          <layout-accordion>
+            <control-Panel title="菜单权限" height="200" name="Panel11" width="300">
+              <Top/>
+              <Bottom/>
+              <Left/>
+              <Right/>
+              <layout-fit>
+                <control-Tree height="100.0%" selectModel="selectChildren" autoScroll="true" name="authMenuTree" width="100.0%">
+                  <layout-tree>
+                    <control-AsyncTreeNode hideNode="true" checked="false" dataSet="authMenuTreeDataSet" expanded="true" id="bizroot" name="menuTreeAuthNode" text="菜单权限">
+                      <layout-tree/>
+                    </control-AsyncTreeNode>
+                  </layout-tree>
+                  <Top>
+                    <control-Toolbar name="Toolbar7">
+                      <layout-toolbar>
+                        <control-Button name="Button1" text="展开" width="75" tabIndex="26" icon="bizframe/images/icons/arrow_out.png"/>
+                        <control-Button name="Button2" text="收缩" width="75" tabIndex="27" icon="bizframe/images/icons/arrow_in.png"/>
+                        <control-Button name="Button3" text="刷新" width="75" icon="bizframe/images/icons/refresh.png" tabIndex="28"/>
+                      </layout-toolbar>
+                    </control-Toolbar>
+                  </Top>
+                  <Bottom/>
+                  <Left/>
+                  <Right/>
+                </control-Tree>
+              </layout-fit>
+            </control-Panel>
+            <control-Panel title="公共权限" height="200" name="Panel12" width="300">
+              <Top/>
+              <Bottom/>
+              <Left/>
+              <Right/>
+              <layout-fit>
+                <control-Tree rootVisible="true" width="100.0%" height="100.0%" collapsed="true" name="authPublicTree" autoScroll="true" selectModel="selectChildren">
+                  <layout-tree>
+                    <control-AsyncTreeNode id="bizroot" dataSet="publicTreeDataSet" name="publicTreeAuthNode" text="公共权限">
+                      <layout-tree/>
+                    </control-AsyncTreeNode>
+                  </layout-tree>
+                  <Top/>
+                  <Bottom/>
+                  <Left/>
+                  <Right/>
+                </control-Tree>
+              </layout-fit>
+            </control-Panel>
+          </layout-accordion>
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+        </control-AccordionPanel>
+        <control-AccordionPanel region="center" title="操作权限" height="300" name="AccordionPanel2" width="50.0%" split="true">
+          <layout-accordion>
+            <control-Panel title="菜单权限" height="200" name="Panel7" width="300">
+              <Top/>
+              <Bottom/>
+              <Left/>
+              <Right/>
+              <layout-fit>
+                <control-Tree height="100.0%" selectModel="selectChildren" autoScroll="true" name="opMenuTree" width="100.0%">
+                  <layout-tree>
+                    <control-AsyncTreeNode hideNode="true" checked="false" dataSet="opMenuTreeDataSet" expanded="true" id="bizroot" name="menuTreeOpNode" text="菜单权限">
+                      <layout-tree/>
+                    </control-AsyncTreeNode>
+                  </layout-tree>
+                  <Top>
+                    <control-Toolbar name="Toolbar1">
+                      <layout-toolbar>
+                        <control-Button name="expandButton" text="展开" width="75" tabIndex="29" icon="bizframe/images/icons/arrow_out.png"/>
+                        <control-Button name="closeButton" text="收缩" width="75" tabIndex="30" icon="bizframe/images/icons/arrow_in.png"/>
+                        <control-Button name="resetButton" text="刷新" width="75" icon="bizframe/images/icons/refresh.png" tabIndex="31"/>
+                      </layout-toolbar>
+                    </control-Toolbar>
+                  </Top>
+                  <Bottom/>
+                  <Left/>
+                  <Right/>
+                </control-Tree>
+              </layout-fit>
+            </control-Panel>
+            <control-Panel title="公共权限" height="200" name="Panel10" width="300">
+              <Top/>
+              <Bottom/>
+              <Left/>
+              <Right/>
+              <layout-fit>
+                <control-Tree rootVisible="true" width="100.0%" height="300" collapsed="true" name="opPublicTree" autoScroll="true" selectModel="selectChildren">
+                  <layout-tree>
+                    <control-AsyncTreeNode id="bizroot" dataSet="publicTreeDataSet" name="publicTreeOpNode" text="公共权限">
+                      <layout-tree/>
+                    </control-AsyncTreeNode>
+                  </layout-tree>
+                  <Top/>
+                  <Bottom/>
+                  <Left/>
+                  <Right/>
+                </control-Tree>
+              </layout-fit>
+            </control-Panel>
+          </layout-accordion>
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+        </control-AccordionPanel>
+      </layout-border>
+    </control-Window>
+    <control-Window title="分配岗位" height="410" name="allotPosWin" draggable="true" width="720">
+      <Top>
+        <control-Toolbar name="Toolbar6">
+          <layout-toolbar>
+            <control-Button name="allotButton" text="分配" width="75" icon="bizframe/images/icons/add.gif" tabIndex="49"/>
+            <control-Button name="deleteButton" text="取消分配" width="75" icon="bizframe/images/icons/edit.png" tabIndex="50"/>
+          </layout-toolbar>
+        </control-Toolbar>
+      </Top>
+      <Bottom/>
+      <Left/>
+      <Right/>
+      <layout-border>
+        <control-FormPanel collapseMode="mini" region="north" width="300" height="109" hideCollapseTool="true" split="true" name="rearchFormPanel">
+          <Top/>
+          <Bottom>
+            <control-ButtonGroup name="ButtonGroup4">
+              <layout-buttonGroup>
+                <control-Button name="searchButton" text="查询" width="75" tabIndex="51" icon="bizframe/images/icons/search.png"/>
+                <control-Button name="resetFormButton" text="重置" width="75" tabIndex="52" icon="bizframe/images/icons/refresh.png"/>
+              </layout-buttonGroup>
+            </control-ButtonGroup>
+          </Bottom>
+          <Left/>
+          <Right/>
+          <layout-table columns="2" fullWidth="true">
+            <control-TextField dataField="position_code" labelAlign="right" labelWidth="75" fieldName="position_code" width="250" height="22" fieldLabel="岗位编号" name="searchPositionCode" tabIndex="53"/>
+            <control-TextField dataField="position_name" labelAlign="right" labelWidth="75" fieldName="position_name" width="250" height="22" fieldLabel="岗位名称" name="searchPositionName" tabIndex="54"/>
+            <control-HiddenField fieldName="org_id" name="searchOrgId"/>
+            <control-DictComboBox labelAlign="right" containBlankValue="true" labelWidth="75" fieldName="auth_type" displayMode="true" width="250" fieldLabel="是否分配" name="authTypeComboBox" tabIndex="55" group="BIZ_ALLOT_TYPE"/>
+            <control-TargetSelect labelAlign="right" targetWindow="orgSelector" msgTarget="qtip" labelWidth="75" fieldName="org_name" params="['searchOrgId','searchOrgName',true]" callFunction="rec" width="250" minLength="1" fieldLabel="所属组织" name="searchOrgName" tabIndex="56"/>
+          </layout-table>
+        </control-FormPanel>
+        <control-Grid region="center" hasCheckColumn="true" remoteSort="true" autoload="false" enableCellTip="true" width="300" height="200" dataSet="posDataSet" name="Grid1" hasCustomPageSize="true" hasPagingBar="true">
+          <layout-GridToolbar>
+            <control-GridItem title="岗位编号" align="left" dataIndex="position_code" name="GridItem1" width="100" sortable="true"/>
+            <control-GridItem title="岗位名称" align="left" dataIndex="position_name" name="GridItem2" width="158" sortable="true"/>
+            <control-GridItem title="是否分配" align="center" dataIndex="auth_type_name" name="GridItem20" width="70" sortable="true"/>
+            <control-GridItem title="所属组织" align="left" dataIndex="org_name" name="GridItem3" width="100" sortable="true"/>
+            <control-GridItem title="备注" align="left" dataIndex="remark" name="GridItem7" width="229" sortable="true"/>
+            <control-GridItem align="left" width="100" title="组织编号" dataIndex="org_id" sortable="true" hidden="true" name="GridItem6"/>
+            <control-GridItem align="left" width="100" title="分配标识" dataIndex="auth_type" sortable="true" hidden="true" name="GridItem21"/>
+          </layout-GridToolbar>
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+        </control-Grid>
+      </layout-border>
+    </control-Window>
+    <control-Window title="信息查看" maximizable="true" height="366" name="Window7" draggable="true" width="630">
+      <Top/>
+      <Bottom/>
+      <Left/>
+      <Right/>
+      <layout-fit>
+        <control-TabPanel name="TabPanel1" width="310" activeTab="0">
+          <layout-tab>
+            <control-Panel title="基本信息" height="200" name="Panel6" width="300">
+              <Top/>
+              <Bottom/>
+              <Left/>
+              <Right/>
+              <layout-fit>
+                <control-FormPanel border="false" frame="true" height="200" name="FormPanel4" width="300">
+                  <layout-form labelAlign="right">
+                    <control-LabelField defaultValue="admin" fieldLabel="用户编号" name="Label_UserId" width="400"/>
+                    <control-LabelField defaultValue="张三" fieldLabel="用户昵称" name="Label_UserName" width="400"/>
+                    <control-LabelField fieldLabel="所属组织" name="Label_UserOrg" width="400"/>
+                    <control-LabelField fieldLabel="用户状态" name="LabelUserState" width="400"/>
+                    <control-LabelField fieldLabel="用户类别" name="LabelUserKind" width="400"/>
+                    <control-LabelField fieldLabel="创建日期" name="LabelCreateDate" width="400"/>
+                    <control-LabelField fieldLabel="备&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;注" name="LabelUserRemark" width="400"/>
+                  </layout-form>
+                  <Top/>
+                  <Bottom/>
+                  <Left/>
+                  <Right/>
+                </control-FormPanel>
+              </layout-fit>
+            </control-Panel>
+            <control-Panel title="组织信息" height="200" name="Panel9" width="300">
+              <Top/>
+              <Bottom/>
+              <Left/>
+              <Right/>
+              <layout-fit>
+                <control-Grid remoteSort="true" autoload="false" enableCellTip="true" width="300" height="200" dataSet="OrgDataSet" name="Grid1">
+                  <layout-GridToolbar>
+                    <control-GridItem title="组织维度" align="left" dataIndex="dimension_name" name="dimensionDesc" width="87"/>
+                    <control-GridItem title="组织编码" dataIndex="org_code" name="orgCode" width="100"/>
+                    <control-GridItem title="组织名称" dataIndex="org_name" name="orgName" width="219"/>
+                    <control-GridItem title="上级组织" align="left" dataIndex="parent_name" name="parentName" width="219"/>
+                    <control-GridItem title="主管组织" align="left" dataIndex="manage_name" name="manageName" width="164"/>
+                    <control-GridItem title="组织分类" align="left" dataIndex="org_cate_name" name="orgCateDesc" width="86"/>
+                    <control-GridItem title="组织级别" align="left" dataIndex="org_level_name" name="orgLevelDesc" width="86"/>
+                    <control-GridItem align="left" width="100" title="负责岗位" dataIndex="position_name" sortable="true" hidden="true" name="GridItem1"/>
+                    <control-GridItem title="备注" hidden="true" dataIndex="remark" name="remark" width="100"/>
+                    <control-GridItem align="left" width="100" title="负责岗位编号" dataIndex="position_code" sortable="true" hidden="true" name="GridItem2"/>
+                    <control-GridItem title="组织ID" hidden="true" align="left" dataIndex="org_id" name="organizationId" width="100"/>
+                    <control-GridItem align="left" width="100" title="组织索引" dataIndex="org_path" sortable="true" hidden="true" name="GridItem3"/>
+                  </layout-GridToolbar>
+                  <Top/>
+                  <Bottom/>
+                  <Left/>
+                  <Right/>
+                </control-Grid>
+              </layout-fit>
+            </control-Panel>
+            <control-Panel title="岗位信息" height="200" name="Panel15" width="300">
+              <Top/>
+              <Bottom/>
+              <Left/>
+              <Right/>
+              <layout-fit>
+                <control-Grid remoteSort="true" autoload="false" enableCellTip="true" width="300" height="200" dataSet="posDataSet" name="Grid2">
+                  <layout-GridToolbar>
+                    <control-GridItem title="岗位编号" align="left" dataIndex="position_code" name="GridItem4" width="100" sortable="true"/>
+                    <control-GridItem title="岗位名称" align="left" dataIndex="position_name" name="GridItem5" width="167" sortable="true"/>
+                    <control-GridItem title="所属组织" align="left" dataIndex="org_name" name="GridItem6" width="179" sortable="true"/>
+                    <control-GridItem title="角色名称" align="left" dataIndex="role_name" name="GridItem7" width="136" sortable="true"/>
+                    <control-GridItem title="上级岗位" align="left" dataIndex="parent_name" name="GridItem9" width="86" sortable="true"/>
+                    <control-GridItem title="备注" align="left" dataIndex="remark" name="GridItem8" width="159" sortable="true"/>
+                    <control-GridItem align="left" width="100" title="角色编号" dataIndex="role_code" sortable="true" hidden="true" name="GridItem10"/>
+                    <control-GridItem align="left" width="100" title="组织编号" dataIndex="org_id" sortable="true" hidden="true" name="GridItem11"/>
+                    <control-GridItem align="left" width="100" title="上级岗位编号" dataIndex="parent_code" sortable="true" hidden="true" name="GridItem12"/>
+                    <control-GridItem align="left" width="100" title="岗位索引" dataIndex="position_path" sortable="true" hidden="true" name="GridItem13"/>
+                  </layout-GridToolbar>
+                  <Top/>
+                  <Bottom/>
+                  <Left/>
+                  <Right/>
+                </control-Grid>
+              </layout-fit>
+            </control-Panel>
+            <control-Panel title="角色信息" height="200" name="Panel16" width="300">
+              <Top/>
+              <Bottom/>
+              <Left/>
+              <Right/>
+              <layout-fit>
+                <control-Grid remoteSort="true" autoload="false" enableCellTip="true" width="300" height="200" dataSet="roleDataSet" name="roleGrid" border="false">
+                  <layout-GridToolbar>
+                    <control-GridItem title="角色编号" align="left" dataIndex="role_code" name="role_code" width="125"/>
+                    <control-GridItem title="角色名称" align="left" dataIndex="role_name" name="role_name" width="166"/>
+                    <control-GridItem title="授权标志" align="center" dataIndex="right_flag_name" name="GridItem33" width="167" sortable="true"/>
+                  </layout-GridToolbar>
+                </control-Grid>
+              </layout-fit>
+            </control-Panel>
+            <control-Panel title="权限信息" height="200" name="Panel17" width="300">
+              <Top/>
+              <Bottom/>
+              <Left/>
+              <Right/>
+              <layout-border>
+                <control-AccordionPanel region="center" title="操作权限" height="300" name="AccordionPanel2" width="300" split="true">
+                  <layout-accordion>
+                    <control-Tree title="菜单权限" collapsible="true" height="300" name="opMenuTree" width="200">
+                      <layout-tree>
+                        <control-AsyncTreeNode hideNode="true" checked="false" dataSet="menuTreeOpDataSet" expanded="true" id="bizroot" name="menuTreeOpNode" text="菜单权限">
+                          <layout-tree/>
+                        </control-AsyncTreeNode>
+                      </layout-tree>
+                      <Top>
+                        <control-Toolbar name="Toolbar1">
+                          <layout-toolbar>
+                            <control-Button name="expandButton" text="展开" width="75" tabIndex="57" icon="bizframe/images/icons/arrow_out.png"/>
+                            <control-Button name="closeButton" text="收缩" width="75" tabIndex="58" icon="bizframe/images/icons/arrow_in.png"/>
+                            <control-Button name="resetButton" text="刷新" width="75" icon="bizframe/images/icons/refresh.png" tabIndex="59"/>
+                          </layout-toolbar>
+                        </control-Toolbar>
+                      </Top>
+                      <Bottom/>
+                      <Left/>
+                      <Right/>
+                    </control-Tree>
+                    <control-Tree title="公共权限" height="300" visible="false" name="opPublicTree" width="200">
+                      <layout-tree>
+                        <control-AsyncTreeNode id="bizroot" dataSet="publicTreeDataSet" name="publicTreeOpNode" text="公共权限">
+                          <layout-tree/>
+                        </control-AsyncTreeNode>
+                      </layout-tree>
+                      <Top/>
+                      <Bottom/>
+                      <Left/>
+                      <Right/>
+                    </control-Tree>
+                  </layout-accordion>
+                  <Top/>
+                  <Bottom/>
+                  <Left/>
+                  <Right/>
+                </control-AccordionPanel>
+                <control-AccordionPanel region="east" title="授权权限" height="300" name="AccordionPanel1" width="300" split="true">
+                  <layout-accordion>
+                    <control-Tree title="菜单权限" height="300" name="authMenuTree" width="200">
+                      <layout-tree>
+                        <control-AsyncTreeNode hideNode="true" checked="false" dataSet="menuTreeAuthDataSet" expanded="true" id="bizroot" name="menuTreeAuthNode" text="菜单权限">
+                          <layout-tree/>
+                        </control-AsyncTreeNode>
+                      </layout-tree>
+                      <Top>
+                        <control-Toolbar name="Toolbar7">
+                          <layout-toolbar>
+                            <control-Button name="expandOpButton" text="展开" width="75" tabIndex="60" icon="bizframe/images/icons/arrow_out.png"/>
+                            <control-Button name="closeOpButton" text="收缩" width="75" tabIndex="61" icon="bizframe/images/icons/arrow_in.png"/>
+                            <control-Button name="reshOpButton" text="刷新" width="75" icon="bizframe/images/icons/refresh.png" tabIndex="62"/>
+                          </layout-toolbar>
+                        </control-Toolbar>
+                      </Top>
+                      <Bottom/>
+                      <Left/>
+                      <Right/>
+                    </control-Tree>
+                    <control-Tree title="公共权限" height="300" visible="false" name="authPublicTree" width="200">
+                      <layout-tree>
+                        <control-AsyncTreeNode id="bizroot" dataSet="publicTreeDataSet" name="publicTreeAuthNode" text="公共权限">
+                          <layout-tree/>
+                        </control-AsyncTreeNode>
+                      </layout-tree>
+                      <Top/>
+                      <Bottom/>
+                      <Left/>
+                      <Right/>
+                    </control-Tree>
+                  </layout-accordion>
+                  <Top/>
+                  <Bottom/>
+                  <Left/>
+                  <Right/>
+                </control-AccordionPanel>
+              </layout-border>
+            </control-Panel>
+          </layout-tab>
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+        </control-TabPanel>
+      </layout-fit>
+    </control-Window>
+  </Windows>
+  <Accessory>
+    <control-DataSet serviceAlias="bizSetUser$bizSetUserFind" name="DataSet1" service="bizframe.authority.user._userService" usingServiceName="true" window="MainWin">
+      <params>
+        <param name="resCode"><![CDATA["bizSetUser"]]></param>
+        <param name="opCode"><![CDATA["bizSetUserFind"]]></param>
+        <param name="checkOrgPermission"><![CDATA["true"]]></param>
+      </params>
+      <fields>
+        <field name="user_id" type="String"/>
+        <field name="user_name" type="String"/>
+        <field name="user_pwd" type="String"/>
+        <field name="user_type" type="String"/>
+        <field name="user_status" type="String"/>
+        <field name="lock_status" type="String"/>
+        <field name="create_date" type="int"/>
+        <field name="modify_date" type="int"/>
+        <field name="pass_modify_date" type="int"/>
+        <field name="remark" type="String"/>
+        <field name="user_status_display" type="String"/>
+        <field name="lock_status_display" type="String"/>
+        <field name="user_type_display" type="String"/>
+        <field name="ext_field_1" type="String"/>
+        <field name="ext_field_2" type="String"/>
+        <field name="ext_field_3" type="String"/>
+        <field name="ext_field_4" type="String"/>
+        <field name="ext_field_5" type="String"/>
+        <field name="org_id" type="String"/>
+        <field name="org_name" type="String"/>
+      </fields>
+    </control-DataSet>
+    <control-Menu window="MainWin" name="downMenu">
+      <layout-menu>
+        <control-MenuItem name="currentDown" text="当页下载" icon="bizframe/images/icons/currentPageDownload.png">
+          <layout-menuitem/>
+        </control-MenuItem>
+        <control-MenuItem name="allDown" text="全量下载" icon="bizframe/images/icons/allPageDownload.png">
+          <layout-menuitem/>
+        </control-MenuItem>
+      </layout-menu>
+    </control-Menu>
+    <control-DataSet name="roleDataSet" service="bizframe.authority.role.roleQuery" usingServiceName="true" window="MainWin">
+      <params>
+        <param name="resCode"><![CDATA["bizSetRole"]]></param>
+        <param name="opCode"><![CDATA["bizSetRoleFind"]]></param>
+        <param name="role_code"><![CDATA[""]]></param>
+        <param name="role_name"><![CDATA[""]]></param>
+        <param name="right_flag"><![CDATA[""]]></param>
+        <param name="remark"><![CDATA[""]]></param>
+        <param name="start"><![CDATA[]]></param>
+        <param name="limit"><![CDATA[]]></param>
+      </params>
+      <fields>
+        <field name="role_code" type="String"/>
+        <field name="role_name" type="String"/>
+        <field name="right_flag" type="String"/>
+        <field name="rflag_name" type="String"/>
+        <field name="remark" type="String"/>
+      </fields>
+    </control-DataSet>
+    <control-Menu window="MainWin" name="opRightMenu">
+      <layout-menu>
+        <control-MenuItem name="opRightMenuItem" text="菜单授权" icon="bizframe/images/menu_auth.png">
+          <layout-menuitem/>
+        </control-MenuItem>
+        <control-MenuItem name="opRightTranceItem" text="功能授权" icon="bizframe/images/trans_auth.png">
+          <layout-menuitem/>
+        </control-MenuItem>
+      </layout-menu>
+    </control-Menu>
+    <control-Menu window="MainWin" name="authRightMenu">
+      <layout-menu>
+        <control-MenuItem name="authRightMenuItem" text="菜单授权" icon="bizframe/images/menu_auth.png">
+          <layout-menuitem/>
+        </control-MenuItem>
+        <control-MenuItem name="authRightTranceItem" text="功能授权" icon="bizframe/images/trans_auth.png">
+          <layout-menuitem/>
+        </control-MenuItem>
+      </layout-menu>
+    </control-Menu>
+    <control-Menu window="MainWin" name="allotMenu">
+      <layout-menu>
+        <control-MenuItem name="allotRightMenu" text="分配权限" icon="bizframe/images/icons/vcard_add.png">
+          <layout-menuitem/>
+        </control-MenuItem>
+        <control-MenuItem name="allotRoleMenu" text="分配角色" icon="bizframe/images/icons/roleAllot.png">
+          <layout-menuitem/>
+        </control-MenuItem>
+        <control-MenuItem name="allotOrgMenu" text="分配组织" icon="bizframe/images/icons/branchAllot.png">
+          <layout-menuitem/>
+        </control-MenuItem>
+        <control-MenuItem name="allotPosMenu" text="分配岗位" icon="bizframe/images/icons/branchAllot.png">
+          <layout-menuitem/>
+        </control-MenuItem>
+      </layout-menu>
+    </control-Menu>
+    <control-TreeDataSet name="OrgTreeDataSet" service="bizframe.authority.organization.finSubOrg" usingServiceName="true" window="MainWin">
+      <params>
+        <param name="resCode"><![CDATA["bizOrgSet"]]></param>
+        <param name="opCode"><![CDATA["bizOrgFindFromCache"]]></param>
+      </params>
+      <fields>
+        <field name="org_id" type="String" mapping="id"/>
+        <field name="org_code" type="String" mapping=""/>
+        <field name="org_name" type="String" mapping="text"/>
+        <field name="org_cate" type="String" mapping=""/>
+        <field name="dimension" type="String" mapping=""/>
+        <field name="parent_id" type="String" mapping="pid"/>
+        <field name="manage_id" type="String" mapping=""/>
+        <field name="org_level" type="String" mapping=""/>
+        <field name="leaf" type="String" mapping="leaf"/>
+      </fields>
+    </control-TreeDataSet>
+    <control-DataSet name="DataSet3" service="bizframe.authority.user._userService" usingServiceName="true" window="Window2">
+      <params>
+        <param name="resCode"><![CDATA[]]></param>
+        <param name="opCode"><![CDATA[]]></param>
+      </params>
+      <fields>
+        <field name="user_id" type="String"/>
+        <field name="user_name" type="String"/>
+        <field name="user_pwd" type="String"/>
+        <field name="user_type" type="String"/>
+        <field name="user_status" type="String"/>
+        <field name="lock_status" type="String"/>
+        <field name="create_date" type="int"/>
+        <field name="modify_date" type="int"/>
+        <field name="pass_modify_date" type="int"/>
+        <field name="remark" type="String"/>
+        <field name="user_status_display" type="String"/>
+        <field name="lock_status_display" type="String"/>
+        <field name="user_type_display" type="String"/>
+        <field name="ext_field_1" type="String"/>
+        <field name="ext_field_2" type="String"/>
+        <field name="ext_field_3" type="String"/>
+        <field name="ext_field_4" type="String"/>
+        <field name="ext_field_5" type="String"/>
+        <field name="org_id" type="String"/>
+        <field name="org_name" type="String"/>
+      </fields>
+    </control-DataSet>
+    <control-DataSet serviceAlias="bizSetUser$bizToAllotRole" name="roleDataSet" service="bizframe.authority.roleuser._roleUserService" usingServiceName="false" window="Window4">
+      <params>
+        <param name="resCode"><![CDATA["bizSetUser"]]></param>
+        <param name="opCode"><![CDATA["bizToAllotRole"]]></param>
+      </params>
+      <fields>
+        <field name="roleCode" type="String"/>
+        <field name="roleName" type="String"/>
+        <field name="rightFlag" type="String"/>
+        <field name="rightName" type="String"/>
+      </fields>
+    </control-DataSet>
+    <control-DataSet serviceAlias="bizSetUser$bizAllotRole" name="DataSet4" service="bizframe.authority.roleuser._roleUserService" usingServiceName="true" window="Window4">
+      <params>
+        <param name="resCode"><![CDATA["bizSetUser"]]></param>
+        <param name="opCode"><![CDATA["bizAllotRole"]]></param>
+      </params>
+      <fields>
+        <field name="roleCode" type="String"/>
+        <field name="roleName" type="String"/>
+        <field name="rightFlag" type="String"/>
+        <field name="rightName" type="String"/>
+      </fields>
+    </control-DataSet>
+    <control-DataSet name="DataSet6" service="bizframe.authority.user.findAssoOrgsService" usingServiceName="true" window="Window6">
+      <params>
+        <param name="resCode"><![CDATA["bizSetUser"]]></param>
+        <param name="opCode"><![CDATA["bizAssoOrg"]]></param>
+      </params>
+      <fields>
+        <field name="leaf" type="String"/>
+        <field name="org_cate_name" type="String"/>
+        <field name="org_level_name" type="String"/>
+        <field name="dimension_name" type="String"/>
+        <field name="dimension" type="String"/>
+        <field name="org_id" type="String"/>
+        <field name="manage_code" type="String"/>
+        <field name="manage_name" type="String"/>
+        <field name="parent_name" type="String"/>
+        <field name="parent_code" type="String"/>
+        <field name="remark" type="String"/>
+        <field name="ext_id" type="String"/>
+        <field name="sso_parent_code" type="String"/>
+        <field name="sso_org_code" type="String"/>
+        <field name="org_order" type="String"/>
+        <field name="org_level" type="String"/>
+        <field name="org_cate" type="String"/>
+        <field name="manage_id" type="String"/>
+        <field name="parent_id" type="String"/>
+        <field name="org_name" type="String"/>
+        <field name="org_code" type="String"/>
+        <field name="auth_type_name" type="String"/>
+        <field name="auth_type" type="String"/>
+      </fields>
+    </control-DataSet>
+    <control-TreeDataSet name="opMenuTreeDataSet" service="bizframe.authority.user.userMenuRightFind" usingServiceName="true" window="menuRightWindow">
+      <params>
+        <param name="resCode"><![CDATA["bizSetUser"]]></param>
+        <param name="opCode"><![CDATA["userMenuRightFind"]]></param>
+      </params>
+      <fields>
+        <field name="menu_name" type="String" mapping="text"/>
+        <field name="menu_code" type="String" mapping="id"/>
+        <field name="kind_code" type="String" mapping=""/>
+        <field name="trans_code" type="String" mapping=""/>
+        <field name="sub_trans_code" type="String" mapping=""/>
+        <field name="leaf" type="String" mapping="leaf"/>
+        <field name="checked" type="String" mapping="checked"/>
+        <field name="parent_code" type="String" mapping="pid"/>
+        <field name="iconCls" type="String" mapping="iconCls"/>
+      </fields>
+    </control-TreeDataSet>
+    <control-TreeDataSet name="publicTreeDataSet" service="bizframe.authority.user.userPublicRightFind" usingServiceName="true" window="menuRightWindow">
+      <params>
+        <param name="resCode"><![CDATA["bizSetUser"]]></param>
+        <param name="opCode"><![CDATA["userPublicRightFind"]]></param>
+      </params>
+      <fields>
+        <field name="menu_name" type="String" mapping="text"/>
+        <field name="menu_code" type="String" mapping="id"/>
+        <field name="kind_code" type="String" mapping=""/>
+        <field name="trans_code" type="String" mapping=""/>
+        <field name="sub_trans_code" type="String" mapping=""/>
+        <field name="leaf" type="String" mapping="leaf"/>
+        <field name="checked" type="String" mapping="checked"/>
+        <field name="parent_code" type="String" mapping="pid"/>
+        <field name="iconCls" type="String" mapping="iconCls"/>
+      </fields>
+    </control-TreeDataSet>
+    <control-TreeDataSet name="authMenuTreeDataSet" service="bizframe.authority.user.userMenuRightFind" usingServiceName="true" window="menuRightWindow">
+      <params>
+        <param name="resCode"><![CDATA["bizSetUser"]]></param>
+        <param name="opCode"><![CDATA["userMenuRightFind"]]></param>
+      </params>
+      <fields>
+        <field name="menu_name" type="String" mapping="text"/>
+        <field name="menu_code" type="String" mapping="id"/>
+        <field name="kind_code" type="String" mapping=""/>
+        <field name="trans_code" type="String" mapping=""/>
+        <field name="sub_trans_code" type="String" mapping=""/>
+        <field name="leaf" type="String" mapping="leaf"/>
+        <field name="checked" type="String" mapping="checked"/>
+        <field name="parent_code" type="String" mapping="pid"/>
+        <field name="iconCls" type="String" mapping="iconCls"/>
+      </fields>
+    </control-TreeDataSet>
+    <control-DataSet name="posDataSet" service="bizframe.authority.user.findAssoPosService" usingServiceName="true" window="allotPosWin">
+      <params>
+        <param name="resCode"><![CDATA["bizSetUser"]]></param>
+        <param name="opCode"><![CDATA["bizAssoPos"]]></param>
+      </params>
+      <fields>
+        <field name="position_code" type="String"/>
+        <field name="position_name" type="String"/>
+        <field name="parent_code" type="String"/>
+        <field name="org_id" type="String"/>
+        <field name="role_code" type="String"/>
+        <field name="position_path" type="String"/>
+        <field name="remark" type="String"/>
+        <field name="ext_field_1" type="String"/>
+        <field name="ext_field_2" type="String"/>
+        <field name="ext_field_3" type="String"/>
+        <field name="org_name" type="String"/>
+        <field name="auth_type" type="String"/>
+        <field name="auth_type_name" type="String"/>
+      </fields>
+    </control-DataSet>
+    <control-DataSet name="OrgDataSet" service="bizframe.authority.user.viewUserOrgService" usingServiceName="true" window="Window7">
+      <params>
+        <param name="opCode"><![CDATA["viewUserOrg"]]></param>
+        <param name="resCode"><![CDATA["bizSetUser"]]></param>
+      </params>
+      <fields>
+        <field name="org_path" type="String"/>
+        <field name="position_name" type="String"/>
+        <field name="position_code" type="String"/>
+        <field name="leaf" type="String"/>
+        <field name="org_cate_name" type="String"/>
+        <field name="org_level_name" type="String"/>
+        <field name="dimension_name" type="String"/>
+        <field name="dimension" type="String"/>
+        <field name="org_id" type="String"/>
+        <field name="manage_code" type="String"/>
+        <field name="manage_name" type="String"/>
+        <field name="parent_name" type="String"/>
+        <field name="parent_code" type="String"/>
+        <field name="remark" type="String"/>
+        <field name="ext_id" type="String"/>
+        <field name="sso_parent_code" type="String"/>
+        <field name="sso_org_code" type="String"/>
+        <field name="org_order" type="String"/>
+        <field name="org_level" type="String"/>
+        <field name="org_cate" type="String"/>
+        <field name="manage_id" type="String"/>
+        <field name="parent_id" type="String"/>
+        <field name="org_name" type="String"/>
+        <field name="org_code" type="String"/>
+      </fields>
+    </control-DataSet>
+    <control-DataSet name="posDataSet" service="bizframe.authority.user.viewUserPosService" usingServiceName="true" window="Window7">
+      <params>
+        <param name="opCode"><![CDATA["viewUserPos"]]></param>
+        <param name="resCode"><![CDATA["bizSetUser"]]></param>
+      </params>
+      <fields>
+        <field name="parent_name" type="String"/>
+        <field name="org_name" type="String"/>
+        <field name="role_name" type="String"/>
+        <field name="ext_field_3" type="String"/>
+        <field name="ext_field_2" type="String"/>
+        <field name="ext_field_1" type="String"/>
+        <field name="remark" type="String"/>
+        <field name="position_path" type="String"/>
+        <field name="role_code" type="String"/>
+        <field name="org_id" type="String"/>
+        <field name="parent_code" type="String"/>
+        <field name="position_name" type="String"/>
+        <field name="position_code" type="String"/>
+      </fields>
+    </control-DataSet>
+    <control-DataSet name="roleDataSet" service="bizframe.authority.user.viewUserRoleService" usingServiceName="true" window="Window7">
+      <params>
+        <param name="opCode"><![CDATA["viewUserRole"]]></param>
+        <param name="resCode"><![CDATA["bizSetUser"]]></param>
+      </params>
+      <fields>
+        <field name="right_flag" type="String"/>
+        <field name="role_name" type="String"/>
+        <field name="role_code" type="String"/>
+        <field name="right_flag_name" type="String"/>
+      </fields>
+    </control-DataSet>
+    <control-TreeDataSet name="menuTreeOpDataSet" service="bizframe.authority.user.viewUserRightService" usingServiceName="true" window="Window7">
+      <params>
+        <param name="opCode"><![CDATA["viewUserRight"]]></param>
+        <param name="resCode"><![CDATA["bizSetUser"]]></param>
+      </params>
+      <fields>
+        <field name="iconCls" type="String" mapping=""/>
+        <field name="parent_code" type="String" mapping="pid"/>
+        <field name="checked" type="String" mapping=""/>
+        <field name="leaf" type="String" mapping="leaf"/>
+        <field name="sub_trans_code" type="String" mapping=""/>
+        <field name="trans_code" type="String" mapping=""/>
+        <field name="kind_code" type="String" mapping=""/>
+        <field name="menu_code" type="String" mapping="id"/>
+        <field name="menu_name" type="String" mapping="text"/>
+      </fields>
+    </control-TreeDataSet>
+    <control-TreeDataSet name="publicTreeDataSet" service="bizframe.authority.user.userPublicRightFind" usingServiceName="true" window="Window7">
+      <params>
+        <param name="resCode"><![CDATA["bizSetUser"]]></param>
+        <param name="opCode"><![CDATA["userPublicRightFind"]]></param>
+      </params>
+      <fields>
+        <field name="menu_name" type="String" mapping="text"/>
+        <field name="menu_code" type="String" mapping="id"/>
+        <field name="kind_code" type="String" mapping=""/>
+        <field name="trans_code" type="String" mapping=""/>
+        <field name="sub_trans_code" type="String" mapping=""/>
+        <field name="leaf" type="String" mapping="leaf"/>
+        <field name="checked" type="String" mapping="checked"/>
+        <field name="parent_code" type="String" mapping="pid"/>
+        <field name="iconCls" type="String" mapping="iconCls"/>
+      </fields>
+    </control-TreeDataSet>
+    <control-TreeDataSet name="menuTreeAuthDataSet" service="bizframe.authority.user.viewUserRightService" usingServiceName="true" window="Window7">
+      <params>
+        <param name="opCode"><![CDATA["viewUserRight"]]></param>
+        <param name="resCode"><![CDATA["bizSetUser"]]></param>
+      </params>
+      <fields>
+        <field name="iconCls" type="String" mapping=""/>
+        <field name="parent_code" type="String" mapping="pid"/>
+        <field name="checked" type="String" mapping=""/>
+        <field name="leaf" type="String" mapping="leaf"/>
+        <field name="sub_trans_code" type="String" mapping=""/>
+        <field name="trans_code" type="String" mapping=""/>
+        <field name="kind_code" type="String" mapping=""/>
+        <field name="menu_code" type="String" mapping="id"/>
+        <field name="menu_name" type="String" mapping="text"/>
+      </fields>
+    </control-TreeDataSet>
+  </Accessory>
+  <WindowScripts>
+    <WindowScript window="MainWin"><![CDATA[remote bizframe.authority.user._userService as uService;
+remote bizframe.authority.organization.findOrgService   as findOrgSvc;
+include bizframe.js.checkRight;  	//引入公共权限校验js文件
+include bizframe.js.commonUtil;		//引入公共工具包js文件
+import bizframe.authority.auth;
+import bizframe.authority.branchSelector;
+import bizframe.authority.depSelector;
+import bizframe.authority.orgSelector;
+
+public extID_visible="false";
+public extID_text='';
+public extID_dbFieldName='';
+public extID_fieldName='';
+public main_authUserId="";
+public main_Right_flag="1";
+
+public tOrgRootId = "bizroot";
+public tOrgRootName = "";
+
+public orgDimension='0';
+public tOrgId = "";
+public tOrgName = "";
+private hasCheckAlllotRights=false;
+
+//"bizSetRight.bizToOpAuth":opAuthUserBtn,
+//"bizSetRight.bizToRightAuth":rightAuthUserBtn,
+
+
+
+
+event MainWin_complete() 
+{   
+ 	//FormPanel1.collapse();
+ 	OrgTreeDataSet.setParams({dimension:  orgDimension});
+ 	initRoot();
+ 	checkRights({
+		"bizSetUser.bizUserAdd":addUser_btn,
+		"bizSetUser.bizUserModfiy":editUser_btn,
+		"bizSetUser.bizSetUserFind":queryUser_btn,
+		"bizSetUser.bizUserRemove":delUser_btn,
+		"bizSetUser.bizUserActivate":activButton,
+		"bizSetUser.bizUserLock":lockUserBtn,
+		"bizSetUser.bizUserUnLock":unlockUserBtn,
+		"bizSetUser.bizResetPass":Button3
+		}
+	);
+	
+	if(top.userManageMw)
+		extID_visible=top.userManageMw.uiExtUserID_visible;
+		
+	if("true"==extID_visible.toLowerCase()){
+			extID_text=top.userManageMw.uiExtUserID_text;
+			extID_dbFieldName=top.userManageMw.uiExtUserID_dbFieldName;
+			extID_fieldName=top.userManageMw.uiExtUserID_fieldName;
+			UserJobNum.setVisible(true);
+            UserJobNum.setEnabled(true);
+            UserJobNum.setLabel(extID_text);
+            UserJobNum.fieldName=extID_fieldName;
+            
+            // 读取配置文件的配置项，为UI属性项设值。
+            UserJobNum.regex=top.userManageMw.uiExtUserID_validate;// 设置字段验证的正则表达式。
+            UserJobNum.regexText=top.userManageMw.uiExtUserID_validateText;// 设置字段验证失败后的提示信息。
+        
+			Grid1.insertColumn({header:extID_text,width:100,dataIndex : extID_dbFieldName.toLowerCase()},1);
+	}
+}
+
+//当前页面下载
+event currentDown_click(Ext.menu.BaseItem baseItem, Ext.EventObject e) {
+	var start = Grid1.getStart();
+	var limit = Grid1.getLimit();
+	//var action = ctxPath+'/bizframe.authority.user._userService.service?resCode=bizSetUser&opCode=bizUserDownlaod&downType=0'  
+	//					+ '&start=' + start
+	//					+ '&limit=' + limit; 
+	var action = ctxPath+'/downloadExcel?resCode=bizSetUser&opCode=bizUserDownlaod&downType=0'  
+						+ '&start=' + start
+						+ '&limit=' + limit; 
+	down(action);
+}
+
+//全量下载
+event allDown_click(Ext.menu.BaseItem baseItem, Ext.EventObject e) {
+	//var action = ctxPath+'/bizframe.authority.user._userService.service?resCode=bizSetUser&opCode=bizUserDownlaod';
+	var action = ctxPath+'/downloadExcel?resCode=bizSetUser&opCode=bizUserDownlaod';
+	down(action);
+}
+
+
+
+//下载提交
+public function down(action){
+	FormPanel1.getForm().getEl().dom.action = action;
+	FormPanel1.getForm().getEl().dom.method = 'post'; 
+	FormPanel1.getForm().getEl().dom.submit();
+}
+
+//查询用户列表
+event queryUser_btn_click(Button thisComp, Ext.EventObject e) {
+	if(FormPanel1.isValid()){
+	    var _param=FormPanel1.getValues();
+	    Ext.apply(_param,{opCode:'bizSetUserFind'});
+	    Ext.apply(_param,{resCode:'bizSetUser'});
+		DataSet1.setParams(_param);
+		DataSet1.load();
+	}else{
+		Ext.Msg.alert('提示', '发现有输入项不符合规范');
+	}
+}
+
+event addUser_btn_click(Button thisComp, Ext.EventObject e) {
+    if(tOrgId=='' || tOrgName==''){
+    	Ext.Msg.alert('提示','请先选择所属组织');
+    	return;
+    }
+	var win = new Window1();
+	win.show();
+}
+
+event editUser_btn_click(Button thisComp, Ext.EventObject e) {
+	var win = new Window2();
+	var counts = Grid1.getSelectionModel().getSelections().length;
+	if(counts!= 1){
+		Ext.Msg.alert('提示', '请选择一条用户记录');
+		return;
+	}
+	win.show();
+}
+
+event delUser_btn_click(Button thisComp, Ext.EventObject e) {
+	if (Grid1.getSelectionModel().getSelected() != null) {
+		var userIds = Grid1.getSelectionDatas();
+		var userIdsArray = '';
+		for(var i=0;i<userIds.length;i++){
+			var selectUserID= userIds[i].get("user_id");
+			userIdsArray += selectUserID;
+			if(i<userIds.length-1){
+				userIdsArray += ',';
+			}
+			if(top.currUserId && top.currUserId==selectUserID){
+				Ext.Msg.alert('提示', '用户不能注销自己账户');
+				return ;
+			}
+			if(top.sysUser && top.sysUser==selectUserID){
+				Ext.Msg.alert('提示', '用户不能注销系统管理员账户');
+				return ;
+			}
+		}
+		Ext.MessageBox.confirm('提示', '您真的要注销选中用户?', function(button, text) {
+			if (button == "yes") {
+				var authWin = new auth(MainWin).window;
+				authWin.needAuth(authWin,'bizSetUser','bizUserRemove',MainWin, function(){
+					var Result = uService.synExecute({userIds:userIdsArray,resCode:"bizSetUser",opCode:"bizUserRemove"});
+					if(!(Result.returnCode == 0)){
+						Ext.Msg.alert('错误',Result.errorInfo);
+					}else{
+						Ext.Msg.alert('提示','注销成功');
+						refreshGrid(Grid1);
+						//Grid1.refresh();
+					}
+				});
+			}
+		});
+	} else {
+		Ext.Msg.alert('提示','请选择至少一条用户信息进行注销');
+	}
+}
+
+function rightCheckWithServiceEntryAndResCodeAndOpCode(servEntryValue,resCodeValue,opCodeValue,Button){
+	var Result = checkRightService1.synExecute({servEntry:servEntryValue,resCode:resCodeValue,opCode:opCodeValue});
+	try{
+		if(Result.dataSetResult[0].data[0].result=='true'){
+			Button.setVisible(true);
+		}
+	}catch(err){
+		alert(err);
+	}
+}
+
+function rightCheckWithResCodeAndOpCode(resCodeValue,opCodeValue,Button){
+	var Result = checkRightByResCodeAndOpCode.synExecute({resCode:resCodeValue,opCode:opCodeValue});
+	try{
+		if(Result.dataSetResult[0].data[0].result=='true'){
+			Button.setVisible(true);
+		}
+	}catch(err){
+		alert(err);
+	}
+}
+
+
+
+event Button22_click(Button thisComp, Ext.EventObject e) {
+	FormPanel1.getForm().reset();
+}
+
+//锁定
+event lockUserBtn_click(Button thisComp, Ext.EventObject e) {
+	if (Grid1.getSelectionModel().getSelected() != null) {
+		var userIds = Grid1.getSelectionDatas();
+		var userIdsArray = "";
+		for(var i=0;i<userIds.length;i++){
+		
+		    //----20110927---huhl@hundsun.com--用户状态-----bengin--
+			/**
+			if('3'==userIds[i].get("lock_status")||'4'==userIds[i].get("lock_status")){
+				Ext.MessageBox.alert('错误','【'+userIds[i].get("user_name")+'】用户已锁定，无需锁定!');
+				return;
+			}
+			*/
+			if('2'==userIds[i].get("user_status")){
+				Ext.MessageBox.alert('错误','【'+userIds[i].get("user_name")+'】用户已锁定，无需锁定!');
+				return;
+			}
+			//----20110927---huhl@hundsun.com--用户状态-----end--
+
+			var selectUserID=userIds[i].get("user_id");
+			if(top.currUserId && top.currUserId==selectUserID){
+				    Ext.Msg.alert('提示', '用户不能锁定自己账户');
+					return ;
+			}
+			if(top.sysUser && top.sysUser==selectUserID){
+				    Ext.Msg.alert('提示', '用户不能锁定系统管理员账户');
+					return ;
+			}
+			//--20111201---huhl@hundsun.com ---BUG #1800::选中多个用户，改成锁定，或者解锁，只能完成一个用户的操作--bengin
+			userIdsArray += userIds[i].get("user_id");
+			if(i<userIds.length-1){
+				userIdsArray +=",";
+			}
+			//--20111201---huhl@hundsun.com ---BUG #1800::选中多个用户，改成锁定，或者解锁，只能完成一个用户的操作--end
+		}
+		Ext.MessageBox.confirm('提示', '您真的要锁定选中用户?', function(button, text) {
+			if (button == "yes") {
+				var authWin = new auth(MainWin).window;
+				authWin.needAuth(authWin,'bizSetUser','bizUserLock',MainWin, function(){
+					var Result = uService.synExecute({userIds:userIdsArray,resCode:"bizSetUser",opCode:"bizUserLock"});
+					if(!(Result.returnCode == 0)){
+						Ext.Msg.alert('错误',Result.errorInfo);
+					}else{
+						Ext.Msg.alert('提示','锁定成功');
+						Grid1.refresh();
+					}
+				});
+			}
+		});
+	} else {
+		Ext.Msg.alert('提示','请选择您需要锁定的用户');
+	}
+}
+
+//解锁
+event unlockUserBtn_click(Button thisComp, Ext.EventObject e) {
+	if (Grid1.getSelectionModel().getSelected() != null) {
+		var userIds = Grid1.getSelectionDatas();
+		var userIdsArray = "";
+		for(var i=0;i<userIds.length;i++){
+			//----20110927---huhl@hundsun.com--用户状态-----bengin--
+			/**
+			if('3'!=userIds[i].get("lock_status")&&'4'!=userIds[i].get("lock_status")){
+				Ext.MessageBox.alert('错误','【'+userIds[i].get("user_name")+'】用户未锁定，无需解锁!');
+				return;
+			}
+			*/
+			if('2'!=userIds[i].get("user_status")){
+				Ext.MessageBox.alert('提示','【'+userIds[i].get("user_name")+'】用户未锁定，无需解锁!');
+				return;
+			}
+			if('1'==userIds[i].get("user_status")){
+				Ext.MessageBox.alert('提示','【'+userIds[i].get("user_name")+'】用户是注销用户，请先激活!');
+				return;
+			}
+			//----20110927---huhl@hundsun.com--用户状态-----end--
+
+			//--20111201---huhl@hundsun.com ---BUG #1800::选中多个用户，改成锁定，或者解锁，只能完成一个用户的操作--bengin
+			userIdsArray += userIds[i].get("user_id");
+			if(i<userIds.length-1){
+				userIdsArray += ",";
+			}
+			//--20111201---huhl@hundsun.com ---BUG #1800::选中多个用户，改成锁定，或者解锁，只能完成一个用户的操作--end
+		}
+		Ext.MessageBox.confirm('提示', '您真的要解锁选中用户?', function(button, text) {
+			if (button == "yes") {
+				var authWin = new auth(MainWin).window;
+				authWin.needAuth(authWin,'bizSetUser','bizUserUnLock',MainWin, function(){
+					var Result = uService.synExecute({userIds:userIdsArray,resCode:"bizSetUser",opCode:"bizUserUnLock"});
+					if(!(Result.returnCode == 0)){
+						Ext.Msg.alert('错误',Result.errorInfo);
+					}else{
+						Ext.Msg.alert('提示','解锁成功');
+						Grid1.refresh();
+					}
+					}
+				);
+			}
+		});
+	} else {
+		Ext.Msg.alert('提示','请选择您需要解锁的用户');
+	}
+}
+event GridItem3_renderer(string value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store) {
+	return changeDatePattern(value);
+}
+function changeDatePattern(value){
+	value = ''+value;
+	if(value==''||value=='0')
+		return '';
+	var year = value.substring(0,4);
+	var month = value.substring(4,6);
+	var day = value.substring(6,8);
+	return year+"-"+month+"-"+day;
+}
+event GridItem4_renderer(string value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store) {
+	return changeDatePattern(value);
+}
+event GridItem7_renderer(string value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store) {
+	return changeDatePattern(value);
+}
+
+event Button1_click(Button thisComp, Ext.EventObject e) {
+
+
+	var counts = Grid1.getSelectionModel().getSelections().length;
+	if(counts!= 1){
+		Ext.Msg.alert('提示', '请选择一条用户记录');
+		return;
+	}
+	
+  	var win=new Window7();
+  	win.show();
+}
+event Button3_click(Button thisComp, Ext.EventObject e) {
+	if (Grid1.getSelectionModel().getSelected() != null) {
+		var userIds = Grid1.getSelectionDatas();
+	//--20111213--wangnan06675@hundsun.com---TASK #2708::[证券三部/郭宁][XQ:2011120500006]HSZQYXFWPT-1799/郭宁 用户设置密码批量重置--begin-
+		var userIdsArray = "";
+		for(var i=0;i<userIds.length;i++){
+			if(top.sysUser && top.sysUser==userIds[i].get("user_id")){
+				Ext.MessageBox.alert('错误','管理员密码不可重置!');
+				return;
+			}
+			userIdsArray  += userIds[i].get("user_id");
+			if(i<userIds.length-1){
+				userIdsArray  += ","
+			}
+		}
+	//--20111213--wangnan06675@hundsun.com---TASK #2708::[证券三部/郭宁][XQ:2011120500006]HSZQYXFWPT-1799/郭宁 用户设置密码批量重置--end-	
+		Ext.MessageBox.confirm('提示', '您真的要重置选中用户密码?', function(button, text) {
+			if (button == "yes") {
+				var authWin = new auth(MainWin).window;
+				authWin.needAuth(authWin,'bizSetUser','bizResetPass',MainWin, function(){
+				  var Result = uService.synExecute({userIds:userIdsArray,resCode:"bizSetUser",opCode:"bizResetPass"});
+					if(!(Result.returnCode == 0)){
+						Ext.Msg.alert('错误',Result.errorInfo);
+					}else{
+					   //--2012.01.05-huhl@hundsun.com--在重置密码后给管理员显示重置后的密码---bengin-----
+					   
+					   /**格式如下：
+					   { dataSetResult : [{"totalCount":-1,"dataSetName":"result","data":[{"defaultPwd":"111111"}]}],
+						 returnCode : 0,errorNo : "0",errorInfo : null}*/
+					   var   biz_defaultPwd=null;
+					   if(Result.dataSetResult && Result.dataSetResult[0] 
+					   && Result.dataSetResult[0].data && Result.dataSetResult[0].data[0]
+					   && Result.dataSetResult[0].data[0].defaultPwd ){
+					   biz_defaultPwd=Result.dataSetResult[0].data[0].defaultPwd;
+					   }
+					   //--2012.01.05-huhl@hundsun.com--在重置密码后给管理员显示重置后的密码---end-----
+					   if(biz_defaultPwd==undefined || biz_defaultPwd==null){
+					   		Ext.Msg.alert('提示','重置密码成功');
+					   }else{
+					   		Ext.Msg.alert('提示','重置密码成功,密码为:\"'+biz_defaultPwd+'\"');
+					   }
+						Grid1.refresh();
+					}
+				});
+			}
+		});
+	} else {
+		Ext.Msg.alert('提示','请选择您需要重置密码的用户');
+	}
+}
+
+//根据菜单号操作授权
+event opRightMenuItem_click(Ext.menu.BaseItem baseItem, Ext.EventObject e) {
+	var counts = Grid1.getSelectionModel().getSelections();
+	if(counts!= null&&counts.length!=1){
+		Ext.Msg.alert('提示', '请选择一条用户记录');
+		return;
+	}
+	main_authUserId=Grid1.getSelectionModel().getSelected().get('user_id');
+	var win = new menuRightWindow();	
+	
+	win.show();
+}
+//根据功能点操作授权
+event opRightTranceItem_click(Ext.menu.BaseItem baseItem, Ext.EventObject e) {
+	var counts = Grid1.getSelectionModel().getSelections();
+	if(counts!= null&&counts.length!=1){
+		Ext.Msg.alert('提示', '请选择一条用户记录');
+		return;
+	}
+	var win = new Window3();
+	win.show();
+}
+//根据菜单号权限授权
+event authRightMenuItem_click(Ext.menu.BaseItem baseItem, Ext.EventObject e) {
+	var counts = Grid1.getSelectionModel().getSelections();
+	if(counts!= null&&counts.length!=1){
+		Ext.Msg.alert('提示', '请选择一条用户记录');
+		return;
+	}
+	main_authUserId=Grid1.getSelectionModel().getSelected().get('user_id');
+	var win = new menuRightWindow();	
+	win.show();
+	
+}
+//根据功能点权限授权
+event authRightTranceItem_click(Ext.menu.BaseItem baseItem, Ext.EventObject e) {
+	var counts = Grid1.getSelectionModel().getSelections();
+	if(counts!= null&&counts.length!=1){
+		Ext.Msg.alert('提示', '请选择一条用户记录');
+		return;
+	}
+	var win = new Window5();
+	win.show();
+}
+
+event OrgTree_click(Node node, EventObject e) {
+	OrgTreeDataSet.setParams({dimension: orgDimension });
+	
+	tOrgId=node.id;
+	tOrgName=node.text;
+	
+	FormPanel1.getForm().reset();
+	searchOrgName.setValue(tOrgName);
+	searchOrgId.setValue(tOrgId);
+	/*
+	var _limit=Grid1.getLimit();
+	var _start=1;
+	
+	var param = {};
+	Ext.apply(param,{resCode:'bizSetUser'});
+	Ext.apply(param,{opCode:'bizSetUserFind'});
+	Ext.apply(param,{orgId: tOrgId});
+	Ext.apply(param,{orgName: tOrgName});
+	
+	Ext.apply(param,{start :_start});
+	Ext.apply(param,{limit :_limit});
+	*/
+	var pa=FormPanel1.getValues();
+	//DataSet1.clearParams();	
+	//Grid1.clear();
+	
+	DataSet1.setParams(pa);
+	//增加全部按钮可用
+	unEnableButtonsOnToolBar();
+	DataSet1.load();
+	
+}
+//组织维度改变
+event dimensionCBox_select(Hs.HsCheckCombo combo, Ext.data.Record record, Number index) {
+	tOrgId='';
+	tOrgName='';
+	orgDimension=record.get('dictItemCode');
+	OrgTreeDataSet.setParams({dimension: orgDimension });
+	OrgTreeDataSet.setParams({parent_id: tOrgRootId });
+	OrgTree.getNodeById(tOrgRootId).reload();
+}
+function initRoot(){
+	var obj = {"parent_id":"bizroot","resCode":"bizOrgSet","opCode":"bizOrgFind"};
+	var succ = function(response, options){
+	        var returnCode="";
+	        var errorInfo="";
+			if(typeof response == 'object'){
+					returnCode = response.returnCode;
+					errorInfo =  response.errorInfo;
+			}
+			if(returnCode=='0'){
+			         var root = OrgTree.getNodeById(tOrgRootId);
+                     tOrgRootId=response.dataSetResult[0].data[0].org_id;
+                     tOrgRootName=response.dataSetResult[0].data[0].org_name;
+                     root.setId(tOrgRootId);
+                     root.setText(tOrgRootName);
+                     root.expand(false,false);
+				     
+			}else{
+				   Ext.Msg.alert("提示",errorInfo);
+			}
+		};
+	var fail = function(response, options){
+				   Ext.Msg.alert('提示',response.errorInfo);
+	};
+	findOrgSvc.asynExecute(obj,succ,fail);	
+}
+
+//分配权限
+event allotRightMenu_click(Ext.menu.BaseItem baseItem, Ext.EventObject e) {
+	var counts = Grid1.getSelectionModel().getSelections();
+	if(counts!= null&&counts.length!=1){
+		Ext.Msg.alert('提示', '请选择一条用户记录');
+		return;
+	}
+	main_authUserId=Grid1.getSelectionModel().getSelected().get('user_id');
+	var win = new menuRightWindow();
+	win.setTitle('给用户【'+Grid1.getSelectionModel().getSelected().get('user_name')+'】分配权限');	
+	win.show();
+}
+//分配角色
+event allotRoleMenu_click(Ext.menu.BaseItem baseItem, Ext.EventObject e) {
+	var counts = Grid1.getSelectionModel().getSelections();
+	if(counts!= null&&counts.length!=1){
+		Ext.Msg.alert('提示', '请选择一个用户');
+		return;
+	}
+	var win = new Window4();
+	win.setTitle('给用户【'+Grid1.getSelectionModel().getSelected().get('user_name')+'】分配角色');	
+	win.show();
+}
+//分配组织
+event allotOrgMenu_click(Ext.menu.BaseItem baseItem, Ext.EventObject e) {
+	var counts = Grid1.getSelectionModel().getSelections();
+	if(counts!= null&&counts.length!=1){
+		Ext.Msg.alert('提示', '请选择一条用户记录');
+		return;
+	}
+	var win = new Window6();
+	win.setTitle('给用户【'+Grid1.getSelectionModel().getSelected().get('user_name')+'】分配组织');	
+	win.show();
+}
+
+event allotMenu_beforeshow(Ext.Component thisComp) {
+	if(!hasCheckAlllotRights){
+			checkRights({
+			"bizSetUser.bizGiveUR":allotRoleMenu,
+			"bizSetUser.bizAssoOrg":allotOrgMenu,
+			"bizSetUser.bizAssoPos":allotPosMenu,
+			"bizSetUser.userMenuRightFind":allotRightMenu
+			}
+		);
+		hasCheckAlllotRights=true;
+	}
+}
+
+event userStatuMenu_beforeshow(Ext.Component thisComp) {
+	if(!hasCheckUserStatus){
+	}
+	hasCheckUserStatus=true;
+}
+//分配岗位
+event allotPosMenu_click(Ext.menu.BaseItem baseItem, Ext.EventObject e) {
+	var counts = Grid1.getSelectionModel().getSelections();
+	if(counts!= null&&counts.length!=1){
+		Ext.Msg.alert('提示', '请选择一条用户记录');
+		return;
+	}
+	var win = new allotPosWin();
+	win.setTitle('给用户 【'+Grid1.getSelectionModel().getSelected().get('user_name')+'】分配岗位');	
+	win.show();
+}
+
+
+
+event expandButton_click(Button thisComp, Ext.EventObject e) {
+	if(tOrgId==''){
+    	Ext.Msg.alert('提示','请先选择所属组织');
+    	return;
+    }
+   	var selectNode=OrgTree.getNodeById(tOrgId);
+   	if(!selectNode){
+   		Ext.Msg.alert('提示','请刷新');
+   		return;
+   	}
+    OrgTreeDataSet.setParams({isSynTree : true});
+	selectNode.reload();
+	selectNode.expand(true,false);
+		
+   	//var paths=selectNode.getPath().split("/");
+   	//if(paths.length>=2+2){
+    //}else{
+   	//	Ext.Msg.alert('提示','此菜单不支持展开,两层或两层以外节点可展开');
+    //}
+}
+
+
+
+event closeButton_click(Button thisComp, Ext.EventObject e) {
+	if(tOrgId==''){
+    	Ext.Msg.alert('提示','请先选择所属组织');
+    	return;
+    }
+    OrgTree.getNodeById(tOrgId).collapse(true,false);
+}
+event resetButton_click(Button thisComp, Ext.EventObject e) {
+	tOrgId='';
+	tOrgName='';
+    OrgTree.collapseAll();
+	initRoot();
+	OrgTree.getNodeById(tOrgRootId).reload();
+	
+}
+
+event activButton_click(Button thisComp, Ext.EventObject e) {
+	if (Grid1.getSelectionModel().getSelected() != null) {
+		var userIds = Grid1.getSelectionDatas();
+		var userIdsArray = '';
+		for(var i=0;i<userIds.length;i++){
+						var selectUserID= userIds[i].get("user_id");
+						userIdsArray += selectUserID;
+						if(i<userIds.length-1){
+						  userIdsArray +=',';
+						}
+						if(top.currUserId && top.currUserId==selectUserID){
+							    Ext.Msg.alert('提示', '用户不能激活自己账户');
+								return ;
+						}
+						if(top.sysUser && top.sysUser==selectUserID){
+							    Ext.Msg.alert('提示', '用户不能激活系统管理员账户');
+								return ;
+						}
+						if('0'==userIds[i].get("user_status")){
+							Ext.MessageBox.alert('提示','用户【'+userIds[i].get("user_name")+'】已经是正常用户,无需激活!');
+							return;
+						}
+						if('2'==userIds[i].get("user_status")){
+							Ext.MessageBox.alert('提示','用户【'+userIds[i].get("user_name")+'】是锁定用户,请先解锁!');
+							return;
+						}
+						
+		}
+		Ext.MessageBox.confirm('提示', '您真的要激活选中用户?', function(button, text) {
+			if (button == "yes") {
+				var authWin = new auth(MainWin).window;
+				authWin.needAuth(authWin,'bizSetUser','bizUserActivate',MainWin, function(){
+					var Result = uService.synExecute({userIds:userIdsArray,resCode:"bizSetUser",opCode:"bizUserActivate"});
+					if(!(Result.returnCode == 0)){
+						Ext.Msg.alert('错误',Result.errorInfo);
+					}else{
+						Ext.Msg.alert('提示','激活成功');
+						refreshGrid(Grid1);
+						//Grid1.refresh();
+					}
+				});
+			}
+		});
+	} else {
+		Ext.Msg.alert('提示','请选择至少一条注销用户信息进行激活操作');
+	}
+}
+
+
+
+/**event Grid1_rowclick(Hs.HsGrid thisComp, Number rowIndex, Ext.EventObject e) {
+	var records=Grid1.getSelectionDatas();
+	for(var i=0;i<records.length;i++){
+		var userStatus =  records[i].get("user_status");
+		if(userStatus && userStatus=='1'){
+			enableButtonsOnToolBar();
+			return;
+		}
+				    
+	}
+	unEnableButtonsOnToolBar();
+}*/
+
+event OrgTree_beforeload(Node node) {
+    OrgTreeDataSet.setParams({isSynTree : true});
+}
+event GridItem5_renderer(Object value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store) {
+	var status=record.get('user_status');
+	if(status=="1"){//注销
+		 value='<font  color="#FF0000">'+value+'</font>';
+    }if(status=="2"){//锁定
+     	 value='<font  color="#008000">'+value+'</font>';
+    }
+    return value;
+}
+//除了激活的按钮，其他都不显示
+  function enableButtonsOnToolBar(){
+    addUser_btn.setEnabled(false);
+    editUser_btn.setEnabled(false);
+    delUser_btn.setEnabled(false);
+    lockUserBtn.setEnabled(false);
+    unlockUserBtn.setEnabled(false);
+    Button1.setEnabled(false);
+    Button2.setEnabled(false);
+    Button3.setEnabled(false);
+    downButton.setEnabled(false);
+  }
+  //全部按钮显示
+  function unEnableButtonsOnToolBar(){
+    addUser_btn.setEnabled(true);
+    editUser_btn.setEnabled(true);
+    delUser_btn.setEnabled(true);
+    lockUserBtn.setEnabled(true);
+    unlockUserBtn.setEnabled(true);
+    activButton.setEnabled(true);
+    Button2.setEnabled(true);
+    Button1.setEnabled(true);
+    Button3.setEnabled(true);
+    downButton.setEnabled(true);
+  }
+
+event Grid1_mouseup(Ext.EventObject e) {
+	var records=Grid1.getSelectionDatas();
+	for(var i=0;i<records.length;i++){
+		var userStatus =  records[i].get("user_status");
+		if(userStatus && userStatus=='1'){
+			enableButtonsOnToolBar();
+			return;
+		}
+				    
+	}
+	unEnableButtonsOnToolBar();
+}
+event Grid1_refresh(Hs.HsGrid thisCmp) {
+	unEnableButtonsOnToolBar();
+}]]></WindowScript>
+    <WindowScript window="Window1"><![CDATA[remote bizframe.authority.user._userService as uService;
+
+event Window1_complete() {
+     if("true"==MainWin.extID_visible.toLowerCase()){
+        UserJobNum.setVisible(true);
+        UserJobNum.setEnabled(true);
+        UserJobNum.setLabel(MainWin.extID_text);
+        UserJobNum.fieldName=MainWin.extID_fieldName;
+        
+        // 读取配置文件的配置项，为UI属性项设值。
+        UserJobNum.regex=top.userManageMw.uiExtUserID_validate;// 设置字段验证的正则表达式。
+        UserJobNum.regexText=top.userManageMw.uiExtUserID_validateText;// 设置字段验证失败后的提示信息。
+
+        
+     }
+     addOrgName.setValue(MainWin.tOrgName);
+     addOrgName.defaultValue=MainWin.tOrgName;
+     addOrgId.setValue(MainWin.tOrgId);
+     addOrgId.defaultValue=MainWin.tOrgId;
+     //searchDepCode.setEnabled(false);
+}
+
+event Button5_click(Button thisComp, Ext.EventObject e) {
+	if(FormPanel2.getForm().isValid()){
+		var authWin = new auth(MainWin).window;
+		authWin.needAuth(authWin,'bizSetUser','bizUserAdd',MainWin, function(){
+			var _values=FormPanel2.getValues();
+			Ext.apply(_values,{resCode:"bizSetUser",opCode:"bizUserAdd"});
+			Ext.apply(_values,{userStatus : UIUserStatus.getValue()});
+			var response = uService.synExecute(_values);
+			if(!(response.returnCode == 0)){
+				Ext.Msg.alert('错误',response.errorInfo);
+			}else{
+				Ext.Msg.alert('提示','新增用户成功',
+					function(){
+						
+						var _userId=UIUserId.getValue();
+						var _orgName=addOrgName.getValue();
+						var _orgId=addOrgId.getValue();
+						var _uIUserStatus=UIUserStatus.getValue();
+						
+						MainWin.FormPanel1.getForm().reset();						
+						MainWin.TextField2.setValue(_userId);
+						MainWin.searchOrgName.setValue(_orgName);
+						MainWin.searchOrgId.setValue(_orgId);
+						MainWin.DictComboBox1.setValue(_uIUserStatus);
+						
+						var _param=MainWin.FormPanel1.getValues();
+						MainWin.DataSet1.setParams(_param);
+						MainWin.Grid1.refresh();
+						//var param = {};
+						//Ext.apply(param,{userId:_userId});					
+						//Ext.apply(param,{resCode:'bizSetUser'});
+						//Ext.apply(param,{opCode:'bizSetUserFind'});
+						//MainWin.DataSet1.clearParams();
+						//MainWin.DataSet1.setParams(param);
+						//MainWin.DataSet1.load();
+						//FormPanel2.getForm().reset();
+						close();		
+					}
+				);
+			}
+		});
+	}
+	else
+		Ext.Msg.alert('错误',"发现有输入项不符合规范!");
+}
+event Button7_click(Button thisComp, Ext.EventObject e) {
+	FormPanel2.getForm().reset();
+	addOrgId.setValue(addOrgId.defaultValue);
+}
+event Button6_click(Button thisComp, Ext.EventObject e) {
+	FormPanel2.getForm().reset();
+	close();
+}
+event Button8_click(Button thisComp, Ext.EventObject e) {
+	if(FormPanel2.getForm().isValid()){
+		var authWin = new auth(MainWin).window;
+		authWin.needAuth(authWin,'bizSetUser','bizUserAdd',MainWin, function(){
+			var _values=FormPanel2.getValues();
+			Ext.apply(_values,{resCode:"bizSetUser",opCode:"bizUserAdd"});
+			Ext.apply(_values,{userStatus : UIUserStatus.getValue()});
+			var response = uService.synExecute(_values);
+			if(!(response.returnCode == 0)){
+				Ext.Msg.alert('错误',response.errorInfo);
+			}else{
+				Ext.Msg.alert('提示','新增用户成功',
+					function(){
+						//MainWin.Grid1.refresh();
+						var _userId=UIUserId.getValue();
+						var _orgName=addOrgName.getValue();
+						var _orgId=addOrgId.getValue();
+						
+						MainWin.FormPanel1.getForm().reset();						
+						MainWin.TextField2.setValue(_userId);
+						MainWin.searchOrgName.setValue(_orgName);
+						MainWin.searchOrgId.setValue(_orgId);
+
+						var _param=MainWin.FormPanel1.getValues();
+						MainWin.DataSet1.setParams(_param);
+						//MainWin.Grid1.refresh();
+						//var param = {};
+						//Ext.apply(param,{userId:_userId});					
+						
+						//Ext.apply(param,{resCode:'bizSetUser'});
+						//Ext.apply(param,{opCode:'bizSetUserFind'});
+						//MainWin.DataSet1.clearParams();
+						
+						//MainWin.DataSet1.setParams(param);
+						MainWin.DataSet1.load();
+						UIUserId.setValue('');
+						UIUserName.setValue('');
+						UIRemark.setValue('');
+					}
+				);
+			}
+		});
+	}
+	else
+		Ext.Msg.alert('错误',"发现有输入项不符合规范!");
+}
+
+event searchDepCode_triggerclick(Hs.HsTargetSelect thisComp) {
+	if(searchBranchCode.getValue()!=''){
+		return true;
+	}
+	
+	Ext.Msg.alert('提示','选择部门前请先选择一个机构')
+	return false;
+}]]></WindowScript>
+    <WindowScript window="Window2"><![CDATA[remote bizframe.authority.user._userService as uService;
+event Button9_click(Button thisComp, Ext.EventObject e) {
+	if(FormPanel3.getForm().isValid()){
+	var authWin = new auth(MainWin).window;
+		authWin.needAuth(authWin,'bizSetUser','bizUserModfiy',MainWin, function(){
+			//var _values=FormPanel2.getValues();
+			//Ext.apply(_values,{resCode:"bizSetUser",opCode:"bizUserModfiy"});
+			//Ext.apply(_values,{userStatus : UIUserStatus.getValue(), lockStatus : UILockStatus.getValue()});
+			var values=FormPanel3.getValues();
+			Ext.apply(values,{resCode:"bizSetUser",opCode:"bizUserModfiy"});
+			
+			var response = uService.synExecute(values);
+			if(!(response.returnCode == 0)){
+				Ext.Msg.alert('错误',response.errorInfo);
+			}else{
+				Ext.Msg.alert('提示','修改用户成功',
+					function(){
+					
+						//MainWin.Grid1.clear();
+						MainWin.Grid1.refresh();
+							
+					 /*
+					 var _param=	MainWin.DataSet1.getParams();
+					 var _limit=MainWin.Grid1.getLimit();
+				     var _start=MainWin.Grid1.getStart();
+				     Ext.apply(_param,{start :_start});
+				     Ext.apply(_param,{limit :_limit});
+					 MainWin.DataSet1.load();
+					 */
+					 close();					
+					}
+				);
+			}
+		});
+	
+	/*
+		
+		var authWin = new auth(MainWin).window;
+		authWin.needAuth(authWin,'bizSetUser','bizUserModfiy',MainWin, function(){
+		var values=FormPanel3.getValues();
+		Ext.apply(values,{resCode:"bizSetUser",opCode:"bizUserModfiy"});
+		FormPanel3.commSubmit(values);
+		
+		});
+		*/
+	}
+	else
+		Ext.Msg.alert('错误',"发现有输入项不符合规范!");
+}
+event Button10_click(Button thisComp, Ext.EventObject e) {
+	close();
+}
+event Window2_complete() {
+	
+    if("true"==MainWin.extID_visible.toLowerCase()){
+        UserJobNum.setVisible(true);
+        UserJobNum.setEnabled(true);
+        UserJobNum.setLabel(MainWin.extID_text);
+        UserJobNum.fieldName=MainWin.extID_fieldName;
+        
+        // 读取配置文件的配置项，为UI属性项设值。
+        UserJobNum.regex=top.userManageMw.uiExtUserID_validate;// 设置字段验证的正则表达式。
+        UserJobNum.regexText=top.userManageMw.uiExtUserID_validateText;// 设置字段验证失败后的提示信息。
+    }
+    var record = MainWin.Grid1.getSelectionModel().getSelected();
+    UIUserId.setValue(record.get('user_id'));
+	UIUserId.defaultValue=record.get('user_id');
+	
+	UserJobNum.setValue(record.get('ext_field_1'));
+	UserJobNum.defaultValue=record.get('ext_field_1');
+	
+    UIUserName.setValue(record.get('user_name'));
+	UIUserName.defaultValue=record.get('user_name');
+	
+	addOrgName.setValue(record.get('org_name'));
+	addOrgName.defaultValue=record.get('org_name');
+	
+	addOrgId.setValue(record.get('org_id'));
+	addOrgId.defaultValue=record.get('org_id');
+	
+	UIUserType.setValue(record.get('user_type'));
+	UIUserType.defaultValue=record.get('user_type');
+	
+	UIUserStatus.setValue(record.get('user_status'));
+	UIUserStatus.defaultValue=record.get('user_status');
+	
+	/**
+	UILockStatus.setValue(record.get('lock_status'));
+	UILockStatus.defaultValue=record.get('lock_status');*/
+	
+	UIRemark.setValue(record.get('remark'));
+	UIRemark.defaultValue=record.get('remark');
+	
+	/**20111111 huhl@hundsun.com  用用户昵称登陆   bengin**/
+	if(top.BIZ_USER_LOGIN_NAME && "user_name"==top.BIZ_USER_LOGIN_NAME){
+		UIUserName.setEditable(false);
+	}
+	/**20111111 huhl@hundsun.com  用用户昵称登陆   end **/
+}
+
+event Button7_click(Button thisComp, Ext.EventObject e) {
+     FormPanel3.getForm().reset();
+}
+]]></WindowScript>
+    <WindowScript window="Window4"><![CDATA[remote bizframe.authority.roleuser._roleUserService as roleUserService;
+
+var authorizedBy =  MainWin.Grid1.getSelectionModel().getSelected().get('user_id');
+
+event Button12_click(Button thisComp, Ext.EventObject e) {
+	var record = Grid4.getSelectionModel().getSelected();
+	if (record == null) {
+		Ext.Msg.alert('提示', '请选择一个待分配角色');
+		return;
+	}
+	
+	var record = MainWin.Grid1.getSelectionModel().getSelected();
+	var selectUserID=record.get('user_id');
+	if(top.currUserId && top.sysUser){
+		if(top.currUserId && top.currUserId==selectUserID){
+	    Ext.Msg.alert('提示', '普通用户不能为自身分配角色');
+		return ;
+		}
+		if(top.sysUser && top.sysUser==selectUserID){
+		    Ext.Msg.alert('提示', '普通用户不能为超级管理员分配角色');
+			return ;
+		}
+	}
+	var codes = Grid4.getSelectionDatas();
+	var roleCodesArray = '';
+	var rightFlagsArray = '';
+	for(var i=0;i<codes.length;i++){
+		roleCodesArray += codes[i].get("roleCode");
+		rightFlagsArray += codes[i].get("rightFlag");
+		if(i<codes.length-1){
+				roleCodesArray += ",";
+				rightFlagsArray += ",";
+		}
+	}
+	var authWin = new auth(MainWin).window;
+	authWin.needAuth(authWin,'bizSetUser','bizGiveUR',MainWin, function(){
+		var Result1 = roleUserService.synExecute({userId:authorizedBy,roleCodes:roleCodesArray,rightFlags:rightFlagsArray,resCode:'bizSetUser',opCode:'bizGiveUR'});
+		if(Result1.returnCode != 0 ){
+		   	Ext.Msg.alert('提示', '角色分配失败，原因：' + Result1.errorInfo);
+		}else{
+			Ext.Msg.alert('提示', '角色分配成功');
+			gridRefresh(authorizedBy);
+		}
+		
+	});
+	//var win = new Window8();
+	//win.setDatasetAndGrid(Grid4,Grid5,roleDataSet,DataSet4,roleCodesArray);
+	//win.show();
+}
+event Button14_click(Button thisComp, Ext.EventObject e) {
+	var record = Grid5.getSelectionModel().getSelected();
+	if (record == null) {
+		Ext.Msg.alert('提示', '请选择一个已分配角色');
+		return;
+	}
+	var record = MainWin.Grid1.getSelectionModel().getSelected();
+	var selectUserID=record.get('user_id');
+	if(top.currUserId && top.sysUser){
+		if(top.currUserId && top.currUserId==selectUserID){
+	    Ext.Msg.alert('提示', '普通用户不能取消自身的角色');
+		return ;
+		}
+		if(top.sysUser && top.sysUser==selectUserID){
+		    Ext.Msg.alert('提示', '普通用户不能取消管理员的角色');
+			return ;
+		}
+	}
+	var codes = Grid5.getSelectionDatas();
+	var roleCodesArray = '';
+	var rightFlagsArray = '';
+	for(var i=0;i<codes.length;i++){
+		roleCodesArray += codes[i].get("roleCode");
+		rightFlagsArray += codes[i].get("rightFlag");
+		if(i<codes.length-1){
+			roleCodesArray += ',';
+			rightFlagsArray += ',';
+		}
+	}
+	var authWin = new auth(MainWin).window;
+	authWin.needAuth(authWin,'bizSetUser','bizCancelUR',MainWin, function(){
+		var Result1 = roleUserService.synExecute({userId:authorizedBy,roleCodes:roleCodesArray,rightFlags:rightFlagsArray,resCode:'bizSetUser',opCode:'bizCancelUR'});
+		if(Result1.returnCode != 0 ){
+		   	Ext.Msg.alert('提示', '取消角色失败，<br>原因：' + Result1.errorInfo);
+		}else{
+			gridRefresh(authorizedBy);
+			//setTimeout("Ext.Msg.alert('提示', '取消角色成功')", 500 );
+			Ext.Msg.alert('提示', '取消角色成功');
+		}
+		
+	});
+}
+function gridRefresh(authorizedBy){
+	Grid4.setDataSet(roleDataSet);
+	roleDataSet.load();
+	Grid5.setDataSet(DataSet4);
+	DataSet4.load();
+}
+event Window4_complete() {
+	var record = MainWin.Grid1.getSelectionModel().getSelected();
+	roleDataSet.setParams({userId:record.get('user_id')});
+	Grid4.setDataSet(roleDataSet);
+	roleDataSet.load();
+	DataSet4.setParams({userId:record.get('user_id')});
+	Grid5.setDataSet(DataSet4);
+	DataSet4.load();
+}
+event Button4_click(Button thisComp, Ext.EventObject e) {
+	if(TextField3.isValidate()&&TextField4.isValidate()){
+		roleDataSet.setParams({roleCode:TextField3.getValue(),roleName:TextField4.getValue(),rightFlag:DictComboBox1.getValue()});
+		Grid4.setDataSet(roleDataSet);
+		roleDataSet.load();
+	}else{
+		Ext.Msg.alert('提示', '发现有输入项不符合规范');
+	}
+}
+event Button11_click(Button thisComp, Ext.EventObject e) {
+	TextField3.reset();
+	TextField4.reset();
+	DictComboBox1.reset();
+}]]></WindowScript>
+    <WindowScript window="Window6"><![CDATA[remote bizframe.authority.user.unBindUserOrgService as unSvc;
+remote bizframe.authority.user.bindUserOrgService as  bindSvc ;
+
+
+private	authorizedBy='';
+private	authorizedNameBy='';
+private	authorizedOrg='';
+
+event searchButton_click(Button thisComp, Ext.EventObject e) {
+	var param=rearchFormPanel.getValues();
+	Ext.apply(param,{userId : authorizedBy});
+	DataSet6.setParams(param);
+	DataSet6.load();
+}
+event resetButton_click(Button thisComp, Ext.EventObject e) {
+	rearchFormPanel.getForm().reset();
+}
+//取消分配
+event deleteButton_click(Button thisComp, Ext.EventObject e) {
+	var record = Grid6.getSelectionModel().getSelected();
+	if (record == null) {
+		Ext.Msg.alert('提示', '请选择一条待取消分配组织记录');
+		return;
+	}
+	var ids = Grid6.getSelectionDatas();
+	var orgIds='';//选中的用户ID
+	for(var i=0;i<ids.length;i++){
+	    var authType=ids[i].get("auth_type") ;
+	   	if( authType && "0"==authType){
+	   	  if(ids.length==1){
+	   	    var $_orgName=ids[i].get("org_name") ;
+	   	    Ext.Msg.alert('提示','用户：【'+authorizedNameBy+' 】 没有分配此组织【'+$_orgName+'】，无需取消!');
+	   	  
+	   	  }else{
+	   	  	Ext.Msg.alert('提示','取消组织中含有未分配的组织!');
+	   	  }
+	   	 
+	   	  return;
+	   	}
+		orgIds=orgIds+ids[i].get("org_id");
+		if(i<ids.length-1){
+			orgIds=orgIds+",";
+		}
+	}
+	var params={};
+	Ext.apply(params,{userId : authorizedBy});
+	Ext.apply(params,{orgIds : orgIds });
+	Ext.apply(params,{resCode:'bizSetUser',opCode:'bizUnBindOrg'});
+	var authWin = new auth(MainWin).window;
+	authWin.needAuth(authWin,'bizSetUser','bizUnBindOrg',MainWin, function(){
+		var result1 = unSvc.synExecute(params);
+		if(result1 == ""){
+			Ext.Msg.alert('提示', '服务没有响应');
+			return;
+		}
+		if(!(result1.returnCode == 0)){
+			Ext.Msg.alert('错误',"取消失败!<br>错误信息："+result1.errorInfo);
+		}else{
+			Ext.Msg.alert('提示','组织取消成功');
+			refreshGrid(Grid6);
+			
+			//Grid6.refresh();
+		}
+	});
+}
+//分配
+event allotButton_click(Button thisComp, Ext.EventObject e) {
+	var record = Grid6.getSelectionModel().getSelected();
+	if (record == null) {
+		Ext.Msg.alert('提示', '请选择一条待分配组织记录');
+		return;
+	}
+	var ids = Grid6.getSelectionDatas();
+	var orgIds='';//选中的用户ID
+	for(var i=0;i<ids.length;i++){
+	    var authType=ids[i].get("auth_type") ;
+	   	if( authType && "1"==authType){
+	   	  if(ids.length==1){
+	   	    var $_orgName=ids[i].get("org_name") ;
+	   	    Ext.Msg.alert('提示','用户【'+authorizedNameBy+'】已经分配了组织【'+$_orgName+'】，无需再次分配!');
+	   	  }else{
+	   	  	Ext.Msg.alert('提示','分配组织中含有已分配的组织!');
+	   	  }
+	   	  return;
+	   	}
+		orgIds=orgIds+ids[i].get("org_id");
+		if(i<ids.length-1){
+			orgIds=orgIds+",";
+		}
+	}
+	var params={};
+	Ext.apply(params,{userId : authorizedBy});
+	Ext.apply(params,{orgIds : orgIds });
+	Ext.apply(params,{resCode:'bizSetUser',opCode:'bizBindOrg'});
+	var authWin = new auth(MainWin).window;
+	authWin.needAuth(authWin,'bizSetUser','bizBindOrg',MainWin, function(){
+		var result1 = bindSvc.synExecute(params);
+		if(result1 == ""){
+			Ext.Msg.alert('提示', '服务没有响应');
+			return;
+		}
+		if(!(result1.returnCode == 0)){
+			Ext.Msg.alert('错误',"分配失败!<br>错误信息："+result1.errorInfo);
+		}else{
+			Ext.Msg.alert('提示','组织分配成功');
+			refreshGrid(Grid6);
+			//Grid6.refresh();
+		}
+	});
+}
+event Window6_complete() {
+	//rearchFormPanel.collapse();
+	var record = MainWin.Grid1.getSelectionModel().getSelected();
+	authorizedBy = record.get('user_id');
+	authorizedNameBy=record.get('user_name');
+	authorizedOrg=record.get('org_id');
+	DataSet6.setParams({userId : authorizedBy});
+	DataSet6.load();
+}
+event GridItem31_renderer(Object value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store) {
+   	if(record.get('auth_type')!="1"){//授权
+		 value='<font  color="#FF0000">'+value+'</font>';
+    }else{
+     	 value='<font  color="#008000">'+value+'</font>';
+    }
+    return value;
+}
+event GridItem24_renderer(Object value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store) {
+   	if(record.get('org_id')==authorizedOrg){//授权
+		 value='<strong>'+value+'</strong><br><font  color="#FF0000">[此组织为"'+authorizedNameBy+'"的所属组织]</font>';
+    }
+    return value;
+}]]></WindowScript>
+    <WindowScript window="menuRightWindow"><![CDATA[remote bizframe.authority.user.userRightService as rightSvc;
+var menuId='';
+var authMenuId='';
+
+//遮罩层
+var mask = new Ext.LoadMask(Ext.getBody(), {                          
+ 		msg : '正在提交，请等待 ... ',                           
+        removeMask : true 
+}); 
+
+
+var getAllSelectedNodes= function(menuTree,publicTree){
+     var nodeStrs="";
+     var menuTreeNodes=menuTree.getAllChildren();
+     for(var i=0;i<menuTreeNodes.length;i++){
+         var node=menuTreeNodes[i];
+	     var nodeStr=getNodeRightProtocal(node,true);
+	     nodeStrs=nodeStrs+nodeStr;
+	     if(i<menuTreeNodes.length-1){
+	     	nodeStrs=nodeStrs+",";
+	     }
+     }
+     var publicTreeNodes=publicTree.getAllChildren();
+     if(publicTreeNodes.length>0){
+     	nodeStrs=nodeStrs+",";
+     }
+     for(var j=0;j<publicTreeNodes.length;j++){
+         var node=publicTreeNodes[j];
+	     var nodeStr=getNodeRightProtocal(node,false);
+	     nodeStrs=nodeStrs+nodeStr;
+	     if(j<publicTreeNodes.length-1){
+	     	nodeStrs=nodeStrs+",";
+	     }
+     }
+     return nodeStrs;
+}
+//得到权限与服务器端交付的字符串格式
+var  getNodeRightProtocal= function(node,isMenuRigth){
+  	var nodeStr=getNodeService(node)+'|'+node.attributes.checked+'|'+node.isLeaf()+'|'+isMenuRigth;
+  	if(node.text.indexOf("#ff0000")>0){//说明此权限来自于角色
+  		nodeStr=nodeStr+'|true';
+  	}else{
+  		nodeStr=nodeStr+'|false';//说明此权限来自于本身
+  	}
+  	return nodeStr;
+}
+
+//得到节点的权限别名trans$subTrans
+var  getNodeService= function(node){
+ 		var path=node.getPath();
+ 		var paths=path.split("/");
+ 		if(paths[paths.length-1].indexOf("$")>0){
+ 			return  paths[paths.length-1]
+ 		}
+ 		return paths[paths.length-2]+"$"+ paths[paths.length-1]
+}
+
+event sureButton_click(Button thisComp, Ext.EventObject e) {
+  	Ext.MessageBox.confirm('提示', '确认提交权限信息?', function(button, text) {
+		if (button == "yes") {
+			if(top.currUserId && top.sysUser){
+					if(top.currUserId && top.currUserId==MainWin.main_authUserId){
+				    Ext.Msg.alert('提示', '用户不能为自身分配权限');
+					return ;
+					}
+					if(top.sysUser && top.sysUser==MainWin.main_authUserId){
+					    Ext.Msg.alert('提示', '用户不能为超级管理员分配权限');
+						return ;
+					}
+			}
+			var authWindow = new auth(MainWin).window;
+			authWindow.needAuth(authWindow,'bizSetUser','bizUserRightSet',MainWin, 
+			function(){
+				mask.show();
+				var opRights=getAllSelectedNodes(opMenuTree,opPublicTree);
+    			var authRights=getAllSelectedNodes(authMenuTree,authPublicTree);
+				var result1 = rightSvc.synExecute({resCode:'bizSetUser', opCode:'bizUserRightSet',rights:opRights,user_id:MainWin.main_authUserId, right_flag:"1"});
+				var result2 = rightSvc.synExecute({resCode:'bizSetUser', opCode:'bizUserRightSet',rights:authRights,user_id:MainWin.main_authUserId, right_flag:"2"});
+				if(result1.returnCode != 0 && result2.returnCode != 0){
+					mask.hide(); 
+					Ext.Msg.alert('提示', '操作授权失败，原因：' + result1.errorInfo+' <br>权限授权失败，原因：' + result2.errorInfo);
+				}else if(result1.returnCode != 0 && result2.returnCode == 0){
+					mask.hide(); 
+					Ext.Msg.alert('提示', '操作授权失败，原因：' + result1.errorInfo+' <br>权限授权成功');
+				}else if(result1.returnCode == 0 && result2.returnCode != 0){
+					mask.hide(); 
+					Ext.Msg.alert('提示', '操作授权成功，' +' <br> 权限授权失败，原因：' + result2.errorInfo);
+				}else{
+					mask.hide(); 
+					Ext.Msg.alert('提示', '授权成功');
+				}
+			});     
+		}
+	});
+}
+
+event exitButton_click(Button thisComp, Ext.EventObject e) {
+      close();
+}
+event opMenuTree_beforeload(Node node) {
+	opMenuTreeDataSet.setParams({right_flag:"1"});
+	opMenuTreeDataSet.setParams({user_id:MainWin.main_authUserId});
+	opMenuTreeDataSet.setParams({isSynTree : true});
+	
+}
+event opPublicTree_beforeload(Node node) {
+	publicTreeDataSet.setParams({right_flag:"1"});
+	publicTreeDataSet.setParams({user_id:MainWin.main_authUserId});
+}
+event authMenuTree_beforeload(Node node) {
+	authMenuTreeDataSet.setParams({right_flag:"2"});
+	authMenuTreeDataSet.setParams({user_id:MainWin.main_authUserId});
+	authMenuTreeDataSet.setParams({isSynTree : true});
+}
+
+event authPublicTree_beforeload(Node node) {
+	publicTreeDataSet.setParams({right_flag:"2"});
+	publicTreeDataSet.setParams({user_id:MainWin.main_authUserId});
+}
+
+
+event opMenuTree_click(Node node, EventObject e) {
+	opMenuTreeDataSet.setParams({isSynTree : false});
+    checkNode(opMenuTree,node,!node.attributes.checked);
+    menuId=node.id;
+}
+event authMenuTree_click(Node node, EventObject e) {
+	authMenuTreeDataSet.setParams({isSynTree : false});
+	checkNode(authMenuTree,node,!node.attributes.checked);
+	authMenuId=node.id;
+}
+event opPublicTree_click(Node node, EventObject e) {
+	checkNode(opPublicTree,node,!node.attributes.checked);
+}
+event authPublicTree_click(Node node, EventObject e) {
+	checkNode(authPublicTree,node,!node.attributes.checked);
+}
+event expandButton_click(Button thisComp, Ext.EventObject e) {
+        opMenuTree.expandAll();
+}
+event closeButton_click(Button thisComp, Ext.EventObject e) {
+    //opMenuTree.getNodeById(menuId).collapse(true,false);
+    var nodes = opMenuTree.getNodeById('bizroot').childNodes;
+    for(var i=0;i<nodes.length;i++){
+    var node=nodes[i];
+    if(node && node.collapse)
+   	node.collapse(true,false);
+    }
+}
+event resetButton_click(Button thisComp, Ext.EventObject e) {
+    opMenuTree.reload();
+	
+}
+event Button1_click(Button thisComp, Ext.EventObject e) {
+	authMenuTree.expandAll();
+}
+event Button2_click(Button thisComp, Ext.EventObject e) {
+    //authMenuTree.getNodeById(authMenuId).collapse(true,false);
+    
+    var nodes = authMenuTree.getNodeById('bizroot').childNodes;
+    for(var i=0;i<nodes.length;i++){
+    var node=nodes[i];
+    if(node && node.collapse)
+   	node.collapse(true,false);
+    }
+}
+event Button3_click(Button thisComp, Ext.EventObject e) {
+ 	authMenuTree.reload();
+}
+]]></WindowScript>
+    <WindowScript window="allotPosWin"><![CDATA[remote bizframe.authority.user.bindUserPosService as bindPosSvc ;
+remote bizframe.authority.user.unBindUserPosService as cancelPosSvc ;
+
+private	authorizedBy='';
+private	authorizedNameBy='';
+
+event allotButton_click(Button thisComp, Ext.EventObject e) {
+	var record = Grid1.getSelectionModel().getSelected();
+	if (record == null) {
+		Ext.Msg.alert('提示', '请选择一条待分配岗位记录');
+		return;
+	}
+	var codes = Grid1.getSelectionDatas();
+	var posCodes='';//选中的用户ID
+	for(var i=0;i<codes.length;i++){
+	    var authType=codes[i].get("auth_type") ;
+	   	if( authType && "1"==authType){
+	   	  if(codes.length==1){
+	   	    var $_positionName=codes[i].get("position_name") ;
+	   	    Ext.Msg.alert('提示','用户【'+authorizedNameBy+' 】已经分配了岗位【'+$_positionName+'】，无需再次分配!');
+	   	  }else{
+	   	  	Ext.Msg.alert('提示','分配岗位中含有已分配的岗位!');
+	   	  }
+	   	  return;
+	   	}
+		posCodes=posCodes+codes[i].get("position_code");
+		if(i<codes.length-1){
+			posCodes=posCodes+",";
+		}
+	}
+	var params={};
+	Ext.apply(params,{userId : authorizedBy});
+	Ext.apply(params,{positionCodes: posCodes });
+	Ext.apply(params,{resCode:'bizSetUser',opCode:'bizBindPos'});
+	var authWin = new auth(MainWin).window;
+	authWin.needAuth(authWin,'bizSetUser','bizBindPos',MainWin, function(){
+		var result1 = bindPosSvc.synExecute(params);
+		if(result1 == ""){
+			Ext.Msg.alert('提示', '服务没有响应');
+			return;
+		}
+		if(!(result1.returnCode == 0)){
+			Ext.Msg.alert('错误','分配失败！<br>错误信息：'+result1.errorInfo);
+		}else{
+			Ext.Msg.alert('提示','岗位分配成功');
+			refreshGrid(Grid1);
+		}
+	});
+}
+event deleteButton_click(Button thisComp, Ext.EventObject e) {
+	var record = Grid1.getSelectionModel().getSelected();
+	if (record == null) {
+		Ext.Msg.alert('提示', '请选择一条待取消分配岗位记录');
+		return;
+	}
+	var codes = Grid1.getSelectionDatas();
+	var posCodes='';//选中的用户ID
+	for(var i=0;i<codes.length;i++){
+	    var authType=codes[i].get("auth_type") ;
+	    
+	   	if( authType && "0"==authType){
+	   	  if(codes.length==1){
+	   	    var $_positionName=codes[i].get("position_name") ;
+	   	    Ext.Msg.alert('提示','用户：【'+authorizedNameBy+' 】没有分配岗位【'+$_positionName+'】，无需取消!');
+	   	  }else{
+	   	  	Ext.Msg.alert('提示','取消岗位中含有未分配的岗位!');
+	   	  }
+	   	  return;
+	   	}
+		posCodes=posCodes+codes[i].get("position_code");
+		if(i<codes.length-1){
+			posCodes=posCodes+",";
+		}
+	}
+	var params={};
+	Ext.apply(params,{userId : authorizedBy});
+	Ext.apply(params,{positionCodes: posCodes });
+	Ext.apply(params,{resCode:'bizSetUser',opCode:'bizUnBindPos'});
+	var authWin = new auth(MainWin).window;
+	authWin.needAuth(authWin,'bizSetUser','bizUnBindPos',MainWin, function(){
+		var result1 = cancelPosSvc.synExecute(params);
+		if(result1 == ""){
+			Ext.Msg.alert('提示', '服务没有响应');
+			return;
+		}
+		if(!(result1.returnCode == 0)){
+			Ext.Msg.alert('错误','取消失败！<br>错误信息：'+result1.errorInfo);
+		}else{
+			Ext.Msg.alert('提示','岗位取消成功');
+			refreshGrid(Grid1);
+			//Grid1.refresh();
+		}
+	});
+}
+
+event allotPosWin_complete() {
+	//rearchFormPanel.collapse();
+	var record = MainWin.Grid1.getSelectionModel().getSelected();
+	authorizedBy = record.get('user_id');
+	authorizedNameBy=record.get('user_name');
+	posDataSet.setParams({userId : authorizedBy});
+	posDataSet.load();
+}
+event searchButton_click(Button thisComp, Ext.EventObject e) {
+	var param=rearchFormPanel.getValues();
+	Ext.apply(param,{userId : authorizedBy});
+	Ext.apply(param,{resCode : 'bizSetUser' , opCode: 'bizAssoPos' });
+	Ext.apply(param,{start : 0, limit : Grid1.pageSize});
+	posDataSet.clearParams()
+	posDataSet.setParams(param);
+	posDataSet.load();
+}
+event resetFormButton_click(Button thisComp, Ext.EventObject e) {
+	rearchFormPanel.getForm().reset();
+}
+event GridItem20_renderer(Object value, Object metaData, Ext.data.Record record, Number rowIndex, Number colIndex, Ext.data.Store store) {
+   	if(record.get('auth_type')!="1"){//授权
+		 value='<font  color="#FF0000">'+value+'</font>';
+    }else{
+     	 value='<font  color="#008000">'+value+'</font>';
+    }
+    return value;
+}]]></WindowScript>
+    <WindowScript window="Window7"><![CDATA[var orgFlag=0;
+var posFlag=0;
+var roleFlag=0;
+var menuId='';
+var authMenuId='';
+event FormPanel4_afterrender(Ext.Component thisComp) {
+	var record=MainWin.Grid1.getSelectionData();
+	Label_UserId.setValue(record.get("user_id"));
+	Label_UserName.setValue(record.get("user_name"));
+	Label_UserOrg.setValue(record.get("org_name"));
+	LabelUserState.setValue(record.get("user_status_display"));
+	LabelUserKind.setValue(record.get("user_type_display"));
+	LabelUserRemark.setValue(record.get("remark"));
+	LabelCreateDate.setValue(record.get("create_date"));
+}
+
+event Panel9_beforeshow(Ext.Component thisComp) {
+	if(orgFlag==1)
+		return;
+	else
+		orgFlag=1;
+	var record=MainWin.Grid1.getSelectionData();
+	OrgDataSet.setParams({userId:record.get("user_id")});
+	OrgDataSet.load();
+}
+
+event Panel15_beforeshow(Ext.Component thisComp) {
+	if(posFlag==1)
+		return;
+	else
+		posFlag=1;
+	var record=MainWin.Grid1.getSelectionData();
+	posDataSet.setParams({userId:record.get("user_id")});
+	posDataSet.load();
+}
+
+event Panel16_beforeshow(Ext.Component thisComp) {
+	if(roleFlag==1)
+		return;
+	else
+		roleFlag=1;
+	var record=MainWin.Grid1.getSelectionData();
+	roleDataSet.setParams({userId:record.get("user_id")});
+	roleDataSet.load();
+}
+event opMenuTree_beforeload(Node node) {
+	menuTreeOpDataSet.setParams({rightFlag:"1"});
+	var record=MainWin.Grid1.getSelectionData();
+	menuTreeOpDataSet.setParams({userId:record.get("user_id")});
+}
+event authMenuTree_beforeload(Node node) {
+	menuTreeAuthDataSet.setParams({rightFlag:"2"});
+	var record=MainWin.Grid1.getSelectionData();
+	menuTreeAuthDataSet.setParams({userId:record.get("user_id")});
+}
+
+event expandButton_click(Button thisComp, Ext.EventObject e) {
+	opMenuTree.expandAll();
+}
+
+event opMenuTree_click(Node node, EventObject e) {
+ menuId=node.id;
+}
+
+event closeButton_click(Button thisComp, Ext.EventObject e) {
+    var nodes = opMenuTree.getNodeById('bizroot').childNodes;
+    for(var i=0;i<nodes.length;i++){
+    	var node=nodes[i];
+    	if(node && node.collapse)
+   			node.collapse(true,false);
+    }
+    
+}
+event resetButton_click(Button thisComp, Ext.EventObject e) {
+	opMenuTree.reload();
+}
+event authMenuTree_click(Node node, EventObject e) {
+	authMenuId=node.id;
+}
+event expandOpButton_click(Button thisComp, Ext.EventObject e) {
+	authMenuTree.expandAll();
+}
+
+event closeOpButton_click(Button thisComp, Ext.EventObject e) {
+    var nodes = authMenuTree.getNodeById('bizroot').childNodes;
+    for(var i=0;i<nodes.length;i++){
+    	var node=nodes[i];
+    	if(node && node.collapse)
+   			node.collapse(true,false);
+    }
+}
+
+event reshOpButton_click(Button thisComp, Ext.EventObject e) {
+	authMenuTree.reload();
+}]]></WindowScript>
+  </WindowScripts>
+</hsdoc>
