@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd" default-autowire="byName" default-lazy-init="true">
+	
+	<context:component-scan base-package="com.hundsun.jres.workflow.plugin.cep.hibernate"></context:component-scan>
+	
+	<!-- bean id="dataSource" class="org.springframework.orm.hibernate3.HsBpmDataSource">
+		<property name="jresDataSourceName" value="bpm"></property>
+	</bean-->
+	
+	<bean id="testEntityDao" class="com.hundsun.jres.workflow.plugin.cep.hibernate.TestEntityDaoImpl"></bean>
+	
+	<alias name="dataSource" alias="jresTransactionStatus"/>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean" lazy-init="false">
+		<property name="packagesToScan" value="com.hundsun.jres.workflow.plugin.cep.hibernate"/>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+				<prop key="hibernate.transaction.factory_class">com.hundsun.jres.workflow.plugin.cep.hibernate.JresTransactionFactory</prop> 
+				<prop key="hibernate.connection.provider_class">com.hundsun.jres.workflow.plugin.cep.hibernate.JresConnectionProvider</prop>
+				<prop key="hibernate.jres.datasource">bpm</prop>
+				<!-- create、create-drop、update、validate -->
+				<!-- prop key="hibernate.hbm2ddl.auto">update</prop-->
+				<prop key="hibernate.show_sql">true</prop>    
+				<prop key="hibernate.format_sql">true</prop>    
+				<prop key="hibernate.jdbc.batch_size">1</prop> 
+			</props>
+		</property>
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+		<!-- property name="dataSource" ref="dataSource" /-->
+	</bean>
+
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="query*" read-only="true"/>
+			<tx:method name="list*" read-only="true"/>
+			<tx:method name="fetch*" read-only="true"/>
+			<tx:method name="find*" read-only="true"/>
+			<tx:method name="count*" read-only="true"/>
+			<tx:method name="get*" read-only="true"/>
+			<tx:method name="is*" read-only="true"/>
+			<tx:method name="exists*" read-only="true"/>
+			<tx:method name="*" rollback-for="Throwable"/>
+		</tx:attributes>
+	</tx:advice>
+
+	<aop:config>
+		<aop:pointcut id="serviceOperation"
+			expression="execution(* com.hundsun.jres.workflow.plugin.cep.hibernate.*Service*.*(..)) " />
+		<aop:advisor id="managerTx" advice-ref="txAdvice" pointcut-ref="serviceOperation" />
+	</aop:config>
+	
+	<tx:annotation-driven transaction-manager="transactionManager" />
+</beans>
