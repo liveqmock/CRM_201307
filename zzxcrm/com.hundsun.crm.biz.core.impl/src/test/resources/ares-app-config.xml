@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!-- 样例 -->
+<ares>
+	<!--
+		JRES Server的公用配置，必须配置项，目前为了兼容前一版本，如果不配置或者配置错误，name将被设置为"jres_server"
+		name - 当前JRES Server的名字，如果在网络拓扑中有名字相同的，则认为此两者成组
+	-->
+	<pub nodeName="jres_server" nodeNo="0" />
+
+	<!-- 插件配置信息 -->
+	<plugins>
+		<!--
+			load-level：加载等级,1是Kernel级，2是System级，3是Common级，数值越小，优先级越高
+			plugin-configuration是插件本身关心的配置信息，插件被初始化之前将被注入 <plugin
+			service-id="demo.demoserviceC" load-level="1"> <plugin-configuration>
+			<args mode="tttt" some="1" /> </plugin-configuration> </plugin>
+		-->
+		<plugin service-id="jres.logFactory" load-level="1"></plugin>
+		<plugin service-id="jres.bizLogFactory" load-level="1"></plugin>
+		<plugin service-id="jres.configurationHelper" load-level="1"></plugin>
+
+		<!--数据库 的插件信息  -->
+		<plugin service-id="jres.dbSessionFactory" load-level="2">
+			<other-configurations>
+				<configuration name="db-config" value="db-config.xml">
+				</configuration>
+			</other-configurations>
+		</plugin>
+	</plugins>
+	<param>
+    </param>
+</ares>
