@@ -18,6 +18,8 @@ package com.hundsun.crm;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 /**
  * TODO Comment of TestServiceImpl
  *
@@ -25,8 +27,13 @@ import java.util.List;
  * @version TestServiceImpl.java 2013-7-14 下午02:08:12
  *
  */
+@Service
 public class TestServiceImpl implements TestService {
 
+	public void say(){
+		System.out.println("Hello World!!");
+	}
+	
 	/* (non-Javadoc)
 	 * @see com.hundsun.crm.TestService#page(com.hundsun.crm.TestObject, int, int)
 	 */

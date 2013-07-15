@@ -24,4 +24,13 @@ package com.test;
  */
 public class T {
 
+	private String say;
+	
+	public T(String say){
+		this.say = say;
+	}
+	
+	public void say(){
+		System.out.println(say);
+	}
 }

@@ -13,6 +13,11 @@
  */
 package com.hundsun.crm.dao;
 
+import java.sql.SQLException;
+import java.util.List;
+
+import com.test.User;
+
 /**
  * 客戶信息管理
  * @author leixl
@@ -22,5 +27,5 @@ package com.hundsun.crm.dao;
  */
 public interface CrmCustomerDao {
 
-	
+	List<User> findAll() throws SQLException;
 }

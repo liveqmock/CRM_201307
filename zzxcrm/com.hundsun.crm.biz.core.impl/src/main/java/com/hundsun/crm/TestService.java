@@ -11,6 +11,8 @@ import java.util.List;
  *
  */
 public interface TestService {
+	
+	void say();
 	/**
 	 * 分页列表
 	 * @param obj

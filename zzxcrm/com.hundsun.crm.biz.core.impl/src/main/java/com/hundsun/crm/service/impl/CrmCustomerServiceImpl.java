@@ -13,6 +13,8 @@
  */
 package com.hundsun.crm.service.impl;
 
+import org.springframework.stereotype.Service;
+
 /**
  *  
  * @author leixl
@@ -20,7 +22,7 @@ package com.hundsun.crm.service.impl;
  * @date   2013年7月15日 下午8:55:37
  * @version v1.0
  */
+@Service
 public class CrmCustomerServiceImpl {
 
-	
 }

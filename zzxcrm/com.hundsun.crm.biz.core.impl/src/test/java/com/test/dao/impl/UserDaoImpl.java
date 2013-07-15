@@ -1,18 +1,26 @@
-package com.hundsun.crm.dao.impl;
+/**
+ * 
+ */
+package com.test.dao.impl;
 
 import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.hundsun.crm.dao.CrmCustomerDao;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.test.User;
+import com.test.dao.UserDao;
 
-
+/**
+ * @author liyue
+ * 
+ */
 @Repository
-public class CrmCustomerDaoImpl implements CrmCustomerDao{
+public class UserDaoImpl implements UserDao {
+
 	@Autowired
 	private SqlMapClient client;
 
