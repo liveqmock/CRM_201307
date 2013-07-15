@@ -1,0 +1,609 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hsdoc version="1.1.0">
+  <Windows>
+    <control-MainWindow height="529" name="MainWin" templatePath="window.ftl" width="1047">
+      <layout-fit>
+        <control-Panel name="topPanel">
+          <layout-border>
+            <control-Panel region="center" border="false" height="200" name="MenuOperPanel" width="300">
+              <Top/>
+              <Bottom/>
+              <Left/>
+              <Right/>
+              <layout-border>
+                <control-Panel region="center" height="200" name="Panel6" width="300">
+                  <Top/>
+                  <Bottom/>
+                  <Left/>
+                  <Right/>
+                  <layout-border>
+                    <control-Grid region="center" hasCheckColumn="true" remoteSort="true" enableCellTip="true" width="300" autoHeight="true" height="160" autoWidth="true" dataSet="MenuGridDataSet" name="menuGrid" hasCustomPageSize="true" border="false" hasPagingBar="true">
+                      <layout-GridToolbar>
+                        <control-GridItem title="姓名" align="left" dataIndex="name" name="menuCodeItem" width="120" sortable="true"/>
+                        <control-GridItem title="年龄" align="left" dataIndex="age" name="menuNameItem" width="124" sortable="true"/>
+                        <control-GridItem title="性别" align="left" dataIndex="sex" name="parentNameItem" width="130" sortable="true"/>
+                        <control-GridItem title="昵称" align="left" dataIndex="nick" name="menuUrlItem" width="240" sortable="true"/>
+                      </layout-GridToolbar>
+                      <Top/>
+                      <Bottom/>
+                      <Left/>
+                      <Right/>
+                    </control-Grid>
+                    <control-FormPanel collapseMode="mini" region="north" width="300" height="150" hideCollapseTool="true" collapsible="true" split="true" name="findMenuForm">
+                      <Top>
+                        <control-Toolbar name="findToolbar">
+                          <layout-toolbar>
+                            <control-Button name="addMenuBtn" text="新增" width="75" icon="bizframe/images/icons/add.gif" tabIndex="5"/>
+                            <control-Button name="editMenuBtn" text="修改" width="75" icon="bizframe/images/icons/edit.png" tabIndex="6"/>
+                            <control-Button name="deleteMenuBtn" text="删除" width="75" icon="bizframe/images/icons/delete.gif" tabIndex="7"/>
+                          </layout-toolbar>
+                        </control-Toolbar>
+                      </Top>
+                      <Bottom>
+                        <control-ButtonGroup height="35" name="ButtonGroup3">
+                          <layout-buttonGroup>
+                            <control-Button name="findMenuBtn" displayModeRender="hidden" text="查询" width="75" tabIndex="13" icon="bizframe/images/icons/search.png"/>
+                            <control-Button name="findResetBtn" displayModeRender="hidden" text="重置" width="75" tabIndex="14" icon="bizframe/images/icons/refresh.png"/>
+                          </layout-buttonGroup>
+                        </control-ButtonGroup>
+                      </Bottom>
+                      <Left/>
+                      <Right/>
+                      <layout-table columns="2" fullWidth="true">
+                        <control-TextField labelAlign="right" regexText="非法输入，只能输入中文、英文、数字和下划线" fieldName="menu_name" width="250" height="22" regex="/^[\w\u4e00-\u9fa5\.\/\,\，\.\。\“\（\）\(\)\-\s]*$/" fieldLabel="姓名" maxLength="32" name="name" tabIndex="15"/>
+                        <control-HiddenField fieldName="kind_code" name="kindCodeField"/>
+                        <control-NumberField fieldLabel="年龄" height="22" name="age" width="250" tabIndex="67"/>
+                      </layout-table>
+                    </control-FormPanel>
+                  </layout-border>
+                </control-Panel>
+              </layout-border>
+            </control-Panel>
+          </layout-border>
+        </control-Panel>
+      </layout-fit>
+    </control-MainWindow>
+    <control-Window title="菜单操作" maximized="true" height="398" name="editMenuWindow" draggable="true" width="790">
+      <Top/>
+      <Bottom/>
+      <Left/>
+      <Right/>
+      <layout-border>
+        <control-FormPanel region="north" width="300" autoHeight="true" height="183" autoWidth="true" name="editMenuForm" border="false" frame="true">
+          <Top/>
+          <Bottom>
+            <control-ButtonGroup name="ButtonGroup1" buttonAlign="left">
+              <layout-buttonGroup>
+                <control-Button name="saveMenuBtn" text="确定" width="75" icon="bizframe/images/icons/accept.png" tabIndex="19"/>
+                <control-Button name="reSetBtn" text="重置" width="75" icon="bizframe/images/icons/refresh.png" tabIndex="20"/>
+                <control-Button name="cancelBtn" text="取消" width="75" icon="bizframe/images/icons/cross.gif" tabIndex="21"/>
+              </layout-buttonGroup>
+            </control-ButtonGroup>
+          </Bottom>
+          <Left/>
+          <Right/>
+          <layout-table columns="3" fullWidth="true">
+            <control-TextField dataField="name" msgTarget="qtip" labelWidth="80" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" regexText="非法输入，只能输入英文、数字和下划线" fieldName="name" width="250" height="22" regex="/^[A-Za-z0-9_]+$/" fieldLabel="姓名" maxLength="32" name="name" allowBlank="false" tabIndex="22"/>
+            <control-HiddenField dataField="parent_code" fieldName="parent_code" name="parentCodeField"/>
+            <control-HiddenField dataField="tree_idx" fieldName="tree_idx" name="treeIdxField"/>
+            <control-HiddenField defaultValue="BIZFRAME" fieldName="kind_type" name="kindTypeField"/>
+            <control-HiddenField dataField="order_no" fieldName="order_no" name="menuOrderNo"/>
+            <control-HiddenField dataField="sub_trans_code" fieldName="sub_trans_code" name="subTransCode"/>
+            <control-HiddenField dataField="trans_code" fieldName="trans_code" name="transCode"/>
+            <control-NumberField dataField="age" fieldName="age" width="250" height="22" fieldLabel="年龄" name="age" tabIndex="69"/>
+            <control-TextField dataField="nick" fieldName="nick" width="250" height="22" fieldLabel="昵称" name="nick" tabIndex="70"/>
+            <control-TextField dataField="sex" labelWidth="80" fieldName="sex" width="250" height="22" fieldLabel="性别" name="sex" tabIndex="68"/>
+            <control-DateField fieldLabel="DateField1" height="22" name="DateField1" width="250" tabIndex="71"/>
+            <control-StaticCheckboxGroup fieldLabel="StaticCheckboxGroup1" height="36" columns="1" name="StaticCheckboxGroup1" width="250" tabIndex="73">
+              <layout-GroupLayout>
+                <control-Checkbox name="Checkbox1" boxLabel="Checkbox1" width="250" tabIndex="1"/>
+                <control-Checkbox name="Checkbox2" boxLabel="Checkbox2" width="250" tabIndex="1"/>
+                <control-Checkbox name="Checkbox3" boxLabel="Checkbox3" width="250" tabIndex="1"/>
+              </layout-GroupLayout>
+            </control-StaticCheckboxGroup>
+            <control-ComboBox fieldLabel="ComboBox1" height="22" name="ComboBox1" width="250" labelWidth="80" tabIndex="72"/>
+          </layout-table>
+        </control-FormPanel>
+      </layout-border>
+    </control-Window>
+  </Windows>
+  <Accessory>
+    <control-DataSet name="MenuGridDataSet" service="customer.service.test.findPage" usingServiceName="true" window="MainWin">
+      <params>
+        <param name="name"><![CDATA["bizSetMenu"]]></param>
+        <param name="age"><![CDATA["bizMenuFind"]]></param>
+      </params>
+      <fields>
+        <field name="name" type="String"/>
+        <field name="age" type="String"/>
+        <field name="sex" type="String"/>
+        <field name="nick" type="String"/>
+      </fields>
+    </control-DataSet>
+    <control-DataSet name="subtransDataSet" service="bizframe.authority.menu.menuSubtranFind" usingServiceName="true" window="editMenuWindow">
+      <params>
+        <param name="resCode"><![CDATA["bizSetMenu"]]></param>
+        <param name="opCode"><![CDATA["bizMenuSubtranFind"]]></param>
+      </params>
+      <fields>
+        <field name="trans_code" type="String"/>
+        <field name="sub_trans_code" type="String"/>
+        <field name="sub_trans_name" type="String"/>
+        <field name="rel_serv" type="String"/>
+        <field name="rel_url" type="String"/>
+        <field name="ctrl_flag" type="String"/>
+        <field name="login_flag" type="String"/>
+        <field name="remark" type="String"/>
+      </fields>
+    </control-DataSet>
+  </Accessory>
+  <WindowScripts>
+    <WindowScript window="MainWin"><![CDATA[
+
+
+event findResetBtn_click(Button thisComp, Ext.EventObject e)
+{
+  
+}
+event addMenuBtn_click(Button thisComp, Ext.EventObject e)
+{
+  
+  
+  editMod = "add";
+  var win = new editMenuWindow();
+  win.setTitle("新增菜单");
+  win.show();
+}
+event editMenuBtn_click(Button thisComp, Ext.EventObject e)
+{
+  if(menuGrid.getSelectionDatas().length!=1)
+  {
+    Ext.Msg.alert('提示', '请选择一条菜单信息');
+    return;
+  }
+  editMod = "edit";
+  var win = new editMenuWindow();
+  win.setTitle("编辑菜单");
+  win.show();
+}
+
+
+
+event deleteMenuBtn_click(Button thisComp, Ext.EventObject e) {
+
+}
+event findMenuBtn_click(Button thisComp, Ext.EventObject e) {
+
+}]]></WindowScript>
+    <WindowScript window="editMenuWindow"><![CDATA[
+remote bizframe.authority.menu.menuAdd as MenuAddSvc;
+remote bizframe.authority.menu.menuEdit as MenuEditSvc;
+remote bizframe.authority.menu.menuQuery as MenuFindSvc;
+remote bizframe.authority.menu.menuSubtranDelete as deleteService;
+
+var oldParentCode='';
+
+function verifyMenuCode(menuCode, kindCode)
+{
+  var result = MenuFindSvc.synExecute(
+  {
+    menu_code:menuCode, kind_code:kindCode, resCode:"bizSetMenu", opCode:"bizMenuFind"
+  }
+  );
+  if(result.returnCode == 0)
+  {
+    if(result.dataSetResult.length > 0 && result.dataSetResult[0].data!=null)
+    return false;
+  }
+  else
+  {
+    Ext.Msg.alert('提示', '校验菜单编码失败<br>原因：' + result.errorInfo);
+    return false;
+  }
+  return true;
+}
+
+
+event editMenuWindow_complete()
+{
+  if(MainWin.editMod=="add")
+  {
+    newButton.setEnabled(false);
+    editButton.setEnabled(false);
+    deteleButton.setEnabled(false);
+    //cancelBtn.setText("关闭");
+    MainWin.addMenuSucess=false;
+    parentNameField.setValue(MainWin.tParentName);
+    parentCodeField.setValue(MainWin.tParentCode);
+    if(parentNameField.getValue()!="")
+    parentNameField.setEditable(false);
+    
+    if(MainWin.tKindCode != undefined)
+    {
+      kindCodeField.setValue(MainWin.tKindCode);
+      //kindCodeField.setEditable(false);
+    }
+  }
+  if(MainWin.editMod=="edit")
+  {
+    var record = MainWin.menuGrid.getSelectionData();
+    editMenuForm.setValues(record);
+    oldParentCode=parentCodeField.getValue();
+    
+    var recodeData=record.data;
+    var menuCode=recodeData['menu_code'];
+    var kindCode=recodeData['kind_code'];
+    
+    menuCodeField.setEditable(false);
+    if(oldParentCode=="bizroot")
+    {
+      parentNameField.setValue("根菜单");
+      parentNameField.setEnabled(false);
+    }
+    
+    subtransDataSet.setParams(
+    {
+      menu_code:menuCode,kind_code:kindCode
+    }
+    );
+    functionsGrid.setDataSet(subtransDataSet);
+    subtransDataSet.load();
+  }
+}
+
+function resetForm()
+{
+  if(MainWin.editMod=="add")
+  {
+    var parentName = parentNameField.getValue();
+    var parentCode = parentCodeField.getValue();
+    var kindCode = kindCodeField.getValue();
+    var treeIdx = treeIdxField.getValue();
+    
+    editMenuForm.getForm().reset();
+    
+    parentNameField.setValue(parentName);
+    parentCodeField.setValue(parentCode);
+    //alert(kindCode);
+    kindCodeField.setValue(kindCode);
+    treeIdxField.setValue(treeIdx);
+    
+    newButton.setEnabled(false);
+    editButton.setEnabled(false);
+    deteleButton.setEnabled(false);
+    functionsGrid.clear();
+  }
+  if(MainWin.editMod=="edit")
+  {
+    var record = MainWin.menuGrid.getSelectionData();
+    editMenuForm.getForm().reset();
+    editMenuForm.setValues(record);
+  }
+}
+
+function closeWin()
+{
+  resetForm();
+  hide();
+  MainWin.editMod="";
+}
+
+event saveMenuBtn_click(Button thisComp, Ext.EventObject e)
+{
+  if(MainWin.editMod=="add")
+  {
+    if(parentCodeField.getValue()=='bizroot')
+    {
+      Ext.Msg.alert('提示','新增失败，父菜单不能为根节点！');
+      return;
+    }
+    var menuCode = menuCodeField.getValue();
+    if(menuCode != "")
+    treeIdxField.setValue(MainWin.tTreeIdx + menuCode + "#");
+  }
+  if(MainWin.editMod=='edit')
+  {
+    if(parentCodeField.getValue()=='bizroot'&&oldParentCode!='bizroot')
+    {
+      Ext.Msg.alert('提示','修改失败，父菜单不能为根节点！');
+      return;
+    }
+  }
+  
+  var data = editMenuForm.getValues();
+  var parentCode = parentCodeField.getValue();
+  var msg = "";
+  var result = "";
+  
+  if(editMenuForm.getForm().isValid())
+  {
+    var kindCode = kindCodeField.getValue();
+    var menuCode = menuCodeField.getValue();
+    if(!verifyMenuCode(menuCode, kindCode) && "add" == MainWin.editMod)
+    {
+      Ext.Msg.alert('提示','此菜单已经存在，请重新输入菜单编号或更改系统分类');
+      return;
+    }
+    
+    
+  }
+  else
+  {
+    Ext.Msg.alert('提示', '有输入项不符合规范');
+    return;
+  }
+  var authWindow = new auth(MainWin).window;
+  if(MainWin.editMod=="add")
+  {
+    authWindow.needAuth(authWindow,'bizSetMenu','bizMenuAdd',MainWin,
+    function()
+    {
+      msg = "新增菜单";
+      Ext.apply(data,
+      {
+        resCode:'bizSetMenu', opCode:'bizMenuAdd'
+      }
+      );
+      result = MenuAddSvc.synExecute(data);
+      
+      if(result == "")
+      {
+        Ext.Msg.alert('提示', '服务没有响应');
+        return;
+      }
+      var addResult = result.dataSetResult[0].data[0].result;
+      if(result.returnCode == 0)
+      {
+        //有权限的同步刷新列表和树
+        if(addResult==1)
+        {
+          //更新列表
+          //MainWin.loadMenuGrid();
+          MainWin.menuGrid.refresh();
+          //刷新树
+          if(parentCode != "")
+          {
+            var id=menuCodeField.getValue();
+            var text=menuNameField.getValue();
+            addTreeNode(MainWin.menuTree,MainWin.tParentCode,
+            {
+              "id":id,"pid":MainWin.tParentCode,"text":text,"leaf":"true"
+            }
+            ,MainWin.treeRoot);
+            //MainWin.refreshNode(parentCode);
+          }
+        }
+        
+        //closeWin();
+        MainWin.addMenuSucess=true;
+        subtransDataSet.setParams(
+        {
+          menu_code:menuCodeField.getValue(),kind_code:kindCodeField.getValue()
+        }
+        );
+        //subtransDataSet.load();
+        newButton.setEnabled(true);
+        editButton.setEnabled(true);
+        deteleButton.setEnabled(true);
+        if(addResult==1){
+        Ext.Msg.alert('提示','新增菜单成功');
+        }else{
+         Ext.Msg.alert('提示','新增菜单成功,需要授权才能显示');
+        }
+      }
+      else
+      {
+        Ext.Msg.alert('提示', msg + '<br>原因：' + result.errorInfo);
+      }
+    }
+    );
+  }
+  if(MainWin.editMod=="edit")
+  {
+    if(parentCodeField.getValue()==menuCodeField.getValue())
+    {
+      Ext.Msg.alert('提示','上级菜单不能为当前菜单');
+      return;
+    }
+    authWindow.needAuth(authWindow,'bizSetMenu','bizMenuEdit',MainWin,
+    function()
+    {
+      msg = "修改菜单";
+      Ext.apply(data,
+      {
+        resCode:'bizSetMenu', opCode:'bizMenuEdit'
+      }
+      );
+      result = MenuEditSvc.synExecute(data);
+      
+      if(result == "")
+      {
+        Ext.Msg.alert('提示', '服务没有响应');
+        return;
+      }
+      
+      if(result.returnCode == 0)
+      {
+        
+        //更新列表
+        MainWin.menuGrid.refresh();
+        //刷新树
+        if(parentCode != "")
+        {
+          var id=menuCodeField.getValue();
+          var selectNode = MainWin.menuTree.getNodeById(MainWin.tParentCode);
+          var path = selectNode.getPath();
+          MainWin.menuTree.getNodeById(MainWin.treeRoot).reload();
+          MainWin.menuTree.expandPath(path,"",function()
+          {
+            MainWin.menuTree.getNodeById(id).select();
+            // refreshTreeNode(MainWin.menuTree,MainWin.tParentCode,MainWin.treeRoot);
+          }
+          );
+          //MainWin.refreshNode(parentCode);
+        }
+        
+        Ext.Msg.alert('提示','修改菜单成功');
+        closeWin();
+      }
+      else
+      {
+        Ext.Msg.alert('提示', msg + '<br>原因：' + result.errorInfo);
+      }
+    }
+    );
+  }
+}
+event reSetBtn_click(Button thisComp, Ext.EventObject e)
+{
+  resetForm();
+}
+event cancelBtn_click(Button thisComp, Ext.EventObject e)
+{
+  closeWin();
+}
+event name_change(Ext.form.Field thisComp, Mixed newValue, Mixed oldValue)
+{
+  var kindCode = kindCodeField.getValue();
+  var menuCode = menuCodeField.getValue();
+  if(newValue=="" || kindCode=="")
+  return;
+  if(!verifyMenuCode(newValue, kindCode))
+  {
+    Ext.Msg.alert('提示','此菜单已经存在，请重新输入菜单编号');
+    menuCodeField.reset();
+    menuCodeField.focus();
+  }
+}
+event kindCodeField_change(Ext.form.Field thisComp, Mixed newValue, Mixed oldValue)
+{
+  var menuCode = menuCodeField.getValue();
+  //var kindCode = kindCodeField.getValue();
+  alert(menuCode);
+  if(newValue=="" || kindCode=="")
+  return;
+  if(!verifyMenuCode(menuCode, newValue))
+  {
+    Ext.Msg.alert('提示','此菜单已经存在，请重新选择系统分类');
+    kindCodeField.setValue("");
+    kindCodeField.focus();
+  }
+}
+
+event newButton_click(Button thisComp, Ext.EventObject e)
+{
+  if(MainWin.editMod=="add"&&MainWin.addMenuSucess==false)
+  {
+    Ext.Msg.alert('提示', "请先新增菜单");
+    return;
+  }
+  if(null==menuCodeField.getValue()||menuCodeField.getValue()=="")
+  {
+    Ext.Msg.alert('提示', "菜单编号为空");
+    return;
+  }
+  MainWin.testWin=subtransDataSet;
+  var win =new addSubTransWindow();
+  win.menuCodeHidden.setValue(menuCodeField.getValue());
+  win.transCodeField.setValue(menuCodeField.getValue());
+  win.kindCodeHidden.setValue(kindCodeField.getValue());
+  win.show();
+}
+event deteleButton_click(Button thisComp, Ext.EventObject e)
+{
+  if(MainWin.editMod=="add"&&MainWin.addMenuSucess==false)
+  {
+    Ext.Msg.alert('提示', "请先新增菜单");
+    return;
+  }
+  if (functionsGrid.getSelectionModel().getSelected() != null)
+  {
+    Ext.MessageBox.confirm('提示', '删除选中子功能?', function(button, text)
+    {
+      if (button == "yes")
+      {
+        var authWin = new auth(MainWin).window;
+        authWin.needAuth(authWin,'bizSetMenu','bizMenuSubtranDete',MainWin, function()
+        {
+          var recodes = functionsGrid.getSelectionDatas();
+          var transCodes='';
+          var subTransCodes='';
+          for(var i=0;i<recodes.length;i++)
+          {
+            transCodes= transCodes+recodes[i].get("trans_code");
+            subTransCodes= subTransCodes+recodes[i].get("sub_trans_code");
+            if(i<recodes.length-1)
+            {
+              transCodes= transCodes+",";
+              subTransCodes= subTransCodes+",";
+            }
+          }
+          var Result = deleteService.synExecute(
+          {
+            trans_codes:transCodes,sub_trans_codes:subTransCodes,resCode:"bizSetMenu",opCode:"bizMenuSubtranDete"
+          }
+          );
+          if(!(Result.returnCode == 0))
+          {
+            Ext.Msg.alert('错误',Result.errorInfo);
+          }
+          else
+          {
+            Ext.Msg.alert('提示','删除成功');
+            subtransDataSet.load();
+          }
+        }
+        );
+      }
+    }
+    );
+  }
+  else
+  {
+    Ext.Msg.alert('提示','请选择至少一条子功能信息进行删除');
+  }
+}
+
+event editButton_click(Button thisComp, Ext.EventObject e)
+{
+  if(MainWin.editMod=="add"&&MainWin.addMenuSucess==false)
+  {
+    Ext.Msg.alert('提示', "请先新增菜单");
+    return;
+  }
+  if(functionsGrid.getSelectionDatas().length!=1)
+  {
+    Ext.Msg.alert('提示', '请选择一条子功能信息');
+    return;
+  }
+  MainWin.testWin=subtransDataSet;
+  var record =functionsGrid.getSelectionData().data;
+  var win =new editSubTransWindow();
+  win.transCodeField.setValue(record["trans_code"]);
+  win.transCodeField.defaultValue =record["trans_code"];
+  
+  win.subTransCodeField.setValue(record["sub_trans_code"]);
+  win.subTransCodeField.defaultValue =record["sub_trans_code"];
+  
+  win.subTransNameField.setValue(record["sub_trans_name"]);
+  win.subTransNameField.defaultValue =record["sub_trans_name"];
+  
+  win.relServField.setValue(record["rel_serv"]);
+  win.relServField.defaultValue =record["rel_serv"];
+  
+  win.ctrlFlagDictCombo.setValue(record["ctrl_flag"]);
+  win.ctrlFlagDictCombo.defaultValue =record["ctrl_flag"];
+  
+  win.loginFlagDictCombo.setValue(record["login_flag"]);
+  win.loginFlagDictCombo.defaultValue =record["login_flag"];
+  
+  win.remarkField.setValue(record["remark"]);
+  win.remarkField.defaultValue =record["remark"];
+  win.show();
+}
+
+
+]]></WindowScript>
+  </WindowScripts>
+</hsdoc>
