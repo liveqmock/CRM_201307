@@ -186,7 +186,7 @@ function openNewTab(id,name,url){
 						thisCmp.focus();
 						var ifm = document.getElementById(thisCmp.id+'_iframe');
 						if(ifm && ifm.contentWindow){
-							//STORY #2972::[证券二部/陈刚][XQ:2012041300006]【UI】2.新建菜单testB，地址指定为http://www.baidu.com,在firfox可以正常关闭tab页  begin
+							
 							try{
 								ifm.src="javascript:false";  
 								ifm.contentWindow.document.write('');
@@ -195,7 +195,7 @@ function openNewTab(id,name,url){
 							}catch(e){
 								
 							}
-							//STORY #2972::[证券二部/陈刚][XQ:2012041300006]【UI】2.新建菜单testB，地址指定为http://www.baidu.com,在firfox可以正常关闭tab页  end
+							
 						}
 					}
 				},

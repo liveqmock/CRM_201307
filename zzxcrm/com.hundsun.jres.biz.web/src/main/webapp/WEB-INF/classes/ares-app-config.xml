@@ -58,6 +58,10 @@
 					<bizservice id="jres.bizkernel_plugin" debug="true">
 						<item serviceId="*" functionId="*" threadCount="20" queueSize="30"/>
 					</bizservice>
+					<!--crm CEP -->
+					<bizservice id="jres.workflow.WorkFlowCEPService" debug="true">
+						<item serviceId="*" functionId="*" threadCount="10" queueSize="30" />
+					</bizservice>
 					<bizservice id="jres.mproxy" debug="true"/>
 				</bizservices>
 				<routetables>
@@ -66,6 +70,7 @@
 					<!--
 					<routetable functionId="7?" nodeName="test_as"/>
 					-->
+					<routetable serviceId="customer.*" pluginId="jres.workflow.WorkFlowCEPService" />
 					<routetable serviceId="*" pluginId="jres.bizkernel_plugin"/>
 				</routetables>
 				<eventchains>
@@ -74,6 +79,7 @@
 					<chain>jres.mockBizService;jres.cepcore</chain>
 					<chain>jres.localService;jres.cepcore</chain>
 					<chain>jres.t2channel;jres.cepcore</chain>
+					<chain>jres.workflow.WorkFlowCEPService;jres.cepcore</chain>
 				</eventchains>
 			</plugin-configuration>
 		</plugin>
@@ -89,6 +95,9 @@
 				</custom-timeouts>
 			</plugin-configuration>
 		</plugin>
+		
+		<!-- 本地通道插件 -->
+		<plugin service-id="jres.workflow.WorkFlowCEPService" load-level="3"></plugin>
 		
 		
 

@@ -7,7 +7,7 @@
 <head>
 <title>用户登录</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css"	href="<%=basePath%>ext3/resources/css/ext-all.css" />
+<link href="<%=basePath%>/bizframe/css/horn/login.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css"	href="<%=basePath%>css/ext-firefox.css" />
 <script type="text/javascript" src="<%=basePath%>ext3/adapter/ext/ext-base.js"></script>
 <script type="text/javascript" src="<%=basePath%>ext3/ext-all-original.js"></script>
@@ -61,17 +61,7 @@ function userformSubmit(){
 	    alert('登录名为空');
 		return;
 	}
-	
 
-	var code='';
-	if(isValidateCode){
-		if(document.getElementById("UIckeckCode").value==''){
-		    alert('验证码为空');
-			return;
-		}else{
-			code=document.getElementById("UIckeckCode").value;
-		}
-	}
 	
 	var pwd=document.getElementById("UIpassword").value;
 	if(pwd==''){
@@ -84,7 +74,6 @@ function userformSubmit(){
 
 	document.getElementById("userform").loginName.value=encryptName;
 	document.getElementById("userform").password.value=encryptPwd;
-	document.getElementById("userform").ckeckCode.value=code;
 	document.getElementById("userform").submit();
 }
 function userformReset(){
@@ -103,94 +92,36 @@ function loadimage(){
 
 //-->
 </script>
-<style type="text/css">
-<!--
-html{
-   overflow-x: hidden !important; 
-   overflow-y: hidden !important; 
-}
-body{
-   overflow-x: hidden !important; 
-   overflow-y: hidden !important;
-}
-.login_body {
-	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-TOP: 0px; BACKGROUND: url(<%=basePath%>bizframe/images/login_bg.jpg)  repeat ; 
-}
-.centerTb {
-	background-attachment: fixed;
-	background-image: url(<%=basePath%>bizframe/images/login_center.jpg);
-	background-repeat: no-repeat;
-	background-position: center center;
-	height: 549px;
-}
-.codeImage{
- PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; width:62px; height:20px;
-}
-.login_15{
- PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-WEIGHT: bold; FONT-SIZE: 11px; PADDING-BOTTOM: 0px;  COLOR: #4169E1; FONT-FAMILY: arial,helvetica; HEIGHT: 21px;
-}
--->
-</style>
+
 </head>
 <body class="login_body"  onload="javascripts:document.getElementById('UIloginName').focus(); " >
 <form id='UIuserform'>
-<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
-  <tr>
-    <td align="center"><table width="900" height="549" border="0" cellpadding="0" cellspacing="0" class="centerTb" >
-        <tr>
-          <td ><img src="<%=basePath%>bizframe/images/login_logo.gif" ></td>
-          
-          <td >
-          <table align="center" width="350" border="0" cellspacing="4" cellpadding="4" style=" FONT-SIZE: 16px; margin-top:50px">
-            <tr>
-				  <td>用户名：</td>
-				  <td ><input type="text" name="UIloginName" id="UIloginName" style="width: 150px; height:20px" onkeydown="userformOnkeydown(event)"/></td>
-			</tr>
-			<% if(!isValidateCode){%><tr><td colspan="2">&nbsp;</td></tr><%}%>
-			<tr>
-	              <td>密　码：</td>
-				  <td ><input name="UIpassword"  id="UIpassword"  type="password" style="width: 150px; height:20px" onkeydown="userformOnkeydown(event)"/></td>
-			</tr>
-			
-			
-			<%if(isValidateCode){%>
-			<tr><td >验证码：</td>
-				<td > <input type="text" name="UIckeckCode"  id="UIckeckCode" style="width: 75px; height:20px" onkeydown="userformOnkeydown(event)"/>
-				<img onclick="javascript:loadimage();" src="<%=basePath%>bizframe/getImage.image" class="codeImage" id="validataCode"/>
-				<a href="javascript:loadimage();" class="login_15">看不清</a>
-				</td>
-			</tr>
-			<%}else{%><tr><td colspan="2">&nbsp;</td></tr><%}%>
-			
-			<%if(isloginMutipleStyle){%>
-			<tr>
-                 <td>风　格：</td>
-				 <td  >
-				        <select name="genre" id="genre"  style="width: 75px"  onchange="changeTransAndSubTrans()">
-                                    <option value="2">普通</option>
-									<option value="1">桌面</option>
-						</select>
-				 </td>
-			</tr>
-			<% if(!isValidateCode){%><tr><td colspan="2">&nbsp;</td></tr><%}%>
-			
-			<%}else{%><tr><td colspan="2">&nbsp;</td></tr><%}%>
-            <tr> 
-                <td colspan="2" align="center">
-                <img src="<%=basePath%>bizframe/images/button-login.gif" 
-                onClick="userformSubmit();" style="cursor: pointer" >
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <img src="<%=basePath%>bizframe/images/button-reset.gif"
-                onClick="userformReset();" style="cursor: pointer" >
-                </td>
-                <td>&nbsp;</td>
-            </tr>
-            </table>
-          </td>
-        </tr>
-      </table></td>
-  </tr>
-</table>
+<div class="h_login-top">
+	<div class="h_login-w">
+	</div>
+</div>
+
+
+<div class="h_login-con">
+	<div class="h_login-w h_login-conimgbg">
+		<div class="h_logindiv">
+			<dl>
+				<dt>用户名：</dt><dd><input type="text" name="UIloginName" id="UIloginName" style="width: 150px; height:20px" onkeydown="userformOnkeydown(event)"/></dd>
+				<dt>密　码：</dt><dd><input name="UIpassword"  id="UIpassword"  type="password" style="width: 150px; height:20px" onkeydown="userformOnkeydown(event)"/></dd>
+			</dl>
+			<p class="h_cred">请输入正确用户名</p>
+			<div class="h_login-btn"><button type="button" onClick="userformSubmit();">登　录</button></div>
+			<div class="h_login-txt">登录须知：</div>
+		</div>
+	</div>
+</div>
+
+<div class="h_login-foot">
+	<div class="h_login-w">
+		<p>某公司名称 © 版权所有</p>
+	</div>
+</div>
+
 </form>
 <form id='userform' action="login" method="post">
 <input type="hidden" name="loginType" />
