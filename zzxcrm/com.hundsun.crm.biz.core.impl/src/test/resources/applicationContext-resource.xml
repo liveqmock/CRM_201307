@@ -53,7 +53,7 @@
 		</property>
 		 <property name="mappingLocations">
 		      <list>
-		           <value>classpath*:/crm/*.xml</value>
+		           <value>classpath*:/sqlmap/crm/*.xml</value>
 		      </list>
 		 </property>
 		 <property name="dataSource" ref="dataSource" />
