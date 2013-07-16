@@ -1,0 +1,207 @@
+﻿/* CSS Document */
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr {margin: 0; padding: 0;}
+ul, ol, li { list-style: none outside none;}
+img {border: 0 none;}
+a{color:#000;text-decoration:none;}
+a:hover{color:#000;text-decoration:underline;}
+a:focus {outline: none;}
+a {blr:expression(this.onFocus=this.blur())}
+button{cursor:pointer;}
+
+.h_clear{clear:both;font-size:0px;height:0px;line-height:0px;width:0px;visibility:hidden;}
+.h_none{display:none;}
+
+
+
+
+body{font-size:12px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*--------------------------------主体样式--------------------------------*/
+
+body{}
+
+/*---------------头部样式--------------------------*/
+.h_top{height:82px;border-bottom:1px #92bce6 solid; background:#fff url('img/h_top-right.jpg') no-repeat right 0;}
+.h_top-1{height:52px;border-bottom:2px #92bce6 solid; background:#fff url('img/h_top-right.jpg') no-repeat right 0;}
+.h_logo{background:transparent url('img/h_logo.gif') no-repeat 0 -2px; height:56px; float:left; width:300px; line-height:200px; overflow:hidden;}
+.h_logo-1{background:transparent url('img/h_logo-1.gif') no-repeat 0 -2px; height:56px; float:left; width:400px; line-height:200px; overflow:hidden;}
+.h_top-right{float:left; line-height:50px; padding:0 10px; position:absolute; right:10px; font-size:12px;}
+.h_top-exit{color:#666; padding:0px 5px; border:1px #fff dotted; border-radius: 3px;}
+.h_top-exit:hover{text-decoration:none;background:#36c; color:#fff;border: 1px solid #36c;}
+.h_top-welcome{margin-right:10px; padding-right:20px; background:transparent url('img/h_top-welcome.gif') no-repeat right; color:#666;}
+
+.h_top-friendlink{width:180px; top:15px; right:10px; z-index:9999; position:absolute; display:none;}
+.h_top-friendlink .h_top-friendlink-content{background:#fff; line-height:20px; cursor:pointer; width:140px; overflow:hidden; padding:0 20px 0 5px; background:#fff url('img/h_topsearchbtn.gif') no-repeat 150px 7px; border:1px #ccc solid; border-radius: 3px;
+-moz-box-shadow:0 0 2px #eee inset;/* For Firefox3.6+ */-webkit-box-shadow:0 0 2px #eee inset;/* For Chrome5+, Safari5+ */box-shadow:0 0 2px #eee inset;/* For Latest Opera */}
+.h_top-friendlink .h_top-friendlink-content a{color:#666;}
+.h_top-friendlink .h_top-friendlink-content a:hover{text-decoration:none;}
+.h_top-friendlink .h_top-friendlink-content:hover{background:#fff url('img/h_topsearchbtn.gif') no-repeat 150px -38px;}
+.h_top-friendlink .h_top-friendlink-content:hover ul{display:block;}
+.h_top-friendlink .h_top-friendlink-content ul{display:none;}
+.h_top-friendlink .h_top-friendlink-content:hover ul li a{color:#333;}
+
+.h_top .h_top-cutover{margin-top:55px; margin-right:20px; float:right; z-index:0;}
+.h_top-1 .h_top-cutover{margin-top:15px; margin-right:230px; float:right; z-index:0;}
+.h_top .h_top-cutover a,.h_top-1 .h_top-cutover a{background:transparent url('img/h_btn.gif') no-repeat right -236px; width:51px; padding-right:30px; white-space:nowrap; line-height:24px; height:24px; overflow:hidden; display:block;}
+
+
+/*-------------------index------------------------*/
+.h_index{z-index:0; margin: 20px 50px 0 190px; padding:0 20px;}
+.h_index h3{font:18px/300% '黑体';}
+.h_index-mes{color:#666; line-height:200%;}
+.h_index-con{padding:20px 0;}
+
+/*---------------中间样式--------------------------*/
+.h_screen{z-index:0; margin: 20px 50px 0 170px;}
+
+.h_screen iframe{border:0; width:100%;}
+
+.h_screen h1{font:bold 14px/200% '宋体'; background:#deebf7;}
+.h_screen h1 span{padding:0 10px;}
+
+.h_screen-content-1{width:35%; border:1px #92bce6 solid; overflow:hidden;}
+.h_screen-content-2{width:600px; border:1px #92bce6 solid; overflow:hidden;}
+.h_screen-content-3{width:99%; border:1px #92bce6 solid; overflow:hidden;}
+
+
+
+
+.h_btndiv{padding:20px 30px;}
+.h_btndiv button.h_btn-submit{border:1px #459830 solid; background:#649ac6 url('img/h_btnbg-submit.gif') repeat-x; 
+border-radius: 3px; color:#fff; font-size:14px; font-weight:bold; line-height:14px; padding:5px 20px; margin-right:5px;}
+.h_btndiv button.h_btn-cencel{border:1px #ccc solid; border-radius: 3px; background:#e5e5e5; color:#000; font-size:14px; font-weight:bold; padding:3px 20px;}
+.h_btndiv button{border:1px #ccc solid; border-radius: 3px; background:#e5e5e5; color:#000; font-size:14px; font-weight:bold; padding:3px 20px;}
+
+/*--------------------tab页签------------------------*/
+.h_top-index{z-index: 6;position:absolute; left:90px; top:50px;}
+.h_top-index li{border: 1px solid #cbdcf1;border-bottom: 0px solid #ccc;border-top-left-radius: 3px; border-top-right-radius: 3px;
+float: left;font:13px/18px verdana;height: 18px; background:transparent url('img/h_tab-bg.gif') repeat-x 0 0px;	
+margin-top:4px;padding: 5px 9px 4px 10px;position: relative;text-align: center;width: 69px;}
+.h_top-index .h_cur{height:22px; font-weight:bold; width:68px; border:1px #92bce6 solid; margin-top:0px; background:#deebf7;}
+
+.h_tab-screen{overflow:hidden; position:absolute; top:50px; left:179px; width:70%;}
+
+.h_tab-screen li{border: 1px solid #cbdcf1;border-bottom: 0px solid #ccc;border-top-left-radius: 3px; border-top-right-radius: 3px;
+display: list-item;	float: left;font:13px/18px verdana;height: 18px; background:transparent url('img/h_tab-bg.gif') repeat-x;	
+margin-top: 4px;margin-right: -1px;padding: 5px 20px 4px 7px;position: relative;text-align: center;width: 101px;z-index: 6;}
+
+.h_tab-screen li.h_cur{height:23px; font-weight:bold; border:1px #92bce6 solid;border-bottom:0; margin-right:0px; margin-top:0px; background:#fff /*url('img/h_tab-bg.gif') repeat-x 0 -40px*/;}
+.h_tab-screen li a{display:block; width:100%;}
+.h_top-index .h_cur a, .h_tab-screen li.h_cur a{color:#000;}
+.h_top-index .h_cur a:hover, .h_tab-screen li a:hover{text-decoration:none;}
+.h_tab-screen li a span{position:absolute; right:8px; top:12px; overflow:hidden; cursor:pointer; line-height:30px; background:transparent url('img/h_tab-bg.gif') no-repeat 0 -130px; width:8px; height:8px;}
+.h_tab-screen li a span:hover{background-position:0 -90px;}
+
+
+
+
+
+.h_formgridtitle{color:#000; font-weight:bold; overflow:hidden; margin-bottom:5px; border-top:1px #eee dashed; border-bottom:1px #eee dashed;}
+.h_formgridtitle span{float:left; display:block; padding:10px 20px;}
+.h_formgridtitle .h_btn-minus{display:block; float:right; overflow:hidden; margin-top:8px; line-height:100%; padding:5px 0 0 18px; font-weight:normal; color:#369;}
+.h_formgridtitle .h_btn-add{display:block; float:right; overflow:hidden; margin-top:8px; background:transparent url('img/h_btn.gif') no-repeat 0 3px; line-height:100%; padding:6px 20px 2px 20px; font-weight:normal; color:#690;}
+.h_formgridtitle .h_btn-confirm{display:block; float:right; overflow:hidden; margin-top:8px; background:transparent url('img/h_btn.gif') no-repeat 0 -36px; line-height:100%; padding:6px 20px 2px 20px; font-weight:normal; color:#36c;}
+
+/*------------------查询框-----------------------*/
+.h_search{padding:15px 20px; background:#edfee3; }
+.h_search dl{overflow:hidden; width:100%;}
+.h_search dt{float:left; width:70%;}
+.h_search dt input{width:100%;background:url('img/componentbg.gif') repeat-x 0 -80px; border:1px #ccc solid; height:20px;}
+.h_search dd{padding:0 5px; float:left; height:26px;}
+.h_search dd button.h_btn-search{background:url('img/h_btn-search.gif') no-repeat; width:32px; height:26px; overflow:hidden; border:0; line-height:80px;}
+
+
+
+
+
+/*--------------------提示-------------------------*/
+
+.h_tips{border:1px #e5c48e solid; margin-bottom:10px; color:#c60; position:absolute; width:40%; top:-8px; left:30%;
+-moz-box-shadow:2px 2px 5px #e5c48e;-webkit-box-shadow:2px 2px 5px #e5c48e ;box-shadow:2px 2px 5px #e5c48e; max-height:45px; line-height:150%; overflow:hidden; font-size:12px; background:#fff9e6;padding:10px 10px 3px; z-index:999;}
+
+
+
+/*通知*/
+.h_notice{position:absolute; right:0; top:100px; width:38px; z-index:9999;}
+.h_notice .h_notice-headings{padding:5px 10px; border: 1px solid #eee; border-right:0; overflow:hidden; text-shadow: 1px 1px 0 #fff; height:18px; background: #EAEAEA url(img/h_tab-bg.gif) repeat-x top;}
+.h_notice .h_notice-headings h2{font-size:13px; width:0px; font-weight:normal; overflow:hidden; padding:5px 0 0 27px; float:left; cursor:pointer; background:url('img/h_btn.gif') 0 -116px no-repeat;}
+.h_notice .h_notice-headings h2.h_notice-lt{background:url('img/h_btn.gif') 0 -116px no-repeat;}
+.h_notice .h_notice-headings h2.h_icon-notice{background:url('img/h_btn.gif') 0 -275px no-repeat;}
+
+.h_notice .h_notice-headings a{float:right; background:transparent url('img/h_btn.gif') no-repeat 0 -80px; margin-top:2px; width:15px; height:15px; line-height:50px; overflow:hidden;}
+.h_notice .h_notice-contentbox{border: 1px solid #eee; border-right:0; padding:0; overflow:hidden; background:#fff; width:37px;}
+.h_notice .h_notice-contentbox table{width:221px;}
+.h_notice .h_notice-contentbox table th{width:40px; background:#f7f7f7;}	
+.h_notice .h_notice-contentbox table th span{background:url('img/h_btn.gif') no-repeat center -200px; display:block; line-height:300px; overflow:hidden; height:20px;}	
+.h_notice .h_notice-contentbox table td{font-size:12px; line-height:150%; color:#666; padding:10px;}	
+.h_notice .h_notice-num{background:transparent url('img/h_numbg.png') no-repeat; position:absolute; width:20px; height:20px; left:-8px; top:-8px; overflow:hidden; font:bold 10px/20px arial; color:#fff; text-align:center;}
+
+
+
+/*-----------------底部---------------------*/
+.h_foot{background:#f5f5f5; padding:10px; margin-top:10px; border-top:1px #ccc solid; text-align:center; display:none;}
+
+
+
+
+
+
+/*---------------菜单样式--------------------------*/
+body{background:url('img/h_menubg.gif') repeat-y -150px;}
+.h_menu{width:150px; position: absolute; top: 80px; left:0; z-index:9999;}
+
+
+/*--------ztree------------*/
+
+.h_menu .ztree * {}
+.h_menu .ztree li ul{margin:0; padding:0;}
+.h_menu .ztree li {line-height:30px;}
+.h_menu .ztree li a {width:140px;height:30px; padding-top:0px;}
+.h_menu .ztree li a:hover {text-decoration:none; background-color: #E7E7E7;}
+.h_menu .ztree li a span.button.switch {visibility:hidden}
+.h_menu .ztree.showIcon li a span.button.switch {visibility:visible}
+.h_menu .ztree li a.curSelectedNode {background-color:#D4D4D4;border:0;height:30px;}
+.h_menu .ztree li span {line-height:30px;}
+.h_menu .ztree li span.button {margin-top: -7px;}
+.h_menu .ztree li span.button.switch {width: 16px;height: 16px;}
+
+.h_menu .ztree li a.level0 span {font-size: 120%;font-weight: bold; text-shadow: 0 1px 0 #FFFFFF;}
+.h_menu .ztree li span.button {background-image:url("img/left_menuForOutLook.gif")}
+.h_menu .ztree li span.button.switch.level0 {width: 20px; height:20px;}/*一级图标占位*/
+.h_menu .ztree li span.button.switch.level1 {width: 20px; height:20px; margin-left:10px;}/*二级图标占位*/
+.h_menu .ztree li span.button.noline_open {background-position: 0 0;}/*向下图标*/
+.h_menu .ztree li span.button.noline_close {background-position: -18px 0;}/*向右图标*/
+.h_menu .ztree li span.button.noline_open.level0 {background-position: 0 -18px;}/*一级向下图标*/
+.h_menu .ztree li span.button.noline_close.level0 {background-position: -18px -18px;}/*一级向右图标*/
+
+
+.h_menu .ztree li span.button.noline_docu{background:none;}
+
+
+.h_menu .ztree li a.curSelectedNode {text-shadow: 0 1px 0 #FFFFFF;}
+.h_menu .ztree li li li a{padding-left:10px; width:130px;}
+
+
+
+
+
+
+
+
+
+
+
+
