@@ -21,7 +21,7 @@ public class CrmCustomer implements java.io.Serializable{
 	private String custRegion;
 	private Long custManagerId;
 	private String custManagerName;
-	private Integer custLevel;
+	private Integer custLevel;                          
 	private String custLevelLabel;
 	private Integer custSatisfy;
 	private Integer custCredit;
@@ -39,8 +39,6 @@ public class CrmCustomer implements java.io.Serializable{
 	private String custLocalTaxNo;
 	private String custNationalTaxNo;
 	private String custStatus;
-	private Set activities = new HashSet(0);
-	private Set linkmans = new HashSet(0);
 
 	// Constructors
 
@@ -60,8 +58,7 @@ public class CrmCustomer implements java.io.Serializable{
 			String custZip, String custTel, String custFax, String custWebsite,
 			String custLicenceNo, String custChieftain, Long custBankroll,
 			Long custTurnover, String custBank, String custBankAccount,
-			String custLocalTaxNo, String custNationalTaxNo, String custStatus,
-			Set activities, Set linkmans) {
+			String custLocalTaxNo, String custNationalTaxNo, String custStatus) {
 		this.custName = custName;
 		this.custRegion = custRegion;
 		this.custManagerId = custManagerId;
@@ -84,8 +81,6 @@ public class CrmCustomer implements java.io.Serializable{
 		this.custLocalTaxNo = custLocalTaxNo;
 		this.custNationalTaxNo = custNationalTaxNo;
 		this.custStatus = custStatus;
-		this.activities = activities;
-		this.linkmans = linkmans;
 	}
 
 	// Property accessors
@@ -274,34 +269,7 @@ public class CrmCustomer implements java.io.Serializable{
 		this.custStatus = custStatus;
 	}
 
-	/**
-	 * @return the activities
-	 */
-	public Set getActivities() {
-		return activities;
-	}
-
-	/**
-	 * @param activities the activities to set
-	 */
-	public void setActivities(Set activities) {
-		this.activities = activities;
-	}
-
-	/**
-	 * @return the linkmans
-	 */
-	public Set getLinkmans() {
-		return linkmans;
-	}
-
-	/**
-	 * @param linkmans the linkmans to set
-	 */
-	public void setLinkmans(Set linkmans) {
-		this.linkmans = linkmans;
-	}
-
+	
 	
 
 }

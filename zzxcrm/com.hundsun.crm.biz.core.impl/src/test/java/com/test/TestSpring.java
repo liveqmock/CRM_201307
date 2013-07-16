@@ -46,11 +46,5 @@ public class TestSpring {
 		testService.say();
 	}
 	
-	@Test
-	public void test3() throws SQLException{
-		List<User> list = custormerDao.findAll();
-		Assert.assertNotNull(list);
-		Assert.assertEquals(4, list.size());
-	}
 }
 
