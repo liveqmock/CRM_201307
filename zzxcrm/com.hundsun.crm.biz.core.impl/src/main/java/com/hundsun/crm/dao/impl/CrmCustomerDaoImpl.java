@@ -1,19 +1,23 @@
 package com.hundsun.crm.dao.impl;
 
-import java.util.Map;
+import java.sql.SQLException;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.hundsun.beyond.common.base.AbstractBaseDao;
-import com.hundsun.beyond.common.vo.PageInfo;
-import com.hundsun.crm.bean.CrmCustomer;
+import com.hundsun.crm.bean.User;
 import com.hundsun.crm.dao.CrmCustomerDao;
+import com.ibatis.sqlmap.client.SqlMapClient;
 
 
 @Repository
-public class CrmCustomerDaoImpl extends AbstractBaseDao<CrmCustomer> implements CrmCustomerDao{
-	
-	public PageInfo<CrmCustomer> findPage(PageInfo<CrmCustomer> pageInfo,Integer pageNum, Integer pageSize,Map<String, Object> paramMap) {
-		return getPageInfoByParamMap(pageInfo,"CrmCustomerSQL.countTotal","CrmCustomerSQL.findPage", pageNum, pageSize, paramMap);
+public class CrmCustomerDaoImpl implements CrmCustomerDao{
+	@Autowired
+	private SqlMapClient client;
+
+	@SuppressWarnings("unchecked")
+	public List<User> findAll() throws SQLException {
+		return (List<User>) client.queryForList("user.findAll");
 	}
 }

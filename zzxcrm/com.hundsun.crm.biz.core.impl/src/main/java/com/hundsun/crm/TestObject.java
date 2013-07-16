@@ -25,12 +25,27 @@ import java.util.Date;
  *
  */
 public class TestObject {
+	private Integer userId;
 	private String name;
 	private int age;
 	private String sex;
 	private String nick;
 	private String addr;
 	private Date createDt;
+	
+	
+	/**
+	 * @return the userId
+	 */
+	public Integer getUserId() {
+		return userId;
+	}
+	/**
+	 * @param userId the userId to set
+	 */
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
 	/**
 	 * @return the name
 	 */

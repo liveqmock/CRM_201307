@@ -13,10 +13,11 @@
  */
 package com.hundsun.crm.dao;
 
-import java.util.Map;
+import java.sql.SQLException;
+import java.util.List;
 
-import com.hundsun.beyond.common.vo.PageInfo;
-import com.hundsun.crm.bean.CrmCustomer;
+import com.hundsun.crm.bean.User;
+
 
 /**
  * 客戶信息管理
@@ -27,13 +28,5 @@ import com.hundsun.crm.bean.CrmCustomer;
  */
 public interface CrmCustomerDao {
 
-	/**
-	 * 客户信息查询
-	 * @param pageInfo
-	 * @param pageNum
-	 * @param pageSize
-	 * @param paramMap
-	 * @return
-	 */
-	public PageInfo<CrmCustomer> findPage(PageInfo<CrmCustomer> pageInfo,Integer pageNum, Integer pageSize,Map<String, Object> paramMap);
+	List<User> findAll() throws SQLException;
 }
