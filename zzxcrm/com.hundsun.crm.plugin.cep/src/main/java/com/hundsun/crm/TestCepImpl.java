@@ -20,7 +20,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.hundsun.crm.common.listener.AppStartListener;
 import com.hundsun.crm.common.util.WrapperUtil;
 import com.hundsun.crm.wrapper.anotation.JresService;
 import com.hundsun.jres.interfaces.cep.context.IEventContext;
@@ -52,25 +51,33 @@ public class TestCepImpl {
 	}
 	
 	@JresService(alias = "customer.service.test.findPage", desc = "测试分页", value = "customer.service.test.findPage")
-	public IDatasets findPaget(IEventContext context,
+	public IDatasets findPage(IEventContext context,
 			IDataset request)  {
 		TestObject obj = new TestObject();
 		//List<TestObject> list = this.testService.page(obj, 1, 10);
 		List<TestObject> list = new ArrayList<TestObject>();
-		TestObject item = getObject();
-		list.add(item);
+		list.add(getObject("周星驰","男","星爷",30));
+		list.add(getObject("雷总","男","胖仔",23));
+		list.add(getObject("李总","男","好男人",20));
 		return WrapperUtil.createListResult(list, TestObject.class, list==null?0:list.size());
+	}
+	@JresService(alias = "customer.service.test.findObject", desc = "测试获取对象", value = "customer.service.test.findObject")
+	public IDatasets findObject(IEventContext context,
+			IDataset request)  {
+		TestObject obj = getObject("周星驰","男","星爷",30);
+		
+		return WrapperUtil.createObjectResult(obj, TestObject.class);
 	}
 	/**
 	 * @return
 	 */
-	private TestObject getObject() {
+	private TestObject getObject(String name,String sex,String nick,int age) {
 		TestObject item = new TestObject();
-		item.setName("周智星");
+		item.setName(name);
 		item.setAddr("杭州市");
-		item.setAge(30);
-		item.setNick("星爷");
-		item.setSex("男");
+		item.setAge(age);
+		item.setNick(nick);
+		item.setSex(sex);
 		return item;
 	}
 }
