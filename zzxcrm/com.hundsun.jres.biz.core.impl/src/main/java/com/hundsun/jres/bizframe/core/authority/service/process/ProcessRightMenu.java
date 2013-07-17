@@ -262,7 +262,8 @@ public class ProcessRightMenu {
 		sql.append("select * from tsys_subtrans m ").append(" where (exists (select 1  from tsys_user_right ur where ur.user_id = @userId and m.sub_trans_code = ur.sub_trans_code and m.trans_code = ur.trans_code and (ur.right_enable is null or right_enable in ('', '1'))) ");
         sql.append("or exists (select 1 from tsys_role_user ru, tsys_role_right rr where rr.role_code = ru.role_code and rr.right_flag = ru.right_flag and m.trans_code = rr.trans_code and m.sub_trans_code = rr.sub_trans_code and ru.user_code =@userId " +
         		"and not exists (select 'X' from tsys_user_right ur where ur.trans_code = rr.trans_code and ur.sub_trans_code = rr.sub_trans_code and ur.right_flag = rr.right_flag and ur.user_id =@userId and ur.right_enable = '0')))");
-		sql.append(" and exists (select 1 from tsys_menu m2 where m.trans_code=m2.trans_code and m2.kind_code=@kindCode start with m2.menu_code=@menuCode connect by prior m2.menu_code=m2.parent_code )");
+		//sql.append(" and exists (select 1 from tsys_menu m2 where m.trans_code=m2.trans_code and m2.kind_code=@kindCode start with m2.menu_code=@menuCode connect by prior m2.menu_code=m2.parent_code )");//去掉oracle 语法    zhouzhixing
+        sql.append(" and exists (select 1 from tsys_menu m2 where m.trans_code=m2.trans_code and m2.kind_code=@kindCode )");
         Map<String,Object> params=new HashMap<String,Object>();
 		params.put("userId", userId);
 		params.put("menuCode", menuCode);
