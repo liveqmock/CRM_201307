@@ -191,38 +191,29 @@ var sysRole='<%= AuthorityConstants.SYS_SUPER_ROLE %>';
 </div>
 
 <div id="top_div" style="display:''">
-<table id="logoTable" name="logoTable" width="100%" style ="table-layout:fixed;" cellspacing="0" border="0" cellpadding="0">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#D1E7FF" id="logoTable" style ="table-layout:fixed;" name="logoTable">
      <tr >
      <!-- LOGO区开始 -->
-     <td width="<%=logoImageWidth %>"  background="<%=basePath%>bizframe/images/background.png">
-				<img src="<%=basePath%>bizframe/images/<%=defaultLogo%>" height=<%=logoHeight %>  align="left"/>
+     <td  height="70">&nbsp;
 	</td>
 	<!-- LOGO区结束-->
 	
-	<!-- 状态区开始 -->
-	<td  width="20%"  background="<%=basePath%>bizframe/images/background.png">
-					<div class="user" align="left" >
-					| 欢迎您:
-					<%
-					if(currUser!=null)
-					out.println(currUser.getUserMap().get(SessionConstants.ARRT_CURR_USER_NAME));
-					%>
-					</div>
-	</td>
 	<!-- 状态区结束-->
 	
 	<!-- 应用快捷区开始 -->
-	<td  align="right"  width="<%=fastImageWidth %>" background="<%=basePath%>bizframe/images/background.png">
-			<img height=<%=logoHeight %>   name="help" value="帮助" src="<%=basePath%>bizframe/images/help.png"
-				onclick="addTab('bizframe-help','系统帮助','<%=basePath%>'+systemHelpUrl)" style="cursor:pointer" align="right"  />
-		</td>
-		<td  align="right" width="<%=fastImageWidth %>"  background="<%=basePath%>bizframe/images/background.png">
-			<img height=<%=logoHeight %>   src="<%=basePath%>bizframe/images/logout.png" value="注销" name="logout" 
-				onclick="logoutFlag=true;signOut('<%=basePath%>logout?resCode=bizSign&opCode=bizSignOut');" style="cursor:pointer" align="right"  />
-		</td>
-		<td  align="right" width="<%=fastImageWidth %>" background="<%=basePath%>bizframe/images/background.png">
-			<img height=<%=logoHeight %>   src="<%=basePath%>bizframe/images/changepwd.png" name="modifyPassword" 
-				onclick="openModifyPwdWin(false)" value="修改密码" style="cursor:pointer" align="right" />
+	<td  align="right"  width="688" background="<%=basePath%>bizframe/images/h_loginbg.png"><div  align="right" style=" font-size:12px">
+					 欢迎您:
+					     <%
+					if(currUser!=null)
+					out.println(currUser.getUserMap().get(SessionConstants.ARRT_CURR_USER_NAME));
+					%>
+		  </div>
+	   </td>
+		<td  align="right"  style=" font-size:12px">
+			
+			<a onClick="logoutFlag=true;signOut('<%=basePath%>logout?resCode=bizSign&opCode=bizSignOut');" href="javascript:void(0);" style="cursor:pointer" >退出</a>&nbsp;&nbsp;&nbsp;&nbsp;
+			<a onClick="openModifyPwdWin(false)" href="javascript:void(0);" style="cursor:pointer" >修改密码</a>&nbsp;&nbsp;&nbsp;&nbsp;
+			
 	</td>
 	<!-- 应用快捷区结束 -->
 	</tr>
@@ -231,7 +222,7 @@ var sysRole='<%= AuthorityConstants.SYS_SUPER_ROLE %>';
 <%
 Object $_PASSMODIFYDATE=currUser.getUserMap().get(SessionConstants.ARRT_CURR_USER_PASSMODIFYDATE);
 %>
-	<script type="text/javascript">
+<script type="text/javascript">
 	/**20111021 huhl@hundsun.com BUG #1524 bengin**/
 function forceChangePassword() {
 <%if($_PASSMODIFYDATE == null || $_PASSMODIFYDATE.equals(new Integer(0))){%>

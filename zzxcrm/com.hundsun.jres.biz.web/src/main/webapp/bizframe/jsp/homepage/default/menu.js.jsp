@@ -77,17 +77,7 @@ var navigation = new Ext.Toolbar( {
 				    iconCls: 'naviHiden',
 				    handler :  function(){
 					              toolbarLogo(this);}
-				    },{
-					id:'changeHomeButton',
-				    text: '切换风格',
-				    iconCls: 'changehome16',
-				    handler :  function(){ 
-				            var myMask = new Ext.LoadMask(Ext.getBody(), {msg:"正在切换首页，请您稍后..."});  
-				            myMask.show();  
-				            window.onbeforeunload = '';
-				            setTimeout(function(){ window.location=desktopHomePage;},0);
-					        }
-			        }
+				    }
 					<%
 					int firstMenus_Format_list_size=firstMenus_Format_list.size();
 					if(firstMenus_Format_list_size>0){
