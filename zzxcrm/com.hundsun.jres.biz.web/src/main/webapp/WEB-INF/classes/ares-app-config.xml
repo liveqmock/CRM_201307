@@ -195,7 +195,7 @@
 		   <plugin-configuration>
 		     <!-- pageCache : 是否开启代码缓存-->
 	       <!-- isIFrame : 是否采用iframe方式加载页面 -->
-		     <engine pageCache="true" isIFrame="true" dictClass="com.hundsun.jres.bizframe.core.system.service.DefalutDictHandler">
+		     <engine pageCache="false" isIFrame="true" dictClass="com.hundsun.jres.bizframe.core.system.service.DefalutDictHandler">
 		        <beans>
 	             <bean id="extraServiceHandler" class="com.hundsun.jres.bizframe.core.framework.service.UIExtraServiceHandler" />
 		       </beans> 
