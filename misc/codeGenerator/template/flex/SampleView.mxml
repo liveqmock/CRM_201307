@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Panel 
+	xmlns:fx="http://ns.adobe.com/mxml/2009"      
+	xmlns:mx="library://ns.adobe.com/flex/mx"
+	xmlns:fb="http://flexbase.800best.com/mxml"
+	xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:flexlib="http://code.google.com/p/flexlib/"
+	width="100%" height="100%" xmlns:carrier="carrier.*" title="查看" 
+    	verticalScrollPolicy="auto" horizontalScrollPolicy="auto" 
+	creationComplete="init()">
+	
+	
+	<fx:Script>
+		<![CDATA[
+			import com.best.oasis.flexbase.util.BeanUtils;
+			import com.oasis.spiderman.sample.SampleController;
+			import com.oasis.spiderman.vo.sample.SampleVO;
+			import mx.containers.ViewStack;
+			
+			[Bindable]
+			public var vo:SampleVO = new SampleVO();
+			[Inject]
+			public var sampleController:SampleController;
+		
+			public function init():void{
+
+			}
+
+			private function editSample():void{
+				(this.parent as ViewStack).selectedIndex = 2;
+				BeanUtils.copyProperties(((this.parent as ViewStack).parent.parent as SampleList).edit.vo, vo);
+				((this.parent as ViewStack).parent.parent as SampleList).edit.init();
+				(this.parent.parent.parent as SampleList).vbox.percentWidth = 20;
+				(this.parent.parent.parent as SampleList).rightPanel.percentWidth = 80;
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<mx:VBox width="100%" height="100%" id="body">
+		<mx:Button label="编辑" click="editSample()" id="editBtn"/>
+		<fb:MultiColumnForm  width="100%" numColumns="2" height="100%">
+			<fb:MultiColumnFormItem label="姓名：">
+				<mx:Text text="{}"/>
+			</fb:MultiColumnFormItem>
+			<fb:MultiColumnFormItem label="备注：">
+				<mx:Text text="{}"/>
+			</fb:MultiColumnFormItem>
+		</fb:MultiColumnForm>
+	</mx:VBox>
+</mx:Panel>

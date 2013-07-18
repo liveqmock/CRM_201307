@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project basedir="." default="build" name="code generator">
+	<!-- property -->
+	<property name="projectBaseDir" value="..\.."/>
+	<property name="projectName" value="spiderman"/>
+	<property name="flexProjectDirPrefix" value="src\main\flex\com\oasis\${projectName}"/>
+	<property name="serverProjectDirPrefix" value="src\main\java\com\oasis\${projectName}"/>
+	<property name="serverTemplateDir" value="template\server"/>
+	<property name="flexTemplateDir" value="template\flex"/>
+	<property name="p.relativeDir" value=""/>
+	<property name="p.dirSeparatorIndex" value="-1"/>
+
+
+	<!-- input -->
+	<input message="please input the package name" addproperty="p.packageName" defaultvalue="cup"/>
+	<input message="please input the entity name" addproperty="p.entityName" defaultvalue="Cup"/>
+
+	<!-- tools -->
+	<taskdef name="stringutil" classname="ise.antelope.tasks.StringUtilTask"/>
+	<taskdef name="if" classname="ise.antelope.tasks.IfTask"/>
+	<taskdef name="fileutil" classname="ise.antelope.tasks.FileUtilTask"/>
+
+	<!-- change the entity name's first letter to lower case-->
+	<stringutil string="${p.entityName}" property="p._firstLeterOfEntityName">
+		<substring beginindex="0" endindex="1"/>
+    </stringutil>
+	<stringutil string="${p.entityName}" property="p._leftStringOfEntityName">
+		<substring beginindex="1"/>
+    </stringutil>
+    <stringutil string="${p._firstLeterOfEntityName}" property="p._lowerFirstLeterOfEntityName">
+		<lowercase/>
+    </stringutil>
+    <property name="p.lowerEntityName" value="${p._lowerFirstLeterOfEntityName}${p._leftStringOfEntityName}"/>
+
+	<stringutil string="${p.packageName}" property="p.relativeDir">
+		<replace regex="\." replacement="\\"></replace>
+    </stringutil>
+     
+	<!--
+	<echo>relativeDir = ${p.relativeDir}</echo>	
+	-->
+	<stringutil string="${p.relativeDir}" property="p.dirSeparatorIndex">
+		<indexof string="\"/>
+    </stringutil>
+<!-- server  -->
+
+	<!-- entity -->
+	<property name="entityFileDir" 
+		value="${projectBaseDir}\server-part\spiderman-model\${serverProjectDirPrefix}\model\${p.relativeDir}"/>
+	<property name="entityFileName" value="${entityFileDir}\${p.entityName}.java" />
+
+	<target name="entity">
+		<antcall target="_generateFile" >
+			<param name="desc" value="entity" /> 
+			<param name="fileDir" value="${entityFileDir}" /> 
+			<param name="fileName" value="${p.entityName}.java" />
+			<param name="templateFileName" value="${serverTemplateDir}\Sample.java" />
+		</antcall>
+	</target>
+
+	<!-- vo -->
+	<property name="voFileDir" 
+		value="${projectBaseDir}\server-part\spiderman-common\${serverProjectDirPrefix}\common\vo\${p.relativeDir}"/>
+	<property name="voFileName" value="${voFileDir}\${p.entityName}VO.java" />
+
+	<target name="vo">
+		<antcall target="_generateFile" >
+			<param name="desc" value="vo" /> 
+			<param name="fileDir" value="${voFileDir}" /> 
+			<param name="fileName" value="${p.entityName}VO.java" />
+			<param name="templateFileName" value="${serverTemplateDir}\SampleVO.java" />
+		</antcall>
+	</target>
+
+
+	<!-- so -->
+	<property name="soFileDir" 
+		value="${projectBaseDir}\server-part\spiderman-common\${serverProjectDirPrefix}\common\so\${p.relativeDir}"/>
+	<property name="soFileName" value="${soFileDir}\${p.entityName}SO.java" />
+
+	<target name="so">
+		<antcall target="_generateFile" >
+			<param name="desc" value="so" /> 
+			<param name="fileDir" value="${soFileDir}" /> 
+			<param name="fileName" value="${p.entityName}SO.java" />
+			<param name="templateFileName" value="${serverTemplateDir}\SampleSO.java" />
+		</antcall>
+	</target>
+
+	<!-- dao -->
+	<property name="daoFileDir" 
+		value="${projectBaseDir}\server-part\spiderman-dao\${serverProjectDirPrefix}\dao\${p.relativeDir}"/>
+	<property name="daoFileName" value="${daoFileDir}\${p.entityName}DAO.java" />
+
+	<target name="dao">
+		<antcall target="_generateFile" >
+			<param name="desc" value="dao" /> 
+			<param name="fileDir" value="${daoFileDir}" /> 
+			<param name="fileName" value="${p.entityName}DAO.java" />
+			<param name="templateFileName" value="${serverTemplateDir}\SampleDAO.java" />
+		</antcall>
+	</target>
+
+	
+	<!-- daoImpl -->
+	<property name="daoImplFileDir" 
+		value="${projectBaseDir}\server-part\spiderman-dao\${serverProjectDirPrefix}\dao\${p.relativeDir}"/>
+	<property name="daoImplFileName" value="${daoImplFileDir}\${p.entityName}DAOImpl.java" />
+	<target name="daoImpl">
+		<antcall target="_generateFile" >
+			<param name="desc" value="daoImpl" /> 
+			<param name="fileDir" value="${daoImplFileDir}" /> 
+			<param name="fileName" value="${p.entityName}DAOImpl.java" />
+			<param name="templateFileName" value="${serverTemplateDir}\SampleDAOImpl.java" />
+		</antcall>
+	</target>
+	
+	
+	<!-- Component -->
+	<property name="componentFileDir" 
+		value="${projectBaseDir}\server-part\spiderman-service\${serverProjectDirPrefix}\service\${p.relativeDir}"/>
+	<property name="componentFileName" value="${componentFileDir}\${p.entityName}Component.java" />
+
+	<target name="component">
+		<antcall target="_generateFile" >
+			<param name="desc" value="component" /> 
+			<param name="fileDir" value="${componentFileDir}" /> 
+			<param name="fileName" value="${p.entityName}Component.java" />
+			<param name="templateFileName" value="${serverTemplateDir}\SampleComponent.java" />
+		</antcall>
+	</target>
+
+	<!-- serviceFacade -->
+	<property name="serviceFacadeFileDir" 
+		value="${projectBaseDir}\server-part\spiderman-service-facade\${serverProjectDirPrefix}\facade\${p.relativeDir}"/>
+	<property name="serviceFacadeFileName" value="${serviceFacadeFileDir}\${p.entityName}ServiceFacade.java" />
+	<target name="serviceFacade">
+		<antcall target="_generateFile" >
+			<param name="desc" value="serviceFacade" /> 
+			<param name="fileDir" value="${serviceFacadeFileDir}" /> 
+			<param name="fileName" value="${p.entityName}ServiceFacade.java" />
+			<param name="templateFileName" value="${serverTemplateDir}\SampleServiceFacade.java" />
+		</antcall>
+	</target>
+
+<!-- flex  -->
+	<!-- flexVO -->
+	<property name="flexVOFileDir" 
+		value="${projectBaseDir}\flex-part\web-common\${flexProjectDirPrefix}\vo\${p.relativeDir}"/>
+	<property name="flexVOFileName" value="${flexVOFileDir}\${p.entityName}VO.as" />
+
+	<target name="flexVO">
+		<antcall target="_generateFile" >
+			<param name="desc" value="flexVO" /> 
+			<param name="fileDir" value="${flexVOFileDir}" /> 
+			<param name="fileName" value="${p.entityName}VO.as" />
+			<param name="templateFileName" value="${flexTemplateDir}\SampleVO.as" />
+		</antcall>
+	</target>
+	
+	<!-- flexSO -->
+	<property name="flexSOFileDir" 
+		value="${projectBaseDir}\flex-part\web-common\${flexProjectDirPrefix}\so\${p.relativeDir}"/>
+	<property name="flexSOFileName" value="${flexSOFileDir}\${p.entityName}SO.as" />
+
+	<target name="flexSO">
+		<antcall target="_generateFile" >
+			<param name="desc" value="flexSO" /> 
+			<param name="fileDir" value="${flexSOFileDir}" /> 
+			<param name="fileName" value="${p.entityName}SO.as" />
+			<param name="templateFileName" value="${flexTemplateDir}\SampleSO.as" />
+		</antcall>
+	</target>
+
+	<!-- flexController -->
+	<property name="flexControllerFileDir" 
+		value="${projectBaseDir}\flex-part\web-controller\${flexProjectDirPrefix}\${p.relativeDir}"/>
+	<property name="flexControllerFileName" value="${flexControllerFileDir}\${p.entityName}Controller.as" />
+
+	<target name="flexController">
+		<antcall target="_generateFile" >
+			<param name="desc" value="flexController" /> 
+			<param name="fileDir" value="${flexControllerFileDir}" /> 
+			<param name="fileName" value="${p.entityName}Controller.as" />
+			<param name="templateFileName" value="${flexTemplateDir}\SampleController.as" />
+		</antcall>
+	</target>
+	
+	<!-- flexList -->
+	<property name="flexListFileDir" 
+		value="${projectBaseDir}\flex-part\web-module\${flexProjectDirPrefix}\view\${p.relativeDir}"/>
+	<property name="flexListFileName" value="${flexListFileDir}\${p.entityName}List.mxml" />
+
+	<target name="flexList">
+		<antcall target="_generateFile" >
+			<param name="desc" value="flexList" /> 
+			<param name="fileDir" value="${flexListFileDir}" /> 
+			<param name="fileName" value="${p.entityName}List.mxml" />
+			<param name="templateFileName" value="${flexTemplateDir}\SampleList.mxml" />
+		</antcall>
+	</target>
+
+	<!-- flexCreate -->
+	<property name="flexCreateFileDir" 
+		value="${projectBaseDir}\flex-part\web-module\${flexProjectDirPrefix}\view\${p.relativeDir}"/>
+	<property name="flexCreateFileName" value="${flexListFileDir}\${p.entityName}Create.mxml" />
+
+	<target name="flexCreate">
+		<antcall target="_generateFile" >
+			<param name="desc" value="flexCreate" /> 
+			<param name="fileDir" value="${flexListFileDir}" /> 
+			<param name="fileName" value="${p.entityName}Create.mxml" />
+			<param name="templateFileName" value="${flexTemplateDir}\SampleCreate.mxml" />
+		</antcall>
+	</target>
+
+	<!-- flexEdit -->
+	<property name="flexEditFileDir" 
+		value="${projectBaseDir}\flex-part\web-module\${flexProjectDirPrefix}\view\${p.relativeDir}"/>
+	<property name="flexEditFileName" value="${flexListFileDir}\${p.entityName}Edit.mxml" />
+
+	<target name="flexEdit">
+		<antcall target="_generateFile" >
+			<param name="desc" value="flexEdit" /> 
+			<param name="fileDir" value="${flexEditFileDir}" /> 
+			<param name="fileName" value="${p.entityName}Edit.mxml" />
+			<param name="templateFileName" value="${flexTemplateDir}\SampleEdit.mxml" />
+		</antcall>
+	</target>
+
+
+	<!-- flexView -->
+	<property name="flexViewFileDir" 
+		value="${projectBaseDir}\flex-part\web-module\${flexProjectDirPrefix}\view\${p.relativeDir}"/>
+	<property name="flexViewFileName" value="${flexViewFileDir}\${p.entityName}View.mxml" />
+
+	<target name="flexView">
+		<antcall target="_generateFile" >
+			<param name="desc" value="flexView" /> 
+			<param name="fileDir" value="${flexViewFileDir}" /> 
+			<param name="fileName" value="${p.entityName}View.mxml" />
+			<param name="templateFileName" value="${flexTemplateDir}\SampleView.mxml" />
+		</antcall>
+	</target>
+
+	<!-- file generator function -->
+	<target name="_generateFile">
+		<property name="absoluteFileName" value="${fileDir}\${fileName}" />
+       	<echo message="generating ${desc} class..."/>
+		<echo message="file: ${absoluteFileName}"/>
+		<mkdir dir="${fileDir}"/>
+		<!--<delete file="${absoluteFileName}"/>-->
+		<fileutil file="${absoluteFileName}" property="isfile">
+			<canwrite/>
+		</fileutil>
+		<if name="isfile" value="false">
+			<copy file="${templateFileName}" tofile="${absoluteFileName}" overwrite="false" encoding="UTF-8" outputencoding="UTF-8"/>
+			<replace encoding="UTF-8"  file="${absoluteFileName}" token="Sample" value="${p.entityName}"/>
+			
+			<replaceregexp encoding="UTF-8"  file="${absoluteFileName}" match="(package *.*)\.sample" replace="\1.${p.packageName}" byline="true"/>
+			<replaceregexp encoding="UTF-8"  file="${absoluteFileName}" match="(import *.*)\.sample" replace="\1.${p.packageName}" byline="true"/>
+			<replaceregexp encoding="UTF-8"  file="${absoluteFileName}" match="(xmlns:.*)\.sample" replace="\1.${p.packageName}" byline="true"/>
+			<replaceregexp encoding="UTF-8"  file="${absoluteFileName}" match="(RemoteClass.*)\.sample" replace="\1.${p.packageName}" byline="true"/>
+			
+			<replace encoding="UTF-8"  file="${absoluteFileName}" token="sample" value="${p.lowerEntityName}"/>
+		<else>
+			<fail message="File already exists. You can't overwrite: ${absoluteFileName}"/>
+			
+		</else>
+		</if>
+    </target>
+
+	<target name="server" depends="entity, vo, so, dao, daoImpl, component, serviceFacade">
+    </target>
+	<target name="flex" depends="flexVO, flexSO, flexController, flexList, flexCreate, flexEdit, flexView">
+	</target>  
+
+	<!-- delete empty dir function -->
+	<target name="_deleteEmptyDir">
+
+		<dirname property="parentDir" file="${fileDir}"/>
+		<echo message="parentDir = ${parentDir}"/>
+		<fileutil file="${parentDir}" property="listfiles">
+			<listfiles what="all" includepath="false"/>
+		</fileutil>
+		<echo message="listfiles: ${listfiles}"/>
+		<if name="listfiles" value="">
+			<echo message="deleting empty dir: ${parentDir}"/>
+			<delete dir="${parentDir}"/>
+			<echo message="delete dir ${parentDir}"/>
+			<antcall target="_deleteParentDir2">
+				<param name="fileDir" value="${parentDir}" /> 
+			</antcall>
+		<else>
+			<echo message="dir is not empty, will not be deleted: ${parentDir}"/>
+		</else>
+		</if>
+		
+
+		
+	</target>
+	<target name="_deleteParentDir2">
+	
+		<dirname property="parentDir2" file="${fileDir}"/>
+		<echo message="parentDir2 = ${parentDir2}"/>
+		<fileutil file="${parentDir2}" property="listfiles2">
+			<listfiles what="all" includepath="false"/>
+		</fileutil>
+		<echo message="listfiles2 ${listfiles2}"/>
+		<if name="listfiles2" value="">
+			<delete dir="${parentDir2}"/>
+			<echo message="delete dir ${parentDir2}"/>
+			<antcall target="_deleteParentDir3">
+				<param name="fileDir" value="${parentDir2}" /> 
+			</antcall>
+		<else>
+			<echo message="dir is not empty, will not be deleted: ${parentDir2}"/>
+		</else>
+		</if>
+
+	</target>
+	<target name="_deleteParentDir3">
+	
+		<dirname property="parentDir3" file="${fileDir}"/>
+		<echo message="parentDir3 = ${parentDir3}"/>
+		<fileutil file="${parentDir3}" property="listfiles3">
+			<listfiles what="all" includepath="false"/>
+		</fileutil>
+		<echo message="listfiles3 ${listfiles3}"/>
+		<if name="listfiles3" value="">
+			<delete dir="${parentDir3}"/>
+			<echo message="delete dir ${parentDir3}"/>
+		<else>
+			<echo message="dir is not empty, will not be deleted: ${parentDir3}"/>
+		</else>
+		</if>
+
+	</target>
+	<!-- deleteFiles-->
+	<target name="_deleteFile">
+		<echo message="deleting file: ${fileName}"/>
+		<delete file="${fileName}"/>
+		<antcall target="_deleteEmptyDir">
+			<param name="fileDir" value="${fileName}" /> 
+		</antcall>
+	</target>
+
+	<target name="cleanServer">
+		
+		<antcall target="_deleteFile">
+			<param name="fileName" value="${entityFileName}" /> 
+		</antcall>
+		<antcall target="_deleteFile">
+			<param name="fileName" value="${voFileName}" /> 
+		</antcall>
+		<antcall target="_deleteFile">
+			<param name="fileName" value="${soFileName}" /> 
+		</antcall>
+		<antcall target="_deleteFile">
+			<param name="fileName" value="${daoFileName}" /> 
+		</antcall>
+		<antcall target="_deleteFile">
+			<param name="fileName" value="${daoImplFileName}" /> 
+		</antcall>
+		<antcall target="_deleteFile">
+			<param name="fileName" value="${componentFileName}" /> 
+		</antcall>
+		<antcall target="_deleteFile">
+			<param name="fileName" value="${serviceFacadeFileName}" /> 
+		</antcall>
+		
+	</target>
+	
+	<target name="cleanFlex">
+
+		<antcall target="_deleteFile">
+			<param name="fileName" value="${flexVOFileName}" /> 
+		</antcall>
+		<antcall target="_deleteFile">
+			<param name="fileName" value="${flexSOFileName}" /> 
+		</antcall>
+		<antcall target="_deleteFile">
+			<param name="fileName" value="${flexControllerFileName}" /> 
+		</antcall>
+		
+		<antcall target="_deleteFile">
+			<param name="fileName" value="${flexListFileName}" /> 
+		</antcall>
+		<antcall target="_deleteFile">
+			<param name="fileName" value="${flexCreateFileName}" /> 
+		</antcall>
+		<antcall target="_deleteFile">
+			<param name="fileName" value="${flexEditFileName}" /> 
+		</antcall>
+		<antcall target="_deleteFile">
+			<param name="fileName" value="${flexFormFileName}" /> 
+		</antcall>
+		<antcall target="_deleteFile">
+			<param name="fileName" value="${flexViewFileName}" /> 
+		</antcall>
+
+	</target>
+
+	<!-- clean,build -->
+	<target name="clean" depends="cleanServer ,cleanFlex">
+		<echo message="${ant.project.name}: ${ant.file}"/>
+	</target>
+	<target name="build" depends="cleanServer ,cleanFlex ,flex, server">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+    </target>
+	<target name="all" depends="clean" />
+</project>

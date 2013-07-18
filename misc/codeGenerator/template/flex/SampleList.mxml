@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox 
+	xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:mx="library://ns.adobe.com/flex/mx" 
+	xmlns:fb="http://flexbase.800best.com/mxml"
+	xmlns:flexlib="http://code.google.com/p/flexlib/"
+	xmlns:controls="flexlib.controls.*" 
+	xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:grid="com.oasis.component.grid.*"
+	width="100%" height="100%"  creationComplete="init()"
+	xmlns:sample="com.oasis.spiderman.view.sample.*"
+	xmlns:PremissionButton="com.oasis.component.PremissionButton.*">
+	
+	<fx:Script>
+		<![CDATA[
+			import com.oasis.component.page.PageList;
+			import com.oasis.spiderman.sample.SampleController;
+			import com.oasis.spiderman.so.sample.SampleSO;
+			import com.oasis.spiderman.vo.sample.SampleVO;
+			import com.oasis.utils.CRUDUtil;
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.events.CloseEvent;
+			
+			[Inject]
+			public var sampleController:SampleController;
+			
+			[Bindable]
+			public var pageList:PageList = new PageList();
+			
+			[Bindable]
+			public var so:SampleSO = new SampleSO();
+			
+			private function init():void{
+				getPageData(so.pageNumber, so.objectsPerPage);
+			}
+			
+			private function getPageData(pageNum:int, pageSize:int,callBack:Function=null):void{
+				so.pageNumber = pageNum;
+				so.objectsPerPage = pageSize;
+				sampleController.getPageList(so, pageList,callBack);
+			}
+			
+			public function search():void{
+				so.pageNumber=1;
+				sampleController.getPageList(so, pageList);
+			}
+			
+			protected function createSample():void{
+				rightPanel.selectedIndex = 1;
+				create1.init();
+			}
+			
+			private function removeSample():void{
+				var ids:ArrayCollection = new ArrayCollection();
+				for each(var o:SampleVO in grid.selectedItems){
+					ids.addItem(o.id);
+				}
+				
+				Alert.show("您确认要删除选中的数据？","确认删除",Alert.YES|Alert.NO,null, 
+					function(closeEvent:CloseEvent):void{
+						if (closeEvent.detail==Alert.YES){
+							sampleController.remove(ids,search);
+						}
+					});
+				
+			}
+			
+			protected function itemClickHandle():void{
+				if(CRUDUtil.checkIfDoView(grid)){
+					var vo:SampleVO = grid.selectedItem as SampleVO;
+					sampleController.find(vo,function():void{
+						view.vo = vo;
+						rightPanel.selectedIndex = 0;
+						vbox.percentWidth = 55;
+						rightPanel.percentWidth = 45;
+					});
+				}
+			}
+			
+		]]>
+	</fx:Script>
+	<mx:HDividedBox width="100%" height="100%" liveDragging="true" id="hdivide">
+		<mx:VBox width="50%" height="100%" id="vbox" >
+			<flexlib:WindowShade id="ws1"
+								 tabChildren="{ws1.opened}"
+								 styleName="linkButtonWindowShade"
+								 label="搜索"
+								 width="100%"
+								 opened="true">
+					<fb:MultiColumnForm  width="100%" defaultButton="{searchBtn}">
+						<fb:MultiColumnFormItem label="姓名" >
+							<mx:TextInput text="@{so.name}"/>
+						</fb:MultiColumnFormItem>
+						<mx:HBox width="100%">  
+							<mx:Spacer width="100%"/>
+							<fb:MultiColumnFormItem>
+								<mx:Button label="查询" click="getPageData(1, so.objectsPerPage)" id="searchBtn"/>
+							</fb:MultiColumnFormItem>
+						</mx:HBox>
+					</fb:MultiColumnForm>
+			</flexlib:WindowShade>
+			<mx:HBox paddingLeft="30" width="100%">
+				<PremissionButton:PremissionButton label="新建" id="create" click="createSample()" module="SampleList" premission="create"/>
+				<PremissionButton:PremissionButton label="删除" id="remove" click="removeSample()" module="SampleList" premission="remove"/>
+			</mx:HBox>
+	
+			<grid:PageableDataGrid id="grid" dataProvider="{pageList.list}" width="100%"
+								 getPageData="getPageData"  currentPageNum="{so.pageNumber}" totalItemNum="{pageList.fullListSize}"
+								 pageSize="{so.objectsPerPage}"
+								 height="100%" allowMultipleSelection="true" itemClick="itemClickHandle()" showControlColumn="false">
+				<grid:columns >
+					<grid:DataGridColumnNested headerText="姓名" dataField="name"/>
+					<grid:DataGridColumnNested headerText="备注" dataField="remark" />
+				</grid:columns>
+			</grid:PageableDataGrid>
+		</mx:VBox>
+		<mx:ViewStack id="rightPanel" selectedIndex="0" width="50%" height="100%" creationPolicy="all">
+			<sample:SampleView id="view"/>
+			<sample:SampleCreate id="create1"/>
+			<sample:SampleEdit id="edit"/>
+		</mx:ViewStack>
+	</mx:HDividedBox>
+</mx:VBox>
