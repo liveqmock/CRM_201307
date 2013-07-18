@@ -6,32 +6,4 @@
 
     <typeAlias alias="customer" type="com.hundsun.crm.bean.CrmCustomer"/>
 
-    <parameterMap id="forSaveParams" class="customer">
-    	<parameter property="sysCodeId" jdbcType="INTEGER" javaType="java.lang.Long"/>
-        <parameter property="codeType" jdbcType="VARCHAR" javaType="java.lang.String"/>
-        <parameter property="code" jdbcType="VARCHAR" javaType="java.lang.String"/>
-        <parameter property="codeName" jdbcType="VARCHAR" javaType="java.lang.String"/>
-        <parameter property="sort" jdbcType="INTEGER" javaType="java.lang.Long"/>
-        <parameter property="spell" jdbcType="VARCHAR" javaType="java.lang.String"/>
-        <parameter property="isDeleted" jdbcType="VARCHAR" javaType="java.lang.String"/>
-        <parameter property="canSelect" jdbcType="VARCHAR" javaType="java.lang.String"/>
-        <parameter property="isStandard" jdbcType="VARCHAR" javaType="java.lang.String"/>
-    </parameterMap>
-
-    <resultMap id="sysCodeResult" class="sysCode">
-        <result property="sysCodeId" column="ID"/>
-        <result property="codeType" column="CODETYPE"/>
-        <result property="code" column="CODE"/>
-        <result property="codeName" column="CODENAME"/>
-        <result property="sort" column="SORT"/>
-        <result property="spell" column="PYT"/>
-        <result property="isDeleted" column="DEL_FLAG"/>
-        <result property="canSelect" column="CAN_SELECT"/>
-        <result property="isStandard" column="ISSTANDARD"/>
-    </resultMap>
-	
-	
-	
-	
-    
 </sqlMap>

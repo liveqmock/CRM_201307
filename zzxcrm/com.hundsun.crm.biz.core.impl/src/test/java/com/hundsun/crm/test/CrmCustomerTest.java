@@ -28,6 +28,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.hundsun.beyond.common.vo.PageInfo;
 import com.hundsun.crm.bean.CrmCustomer;
 import com.hundsun.crm.service.CrmCustomerService;
+import com.test.T;
 
 /**
  *  
@@ -43,10 +44,17 @@ public class CrmCustomerTest {
 	public final static Logger logger = LoggerFactory.getLogger(CrmCustomerTest.class);
 
 	@Autowired
+	private T t ;
+	@Autowired
 	private CrmCustomerService crmCustomerService;
 	
 	@BeforeClass
 	public static void init(){
+	}
+	
+	@Test
+	public void test1(){
+		t.say();
 	}
 
 	@Test

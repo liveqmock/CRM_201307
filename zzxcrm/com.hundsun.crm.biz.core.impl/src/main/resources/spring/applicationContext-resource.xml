@@ -51,11 +51,6 @@
 		<property name="configLocation">
 			<value>classpath:SqlMapConfig.xml</value>			
 		</property>
-		 <property name="mappingLocations">
-		      <list>
-		           <value>classpath*:/sqlmap/crm/*.xml</value>
-		      </list>
-		 </property>
 		 <property name="dataSource" ref="dataSource" />
 		 <property name="lobHandler" ref="lobHandler"></property>
 	</bean>

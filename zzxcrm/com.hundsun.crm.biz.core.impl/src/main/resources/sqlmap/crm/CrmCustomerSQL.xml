@@ -31,7 +31,36 @@
     </resultMap>
 	
 	
-	
+	<select id="countUser" resultClass="java.lang.Long">    
+        select count(*) as rowcount from sys_user  a
+        where 1=1
+           <isNotEmpty prepend="and" property="sysUser.loginId">
+             a.LOGIN_ID like '%'||#sysUser.loginId#||'%'
+          </isNotEmpty>
+          <isNotEmpty prepend="and" property="sysUser.userName">
+             a.USER_NAME like '%'||#sysUser.userName#||'%'
+          </isNotEmpty>          
+    </select>
+    
+    <select id="findUserPage" resultMap="sysUserResult">
+       select * from (
+		select users.* ,ROWNUM as rn from (    
+        select a.*,b.dept_name  as DEPT_NAME
+        from sys_user a, sys_dept b
+        where 
+          a.dept_code = b.dept_code(+)
+          <isNotEmpty prepend="and" property="sysUser.loginId">
+             a.LOGIN_ID like '%'||#sysUser.loginId#||'%'
+          </isNotEmpty>
+          <isNotEmpty prepend="and" property="sysUser.userName">
+             a.USER_NAME like '%'||#sysUser.userName#||'%'
+          </isNotEmpty>  
+         order by a.id desc
+        ) users
+		    WHERE ROWNUM &lt;= #pageTo#
+		) 
+	   where rn &gt;= #pageFrom#		 
+    </select>
 	
     
 </sqlMap>
