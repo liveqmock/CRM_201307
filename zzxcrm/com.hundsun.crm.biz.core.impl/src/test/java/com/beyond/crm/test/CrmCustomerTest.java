@@ -31,7 +31,7 @@ import com.beyond.crm.service.CrmCustomerService;
 import com.test.T;
 
 /**
- *  
+ * 客户信息管理单元测试
  * @author leixl
  * @email  leixl0324@163.com
  * @date   2013年7月16日 下午10:40:39
@@ -62,6 +62,18 @@ public class CrmCustomerTest {
 		Map<String, Object> paramMap =  new HashMap<String,Object>();
 		PageInfo<CrmCustomer> pageInfo = crmCustomerService.findPage(paramMap, 1, 15);
 		logger.info("result is "+pageInfo.getResult());
+	}
+	
+	public void testAdd(){
+		
+	}
+	
+	public void testUpdate(){
+		
+	}
+	
+	public void testDelete(){
+		
 	}
 	
 }

@@ -1,7 +1,5 @@
 package com.beyond.crm.bean;
 
-import java.util.HashSet;
-import java.util.Set;
 /**
  * 客户
  * @author leixl
@@ -16,259 +14,398 @@ public class CrmCustomer implements java.io.Serializable{
 	 */
 	private static final long serialVersionUID = 641004926963038102L;
 	
-	private String custNo;
-	private String custName;
-	private String custRegion;
-	private Long custManagerId;
-	private String custManagerName;
-	private Integer custLevel;                          
-	private String custLevelLabel;
-	private Integer custSatisfy;
-	private Integer custCredit;
-	private String custAddr;
-	private String custZip;
-	private String custTel;
-	private String custFax;
-	private String custWebsite;
-	private String custLicenceNo;
-	private String custChieftain;
-	private Long custBankroll;
-	private Long custTurnover;
-	private String custBank;
-	private String custBankAccount;
-	private String custLocalTaxNo;
-	private String custNationalTaxNo;
-	private String custStatus;
-
-	// Constructors
-
-	/** default constructor */
-	public CrmCustomer() {
+	private Integer custId;                                    //表主键
+	private String custNo;                                     //客户编号
+	private String custName;                                   //客户名称
+	private String stockCode;                                  //股票代码
+	private String InvoiceAddress;                              //发票地址
+	private Integer custHot;                                    //是否热点客户
+	private String custSource;                                  //客户来源
+	private String custType;                                    //客户类型
+	private Integer employeeTotal;                              //员工数
+	private String custRegion;                                  //领域
+	private String custLevel;                                   //客户等级
+	private String custSatisfy;                                 //满意度
+	private String custCredit;                                  //信誉      
+	private String country;                                      //国家
+	private String province;                                     //省份
+	private String city;                                         //城市
+	private String custAddr;                                     //地址
+	private String custZipCode;                                  //邮编
+	private String custTel;                                      //电话
+	private String custFax;                                      //传真
+	private String custWebsite;                                  //网址
+	private String custLicenceNo;                                //工商执照号
+	private String custChieftain;                                //法人
+	private Long custBankroll;                                   //资金
+	private Long custTurnover;                                   //年营业额
+	private String custBank;                                     //签约银行
+	private String custBankAccount;                              //签约银行账号
+	private String custLocalTaxNo;                               //地税编号
+	private String custNationalTaxNo;                            //国税编号
+	private String custStatus;                                   //客户状态
+	/**
+	 * @return the custId
+	 */
+	public Integer getCustId() {
+		return custId;
 	}
-
-	/** minimal constructor */
-	public CrmCustomer(String custName) {
-		this.custName = custName;
+	/**
+	 * @param custId the custId to set
+	 */
+	public void setCustId(Integer custId) {
+		this.custId = custId;
 	}
-
-	/** full constructor */
-	public CrmCustomer(String custName, String custRegion, Long custManagerId,
-			String custManagerName, Integer custLevel, String custLevelLabel,
-			Integer custSatisfy, Integer custCredit, String custAddr,
-			String custZip, String custTel, String custFax, String custWebsite,
-			String custLicenceNo, String custChieftain, Long custBankroll,
-			Long custTurnover, String custBank, String custBankAccount,
-			String custLocalTaxNo, String custNationalTaxNo, String custStatus) {
-		this.custName = custName;
-		this.custRegion = custRegion;
-		this.custManagerId = custManagerId;
-		this.custManagerName = custManagerName;
-		this.custLevel = custLevel;
-		this.custLevelLabel = custLevelLabel;
-		this.custSatisfy = custSatisfy;
-		this.custCredit = custCredit;
-		this.custAddr = custAddr;
-		this.custZip = custZip;
-		this.custTel = custTel;
-		this.custFax = custFax;
-		this.custWebsite = custWebsite;
-		this.custLicenceNo = custLicenceNo;
-		this.custChieftain = custChieftain;
-		this.custBankroll = custBankroll;
-		this.custTurnover = custTurnover;
-		this.custBank = custBank;
-		this.custBankAccount = custBankAccount;
-		this.custLocalTaxNo = custLocalTaxNo;
-		this.custNationalTaxNo = custNationalTaxNo;
-		this.custStatus = custStatus;
-	}
-
-	// Property accessors
-
+	/**
+	 * @return the custNo
+	 */
 	public String getCustNo() {
-		return this.custNo;
+		return custNo;
 	}
-
+	/**
+	 * @param custNo the custNo to set
+	 */
 	public void setCustNo(String custNo) {
 		this.custNo = custNo;
 	}
-
+	/**
+	 * @return the custName
+	 */
 	public String getCustName() {
-		return this.custName;
+		return custName;
 	}
-
+	/**
+	 * @param custName the custName to set
+	 */
 	public void setCustName(String custName) {
 		this.custName = custName;
 	}
-
-	public String getCustRegion() {
-		return this.custRegion;
+	/**
+	 * @return the stockCode
+	 */
+	public String getStockCode() {
+		return stockCode;
 	}
-
+	/**
+	 * @param stockCode the stockCode to set
+	 */
+	public void setStockCode(String stockCode) {
+		this.stockCode = stockCode;
+	}
+	/**
+	 * @return the invoiceAddress
+	 */
+	public String getInvoiceAddress() {
+		return InvoiceAddress;
+	}
+	/**
+	 * @param invoiceAddress the invoiceAddress to set
+	 */
+	public void setInvoiceAddress(String invoiceAddress) {
+		InvoiceAddress = invoiceAddress;
+	}
+	/**
+	 * @return the custHot
+	 */
+	public Integer getCustHot() {
+		return custHot;
+	}
+	/**
+	 * @param custHot the custHot to set
+	 */
+	public void setCustHot(Integer custHot) {
+		this.custHot = custHot;
+	}
+	/**
+	 * @return the custSource
+	 */
+	public String getCustSource() {
+		return custSource;
+	}
+	/**
+	 * @param custSource the custSource to set
+	 */
+	public void setCustSource(String custSource) {
+		this.custSource = custSource;
+	}
+	/**
+	 * @return the custType
+	 */
+	public String getCustType() {
+		return custType;
+	}
+	/**
+	 * @param custType the custType to set
+	 */
+	public void setCustType(String custType) {
+		this.custType = custType;
+	}
+	/**
+	 * @return the employeeTotal
+	 */
+	public Integer getEmployeeTotal() {
+		return employeeTotal;
+	}
+	/**
+	 * @param employeeTotal the employeeTotal to set
+	 */
+	public void setEmployeeTotal(Integer employeeTotal) {
+		this.employeeTotal = employeeTotal;
+	}
+	/**
+	 * @return the custRegion
+	 */
+	public String getCustRegion() {
+		return custRegion;
+	}
+	/**
+	 * @param custRegion the custRegion to set
+	 */
 	public void setCustRegion(String custRegion) {
 		this.custRegion = custRegion;
 	}
-
-	public Long getCustManagerId() {
-		return this.custManagerId;
+	/**
+	 * @return the custLevel
+	 */
+	public String getCustLevel() {
+		return custLevel;
 	}
-
-	public void setCustManagerId(Long custManagerId) {
-		this.custManagerId = custManagerId;
-	}
-
-	public String getCustManagerName() {
-		return this.custManagerName;
-	}
-
-	public void setCustManagerName(String custManagerName) {
-		this.custManagerName = custManagerName;
-	}
-
-	public Integer getCustLevel() {
-		return this.custLevel;
-	}
-
-	public void setCustLevel(Integer custLevel) {
+	/**
+	 * @param custLevel the custLevel to set
+	 */
+	public void setCustLevel(String custLevel) {
 		this.custLevel = custLevel;
 	}
-
-	public String getCustLevelLabel() {
-		return this.custLevelLabel;
+	/**
+	 * @return the custSatisfy
+	 */
+	public String getCustSatisfy() {
+		return custSatisfy;
 	}
-
-	public void setCustLevelLabel(String custLevelLabel) {
-		this.custLevelLabel = custLevelLabel;
-	}
-
-	public Integer getCustSatisfy() {
-		return this.custSatisfy;
-	}
-
-	public void setCustSatisfy(Integer custSatisfy) {
+	/**
+	 * @param custSatisfy the custSatisfy to set
+	 */
+	public void setCustSatisfy(String custSatisfy) {
 		this.custSatisfy = custSatisfy;
 	}
-
-	public Integer getCustCredit() {
-		return this.custCredit;
+	/**
+	 * @return the custCredit
+	 */
+	public String getCustCredit() {
+		return custCredit;
 	}
-
-	public void setCustCredit(Integer custCredit) {
+	/**
+	 * @param custCredit the custCredit to set
+	 */
+	public void setCustCredit(String custCredit) {
 		this.custCredit = custCredit;
 	}
-
-	public String getCustAddr() {
-		return this.custAddr;
+	/**
+	 * @return the country
+	 */
+	public String getCountry() {
+		return country;
 	}
-
+	/**
+	 * @param country the country to set
+	 */
+	public void setCountry(String country) {
+		this.country = country;
+	}
+	/**
+	 * @return the province
+	 */
+	public String getProvince() {
+		return province;
+	}
+	/**
+	 * @param province the province to set
+	 */
+	public void setProvince(String province) {
+		this.province = province;
+	}
+	/**
+	 * @return the city
+	 */
+	public String getCity() {
+		return city;
+	}
+	/**
+	 * @param city the city to set
+	 */
+	public void setCity(String city) {
+		this.city = city;
+	}
+	/**
+	 * @return the custAddr
+	 */
+	public String getCustAddr() {
+		return custAddr;
+	}
+	/**
+	 * @param custAddr the custAddr to set
+	 */
 	public void setCustAddr(String custAddr) {
 		this.custAddr = custAddr;
 	}
-
-	public String getCustZip() {
-		return this.custZip;
+	/**
+	 * @return the custZipCode
+	 */
+	public String getCustZipCode() {
+		return custZipCode;
 	}
-
-	public void setCustZip(String custZip) {
-		this.custZip = custZip;
+	/**
+	 * @param custZipCode the custZipCode to set
+	 */
+	public void setCustZipCode(String custZipCode) {
+		this.custZipCode = custZipCode;
 	}
-
+	/**
+	 * @return the custTel
+	 */
 	public String getCustTel() {
-		return this.custTel;
+		return custTel;
 	}
-
+	/**
+	 * @param custTel the custTel to set
+	 */
 	public void setCustTel(String custTel) {
 		this.custTel = custTel;
 	}
-
+	/**
+	 * @return the custFax
+	 */
 	public String getCustFax() {
-		return this.custFax;
+		return custFax;
 	}
-
+	/**
+	 * @param custFax the custFax to set
+	 */
 	public void setCustFax(String custFax) {
 		this.custFax = custFax;
 	}
-
+	/**
+	 * @return the custWebsite
+	 */
 	public String getCustWebsite() {
-		return this.custWebsite;
+		return custWebsite;
 	}
-
+	/**
+	 * @param custWebsite the custWebsite to set
+	 */
 	public void setCustWebsite(String custWebsite) {
 		this.custWebsite = custWebsite;
 	}
-
+	/**
+	 * @return the custLicenceNo
+	 */
 	public String getCustLicenceNo() {
-		return this.custLicenceNo;
+		return custLicenceNo;
 	}
-
+	/**
+	 * @param custLicenceNo the custLicenceNo to set
+	 */
 	public void setCustLicenceNo(String custLicenceNo) {
 		this.custLicenceNo = custLicenceNo;
 	}
-
+	/**
+	 * @return the custChieftain
+	 */
 	public String getCustChieftain() {
-		return this.custChieftain;
+		return custChieftain;
 	}
-
+	/**
+	 * @param custChieftain the custChieftain to set
+	 */
 	public void setCustChieftain(String custChieftain) {
 		this.custChieftain = custChieftain;
 	}
-
+	/**
+	 * @return the custBankroll
+	 */
 	public Long getCustBankroll() {
-		return this.custBankroll;
+		return custBankroll;
 	}
-
+	/**
+	 * @param custBankroll the custBankroll to set
+	 */
 	public void setCustBankroll(Long custBankroll) {
 		this.custBankroll = custBankroll;
 	}
-
+	/**
+	 * @return the custTurnover
+	 */
 	public Long getCustTurnover() {
-		return this.custTurnover;
+		return custTurnover;
 	}
-
+	/**
+	 * @param custTurnover the custTurnover to set
+	 */
 	public void setCustTurnover(Long custTurnover) {
 		this.custTurnover = custTurnover;
 	}
-
+	/**
+	 * @return the custBank
+	 */
 	public String getCustBank() {
-		return this.custBank;
+		return custBank;
 	}
-
+	/**
+	 * @param custBank the custBank to set
+	 */
 	public void setCustBank(String custBank) {
 		this.custBank = custBank;
 	}
-
+	/**
+	 * @return the custBankAccount
+	 */
 	public String getCustBankAccount() {
-		return this.custBankAccount;
+		return custBankAccount;
 	}
-
+	/**
+	 * @param custBankAccount the custBankAccount to set
+	 */
 	public void setCustBankAccount(String custBankAccount) {
 		this.custBankAccount = custBankAccount;
 	}
-
+	/**
+	 * @return the custLocalTaxNo
+	 */
 	public String getCustLocalTaxNo() {
-		return this.custLocalTaxNo;
+		return custLocalTaxNo;
 	}
-
+	/**
+	 * @param custLocalTaxNo the custLocalTaxNo to set
+	 */
 	public void setCustLocalTaxNo(String custLocalTaxNo) {
 		this.custLocalTaxNo = custLocalTaxNo;
 	}
-
+	/**
+	 * @return the custNationalTaxNo
+	 */
 	public String getCustNationalTaxNo() {
-		return this.custNationalTaxNo;
+		return custNationalTaxNo;
 	}
-
+	/**
+	 * @param custNationalTaxNo the custNationalTaxNo to set
+	 */
 	public void setCustNationalTaxNo(String custNationalTaxNo) {
 		this.custNationalTaxNo = custNationalTaxNo;
 	}
-
+	/**
+	 * @return the custStatus
+	 */
 	public String getCustStatus() {
-		return this.custStatus;
+		return custStatus;
 	}
-
+	/**
+	 * @param custStatus the custStatus to set
+	 */
 	public void setCustStatus(String custStatus) {
 		this.custStatus = custStatus;
 	}
 
+	
 	
 	
 

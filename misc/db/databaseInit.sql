@@ -1,4 +1,4 @@
-/*
+﻿/*
 Navicat MySQL Data Transfer
 
 Source Server         : localhost
@@ -39,35 +39,45 @@ CREATE TABLE `cst_activity` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cst_customer`;
 CREATE TABLE `cst_customer` (
-  `cust_no` char(17) NOT NULL,
-  `cust_name` varchar(100) NOT NULL,
-  `cust_region` varchar(50) default '',
-  `cust_manager_id` bigint(20) default '0',
-  `cust_manager_name` varchar(50) default '',
-  `cust_level` int(11) default '1',
-  `cust_level_label` varchar(50) default '',
-  `cust_satisfy` int(11) default '3',
-  `cust_credit` int(11) default '3',
-  `cust_addr` varchar(300) default '',
-  `cust_zip` char(10) default '',
-  `cust_tel` varchar(50) default '',
-  `cust_fax` varchar(50) default '',
-  `cust_website` varchar(50) default '',
-  `cust_licence_no` varchar(50) default '',
-  `cust_chieftain` varchar(50) default '',
-  `cust_bankroll` bigint(20) default '0',
-  `cust_turnover` bigint(20) default '0',
-  `cust_bank` varchar(200) default '',
-  `cust_bank_account` varchar(50) default '',
-  `cust_local_tax_no` varchar(50) default '',
-  `cust_national_tax_no` varchar(50) default '',
-  `cust_status` char(1) default '1',
-  PRIMARY KEY  (`cust_no`)
+  `cust_id` int(11) NOT NULL,
+  `cust_no` varchar(32) default NULL COMMENT '客户编号',
+  `cust_name` varchar(250) default NULL COMMENT '客户名称',
+  `stock_code` varchar(20) default NULL COMMENT '股票代码',
+  `invoice_address` varchar(250) default NULL COMMENT '发票地址',
+  `cust_hot` int(11) default '0' COMMENT '是否热点客户',
+  `cust_source` varchar(250) default NULL COMMENT '客户来源',
+  `cust_type` varchar(32) default NULL COMMENT '客户类型',
+  `employee_total` int(11) default NULL,
+  `cust_region` varchar(50) default NULL COMMENT '领域',
+  `cust_level` int(11) default '1' COMMENT '客户等级',
+  `cust_satisfy` varchar(21) default NULL COMMENT '满意度',
+  `cust_credit` varchar(21) default NULL COMMENT '信誉',
+  `country` varchar(32) default NULL COMMENT '国家',
+  `province` varchar(32) default NULL COMMENT '省份',
+  `city` varchar(32) default NULL COMMENT '城市',
+  `cust_addr` varchar(500) default NULL COMMENT '地址',
+  `cust_zip_code` varchar(10) default NULL COMMENT '邮编',
+  `cust_tel` varchar(50) default NULL COMMENT '电话',
+  `cust_fax` varchar(50) default NULL COMMENT '电话',
+  `cust_website` varchar(50) default NULL COMMENT '网址',
+  `cust_licence_no` varchar(50) default NULL COMMENT '工商执照号',
+  `cust_chieftain` varchar(50) default NULL COMMENT '法人',
+  `cust_bankroll` bigint(20) default '0' COMMENT '资金',
+  `cust_turnover` bigint(20) default '0' COMMENT '年营业额',
+  `cust_bank` varchar(200) default NULL COMMENT '签约银行',
+  `cust_bank_account` varchar(50) default NULL COMMENT '签约银行账号',
+  `cust_local_tax_no` varchar(50) default NULL COMMENT '地税编号',
+  `cust_national_tax_no` varchar(50) default NULL COMMENT '国税编号',
+  `cust_status` char(1) default '1' COMMENT '客户状态',
+  PRIMARY KEY  (`cust_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cst_customer
 -- ----------------------------
+
+
+
 
 -- ----------------------------
 -- Table structure for `cst_linkman`
