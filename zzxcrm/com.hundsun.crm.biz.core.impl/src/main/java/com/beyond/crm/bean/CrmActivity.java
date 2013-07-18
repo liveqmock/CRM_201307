@@ -13,7 +13,7 @@
  * accordance with the terms of the license agreement you entered into
  * with  www.tuiqilai.com .
  */
-package com.hundsun.crm.bean;
+package com.beyond.crm.bean;
 
 /**
  *  

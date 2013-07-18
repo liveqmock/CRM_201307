@@ -4,6 +4,6 @@
 
 <sqlMap namespace="SysCodeSQL">
 
-    <typeAlias alias="customer" type="com.hundsun.crm.bean.CrmCustomer"/>
+    <typeAlias alias="customer" type="com.beyond.crm.bean.CrmCustomer"/>
 
 </sqlMap>

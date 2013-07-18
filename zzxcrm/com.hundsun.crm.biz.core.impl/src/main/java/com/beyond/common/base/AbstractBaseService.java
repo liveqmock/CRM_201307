@@ -11,7 +11,7 @@
  * disclose such Confidential Information and shall use it only in
  * accordance with the terms of the license agreement you entered into
  */
-package com.hundsun.beyond.common.base;
+package com.beyond.common.base;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

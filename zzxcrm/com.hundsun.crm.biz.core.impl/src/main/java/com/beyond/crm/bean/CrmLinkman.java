@@ -1,4 +1,4 @@
-package com.hundsun.crm.bean;
+package com.beyond.crm.bean;
 
 /**
  * 联系人

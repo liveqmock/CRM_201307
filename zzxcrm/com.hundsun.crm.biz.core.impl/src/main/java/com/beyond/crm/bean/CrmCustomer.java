@@ -1,4 +1,4 @@
-package com.hundsun.crm.bean;
+package com.beyond.crm.bean;
 
 import java.util.HashSet;
 import java.util.Set;

@@ -11,12 +11,12 @@
  * disclose such Confidential Information and shall use it only in
  * accordance with the terms of the license agreement you entered into
  */
-package com.hundsun.crm.service;
+package com.beyond.crm.service;
 
 import java.util.Map;
 
-import com.hundsun.beyond.common.vo.PageInfo;
-import com.hundsun.crm.bean.CrmCustomer;
+import com.beyond.common.vo.PageInfo;
+import com.beyond.crm.bean.CrmCustomer;
 
 /**
  * 客户信息管理业务接口  

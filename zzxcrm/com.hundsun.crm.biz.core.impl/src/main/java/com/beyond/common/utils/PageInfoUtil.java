@@ -1,4 +1,4 @@
-package com.hundsun.beyond.common.utils;
+package com.beyond.common.utils;
 
 public class PageInfoUtil {
 	

@@ -2,7 +2,7 @@
  * tianque-com.tianque.core.user.vo-PageInfo.java Created on 2009-8-5 下午04:36:04
  * Copyright (c) 2009 by 杭州天阙科技有限公司
  */
-package com.hundsun.beyond.common.vo;
+package com.beyond.common.vo;
 
 import java.util.List;
 

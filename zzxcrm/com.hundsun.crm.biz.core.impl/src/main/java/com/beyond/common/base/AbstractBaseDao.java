@@ -11,7 +11,7 @@
  * disclose such Confidential Information and shall use it only in
  * accordance with the terms of the license agreement you entered into
  */
-package com.hundsun.beyond.common.base;
+package com.beyond.common.base;
 
 import java.util.List;
 import java.util.Map;
@@ -21,8 +21,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 
-import com.hundsun.beyond.common.utils.PageInfoUtil;
-import com.hundsun.beyond.common.vo.PageInfo;
+import com.beyond.common.utils.PageInfoUtil;
+import com.beyond.common.vo.PageInfo;
 import com.ibatis.sqlmap.client.SqlMapClient;
 
 /**

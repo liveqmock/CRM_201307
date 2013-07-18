@@ -1,13 +1,13 @@
-package com.hundsun.crm.dao.impl;
+package com.beyond.crm.dao.impl;
 
 import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
-import com.hundsun.beyond.common.base.AbstractBaseDao;
-import com.hundsun.beyond.common.vo.PageInfo;
-import com.hundsun.crm.bean.CrmCustomer;
-import com.hundsun.crm.dao.CrmCustomerDao;
+import com.beyond.common.base.AbstractBaseDao;
+import com.beyond.common.vo.PageInfo;
+import com.beyond.crm.bean.CrmCustomer;
+import com.beyond.crm.dao.CrmCustomerDao;
 
 
 @Repository
