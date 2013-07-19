@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.hundsun.ares.studio.jres.component:HSComponent_EMF xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:com.hundsun.ares.studio.jres.component="http://com.hundsun.ares.studio.jres.hsobject" name="FileDownLoad"
+    constructCode="(com.hundsun.jres.interfaces.dataexport.JresDataExportService)com.hundsun.jres.common.pluginFramework.PluginHolder.getServiceById(&quot;jres.dataExport_plugin&quot;).queryService(&quot;dataExportService&quot;)"
+    className="com.hundsun.jres.interfaces.dataexport.JresDataExportService">
+  <methodList methodName="exportDataToExcel" alias="exportDataToExcel" desc="exportDataToExcel">
+    <paramList id="context" name="context" type="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext"
+        rename="context">
+      <children id="globalMap" type="java.util.Map&lt;java.lang.String,java.lang.Object>"/>
+      <children id="flow" type="java.util.Map&lt;java.lang.Object,java.lang.Object>"/>
+    </paramList>
+    <paramList id="serviceId" name="serviceId" type="String" rename="serviceId"/>
+    <result/>
+  </methodList>
+  <methodList methodName="exportDataToPdf" alias="exportDataToPdf" desc="exportDataToPdf">
+    <paramList id="context" name="context" type="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext"
+        rename="context">
+      <children id="globalMap" type="java.util.Map&lt;java.lang.String,java.lang.Object>"/>
+      <children id="flow" type="java.util.Map&lt;java.lang.Object,java.lang.Object>"/>
+    </paramList>
+    <paramList id="templatePath" name="templatePath" type="String" rename="templatePath"/>
+    <paramList id="data" name="data" type="Object" rename="data">
+      <children/>
+    </paramList>
+    <result/>
+  </methodList>
+  <methodList methodName="exportDataToPdfByRequestData" alias="exportDataToPdfByRequestData"
+      desc="exportDataToPdfByRequestData">
+    <paramList id="arg0" name="arg0" type="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext"
+        rename="arg0">
+      <children id="globalMap" type="java.util.Map&lt;java.lang.String,java.lang.Object>"/>
+      <children id="flow" type="java.util.Map&lt;java.lang.Object,java.lang.Object>"/>
+    </paramList>
+    <paramList id="arg1" name="arg1" type="String" rename="arg1"/>
+    <result/>
+  </methodList>
+  <methodList methodName="exportDataToDbf" alias="exportDataToDbf" desc="exportDataToDbf">
+    <paramList id="context" name="context" type="com.hundsun.jres.interfaces.bizkernel.runtime.core.IContext"
+        rename="context">
+      <children id="globalMap" type="java.util.Map&lt;java.lang.String,java.lang.Object>"/>
+      <children id="flow" type="java.util.Map&lt;java.lang.Object,java.lang.Object>"/>
+    </paramList>
+    <paramList id="serviceId" name="serviceId" type="String" rename="serviceId"/>
+    <result/>
+  </methodList>
+</com.hundsun.ares.studio.jres.component:HSComponent_EMF>
