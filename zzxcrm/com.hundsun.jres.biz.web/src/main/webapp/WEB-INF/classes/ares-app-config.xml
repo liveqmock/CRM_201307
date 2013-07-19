@@ -218,5 +218,24 @@
 		    <repository tempPath="d:\\temp\\buffer\\" sizeMax="4194304" fileSizeMax="5120" sizeThreshold="1048576" ></repository> 				
 	     </plugin-configuration>	  	
 	  </plugin>
+	   <!-- 导出插件 -->
+        <plugin service-id="jres.dataExport_plugin" load-level="4">
+			<plugin-configuration> 
+				<params>
+				<!--导出数据字符编码-->
+					<param name="charset">UTF-8</param>
+				</params>
+			<!--配置用户自定义的pdf,excel,dbf文件导出实现类-->
+				<beans>
+					<bean id="excelExport" class="com.hundsun.jres.impl.dataexport.impl.DefaulExcelDownLoadImpl"/>
+				</beans> 
+			<!-- 设置excel导出配置,配置 -->
+					<excel-configure>
+						<translate-bean>
+							<bean id="dict" class="com.hundsun.crm.common.plugin.ReportTranslateService"/>
+						</translate-bean> 
+					</excel-configure> 
+				</plugin-configuration>
+			</plugin>
 	</plugins>
 </ares>
