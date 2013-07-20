@@ -6,7 +6,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.hundsun.crm.TestCepImpl;
+import com.hundsun.crm.cep.CustomerCepImpl;
+import com.hundsun.crm.cep.LinkManCepImpl;
 import com.hundsun.crm.wrapper.anotation.JresServiceConfig;
 import com.hundsun.crm.wrapper.anotation.JresServiceExecutor;
 import com.hundsun.jres.common.cep.context.ContextUtil;
@@ -78,8 +79,7 @@ public class WorkFlowCEPPluginService implements IPluginService,IManageable,IIoC
 		dataset.addColumn("desc", DatasetColumnType.DS_STRING);
 		
 		JresServiceConfig config = new JresServiceConfig();
-		config.addClass(TestCepImpl.class);
-		
+		config.addClass(CustomerCepImpl.class).addClass(LinkManCepImpl.class);
 		List<JresServiceExecutor> executors = config.createJresServiceExecutor();
 		
 		//初始化运行时

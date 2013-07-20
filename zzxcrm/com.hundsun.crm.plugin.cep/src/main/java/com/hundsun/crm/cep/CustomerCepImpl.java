@@ -15,14 +15,11 @@
  */
 package com.hundsun.crm.cep;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.beyond.common.vo.PageInfo;
 import com.beyond.crm.bean.CrmCustomer;
 import com.beyond.crm.service.CrmCustomerService;
+import com.hundsun.crm.common.listener.AppStartListener;
 import com.hundsun.crm.common.util.WrapperUtil;
 import com.hundsun.crm.wrapper.anotation.JresService;
 import com.hundsun.jres.interfaces.cep.context.IEventContext;
@@ -38,25 +35,22 @@ import com.hundsun.jres.interfaces.share.dataset.IDatasets;
  */
 public class CustomerCepImpl {
 	
-	@Autowired
-	private CrmCustomerService crmCustomerService;
+	private CrmCustomerService customerService = (CrmCustomerService) AppStartListener.getApplicationContext()
+	.getBean("customerService");
 	
-	public CustomerCepImpl(){
-		/*testService = testService==null?(TestService) AppStartListener.getApplicationContext()
-		.getBean("testService"):testService;*/
-	}
+
 	
-	@JresService(alias = "customer.service.cust.findPage", desc = "客户列表分页", value = "customer.service.cust.findPage")
+	@JresService(alias = "customer.serviceInterface.cust.findCustomerPage", desc = "客户列表分页", value = "customer.serviceInterface.cust.findCustomerPage")
 	public IDatasets findPage(IEventContext context,
 			IDataset request)  {
 		int start = request.getInt("start");
 		int limit = request.getInt("limit");
-		PageInfo<CrmCustomer> pageInfo = crmCustomerService.findPage(null, start, limit);
-		List<CrmCustomer> list =pageInfo!=null?pageInfo.getResult():null;
+		CrmCustomer crmCustomer = new CrmCustomer();
+		List<CrmCustomer> list = customerService.findCustomerPage(crmCustomer, start, limit);
 		
 		return WrapperUtil.createListResult(list, CrmCustomer.class, list==null?0:list.size());
 	}
-	@JresService(alias = "customer.service.cust.findCustomerDetail", desc = "客户详情信息", value = "customer.service.cust.findCustomerDetail")
+/*	@JresService(alias = "customer.service.cust.findCustomerDetail", desc = "客户详情信息", value = "customer.service.cust.findCustomerDetail")
 	public IDatasets findCustomerDetail(IEventContext context,
 			IDataset request)  {
 		CrmCustomer obj = getObject("周星驰","男","星爷",30);
@@ -75,7 +69,7 @@ public class CustomerCepImpl {
 		CrmCustomer obj = getObject("周星驰","男","星爷",30);
 		
 		return WrapperUtil.createSuccessResult();
-	}
+	}*/
 	/**
 	 * @return
 	 */
