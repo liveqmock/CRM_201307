@@ -10,14 +10,14 @@
               <layout-border>
                 <control-Grid hasCheckColumn="true" region="center" remoteSort="true" enableCellTip="true" width="300" height="169" dataSet="DataSet1" name="Grid1" hasCustomPageSize="true" border="false" hasPagingBar="true">
                   <layout-GridToolbar>
-                    <control-GridItem title="名称" align="left" dataIndex="nick" name="GridItem2" width="243"/>
-                    <control-GridItem title="类型" align="left" dataIndex="name" name="GridItem9" width="138" sortable="true"/>
+                    <control-GridItem title="名称" align="left" dataIndex="custName" name="GridItem2" width="243"/>
+                    <control-GridItem title="类型" align="left" dataIndex="custType" name="GridItem9" width="138" sortable="true"/>
                     <control-GridItem title="行业" align="center" dataIndex="age" name="GridItem5" width="116" sortable="true"/>
-                    <control-GridItem title="电话" align="center" dataIndex="sex" name="GridItem8" width="121"/>
+                    <control-GridItem title="电话" align="center" dataIndex="custTel" name="GridItem8" width="121"/>
                     <control-GridItem title="客户属性" align="left" name="GridItem1" sortable="true" width="140"/>
                     <control-GridItem title="回款总金额" align="left" name="GridItem3" sortable="true" width="100"/>
                     <control-GridItem title="订单总金额" align="left" name="GridItem4" sortable="true" width="118"/>
-                    <control-GridItem title="所有者" align="left" name="GridItem6" sortable="true" width="121"/>
+                    <control-GridItem title="所有者" align="left" dataIndex="custChieftain" name="GridItem6" sortable="true" width="121"/>
                   </layout-GridToolbar>
                 </control-Grid>
                 <control-FormPanel collapseMode="mini" region="north" width="300" height="77" hideCollapseTool="true" collapsible="true" split="true" name="FormPanel1" border="false" submitService="bizframe.authority.user.queryUser">
@@ -40,9 +40,9 @@
                   <Left/>
                   <Right/>
                   <layout-table columns="4" fullWidth="true">
-                    <control-TextField labelAlign="right" msgTarget="qtip" labelWidth="60" fieldName="userName" width="22%" height="22" fieldLabel="客户名称" name="TextField1" tabIndex="5"/>
+                    <control-TextField labelAlign="right" msgTarget="qtip" labelWidth="60" fieldName="custName" width="22%" height="22" fieldLabel="客户名称" name="custName" tabIndex="5"/>
                     <control-HiddenField fieldName="orgId" name="searchOrgId"/>
-                    <control-NumberField labelAlign="right" labelWidth="40" width="22%" height="22" fieldLabel="电话" name="NumberField1" tabIndex="87"/>
+                    <control-NumberField labelAlign="right" labelWidth="40" fieldName="custTel" width="22%" height="22" fieldLabel="电话" name="custTel" tabIndex="87"/>
                     <control-Button name="queryUser_btn" text="查询" labelWidth="18" width="75" icon="bizframe/images/icons/search.png" tabIndex="2"/>
                   </layout-table>
                 </control-FormPanel>
@@ -190,34 +190,85 @@
     </control-Window>
   </Windows>
   <Accessory>
-    <control-DataSet serviceAlias="customer.service.test.findPage" name="DataSet1" service="customer.service.test.findPage" usingServiceName="true" window="MainWin">
+    <control-DataSet name="DataSet1" service="customer.serviceInterface.cust.findCustomerPage" usingServiceName="true" window="MainWin">
       <params>
-        <param name="name"><![CDATA[]]></param>
-        <param name="age"><![CDATA[]]></param>
-        <param name="sex"><![CDATA[]]></param>
-        <param name="nick"><![CDATA[]]></param>
+        <param name="custName"><![CDATA[]]></param>
+        <param name="custTel"><![CDATA[]]></param>
       </params>
       <fields>
-        <field name="userId" type="int"/>
-        <field name="name" type="String"/>
-        <field name="age" type="int"/>
-        <field name="sex" type="String"/>
-        <field name="nick" type="String"/>
+        <field name="custName" type="String"/>
+        <field name="custTel" type="String"/>
+        <field name="custType" type="String"/>
+        <field name="custStatus" type="String"/>
+        <field name="email" type="String"/>
+        <field name="custChieftain" type="String"/>
+        <field name="custSource" type="String"/>
       </fields>
     </control-DataSet>
-    <control-DataSet name="DataSet3" service="customer.service.test.findObject" usingServiceName="true" window="Window2">
+    <control-DataSet name="DataSet3" service="customer.service.cust.findCustomerDetail" usingServiceName="true" window="Window2">
       <params>
-        <param name="name"><![CDATA[]]></param>
-        <param name="age"><![CDATA[]]></param>
-        <param name="sex"><![CDATA[]]></param>
-        <param name="nick"><![CDATA[]]></param>
+        <param name="custId"><![CDATA[]]></param>
+        <param name="custNo"><![CDATA[]]></param>
+        <param name="custName"><![CDATA[]]></param>
+        <param name="stockCode"><![CDATA[]]></param>
+        <param name="InvoiceAddress"><![CDATA[]]></param>
+        <param name="custHot"><![CDATA[]]></param>
+        <param name="custSource"><![CDATA[]]></param>
+        <param name="custType"><![CDATA[]]></param>
+        <param name="employeeTotal"><![CDATA[]]></param>
+        <param name="custRegion"><![CDATA[]]></param>
+        <param name="custLevel"><![CDATA[]]></param>
+        <param name="custSatisfy"><![CDATA[]]></param>
+        <param name="custCredit"><![CDATA[]]></param>
+        <param name="country"><![CDATA[]]></param>
+        <param name="province"><![CDATA[]]></param>
+        <param name="city"><![CDATA[]]></param>
+        <param name="custAddr"><![CDATA[]]></param>
+        <param name="custZipCode"><![CDATA[]]></param>
+        <param name="custTel"><![CDATA[]]></param>
+        <param name="custFax"><![CDATA[]]></param>
+        <param name="custWebsite"><![CDATA[]]></param>
+        <param name="custLicenceNo"><![CDATA[]]></param>
+        <param name="custChieftain"><![CDATA[]]></param>
+        <param name="custBankroll"><![CDATA[]]></param>
+        <param name="custTurnover"><![CDATA[]]></param>
+        <param name="custBank"><![CDATA[]]></param>
+        <param name="custBankAccount"><![CDATA[]]></param>
+        <param name="custLocalTaxNo"><![CDATA[]]></param>
+        <param name="custNationalTaxNo"><![CDATA[]]></param>
+        <param name="custStatus"><![CDATA[]]></param>
       </params>
       <fields>
-        <field name="userId" type="int"/>
-        <field name="name" type="String"/>
-        <field name="age" type="int"/>
-        <field name="sex" type="String"/>
-        <field name="nick" type="String"/>
+        <field name="custId" type="String"/>
+        <field name="custNo" type="String"/>
+        <field name="custName" type="String"/>
+        <field name="stockCode" type="String"/>
+        <field name="InvoiceAddress" type="String"/>
+        <field name="custHot" type="String"/>
+        <field name="custSource" type="String"/>
+        <field name="custType" type="String"/>
+        <field name="employeeTotal" type="String"/>
+        <field name="custRegion" type="String"/>
+        <field name="custLevel" type="String"/>
+        <field name="custSatisfy" type="String"/>
+        <field name="custCredit" type="String"/>
+        <field name="country" type="String"/>
+        <field name="province" type="String"/>
+        <field name="city" type="String"/>
+        <field name="custAddr" type="String"/>
+        <field name="custZipCode" type="String"/>
+        <field name="custTel" type="String"/>
+        <field name="custFax" type="String"/>
+        <field name="custWebsite" type="String"/>
+        <field name="custLicenceNo" type="String"/>
+        <field name="custChieftain" type="String"/>
+        <field name="custBankroll" type="String"/>
+        <field name="custTurnover" type="String"/>
+        <field name="custBank" type="String"/>
+        <field name="custBankAccount" type="String"/>
+        <field name="custLocalTaxNo" type="String"/>
+        <field name="custNationalTaxNo" type="String"/>
+        <field name="custStatus" type="String"/>
       </fields>
     </control-DataSet>
   </Accessory>
