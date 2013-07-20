@@ -13,12 +13,11 @@
  */
 package com.beyond.common.base;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 
@@ -34,10 +33,7 @@ import com.ibatis.sqlmap.client.SqlMapClient;
  * @date 2013年7月16日 下午7:58:11
  * @version v1.0
  */
-abstract public class AbstractBaseDao<T> extends SqlMapClientDaoSupport {
-
-	public final static Logger logger = LoggerFactory
-			.getLogger(AbstractBaseDao.class);
+abstract public class AbstractBaseDao<T extends Serializable> extends SqlMapClientDaoSupport {
 
 	private static final String PAGE_FROM = "pageFrom";
 	private static final String PAGE_TO = "pageTo";
@@ -79,5 +75,27 @@ abstract public class AbstractBaseDao<T> extends SqlMapClientDaoSupport {
 				statementName, paramObject);
 		return result;
 	}
-
+	
+	protected String getStatementNamespace() {
+        Class<?> clazz = this.getClass().getInterfaces()[0];
+        return clazz.getName();
+    }
+	
+	@SuppressWarnings("unchecked")
+	protected T insert(T t){
+		return (T) getSqlMapClientTemplate().insert(getStatementNamespace() + ".insert", t);
+	}
+	
+	protected int update(T t){
+		return getSqlMapClientTemplate().update(getStatementNamespace() + ".update", t);
+	}
+	
+	protected int delete(Long id){
+		return getSqlMapClientTemplate().delete(getStatementNamespace() + ".delete", id);
+	}
+	
+	@SuppressWarnings("unchecked")
+	protected T find(Long id){
+		return (T) getSqlMapClientTemplate().queryForObject(getStatementNamespace() + ".find", id);
+	}
 }

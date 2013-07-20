@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50018
 File Encoding         : 65001
 
-Date: 2013-07-17 22:53:17
+Date: 2013-07-20 12:17:14
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -39,35 +39,51 @@ CREATE TABLE `cst_activity` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cst_customer`;
 CREATE TABLE `cst_customer` (
-  `cust_no` char(17) NOT NULL,
-  `cust_name` varchar(100) NOT NULL,
-  `cust_region` varchar(50) default '',
-  `cust_manager_id` bigint(20) default '0',
-  `cust_manager_name` varchar(50) default '',
-  `cust_level` int(11) default '1',
-  `cust_level_label` varchar(50) default '',
-  `cust_satisfy` int(11) default '3',
-  `cust_credit` int(11) default '3',
-  `cust_addr` varchar(300) default '',
-  `cust_zip` char(10) default '',
-  `cust_tel` varchar(50) default '',
-  `cust_fax` varchar(50) default '',
-  `cust_website` varchar(50) default '',
-  `cust_licence_no` varchar(50) default '',
-  `cust_chieftain` varchar(50) default '',
-  `cust_bankroll` bigint(20) default '0',
-  `cust_turnover` bigint(20) default '0',
-  `cust_bank` varchar(200) default '',
-  `cust_bank_account` varchar(50) default '',
-  `cust_local_tax_no` varchar(50) default '',
-  `cust_national_tax_no` varchar(50) default '',
-  `cust_status` char(1) default '1',
-  PRIMARY KEY  (`cust_no`)
+  `cust_id` int(11) NOT NULL auto_increment,
+  `cust_no` varchar(32) default NULL COMMENT '客户编号',
+  `cust_name` varchar(250) default NULL COMMENT '客户名称',
+  `full_pinyin_name` varchar(500) default NULL,
+  `simple_pinyin_name` varchar(250) default NULL,
+  `stock_code` varchar(20) default NULL COMMENT '股票代码',
+  `invoice_address` varchar(250) default NULL COMMENT '发票地址',
+  `cust_hot` int(11) default '0' COMMENT '是否热点客户',
+  `cust_source` varchar(250) default NULL COMMENT '客户来源',
+  `cust_type` varchar(32) default NULL COMMENT '客户类型',
+  `employee_total` int(11) default NULL,
+  `cust_region` varchar(50) default NULL COMMENT '领域',
+  `cust_level` int(11) default '1' COMMENT '客户等级',
+  `cust_satisfy` varchar(21) default NULL COMMENT '满意度',
+  `cust_credit` varchar(21) default NULL COMMENT '信誉',
+  `country` varchar(32) default NULL COMMENT '国家',
+  `province` varchar(32) default NULL COMMENT '省份',
+  `city` varchar(32) default NULL COMMENT '城市',
+  `cust_addr` varchar(500) default NULL COMMENT '地址',
+  `cust_zip_code` varchar(10) default NULL COMMENT '邮编',
+  `cust_tel` varchar(50) default NULL COMMENT '电话',
+  `cust_fax` varchar(50) default NULL COMMENT '电话',
+  `cust_website` varchar(50) default NULL COMMENT '网址',
+  `cust_licence_no` varchar(50) default NULL COMMENT '工商执照号',
+  `cust_chieftain` varchar(50) default NULL COMMENT '法人',
+  `cust_bankroll` bigint(20) default '0' COMMENT '资金',
+  `cust_turnover` bigint(20) default '0' COMMENT '年营业额',
+  `cust_bank` varchar(200) default NULL COMMENT '签约银行',
+  `cust_bank_account` varchar(50) default NULL COMMENT '签约银行账号',
+  `cust_local_tax_no` varchar(50) default NULL COMMENT '地税编号',
+  `cust_national_tax_no` varchar(50) default NULL COMMENT '国税编号',
+  `create_userid` varchar(11) default NULL,
+  `create_username` varchar(32) default NULL,
+  `create_date` datetime default NULL,
+  `update_userid` varchar(11) default NULL,
+  `update_username` varchar(32) default NULL,
+  `update_date` datetime default NULL,
+  `cust_status` char(1) default '1' COMMENT '客户状态',
+  PRIMARY KEY  (`cust_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cst_customer
 -- ----------------------------
+INSERT INTO `cst_customer` VALUES ('1', '00001', '雷晓亮', null, null, null, null, '0', null, null, null, null, '1', null, null, null, null, null, null, null, null, null, null, null, null, '0', '0', null, null, null, null, null, null, null, null, null, null, '1');
 
 -- ----------------------------
 -- Table structure for `cst_linkman`
@@ -449,8 +465,10 @@ INSERT INTO `tsys_log` VALUES ('2200323e-da5e-46f1-aa70-a3fa50b', '0_000000', '�
 INSERT INTO `tsys_log` VALUES ('23237bd0-64d6-4ee1-92ec-a649343', '0_000000', '组织根', 'admin', '系统管理员', '20130712', '221630', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
 INSERT INTO `tsys_log` VALUES ('2399dcb6-edfe-455b-b303-7fc40ec', '0_000000', '组织根', 'admin', '系统管理员', '20130712', '101922', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
 INSERT INTO `tsys_log` VALUES ('24a737d9-7353-4535-b2f7-9098e55', '0_000000', '组织根', 'admin', '系统管理员', '20130713', '143723', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
+INSERT INTO `tsys_log` VALUES ('24d4e711-9219-4816-b911-8f0c4ef', '0_000000', '组织根', 'admin', '系统管理员', '20130720', '111736', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
 INSERT INTO `tsys_log` VALUES ('2816fb7d-55c3-46f1-9e6b-d10a6a9', '0_000000', '组织根', 'admin', '系统管理员', '20130717', '200918', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
 INSERT INTO `tsys_log` VALUES ('2a5387d3-498b-4aaf-b3f2-3206770', '0_000000', '组织根', 'admin', '系统管理员', '20130712', '211253', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
+INSERT INTO `tsys_log` VALUES ('345bd20a-fb98-4abb-8383-c7d7b93', '0_000000', '组织根', 'admin', '系统管理员', '20130720', '95357', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
 INSERT INTO `tsys_log` VALUES ('38e33c4c-9aee-468b-96ee-4bc9673', '0_000000', '组织根', 'admin', '系统管理员', '20130715', '153604', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
 INSERT INTO `tsys_log` VALUES ('3cdc96fe-4dc9-44e0-81b7-fa30636', '0_000000', '组织根', 'admin', '系统管理员', '20130712', '220429', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
 INSERT INTO `tsys_log` VALUES ('3dac1c76-ff64-43c6-adec-0bb2669', '0_000000', '组织根', 'admin', '系统管理员', '20130715', '143355', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
@@ -459,6 +477,7 @@ INSERT INTO `tsys_log` VALUES ('417789c2-aece-4828-837a-ba45dcf', '0_000000', '�
 INSERT INTO `tsys_log` VALUES ('431487bf-8f5a-4307-914f-99aae89', '0_000000', '组织根', 'admin', '系统管理员', '20130710', '123103', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
 INSERT INTO `tsys_log` VALUES ('43dc5f6f-73a9-49cd-9f14-5092126', '0_000000', '组织根', 'admin', '系统管理员', '20130712', '213424', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
 INSERT INTO `tsys_log` VALUES ('47961ef8-8c58-4895-b13d-58368f3', '0_000000', '组织根', 'admin', '系统管理员', '20130717', '122308', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
+INSERT INTO `tsys_log` VALUES ('4a97fac4-43d9-4aa0-ade4-d32228b', '0_000000', '组织根', 'admin', '系统管理员', '20130720', '104435', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
 INSERT INTO `tsys_log` VALUES ('4caa7193-013a-45c5-b2b3-b1f1360', '0_000000', '组织根', 'admin', '系统管理员', '20130715', '132847', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
 INSERT INTO `tsys_log` VALUES ('4f58b01b-a742-48ca-b5d9-28a1dc7', '0_000000', '组织根', 'admin', '系统管理员', '20130716', '222533', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
 INSERT INTO `tsys_log` VALUES ('522f4966-622f-4782-a4f7-2e8e8ad', '0_000000', '组织根', 'admin', '系统管理员', '20130717', '211405', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
@@ -468,12 +487,14 @@ INSERT INTO `tsys_log` VALUES ('53bef688-f44a-4c58-bba7-e102490', '0_000000', '�
 INSERT INTO `tsys_log` VALUES ('590d55a4-ca44-481f-ba02-f881e03', '0_000000', '组织根', 'admin', '系统管理员', '20130710', '134356', 'bizSignOut', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1签出了系统', '127.0.0.1', '');
 INSERT INTO `tsys_log` VALUES ('59333cec-3e7a-4bd5-97d5-2add2b0', '0_000000', '组织根', 'admin', '系统管理员', '20130717', '132428', 'bizSignOut', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1签出了系统', '127.0.0.1', '');
 INSERT INTO `tsys_log` VALUES ('5b75df4f-d02f-4892-9cb5-ba9fa4b', '0_000000', '组织根', 'admin', '系统管理员', '20130717', '222429', 'bizSignOut', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1签出了系统', '127.0.0.1', '');
+INSERT INTO `tsys_log` VALUES ('5dee3ced-13eb-4547-9684-4f2d3b9', '0_000000', '组织根', 'admin', '系统管理员', '20130720', '102008', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
 INSERT INTO `tsys_log` VALUES ('602c1839-dccb-4928-8c4a-3e10014', '0_000000', '组织根', 'admin', '系统管理员', '20130713', '85215', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
 INSERT INTO `tsys_log` VALUES ('61f10bb0-e900-4458-8063-79334e8', '0_000000', '组织根', 'admin', '系统管理员', '20130716', '202744', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
 INSERT INTO `tsys_log` VALUES ('6418c2cc-5619-4661-80fa-68266d5', '0_000000', '组织根', 'admin', '系统管理员', '20130713', '215146', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
 INSERT INTO `tsys_log` VALUES ('6ac9983f-c64a-4854-a595-621ca59', '0_000000', '组织根', 'admin', '系统管理员', '20130710', '104056', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
 INSERT INTO `tsys_log` VALUES ('6d814009-6c78-450b-8658-99a3b75', '0_000000', '组织根', 'admin', '系统管理员', '20130713', '162953', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
 INSERT INTO `tsys_log` VALUES ('6db99377-e309-426d-988f-e13ec54', '0_000000', '组织根', 'admin', '系统管理员', '20130713', '70835', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
+INSERT INTO `tsys_log` VALUES ('7072f85f-10be-43af-a6fb-57c3295', '0_000000', '组织根', 'admin', '系统管理员', '20130720', '100400', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
 INSERT INTO `tsys_log` VALUES ('7647f478-8acf-4f4c-965d-7dfc147', '0_000000', '组织根', 'admin', '系统管理员', '20130712', '103759', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
 INSERT INTO `tsys_log` VALUES ('795a5f6d-9e3a-4784-843a-93fbde8', '0_000000', '组织根', 'admin', '系统管理员', '20130714', '155045', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
 INSERT INTO `tsys_log` VALUES ('7a65bcfc-1508-4b56-8045-21b7a10', '0_000000', '组织根', 'admin', '系统管理员', '20130710', '123437', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
@@ -485,6 +506,7 @@ INSERT INTO `tsys_log` VALUES ('846e6b05-2613-40b4-8ae7-2d76f39', '0_000000', '�
 INSERT INTO `tsys_log` VALUES ('85b061ae-2b8b-43b9-bd8d-fe9d168', '0_000000', '组织根', 'admin', '系统管理员', '20130712', '155929', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
 INSERT INTO `tsys_log` VALUES ('8625393f-1751-4e29-bb3d-3cf4958', '0_000000', '组织根', 'admin', '系统管理员', '20130710', '112643', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
 INSERT INTO `tsys_log` VALUES ('88378f58-b55b-4693-93be-db37d1d', '0_000000', '组织根', 'admin', '系统管理员', '20130717', '130810', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
+INSERT INTO `tsys_log` VALUES ('8a289ae9-567a-4b7b-9e09-b90cc63', '0_000000', '组织根', 'admin', '系统管理员', '20130720', '105258', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
 INSERT INTO `tsys_log` VALUES ('8edf7bef-4f80-45db-8589-50d2497', '0_000000', '组织根', 'admin', '系统管理员', '20130716', '221958', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
 INSERT INTO `tsys_log` VALUES ('91991376-d35b-409d-be48-8a66972', '0_000000', '组织根', 'admin', '系统管理员', '20130710', '122908', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
 INSERT INTO `tsys_log` VALUES ('91cee1ef-59c7-4d1b-bacc-e0d68c2', '0_000000', '组织根', 'admin', '系统管理员', '20130713', '73047', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
@@ -493,14 +515,19 @@ INSERT INTO `tsys_log` VALUES ('99a40b33-527c-4537-9477-f4f025a', '0_000000', '�
 INSERT INTO `tsys_log` VALUES ('9f822983-18df-4fa5-9b1c-8e81251', '0_000000', '组织根', 'system', '系统用户', '20130709', '213645', 'bizSignIn2', 'bizSign', 'ID为[system]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
 INSERT INTO `tsys_log` VALUES ('a7a3e74a-5b50-4b8e-82b6-b4806b2', '0_000000', '组织根', 'admin', '系统管理员', '20130715', '160549', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
 INSERT INTO `tsys_log` VALUES ('a7c5905c-c442-448b-9321-47006b3', '0_000000', '组织根', 'admin', '系统管理员', '20130715', '222103', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
+INSERT INTO `tsys_log` VALUES ('aa289d41-ad63-4d74-b653-a609064', '0_000000', '组织根', 'admin', '系统管理员', '20130720', '103010', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
 INSERT INTO `tsys_log` VALUES ('ab0def04-f5ab-4dd7-a5bd-fc7ece8', '0_000000', '组织根', 'admin', '系统管理员', '20130712', '215232', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
 INSERT INTO `tsys_log` VALUES ('ac547639-9726-4ffd-a817-d90aafe', '0_000000', '组织根', '111111', '授权用户', '20130709', '211205', 'bizSignIn2', 'bizSign', 'ID为[111111]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
 INSERT INTO `tsys_log` VALUES ('ac6fccc7-60f1-405b-af92-4e0e11c', '0_000000', '组织根', 'admin', '系统管理员', '20130717', '210040', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
+INSERT INTO `tsys_log` VALUES ('ad49691c-33c3-4de5-90c7-8598223', '0_000000', '组织根', 'admin', '系统管理员', '20130720', '112918', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
+INSERT INTO `tsys_log` VALUES ('aed59be7-94bf-4a1a-bf54-8c3654e', '0_000000', '组织根', 'admin', '系统管理员', '20130720', '90436', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
 INSERT INTO `tsys_log` VALUES ('b0ba6de5-0cb3-444f-a7fe-ffb0bbf', '0_000000', '组织根', 'admin', '系统管理员', '20130712', '104354', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
 INSERT INTO `tsys_log` VALUES ('bbcc0176-4463-401e-a34f-f087e75', '0_000000', '组织根', 'admin', '系统管理员', '20130713', '81824', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
 INSERT INTO `tsys_log` VALUES ('bd815d02-fd7e-4823-b095-a7c8a92', '0_000000', '组织根', 'admin', '系统管理员', '20130717', '220708', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
+INSERT INTO `tsys_log` VALUES ('bdf94cc1-982e-4d96-b4a3-d443175', '0_000000', '组织根', 'admin', '系统管理员', '20130720', '92136', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
 INSERT INTO `tsys_log` VALUES ('bf1d1503-cea8-4c19-a493-b6be04d', '0_000000', '组织根', 'admin', '系统管理员', '20130714', '155138', 'bizSignOut', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1签出了系统', '127.0.0.1', '');
 INSERT INTO `tsys_log` VALUES ('c00d725b-dd1b-482a-a6a3-b755b9d', '0_000000', '组织根', 'admin', '系统管理员', '20130717', '223542', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
+INSERT INTO `tsys_log` VALUES ('c1a824c0-0eab-43d1-897d-08624d5', '0_000000', '组织根', 'admin', '系统管理员', '20130720', '90900', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
 INSERT INTO `tsys_log` VALUES ('c1f80889-8420-4fee-9aee-bfff875', '0_000000', '组织根', 'admin', '系统管理员', '20130715', '234107', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
 INSERT INTO `tsys_log` VALUES ('c2ec55d0-99a2-4655-9d23-8c158a3', '0_000000', '组织根', 'admin', '系统管理员', '20130716', '222102', 'bizSignOut', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1签出了系统', '127.0.0.1', '');
 INSERT INTO `tsys_log` VALUES ('c743bac2-8e57-4ee6-a190-8bf0eff', '0_000000', '组织根', 'admin', '系统管理员', '20130717', '130557', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
@@ -524,6 +551,7 @@ INSERT INTO `tsys_log` VALUES ('f93ee40a-7a58-40c0-a738-8b9dd07', '0_000000', '�
 INSERT INTO `tsys_log` VALUES ('f9de35ec-49ee-4eba-b7b2-b41b36c', '0_000000', '组织根', 'admin', '系统管理员', '20130713', '93137', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
 INSERT INTO `tsys_log` VALUES ('fa986e50-6377-41d2-a147-9790a3f', '0_000000', '组织根', 'admin', '系统管理员', '20130715', '232604', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
 INSERT INTO `tsys_log` VALUES ('fc3aeac5-330f-4841-841c-d717331', '0_000000', '组织根', 'admin', '系统管理员', '20130715', '162115', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
+INSERT INTO `tsys_log` VALUES ('fd342ef6-f9c9-4275-9764-4d589ac', '0_000000', '组织根', 'admin', '系统管理员', '20130720', '110135', 'bizSignIn2', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1登陆了系统', '127.0.0.1', '');
 INSERT INTO `tsys_log` VALUES ('fe0f5a64-4fa8-440f-bee8-48748c5', '0_000000', '组织根', 'admin', '系统管理员', '20130717', '223040', 'bizSignOut', 'bizSign', 'ID为[admin]的用户在IP为：127.0.0.1签出了系统', '127.0.0.1', '');
 
 -- ----------------------------
@@ -1697,7 +1725,7 @@ CREATE TABLE `tsys_user_login` (
 -- ----------------------------
 INSERT INTO `tsys_user_login` VALUES ('001', '20130710', '135014', '127.0.0.1', '0', '0', '');
 INSERT INTO `tsys_user_login` VALUES ('111111', '20130709', '211205', '127.0.0.1', '0', '0', '');
-INSERT INTO `tsys_user_login` VALUES ('admin', '20130717', '223541', '127.0.0.1', '0', '20130716', '');
+INSERT INTO `tsys_user_login` VALUES ('admin', '20130720', '112917', '127.0.0.1', '0', '20130720', '');
 INSERT INTO `tsys_user_login` VALUES ('system', '20130709', '213644', '127.0.0.1', '0', '0', '');
 
 -- ----------------------------
