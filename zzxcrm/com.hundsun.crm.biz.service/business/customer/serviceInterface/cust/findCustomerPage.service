@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service2:ServiceModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:flow2="http://www.hundsun.com/ares/studio/jres/flow2" xmlns:service2="http://www.hundsun.com/ares/studio/jres/service2" name="findCustomerPage" outputPagination="true" outsideService="true">
+  <inputDefines id="custName" javaType="String" name="客户名">
+    <defaultValue2/>
+  </inputDefines>
+  <inputDefines id="custTel" javaType="String" name="电话">
+    <defaultValue2/>
+  </inputDefines>
+  <outputDefines id="custName" javaType="String" name="客户名称">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="custTel" javaType="String" name="电话">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="custType" javaType="String" name="客户类型">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="custChieftain" javaType="String" name="所有者">
+    <defaultValue2/>
+  </outputDefines>
+  <unit>
+    <info xsi:type="flow2:LogicUnitInfo"/>
+  </unit>
+</service2:ServiceModel>

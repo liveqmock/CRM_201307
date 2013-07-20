@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service2:ServiceModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:flow2="http://www.hundsun.com/ares/studio/jres/flow2" xmlns:service2="http://www.hundsun.com/ares/studio/jres/service2" name="addCustomer" outsideService="true">
+  <unit>
+    <info xsi:type="flow2:LogicUnitInfo"/>
+  </unit>
+</service2:ServiceModel>

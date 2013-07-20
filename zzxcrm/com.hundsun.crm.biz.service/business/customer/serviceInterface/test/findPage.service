@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service2:ServiceModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:flow2="http://www.hundsun.com/ares/studio/jres/flow2" xmlns:service2="http://www.hundsun.com/ares/studio/jres/service2" name="findPage" outputPagination="true" outsideService="true">
+  <inputDefines id="name" javaType="String">
+    <defaultValue2/>
+  </inputDefines>
+  <inputDefines id="age" javaType="int">
+    <defaultValue2/>
+  </inputDefines>
+  <outputDefines id="name" javaType="String" name="姓名">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="age" javaType="String" name="年龄">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="nick" javaType="String" name="昵称">
+    <defaultValue2/>
+  </outputDefines>
+  <outputDefines id="sex" javaType="String" name="性别">
+    <defaultValue2/>
+  </outputDefines>
+  <unit>
+    <info xsi:type="flow2:LogicUnitInfo"/>
+  </unit>
+</service2:ServiceModel>
