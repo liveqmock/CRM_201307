@@ -14,4 +14,15 @@
 
 	<bean id="customerService" class="com.beyond.crm.service.impl.CrmCustomerServiceImpl"/>
 	
+	<!-- dozer configuration. copy properties from object to object. -->
+	<bean id="dozerHelper" class="com.beyond.common.utils.DozerHelper"></bean>
+	<bean id="enumConvert" class="com.beyond.common.utils.convert.EnumConvert"></bean>
+	<bean id="mapper" class="org.dozer.spring.DozerBeanMapperFactoryBean">
+		<property name="mappingFiles" value="classpath*:dozer/*mapping.xml" />
+		<property name="customConvertersWithId">
+			<map>
+				<entry key="EnumConvert" value-ref="enumConvert" />
+			</map>
+		</property>
+	</bean>
 </beans>

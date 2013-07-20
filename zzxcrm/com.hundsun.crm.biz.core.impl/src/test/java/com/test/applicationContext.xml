@@ -14,9 +14,6 @@
 			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
 			http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-2.5.xsd">
 
-	<context:annotation-config />
-	<context:component-scan base-package="com.beyond.crm" />
-    
 	<!-- dozer configuration. copy properties from object to object. -->
 	<bean id="dozerHelper" class="com.beyond.common.utils.DozerHelper"></bean>
 	<bean id="enumConvert" class="com.beyond.common.utils.convert.EnumConvert"></bean>
@@ -28,6 +25,4 @@
 			</map>
 		</property>
 	</bean>
-    
-	<import resource="applicationContext-resource.xml" /> 
 </beans>

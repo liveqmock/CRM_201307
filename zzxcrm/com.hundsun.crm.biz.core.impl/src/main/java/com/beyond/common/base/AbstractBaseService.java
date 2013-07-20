@@ -13,8 +13,9 @@
  */
 package com.beyond.common.base;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.beyond.common.utils.DozerHelper;
 
 /**
  * 业务基类 
@@ -24,8 +25,13 @@ import org.slf4j.LoggerFactory;
  * @version v1.0
  */
 
-abstract public class AbstractBaseService {
+public abstract class AbstractBaseService {
 
-	public final static Logger logger = LoggerFactory.getLogger(AbstractBaseService.class);
+	@Autowired
+    protected DozerHelper dozer;
+
+    protected DozerHelper getDozer() {
+        return dozer;
+    }
 	
 }
