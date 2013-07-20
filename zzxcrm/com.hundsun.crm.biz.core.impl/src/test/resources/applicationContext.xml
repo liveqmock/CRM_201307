@@ -19,7 +19,4 @@
     
 	 <import resource="applicationContext-resource.xml" /> 
 	 
-	 <bean id="testt" class="com.test.T">
-	 	<constructor-arg value="Hello World!!"></constructor-arg>
-	 </bean>
 </beans>

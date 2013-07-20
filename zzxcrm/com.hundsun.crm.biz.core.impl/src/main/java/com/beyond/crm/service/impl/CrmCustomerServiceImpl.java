@@ -13,14 +13,13 @@
  */
 package com.beyond.crm.service.impl;
 
-import java.util.Map;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.beyond.common.base.AbstractBaseService;
-import com.beyond.common.vo.PageInfo;
 import com.beyond.crm.bean.CrmCustomer;
 import com.beyond.crm.dao.CrmCustomerDao;
 import com.beyond.crm.service.CrmCustomerService;
@@ -39,9 +38,12 @@ public class CrmCustomerServiceImpl extends AbstractBaseService implements CrmCu
 	@Autowired
 	private CrmCustomerDao crmCustomerDao;
 	
-	public PageInfo<CrmCustomer> findPage(Map<String, Object> paramMap,Integer pageNum, Integer pageSize){
-		PageInfo<CrmCustomer> pageInfo = new PageInfo<CrmCustomer>();
-		return crmCustomerDao.findPage(pageInfo, pageNum, pageSize, paramMap);
+	public List<CrmCustomer> findCustomerPage(CrmCustomer bean,Integer pageNum, Integer pageSize){
+		return crmCustomerDao.findCustomerPage(bean,pageNum, pageSize);
 	}
 	
+	
+	public CrmCustomer saveCustomer(CrmCustomer bean){
+		return crmCustomerDao.saveCustomer(bean);
+	}
 }

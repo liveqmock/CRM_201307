@@ -13,8 +13,7 @@
  */
 package com.beyond.crm.test;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -25,10 +24,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.beyond.common.vo.PageInfo;
 import com.beyond.crm.bean.CrmCustomer;
 import com.beyond.crm.service.CrmCustomerService;
-import com.test.T;
 
 /**
  * 客户信息管理单元测试
@@ -43,8 +40,7 @@ public class CrmCustomerTest {
 	
 	public final static Logger logger = LoggerFactory.getLogger(CrmCustomerTest.class);
 
-	@Autowired
-	private T t ;
+	
 	@Autowired
 	private CrmCustomerService crmCustomerService;
 	
@@ -52,21 +48,22 @@ public class CrmCustomerTest {
 	public static void init(){
 	}
 	
-	@Test
-	public void test1(){
-		t.say();
-	}
 
 	@Test
 	public void testFindPage(){
-		Map<String, Object> paramMap =  new HashMap<String,Object>();
-		PageInfo<CrmCustomer> pageInfo = crmCustomerService.findPage(paramMap, 1, 15);
-		logger.info("result is "+pageInfo.getResult());
+		CrmCustomer queryBean = new CrmCustomer();
+		//queryBean.setCustName("雷");
+		List<CrmCustomer> pageInfo = crmCustomerService.findCustomerPage(queryBean, 1, 15);
+		logger.info("result is "+pageInfo);
 	}
 	
-	public void testAdd(){
-		
-	}
+//	@Test
+//	public void testAdd(){
+//		CrmCustomer bean = new CrmCustomer();
+//		bean.setCustNo("00001");
+//		bean.setCustName("雷晓亮");
+//		crmCustomerService.saveCustomer(bean);
+//	}
 	
 	public void testUpdate(){
 		

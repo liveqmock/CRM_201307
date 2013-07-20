@@ -1,5 +1,7 @@
 package com.beyond.crm.bean;
 
+import com.beyond.common.base.AbstractBaseDomain;
+
 /**
  * 客户
  * @author leixl
@@ -7,7 +9,7 @@ package com.beyond.crm.bean;
  * @date   2013年7月13日 上午11:25:24
  * @version v1.0
  */
-public class CrmCustomer implements java.io.Serializable{
+public class CrmCustomer extends AbstractBaseDomain{
 
 	/**
 	 * 
@@ -17,6 +19,9 @@ public class CrmCustomer implements java.io.Serializable{
 	private Integer custId;                                    //表主键
 	private String custNo;                                     //客户编号
 	private String custName;                                   //客户名称
+	private String fullPinyinName;                             //全拼
+	private String simplePinyinName;                           //简拼
+	
 	private String stockCode;                                  //股票代码
 	private String InvoiceAddress;                              //发票地址
 	private Integer custHot;                                    //是否热点客户
@@ -79,6 +84,33 @@ public class CrmCustomer implements java.io.Serializable{
 	 */
 	public void setCustName(String custName) {
 		this.custName = custName;
+	}
+	
+	
+	
+	/**
+	 * @return the fullPinyinName
+	 */
+	public String getFullPinyinName() {
+		return fullPinyinName;
+	}
+	/**
+	 * @param fullPinyinName the fullPinyinName to set
+	 */
+	public void setFullPinyinName(String fullPinyinName) {
+		this.fullPinyinName = fullPinyinName;
+	}
+	/**
+	 * @return the simplePinyinName
+	 */
+	public String getSimplePinyinName() {
+		return simplePinyinName;
+	}
+	/**
+	 * @param simplePinyinName the simplePinyinName to set
+	 */
+	public void setSimplePinyinName(String simplePinyinName) {
+		this.simplePinyinName = simplePinyinName;
 	}
 	/**
 	 * @return the stockCode

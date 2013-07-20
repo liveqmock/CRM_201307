@@ -13,6 +13,7 @@
  */
 package com.beyond.crm.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import com.beyond.common.vo.PageInfo;
@@ -35,7 +36,7 @@ public interface CrmCustomerDao {
 	 * @param paramMap
 	 * @return
 	 */
-	public PageInfo<CrmCustomer> findPage(PageInfo<CrmCustomer> pageInfo,Integer pageNum, Integer pageSize,Map<String, Object> paramMap);
+	public List<CrmCustomer> findCustomerPage(CrmCustomer bean,Integer pageNum, Integer pageSize);
 	
 	/**
 	 * 

@@ -1,11 +1,10 @@
 package com.beyond.crm.dao.impl;
 
-import java.util.Map;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
 import com.beyond.common.base.AbstractBaseDao;
-import com.beyond.common.vo.PageInfo;
 import com.beyond.crm.bean.CrmCustomer;
 import com.beyond.crm.dao.CrmCustomerDao;
 
@@ -13,8 +12,8 @@ import com.beyond.crm.dao.CrmCustomerDao;
 @Repository
 public class CrmCustomerDaoImpl extends AbstractBaseDao<CrmCustomer> implements CrmCustomerDao{
 	
-	public PageInfo<CrmCustomer> findPage(PageInfo<CrmCustomer> pageInfo,Integer pageNum, Integer pageSize,Map<String, Object> paramMap) {
-		return getPageInfoByParamMap(pageInfo,"CrmCustomerSQL.countTotal","CrmCustomerSQL.findPage", pageNum, pageSize, paramMap);
+	public List<CrmCustomer> findCustomerPage(CrmCustomer bean,Integer pageNum, Integer pageSize) {
+		return getObjectList("CrmCustomerSQL.findCustomerPage", pageNum, pageSize, bean,"customber");
 	}	
 
 	

@@ -69,7 +69,7 @@
 	</appender>
 
 	<!-- cmbank包下的所有信息都打印到控制台 -->
-	<logger name="com.hundsun.crm" additivity="false">
+	<logger name="com.beyond.crm" additivity="false">
 		<priority value="debug" />
 		<appender-ref ref="cmbank-console" />
 	</logger>

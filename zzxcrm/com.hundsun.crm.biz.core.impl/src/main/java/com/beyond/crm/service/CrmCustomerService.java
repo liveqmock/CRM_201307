@@ -13,9 +13,8 @@
  */
 package com.beyond.crm.service;
 
-import java.util.Map;
+import java.util.List;
 
-import com.beyond.common.vo.PageInfo;
 import com.beyond.crm.bean.CrmCustomer;
 
 /**
@@ -34,5 +33,12 @@ public interface CrmCustomerService {
 	 * @param pageSize
 	 * @return
 	 */
-	public PageInfo<CrmCustomer> findPage(Map<String, Object> paramMap,Integer pageNum, Integer pageSize);
+	public List<CrmCustomer> findCustomerPage(CrmCustomer bean,Integer pageNum, Integer pageSize);
+	
+	/**
+	 * 新增客户
+	 * @param bean
+	 * @return
+	 */
+	public CrmCustomer saveCustomer(CrmCustomer bean);
 }
