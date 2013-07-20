@@ -57,7 +57,7 @@
           <isNotEmpty prepend="and" property="customer.custName">
              c.cust_name like concat('%',#customer.custName:VARCHAR#,'%')
           </isNotEmpty>
-          order by c.cust_id desc limit #pageTo#,#pageFrom#
+          order by c.cust_id desc limit #pageFrom#,#pageTo#
     </select>
     
     

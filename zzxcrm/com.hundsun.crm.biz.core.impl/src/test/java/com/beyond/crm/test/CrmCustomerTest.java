@@ -52,7 +52,7 @@ public class CrmCustomerTest {
 	@Test
 	public void testFindPage(){
 		CrmCustomer queryBean = new CrmCustomer();
-		//queryBean.setCustName("雷");
+		queryBean.setCustName("雷");
 		List<CrmCustomer> pageInfo = crmCustomerService.findCustomerPage(queryBean, 1, 15);
 		logger.info("result is "+pageInfo);
 	}
@@ -60,8 +60,8 @@ public class CrmCustomerTest {
 //	@Test
 //	public void testAdd(){
 //		CrmCustomer bean = new CrmCustomer();
-//		bean.setCustNo("00001");
-//		bean.setCustName("雷晓亮");
+//		bean.setCustNo("00003");
+//		bean.setCustName("李悦");
 //		crmCustomerService.saveCustomer(bean);
 //	}
 	
