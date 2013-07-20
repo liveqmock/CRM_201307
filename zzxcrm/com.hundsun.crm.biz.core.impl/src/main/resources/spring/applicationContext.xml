@@ -15,7 +15,8 @@
 			http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-2.5.xsd">
 
 	<context:annotation-config />
-	<context:component-scan base-package="com.beyond.crm,com.hundsun.crm.cep" />
+	<context:component-scan base-package="com.beyond.crm" />
     
-	 <import resource="applicationContext-resource.xml" /> 
+	 <import resource="applicationContext-resource.xml" />
+	 <import resource="applicationContext-service.xml" /> 
 </beans>
