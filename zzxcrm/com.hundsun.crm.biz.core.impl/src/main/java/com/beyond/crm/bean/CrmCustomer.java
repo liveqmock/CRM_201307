@@ -23,7 +23,7 @@ public class CrmCustomer extends AbstractBaseDomain{
 	private String simplePinyinName;                           //简拼
 	
 	private String stockCode;                                  //股票代码
-	private String InvoiceAddress;                              //发票地址
+	private String invoiceAddress;                              //发票地址
 	private Integer custHot;                                    //是否热点客户
 	private String custSource;                                  //客户来源
 	private String custType;                                    //客户类型
@@ -124,17 +124,18 @@ public class CrmCustomer extends AbstractBaseDomain{
 	public void setStockCode(String stockCode) {
 		this.stockCode = stockCode;
 	}
+	
 	/**
 	 * @return the invoiceAddress
 	 */
 	public String getInvoiceAddress() {
-		return InvoiceAddress;
+		return invoiceAddress;
 	}
 	/**
 	 * @param invoiceAddress the invoiceAddress to set
 	 */
 	public void setInvoiceAddress(String invoiceAddress) {
-		InvoiceAddress = invoiceAddress;
+		this.invoiceAddress = invoiceAddress;
 	}
 	/**
 	 * @return the custHot

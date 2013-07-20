@@ -13,7 +13,7 @@
         <result property="fullPinyinName" column="full_pinyin_name" jdbcType="VARCHAR"/>
         <result property="simplePinyinName" column="simple_pinyin_name" jdbcType="VARCHAR"/>
         <result property="stockCode" column="stock_code" jdbcType="VARCHAR"/>
-        <result property="InvoiceAddress" column="invoice_address" jdbcType="VARCHAR"/>
+        <result property="invoiceAddress" column="invoice_address" jdbcType="VARCHAR"/>
         <result property="custHot" column="cust_hot" jdbcType="INTEGER"/>
         <result property="custSource" column="cust_source" jdbcType="VARCHAR"/>
         <result property="custType" column="cust_type" jdbcType="VARCHAR"/>
