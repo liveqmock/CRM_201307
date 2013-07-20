@@ -59,35 +59,34 @@
     </control-MainWindow>
     <control-Window width="790" height="397" title="新增客户" maximized="true" name="Window1" resizable="false" autoScroll="true" draggable="true">
       <layout-fit>
-        <control-FormPanel width="300" height="200" name="FormPanel2" border="false" autoScroll="true" frame="true" submitService="bizframe.authority.user.insertUser">
+        <control-FormPanel width="300" height="200" name="FormPanel2" border="false" autoScroll="true" frame="true" submitService="customer.serviceInterface.cust.insertCustomer">
           <layout-table columns="2" fullWidth="true">
-            <control-TextField labelAlign="right" msgTarget="qtip" labelWidth="150" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" regexText="非法输入，只能输入英文、数字和下划线" fieldName="userId" width="90.0%" height="22" regex="/^[\w\u4e00-\u9fa5\.\/\,\，\.\。\“\（\）\(\)\-\s]*$/" minLength="1" fieldLabel="名称" maxLength="200" colspan="2" name="name" allowBlank="false" tabIndex="73"/>
-            <control-TextField labelAlign="right" msgTarget="qtip" labelWidth="150" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" regexText="非法输入，只能输入中文、英文、数字和下划线" fieldName="userName" width="30.0%" height="22" regex="/^[\w\u4e00-\u9fa5\.\/\,\，\.\。\“\（\）\(\)\-\s]*$/" minLength="1" fieldLabel="股票代码" maxLength="32" name="UIUserName" allowBlank="false" tabIndex="75"/>
-            <control-NumberField dataField="userOrder" labelAlign="right" labelWidth="150" fieldName="age" width="30.0%" height="22" fieldLabel="发票地址" name="UIUserOrder" allowBlank="false"/>
-            <control-HiddenField fieldName="orgId" name="addOrgId"/>
-            <control-StaticRadioGroup labelAlign="right" labelWidth="150" width="30.0%" height="50" fieldLabel="热点用户" name="StaticRadioGroup1" columns="1" tabIndex="93">
+            <control-TextField labelAlign="right" msgTarget="qtip" labelWidth="150" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" fieldName="custName" width="80.0%" height="22" minLength="1" fieldLabel="名称" maxLength="200" colspan="2" name="custName" allowBlank="false" tabIndex="73"/>
+            <control-TextField labelAlign="right" msgTarget="qtip" labelWidth="150" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" fieldName="stockCode" width="22.0%" height="22" minLength="1" fieldLabel="股票代码" maxLength="200" name="stockCode" allowBlank="false" tabIndex="75"/>
+            <control-TextField dataField="userOrder" labelAlign="right" validationEvent="" labelWidth="150" fieldName="invoiceAddress" width="22.0%" height="22" fieldLabel="发票地址" name="invoiceAddress" allowBlank="false"/>
+            <control-StaticRadioGroup labelAlign="right" labelWidth="150" fieldName="custHot" width="22.0%" height="50" fieldLabel="热点用户" name="custHot" columns="1" tabIndex="93">
               <layout-GroupLayout>
                 <control-Radio inputValue="1" name="Radio1" boxLabel="是" width="30" tabIndex="1"/>
                 <control-Radio inputValue="0" name="Radio2" boxLabel="否" width="30" tabIndex="1"/>
               </layout-GroupLayout>
             </control-StaticRadioGroup>
-            <control-ComboBox labelAlign="right" labelWidth="150" width="22.0%" height="22" fieldLabel="客户来源" name="ComboBox2" tabIndex="95"/>
-            <control-ComboBox labelAlign="right" labelWidth="150" width="22.0%" height="22" fieldLabel="类型" name="ComboBox1" tabIndex="94"/>
-            <control-ComboBox labelAlign="right" labelWidth="150" width="22.0%" height="22" fieldLabel="行业" name="ComboBox3" tabIndex="96"/>
-            <control-ComboBox labelAlign="right" labelWidth="150" width="22.0%" height="22" fieldLabel="人员规模" name="ComboBox4" tabIndex="97"/>
-            <control-TextField labelAlign="right" labelWidth="150" width="22.0%" height="22" fieldLabel="年收入" name="TextField2" tabIndex="98"/>
-            <control-ComboBox labelAlign="right" labelWidth="150" width="22.0%" height="22" fieldLabel="注册资金" name="ComboBox5" tabIndex="99"/>
-            <control-TextField labelAlign="right" labelWidth="150" width="22.0%" height="22" fieldLabel="电话" name="TextField3" tabIndex="101"/>
-            <control-ComboBox labelAlign="right" labelWidth="150" width="22.0%" height="22" fieldLabel="客户状态" name="ComboBox6" tabIndex="100"/>
-            <control-TextField labelAlign="right" labelWidth="150" width="22.0%" height="22" fieldLabel="传真" name="TextField5" tabIndex="103"/>
-            <control-TextField labelAlign="right" labelWidth="150" width="22.0%" height="22" fieldLabel="网址" name="TextField4" tabIndex="102"/>
-            <control-TextField labelAlign="right" labelWidth="150" width="22.0%" height="22" fieldLabel="电子邮件" name="TextField6" tabIndex="104"/>
-            <control-ComboBox labelAlign="right" labelWidth="150" width="22.0%" height="22" fieldLabel="国家" name="ComboBox7" tabIndex="105"/>
-            <control-ComboBox labelAlign="right" labelWidth="150" width="22.0%" height="22" fieldLabel="省" name="ComboBox8" tabIndex="106"/>
-            <control-SpecialComboBox labelAlign="right" labelWidth="150" width="22.0%" height="22" fieldLabel="城市" name="SpecialComboBox1" tabIndex="107"/>
-            <control-TextField labelAlign="right" labelWidth="150" width="22.0%" height="22" fieldLabel="邮编" name="TextField7" tabIndex="108"/>
-            <control-TextField labelAlign="right" labelWidth="150" width="90.0%" height="22" fieldLabel="地址" colspan="2" name="TextField8" tabIndex="109"/>
-            <control-TextArea labelAlign="right" labelWidth="150" width="90.0%" height="60" fieldLabel="描述" colspan="2" name="TextArea1" tabIndex="110"/>
+            <control-ComboBox staticValues="['网络','电视']" labelAlign="right" labelWidth="150" fieldName="custSource" width="22.0%" height="22" staticTexts="['网络','电视']" fieldLabel="客户来源" name="custSource" tabIndex="95"/>
+            <control-ComboBox labelAlign="right" labelWidth="150" fieldName="custType" width="22.0%" height="22" fieldLabel="类型" name="custType" tabIndex="94"/>
+            <control-ComboBox labelAlign="right" labelWidth="150" fieldName="custRegion" width="22.0%" height="22" fieldLabel="行业" name="custRegion" tabIndex="96"/>
+            <control-ComboBox labelAlign="right" labelWidth="150" fieldName="employeeTotal" width="22.0%" height="22" fieldLabel="人员规模" name="employeeTotal" tabIndex="97"/>
+            <control-NumberField labelAlign="right" labelWidth="150" fieldName="custTurnover" width="22.0%" height="22" moneyFormat="true" fieldLabel="年收入" name="custTurnover" tabIndex="98"/>
+            <control-ComboBox labelAlign="right" labelWidth="150" fieldName="custBankroll" width="22.0%" height="22" fieldLabel="注册资金" name="custBankroll" tabIndex="99"/>
+            <control-TextField labelAlign="right" labelWidth="150" fieldName="custTel" width="22.0%" height="22" fieldLabel="电话" name="custTel" tabIndex="101"/>
+            <control-ComboBox labelAlign="right" labelWidth="150" fieldName="custStatus" width="22.0%" height="22" fieldLabel="客户状态" name="custStatus" tabIndex="100"/>
+            <control-TextField labelAlign="right" labelWidth="150" fieldName="custFax" width="22.0%" height="22" fieldLabel="传真" name="custFax" tabIndex="103"/>
+            <control-TextField labelAlign="right" labelWidth="150" fieldName="custWebsite" width="22.0%" height="22" fieldLabel="网址" name="custWebsite" tabIndex="102"/>
+            <control-TextField labelAlign="right" labelWidth="150" fieldName="email" width="22.0%" height="22" fieldLabel="电子邮件" name="email" tabIndex="104"/>
+            <control-SpecialComboBox labelAlign="right" labelWidth="150" width="22.0%" height="22" fieldLabel="国家" name="country" tabIndex="105"/>
+            <control-ComboBox labelAlign="right" labelWidth="150" fieldName="province" width="22.0%" height="22" fieldLabel="省" name="province" tabIndex="106"/>
+            <control-ComboBox labelAlign="right" labelWidth="150" fieldName="city" width="22.0%" height="22" filterByValueField="false" fieldLabel="城市" name="city" tabIndex="107"/>
+            <control-TextField labelAlign="right" labelWidth="150" fieldName="custZipCode" width="22.0%" height="22" fieldLabel="邮编" name="custZipCode" tabIndex="108"/>
+            <control-TextField labelAlign="right" labelWidth="150" fieldName="custAddr" width="90.0%" height="22" fieldLabel="地址" colspan="2" name="custAddr" tabIndex="109"/>
+            <control-TextArea labelAlign="right" labelWidth="150" fieldName="desc" width="90.0%" height="60" fieldLabel="描述" colspan="2" name="desc" tabIndex="110"/>
           </layout-table>
         </control-FormPanel>
       </layout-fit>
@@ -106,33 +105,33 @@
       <layout-fit>
         <control-FormPanel height="200" frame="true" submitService="bizframe.authority.user.insertUser" autoScroll="true" name="FormPanel2" width="300">
           <layout-table columns="2" fullWidth="true">
-            <control-TextField labelAlign="right" msgTarget="qtip" labelWidth="150" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" regexText="非法输入，只能输入英文、数字和下划线" fieldName="userId" width="90.0%" height="22" regex="/^[\w\u4e00-\u9fa5\.\/\,\，\.\。\“\（\）\(\)\-\s]*$/" minLength="1" fieldLabel="名称" maxLength="200" colspan="2" name="name" allowBlank="false" tabIndex="73"/>
-            <control-TextField labelAlign="right" msgTarget="qtip" labelWidth="150" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" regexText="非法输入，只能输入中文、英文、数字和下划线" fieldName="userName" width="30.0%" height="22" regex="/^[\w\u4e00-\u9fa5\.\/\,\，\.\。\“\（\）\(\)\-\s]*$/" minLength="1" fieldLabel="股票代码" maxLength="32" name="UIUserName" allowBlank="false" tabIndex="75"/>
-            <control-NumberField dataField="userOrder" labelAlign="right" labelWidth="150" fieldName="age" width="30.0%" height="22" fieldLabel="发票地址" name="UIUserOrder" allowBlank="false"/>
-            <control-HiddenField fieldName="orgId" name="addOrgId"/>
-            <control-StaticRadioGroup labelAlign="right" labelWidth="150" width="30.0%" height="50" fieldLabel="热点用户" name="StaticRadioGroup1" columns="1" tabIndex="93">
+            <control-HiddenField dataField="custId" fieldName="custId" name="custId"/>
+            <control-TextField dataField="custName" labelAlign="right" msgTarget="qtip" labelWidth="150" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" fieldName="custName" width="80.0%" height="22" minLength="1" fieldLabel="名称" maxLength="200" colspan="2" name="custName" allowBlank="false" tabIndex="73"/>
+            <control-TextField dataField="stockCode" labelAlign="right" msgTarget="qtip" labelWidth="150" suffixLabel="&lt;span style=&quot;color:red;&quot;&gt;*&lt;/span&gt;" fieldName="stockCode" width="22.0%" height="22" minLength="1" fieldLabel="股票代码" maxLength="200" name="stockCode" allowBlank="false" tabIndex="75"/>
+            <control-TextField dataField="invoiceAddress" labelAlign="right" validationEvent="" labelWidth="150" fieldName="invoiceAddress" width="22.0%" height="22" fieldLabel="发票地址" name="invoiceAddress" allowBlank="false"/>
+            <control-StaticRadioGroup dataField="custHot" labelAlign="right" labelWidth="150" fieldName="custHot" width="22.0%" height="50" fieldLabel="热点用户" name="custHot" columns="1" tabIndex="93">
               <layout-GroupLayout>
                 <control-Radio inputValue="1" name="Radio1" boxLabel="是" width="30" tabIndex="1"/>
                 <control-Radio inputValue="0" name="Radio2" boxLabel="否" width="30" tabIndex="1"/>
               </layout-GroupLayout>
             </control-StaticRadioGroup>
-            <control-ComboBox labelAlign="right" labelWidth="150" width="22.0%" height="22" fieldLabel="客户来源" name="ComboBox2" tabIndex="95"/>
-            <control-ComboBox labelAlign="right" labelWidth="150" width="22.0%" height="22" fieldLabel="类型" name="ComboBox1" tabIndex="94"/>
-            <control-ComboBox labelAlign="right" labelWidth="150" width="22.0%" height="22" fieldLabel="行业" name="ComboBox3" tabIndex="96"/>
-            <control-ComboBox labelAlign="right" labelWidth="150" width="22.0%" height="22" fieldLabel="人员规模" name="ComboBox4" tabIndex="97"/>
-            <control-TextField labelAlign="right" labelWidth="150" width="22.0%" height="22" fieldLabel="年收入" name="TextField2" tabIndex="98"/>
-            <control-ComboBox labelAlign="right" labelWidth="150" width="22.0%" height="22" fieldLabel="注册资金" name="ComboBox5" tabIndex="99"/>
-            <control-TextField labelAlign="right" labelWidth="150" width="22.0%" height="22" fieldLabel="电话" name="TextField3" tabIndex="101"/>
-            <control-ComboBox labelAlign="right" labelWidth="150" width="22.0%" height="22" fieldLabel="客户状态" name="ComboBox6" tabIndex="100"/>
-            <control-TextField labelAlign="right" labelWidth="150" width="22.0%" height="22" fieldLabel="传真" name="TextField5" tabIndex="103"/>
-            <control-TextField labelAlign="right" labelWidth="150" width="22.0%" height="22" fieldLabel="网址" name="TextField4" tabIndex="102"/>
-            <control-TextField labelAlign="right" labelWidth="150" width="22.0%" height="22" fieldLabel="电子邮件" name="TextField6" tabIndex="104"/>
-            <control-ComboBox labelAlign="right" labelWidth="150" width="22.0%" height="22" fieldLabel="国家" name="ComboBox7" tabIndex="105"/>
-            <control-ComboBox labelAlign="right" labelWidth="150" width="22.0%" height="22" fieldLabel="省" name="ComboBox8" tabIndex="106"/>
-            <control-SpecialComboBox labelAlign="right" labelWidth="150" width="22.0%" height="22" fieldLabel="城市" name="SpecialComboBox1" tabIndex="107"/>
-            <control-TextField labelAlign="right" labelWidth="150" width="22.0%" height="22" fieldLabel="邮编" name="TextField7" tabIndex="108"/>
-            <control-TextField labelAlign="right" labelWidth="150" width="90.0%" height="22" fieldLabel="地址" colspan="2" name="TextField8" tabIndex="109"/>
-            <control-TextArea labelAlign="right" labelWidth="150" width="90.0%" height="60" fieldLabel="描述" colspan="2" name="TextArea1" tabIndex="110"/>
+            <control-ComboBox dataField="custSource" staticValues="['网络','电视']" labelAlign="right" labelWidth="150" fieldName="custSource" width="22.0%" height="22" staticTexts="['网络','电视']" fieldLabel="客户来源" name="custSource" tabIndex="95"/>
+            <control-ComboBox dataField="custType" labelAlign="right" labelWidth="150" fieldName="custType" width="22.0%" height="22" fieldLabel="类型" name="custType" tabIndex="94"/>
+            <control-ComboBox dataField="custRegion" labelAlign="right" labelWidth="150" fieldName="custRegion" width="22.0%" height="22" fieldLabel="行业" name="custRegion" tabIndex="96"/>
+            <control-ComboBox dataField="employeeTotal" labelAlign="right" labelWidth="150" fieldName="employeeTotal" width="22.0%" height="22" fieldLabel="人员规模" name="employeeTotal" tabIndex="97"/>
+            <control-NumberField dataField="custTurnover" labelAlign="right" labelWidth="150" fieldName="custTurnover" width="22.0%" height="22" moneyFormat="true" fieldLabel="年收入" name="custTurnover" tabIndex="98"/>
+            <control-ComboBox dataField="custBankroll" labelAlign="right" labelWidth="150" fieldName="custBankroll" width="22.0%" height="22" fieldLabel="注册资金" name="custBankroll" tabIndex="99"/>
+            <control-TextField dataField="custTel" labelAlign="right" labelWidth="150" fieldName="custTel" width="22.0%" height="22" fieldLabel="电话" name="custTel" tabIndex="101"/>
+            <control-ComboBox dataField="custStatus" labelAlign="right" labelWidth="150" fieldName="custStatus" width="22.0%" height="22" fieldLabel="客户状态" name="custStatus" tabIndex="100"/>
+            <control-TextField dataField="custFax" labelAlign="right" labelWidth="150" fieldName="custFax" width="22.0%" height="22" fieldLabel="传真" name="custFax" tabIndex="103"/>
+            <control-TextField dataField="custWebsite" labelAlign="right" labelWidth="150" fieldName="custWebsite" width="22.0%" height="22" fieldLabel="网址" name="custWebsite" tabIndex="102"/>
+            <control-TextField dataField="email" labelAlign="right" labelWidth="150" fieldName="email" width="22.0%" height="22" fieldLabel="电子邮件" name="email" tabIndex="104"/>
+            <control-SpecialComboBox dataField="country" labelAlign="right" labelWidth="150" fieldName="country" width="22.0%" height="22" fieldLabel="国家" name="country" serviceAlias="" tabIndex="105"/>
+            <control-ComboBox dataField="province" labelAlign="right" labelWidth="150" fieldName="province" width="22.0%" height="22" fieldLabel="省" name="province" tabIndex="106"/>
+            <control-ComboBox dataField="city" labelAlign="right" labelWidth="150" fieldName="city" width="22.0%" height="22" filterByValueField="false" fieldLabel="城市" name="city" tabIndex="107"/>
+            <control-TextField dataField="custZipCode" labelAlign="right" labelWidth="150" fieldName="custZipCode" width="22.0%" height="22" fieldLabel="邮编" name="custZipCode" tabIndex="108"/>
+            <control-TextField dataField="custAddr" labelAlign="right" labelWidth="150" fieldName="custAddr" width="90.0%" height="22" fieldLabel="地址" colspan="2" name="custAddr" tabIndex="109"/>
+            <control-TextArea dataField="desc" labelAlign="right" labelWidth="150" fieldName="desc" width="90.0%" height="60" fieldLabel="描述" colspan="2" name="desc" tabIndex="110"/>
           </layout-table>
         </control-FormPanel>
       </layout-fit>
@@ -150,27 +149,27 @@
       <layout-fit>
         <control-FormPanel border="false" height="200" submitService="bizframe.authority.user.insertUser" autoScroll="true" name="FormPanel2" width="300">
           <layout-table columns="2" fullWidth="true">
-            <control-LabelField defaultValue="dsfdsfdsfd" labelAlign="right" labelWidth="150" width="50.0%" fieldLabel="名称" colspan="2" name="LabelField1"/>
-            <control-LabelField fieldLabel="股票代码" defaultValue="gfgfdsgfdgfdgfdg" labelAlign="right" name="LabelField2" width="50%" labelWidth="150"/>
-            <control-LabelField fieldLabel="发票地址" defaultValue="fdsfdsfds" labelAlign="right" name="LabelField3" width="50%" labelWidth="150"/>
-            <control-LabelField fieldLabel="热点客户" defaultValue="fdsfdsfdsf" labelAlign="right" name="LabelField5" width="50%" labelWidth="150"/>
-            <control-LabelField fieldLabel="客户来源" labelAlign="right" name="LabelField4" width="50%" labelWidth="150"/>
-            <control-LabelField fieldLabel="类型" labelAlign="right" name="LabelField6" width="50%" labelWidth="150"/>
-            <control-LabelField fieldLabel="行业" labelAlign="right" name="LabelField7" width="50%" labelWidth="150"/>
-            <control-LabelField fieldLabel="人员规模" labelAlign="right" name="LabelField8" width="50%" labelWidth="150"/>
-            <control-LabelField fieldLabel="年收入" labelAlign="right" name="LabelField9" width="50%" labelWidth="150"/>
-            <control-LabelField fieldLabel="注册资金" labelAlign="right" name="LabelField10" width="50%" labelWidth="150"/>
-            <control-LabelField fieldLabel="客户状态" labelAlign="right" name="LabelField12" width="50%" labelWidth="150"/>
-            <control-LabelField fieldLabel="电话" labelAlign="right" name="LabelField11" width="50%" labelWidth="150"/>
-            <control-LabelField fieldLabel="传真" labelAlign="right" name="LabelField14" width="50%" labelWidth="150"/>
-            <control-LabelField fieldLabel="网址" labelAlign="right" name="LabelField13" width="50%" labelWidth="150"/>
-            <control-LabelField fieldLabel="电子邮件" labelAlign="right" name="LabelField16" width="50%" labelWidth="150"/>
-            <control-LabelField fieldLabel="国家" labelAlign="right" name="LabelField17" width="50%" labelWidth="150"/>
-            <control-LabelField fieldLabel="省份" labelAlign="right" name="LabelField15" width="50%" labelWidth="150"/>
-            <control-LabelField fieldLabel="城市" labelAlign="right" name="LabelField19" width="50%" labelWidth="150"/>
-            <control-LabelField fieldLabel="邮编" labelAlign="right" name="LabelField18" width="50%" labelWidth="150"/>
-            <control-LabelField fieldLabel="地址" labelAlign="right" colspan="2" name="LabelField20" width="50.0%" labelWidth="150"/>
-            <control-LabelField fieldLabel="描述" labelAlign="right" name="LabelField21" width="50.0%" labelWidth="150"/>
+            <control-LabelField dataField="custName" labelAlign="right" labelWidth="150" fieldName="custName" width="50.0%" fieldLabel="名称" colspan="2" name="custName"/>
+            <control-LabelField dataField="stockCode" labelAlign="right" labelWidth="150" fieldName="stockCode" width="50%" fieldLabel="股票代码" name="stockCode"/>
+            <control-LabelField dataField="invoiceAddress" labelAlign="right" labelWidth="150" fieldName="invoiceAddress" width="50%" fieldLabel="发票地址" name="invoiceAddress"/>
+            <control-LabelField dataField="custHot" labelAlign="right" labelWidth="150" fieldName="custHot" width="50%" fieldLabel="热点客户" name="custHot"/>
+            <control-LabelField dataField="custSource" labelAlign="right" labelWidth="150" fieldName="custSource" width="50%" fieldLabel="客户来源" name="custSource"/>
+            <control-LabelField dataField="custType" labelAlign="right" labelWidth="150" fieldName="custType" width="50%" fieldLabel="类型" name="custType"/>
+            <control-LabelField dataField="custRegion" labelAlign="right" labelWidth="150" fieldName="custRegion" width="50%" fieldLabel="行业" name="custRegion"/>
+            <control-LabelField dataField="employeeTotal" labelAlign="right" labelWidth="150" fieldName="employeeTotal" width="50%" fieldLabel="人员规模" name="employeeTotal"/>
+            <control-LabelField dataField="custTurnover" fieldLabel="年收入" labelAlign="right" name="LabelField9" width="50%" labelWidth="150"/>
+            <control-LabelField dataField="custBankroll" labelAlign="right" labelWidth="150" fieldName="custBankroll" width="50%" fieldLabel="注册资金" name="custBankroll"/>
+            <control-LabelField dataField="custStatus" fieldLabel="客户状态" labelAlign="right" name="LabelField12" width="50%" labelWidth="150"/>
+            <control-LabelField dataField="custTel" fieldLabel="电话" labelAlign="right" name="LabelField11" width="50%" labelWidth="150"/>
+            <control-LabelField dataField="custFax" labelAlign="right" labelWidth="150" fieldName="custFax" width="50%" fieldLabel="传真" name="custFax"/>
+            <control-LabelField dataField="custWebsite" labelAlign="right" labelWidth="150" fieldName="custWebsite" width="50%" fieldLabel="网址" name="custWebsite"/>
+            <control-LabelField dataField="email" labelAlign="right" labelWidth="150" fieldName="email" width="50%" fieldLabel="电子邮件" name="email"/>
+            <control-LabelField dataField="country" labelAlign="right" labelWidth="150" fieldName="country" width="50%" fieldLabel="国家" name="country"/>
+            <control-LabelField dataField="province" labelAlign="right" labelWidth="150" fieldName="province" width="50%" fieldLabel="省份" name="province"/>
+            <control-LabelField dataField="city" fieldLabel="城市" labelAlign="right" name="LabelField19" width="50%" labelWidth="150"/>
+            <control-LabelField dataField="custZipCode" labelAlign="right" labelWidth="150" fieldName="custZipCode" width="50%" fieldLabel="邮编" name="custZipCode"/>
+            <control-LabelField dataField="custAddr" labelAlign="right" labelWidth="150" fieldName="custAddr" width="50.0%" fieldLabel="地址" colspan="2" name="custAddr"/>
+            <control-LabelField dataField="desc" labelAlign="right" labelWidth="150" fieldName="desc" width="50.0%" fieldLabel="描述" name="desc"/>
           </layout-table>
         </control-FormPanel>
       </layout-fit>
@@ -205,7 +204,7 @@
         <field name="custSource" type="String"/>
       </fields>
     </control-DataSet>
-    <control-DataSet name="DataSet3" service="customer.service.cust.findCustomerDetail" usingServiceName="true" window="Window2">
+    <control-DataSet name="DataSet3" service="customer.serviceInterface.cust.findCustomerDetail" usingServiceName="true" window="Window2">
       <params>
         <param name="custId"><![CDATA[]]></param>
         <param name="custNo"><![CDATA[]]></param>
@@ -320,69 +319,24 @@ event Button1_click(Button thisComp, Ext.EventObject e) {
   win.show();
 }
 ]]></WindowScript>
-    <WindowScript window="Window1"><![CDATA[remote bizframe.authority.user._userService as uService;
-
-event Window1_complete() {
-     if("true"==MainWin.extID_visible.toLowerCase()){
-        UserJobNum.setVisible(true);
-        UserJobNum.setEnabled(true);
-        UserJobNum.setLabel(MainWin.extID_text);
-        UserJobNum.fieldName=MainWin.extID_fieldName;
-        
-        // 读取配置文件的配置项，为UI属性项设值。
-        UserJobNum.regex=top.userManageMw.uiExtUserID_validate;// 设置字段验证的正则表达式。
-        UserJobNum.regexText=top.userManageMw.uiExtUserID_validateText;// 设置字段验证失败后的提示信息。
-        
-     }
-     addOrgName.setValue(MainWin.tOrgName);
-     addOrgName.defaultValue=MainWin.tOrgName;
-     addOrgId.setValue(MainWin.tOrgId);
-     addOrgId.defaultValue=MainWin.tOrgId;
-     //searchDepCode.setEnabled(false);
-}
+    <WindowScript window="Window1"><![CDATA[remote customer.serviceInterface.cust.insertCustomer as insertCustService;
 
 event Button5_click(Button thisComp, Ext.EventObject e) {
 	if(FormPanel2.getForm().isValid()){
-		var authWin = new auth(MainWin).window;
-		authWin.needAuth(authWin,'bizSetUser','bizUserAdd',MainWin, function(){
 			var _values=FormPanel2.getValues();
-			Ext.apply(_values,{resCode:"bizSetUser",opCode:"bizUserAdd"});
-			Ext.apply(_values,{userStatus : UIUserStatus.getValue()});
-			var response = uService.synExecute(_values);
+			var response = insertCustService.synExecute(_values);
 			if(!(response.returnCode == 0)){
 				Ext.Msg.alert('错误',response.errorInfo);
 			}else{
-				Ext.Msg.alert('提示','新增用户成功',
+				Ext.Msg.alert('提示','新增客户成功',
 					function(){
-						
-						var _userId=UIUserId.getValue();
-						var _orgName=addOrgName.getValue();
-						var _orgId=addOrgId.getValue();
-						var _uIUserStatus=UIUserStatus.getValue();
-						
-						MainWin.FormPanel1.getForm().reset();			
-						//新增后查询该机构下所有的用户记录			
-						//MainWin.TextField2.setValue(_userId);
-						MainWin.searchOrgName.setValue(_orgName);
-						MainWin.searchOrgId.setValue(_orgId);
-						MainWin.DictComboBox1.setValue(_uIUserStatus);
-						
 						var _param=MainWin.FormPanel1.getValues();
 						MainWin.DataSet1.setParams(_param);
 						MainWin.Grid1.refresh();
-						//var param = {};
-						//Ext.apply(param,{userId:_userId});					
-						//Ext.apply(param,{resCode:'bizSetUser'});
-						//Ext.apply(param,{opCode:'bizSetUserFind'});
-						//MainWin.DataSet1.clearParams();
-						//MainWin.DataSet1.setParams(param);
-						//MainWin.DataSet1.load();
-						//FormPanel2.getForm().reset();
 						close();		
 					}
 				);
 			}
-		});
 	}
 	else
 		Ext.Msg.alert('错误',"发现有输入项不符合规范!");
@@ -397,46 +351,20 @@ event Button6_click(Button thisComp, Ext.EventObject e) {
 }
 event Button8_click(Button thisComp, Ext.EventObject e) {
 	if(FormPanel2.getForm().isValid()){
-		var authWin = new auth(MainWin).window;
-		authWin.needAuth(authWin,'bizSetUser','bizUserAdd',MainWin, function(){
-			var _values=FormPanel2.getValues();
-			Ext.apply(_values,{resCode:"bizSetUser",opCode:"bizUserAdd"});
-			Ext.apply(_values,{userStatus : UIUserStatus.getValue()});
-			var response = uService.synExecute(_values);
+		var _values=FormPanel2.getValues();
+			var response = insertCustService.synExecute(_values);
 			if(!(response.returnCode == 0)){
 				Ext.Msg.alert('错误',response.errorInfo);
 			}else{
-				Ext.Msg.alert('提示','新增用户成功',
+				Ext.Msg.alert('提示','新增客户成功',
 					function(){
-						//MainWin.Grid1.refresh();
-						var _userId=UIUserId.getValue();
-						var _orgName=addOrgName.getValue();
-						var _orgId=addOrgId.getValue();
-						
-						MainWin.FormPanel1.getForm().reset();						
-						MainWin.TextField2.setValue(_userId);
-						MainWin.searchOrgName.setValue(_orgName);
-						MainWin.searchOrgId.setValue(_orgId);
-
 						var _param=MainWin.FormPanel1.getValues();
 						MainWin.DataSet1.setParams(_param);
-						//MainWin.Grid1.refresh();
-						//var param = {};
-						//Ext.apply(param,{userId:_userId});					
-						
-						//Ext.apply(param,{resCode:'bizSetUser'});
-						//Ext.apply(param,{opCode:'bizSetUserFind'});
-						//MainWin.DataSet1.clearParams();
-						
-						//MainWin.DataSet1.setParams(param);
-						MainWin.DataSet1.load();
-						UIUserId.setValue('');
-						UIUserName.setValue('');
-						UIRemark.setValue('');
+						MainWin.Grid1.refresh();
+						FormPanel2.getForm().reset();	
 					}
 				);
 			}
-		});
 	}
 	else
 		Ext.Msg.alert('错误',"发现有输入项不符合规范!");
@@ -452,51 +380,21 @@ event searchDepCode_triggerclick(Hs.HsTargetSelect thisComp) {
 }
 
 ]]></WindowScript>
-    <WindowScript window="Window2"><![CDATA[remote bizframe.authority.user._userService as uService;
+    <WindowScript window="Window2"><![CDATA[remote customer.serviceInterface.cust.updateCustomer as updateCustService;
 event Button9_click(Button thisComp, Ext.EventObject e) {
 	if(FormPanel3.getForm().isValid()){
-	var authWin = new auth(MainWin).window;
-		authWin.needAuth(authWin,'bizSetUser','bizUserModfiy',MainWin, function(){
-			//var _values=FormPanel2.getValues();
-			//Ext.apply(_values,{resCode:"bizSetUser",opCode:"bizUserModfiy"});
-			//Ext.apply(_values,{userStatus : UIUserStatus.getValue(), lockStatus : UILockStatus.getValue()});
 			var values=FormPanel3.getValues();
-			Ext.apply(values,{resCode:"bizSetUser",opCode:"bizUserModfiy"});
-			
-			var response = uService.synExecute(values);
+			var response = updateCustService.synExecute(values);
 			if(!(response.returnCode == 0)){
 				Ext.Msg.alert('错误',response.errorInfo);
 			}else{
-				Ext.Msg.alert('提示','修改用户成功',
+				Ext.Msg.alert('提示','修改客户成功',
 					function(){
-					
-						//MainWin.Grid1.clear();
 						MainWin.Grid1.refresh();
-							
-					 /*
-					 var _param=	MainWin.DataSet1.getParams();
-					 var _limit=MainWin.Grid1.getLimit();
-				     var _start=MainWin.Grid1.getStart();
-				     Ext.apply(_param,{start :_start});
-				     Ext.apply(_param,{limit :_limit});
-					 MainWin.DataSet1.load();
-					 */
 					 close();					
 					}
 				);
 			}
-		});
-	
-	/*
-		
-		var authWin = new auth(MainWin).window;
-		authWin.needAuth(authWin,'bizSetUser','bizUserModfiy',MainWin, function(){
-		var values=FormPanel3.getValues();
-		Ext.apply(values,{resCode:"bizSetUser",opCode:"bizUserModfiy"});
-		FormPanel3.commSubmit(values);
-		
-		});
-		*/
 	}
 	else
 		Ext.Msg.alert('错误',"发现有输入项不符合规范!");
@@ -505,60 +403,32 @@ event Button10_click(Button thisComp, Ext.EventObject e) {
 	close();
 }
 event Window2_complete() {
-	
-    if("true"==MainWin.extID_visible.toLowerCase()){
-        UserJobNum.setVisible(true);
-        UserJobNum.setEnabled(true);
-        UserJobNum.setLabel(MainWin.extID_text);
-        UserJobNum.fieldName=MainWin.extID_fieldName;
-        
-        // 读取配置文件的配置项，为UI属性项设值。
-        UserJobNum.regex=top.userManageMw.uiExtUserID_validate;// 设置字段验证的正则表达式。
-        UserJobNum.regexText=top.userManageMw.uiExtUserID_validateText;// 设置字段验证失败后的提示信息。
-    }
+
     var record = MainWin.Grid1.getSelectionModel().getSelected();
-    UIUserId.setValue(record.get('user_id'));
-	UIUserId.defaultValue=record.get('user_id');
-	
-	UserJobNum.setValue(record.get('ext_field_1'));
-	UserJobNum.defaultValue=record.get('ext_field_1');
-	
-    UIUserName.setValue(record.get('user_name'));
-	UIUserName.defaultValue=record.get('user_name');
-	
-	addOrgName.setValue(record.get('org_name'));
-	addOrgName.defaultValue=record.get('org_name');
-	
-	addOrgId.setValue(record.get('org_id'));
-	addOrgId.defaultValue=record.get('org_id');
-	
-	UIUserType.setValue(record.get('user_type'));
-	UIUserType.defaultValue=record.get('user_type');
-	
-	UIUserStatus.setValue(record.get('user_status'));
-	UIUserStatus.defaultValue=record.get('user_status');
-	
-	UIUserOrder.setValue(record.get('user_order'));
-	UIUserOrder.defaultValue=record.get('user_order');
-	
-	/**
-	UILockStatus.setValue(record.get('lock_status'));
-	UILockStatus.defaultValue=record.get('lock_status');*/
-	
-	UIRemark.setValue(record.get('remark'));
-	UIRemark.defaultValue=record.get('remark');
-	
-	/**20111111 huhl@hundsun.com  用用户昵称登陆   bengin**/
-	if(top.BIZ_USER_LOGIN_NAME && "user_name"==top.BIZ_USER_LOGIN_NAME){
-		UIUserName.setEditable(false);
-	}
-	/**20111111 huhl@hundsun.com  用用户昵称登陆   end **/
+    custId.setValue(record.get('custId'));
+	custName.setValue(record.get('custName'));
 }
 
 event Button7_click(Button thisComp, Ext.EventObject e) {
      FormPanel3.getForm().reset();
 }
 ]]></WindowScript>
-    <WindowScript window="Window3"><![CDATA[]]></WindowScript>
+    <WindowScript window="Window3"><![CDATA[event Window3_complete() {
+
+    var record = MainWin.Grid1.getSelectionModel().getSelected();
+	custName.setValue(record.get('custName'));
+}
+event addUser_btn_click(Button thisComp, Ext.EventObject e) {
+
+}
+event editUser_btn_click(Button thisComp, Ext.EventObject e) {
+
+}
+event Button2_click(Button thisComp, Ext.EventObject e) {
+
+}
+event Button4_click(Button thisComp, Ext.EventObject e) {
+
+}]]></WindowScript>
   </WindowScripts>
 </hsdoc>
