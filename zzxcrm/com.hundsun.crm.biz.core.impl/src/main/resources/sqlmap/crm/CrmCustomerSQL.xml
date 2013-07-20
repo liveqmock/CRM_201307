@@ -52,10 +52,10 @@
     <select id="findCustomerPage" resultMap="customerResultMap" parameterClass="java.util.Map">
         select c.* from cst_customer c where c.cust_status = 1
           <isNotEmpty prepend="and" property="customer.custNo">
-             c.cust_no like concat('%',#customer.custNo:VARCHAR#,'%')
+             c.cust_no like  '%#customer.custNo#%'
           </isNotEmpty>  
           <isNotEmpty prepend="and" property="customer.custName">
-             c.cust_name like concat('%',#customer.custName:VARCHAR#,'%')
+             c.cust_name like '%#customer.custName#%'
           </isNotEmpty>
           order by c.cust_id desc limit #pageFrom#,#pageTo#
     </select>
@@ -67,7 +67,15 @@
              SELECT LAST_INSERT_ID() as value   
          </selectKey>
         INSERT INTO CST_CUSTOMER (CUST_ID,CUST_NO,CUST_NAME)
-            VALUES (#custId:integer#,#custNo:VARCHAR#,#custName:VARCHAR#)
+            VALUES (#custId:INTEGER#,#custNo:VARCHAR#,#custName:VARCHAR#)
     </insert>
 
+    
+    <update id="updateCustomer" parameterClass="customer" >
+	    update CST_CUSTOMER
+	    set CUST_NO = #custNo:VARCHAR#,
+	      CUST_NAME = #custName:VARCHAR#
+	    where CUST_ID = #custId:INTEGER#
+    </update>
+  
 </sqlMap>

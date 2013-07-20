@@ -22,8 +22,9 @@ public class CrmCustomerDaoImpl extends AbstractBaseDao<CrmCustomer> implements 
     	return bean;
 	}
 	
-	public void updateCustomer(Integer custId){
-		getSqlMapClientTemplate().update("sysUserSQL.updateUser",custId);
+	public CrmCustomer updateCustomer(CrmCustomer bean){
+		getSqlMapClientTemplate().update("CrmCustomerSQL.updateCustomer",bean);
+		return bean;
 	}
 	
 	public void deleteCustomer(Integer custId){

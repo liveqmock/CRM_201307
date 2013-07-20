@@ -22,6 +22,8 @@ public class CrmLinkman extends AbstractBaseDomain{
 	
 		private Long lkmId;                        
 		private String lkmName;                          //姓名
+		private String fullPinyinName;                             //全拼
+		private String simplePinyinName;                           //简拼
 		private String lkmSex;                           //称谓
 		private Date   birthday;                         //生日
 		private String dept;                             //部门
@@ -39,9 +41,9 @@ public class CrmLinkman extends AbstractBaseDomain{
 		private String assistant;                        //助手
 		private String assistantMobile;                  //助手电话
 		private String lkmAddress;                       //地址
-		
 		private String cluesSource;                      //线索来源
 		private String lkmLevel;                         //联系人层次
+		private Integer lkmStatus;                       //状态
 		
 		private Integer custId;                          //所属客户
 		private String userId;                           //所有者
@@ -68,6 +70,32 @@ public class CrmLinkman extends AbstractBaseDomain{
 		 */
 		public void setLkmName(String lkmName) {
 			this.lkmName = lkmName;
+		}
+		
+		
+		/**
+		 * @return the fullPinyinName
+		 */
+		public String getFullPinyinName() {
+			return fullPinyinName;
+		}
+		/**
+		 * @param fullPinyinName the fullPinyinName to set
+		 */
+		public void setFullPinyinName(String fullPinyinName) {
+			this.fullPinyinName = fullPinyinName;
+		}
+		/**
+		 * @return the simplePinyinName
+		 */
+		public String getSimplePinyinName() {
+			return simplePinyinName;
+		}
+		/**
+		 * @param simplePinyinName the simplePinyinName to set
+		 */
+		public void setSimplePinyinName(String simplePinyinName) {
+			this.simplePinyinName = simplePinyinName;
 		}
 		/**
 		 * @return the lkmSex
@@ -320,6 +348,18 @@ public class CrmLinkman extends AbstractBaseDomain{
 		 */
 		public void setUserId(String userId) {
 			this.userId = userId;
+		}
+		/**
+		 * @return the lkmStatus
+		 */
+		public Integer getLkmStatus() {
+			return lkmStatus;
+		}
+		/**
+		 * @param lkmStatus the lkmStatus to set
+		 */
+		public void setLkmStatus(Integer lkmStatus) {
+			this.lkmStatus = lkmStatus;
 		}
 		
 		

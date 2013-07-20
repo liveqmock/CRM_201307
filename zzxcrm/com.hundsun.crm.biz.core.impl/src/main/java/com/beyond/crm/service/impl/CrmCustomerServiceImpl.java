@@ -46,4 +46,8 @@ public class CrmCustomerServiceImpl extends AbstractBaseService implements CrmCu
 	public CrmCustomer saveCustomer(CrmCustomer bean){
 		return crmCustomerDao.saveCustomer(bean);
 	}
+	
+	public CrmCustomer updateCustomer(CrmCustomer bean){
+		return crmCustomerDao.updateCustomer(bean);
+	}
 }

@@ -49,25 +49,30 @@ public class CrmCustomerTest {
 	}
 	
 
-	@Test
-	public void testFindPage(){
-		CrmCustomer queryBean = new CrmCustomer();
-		queryBean.setCustName("雷");
-		List<CrmCustomer> pageInfo = crmCustomerService.findCustomerPage(queryBean, 1, 15);
-		logger.info("result is "+pageInfo);
-	}
-	
 //	@Test
-//	public void testAdd(){
-//		CrmCustomer bean = new CrmCustomer();
-//		bean.setCustNo("00003");
-//		bean.setCustName("李悦");
-//		crmCustomerService.saveCustomer(bean);
+//	public void testFindPage(){
+//		CrmCustomer queryBean = new CrmCustomer();
+//		queryBean.setCustName("雷");
+//		List<CrmCustomer> pageInfo = crmCustomerService.findCustomerPage(queryBean, 1, 15);
+//		logger.info("result is "+pageInfo.size());
 //	}
 	
-	public void testUpdate(){
-		
+	@Test
+	public void testAdd(){
+		CrmCustomer bean = new CrmCustomer();
+		bean.setCustNo("00004");
+		bean.setCustName("客户甲");
+		crmCustomerService.saveCustomer(bean);
 	}
+
+//	@Test
+//	public void testUpdate(){
+//		CrmCustomer bean = new CrmCustomer();
+//		bean.setCustId(3);
+//		bean.setCustNo("00003");
+//		bean.setCustName("李悦00000");
+//		crmCustomerService.updateCustomer(bean);
+//	}
 	
 	public void testDelete(){
 		

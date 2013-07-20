@@ -49,7 +49,7 @@ public interface CrmCustomerDao {
 	 * 
 	 * @param custId
 	 */
-	public void updateCustomer(Integer custId);
+	public CrmCustomer updateCustomer(CrmCustomer bean);
 	
 	/**
 	 * 

@@ -36,9 +36,16 @@ public interface CrmCustomerService {
 	public List<CrmCustomer> findCustomerPage(CrmCustomer bean,Integer pageNum, Integer pageSize);
 	
 	/**
-	 * 新增客户
+	 * 新增客户信息
 	 * @param bean
 	 * @return
 	 */
 	public CrmCustomer saveCustomer(CrmCustomer bean);
+	
+	/**
+	 * 修改客户信息
+	 * @param bean
+	 * @return
+	 */
+	public CrmCustomer updateCustomer(CrmCustomer bean);
 }
