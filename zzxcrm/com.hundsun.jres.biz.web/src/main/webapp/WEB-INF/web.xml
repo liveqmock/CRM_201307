@@ -11,7 +11,13 @@
 	</session-config>
 	<!--####################	1.	公共定义部分 (end) 			####################-->
 
-	<!--####################	2.	JRES平台定义部分 (begin) 		####################-->
+	<!--####################	2.	平台定义部分 (begin) 		####################-->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>com.hundsun.crm.common.listener.AppStartListener</listener-class>
+	</listener>
 	<listener>
 		<listener-class>
 			com.hundsun.jres.impl.plugin.framework.RunPluginFrameworkListener</listener-class>
@@ -274,7 +280,13 @@
 	<welcome-file-list>
 		<welcome-file>bizframe/jsp/login.jsp</welcome-file>
 	</welcome-file-list>
-
-
+	
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+		classpath*:spring/applicationContext.xml
+		</param-value>
+	</context-param>
+	
 	<!--####################	3.	基础业务框架定义部分 (end) 	####################-->
 </web-app>
