@@ -2,6 +2,8 @@ package com.beyond.crm.bean;
 
 import java.util.Date;
 
+import com.beyond.common.base.AbstractBaseDomain;
+
 /**
  * 联系人
  * @author leixl
@@ -9,11 +11,11 @@ import java.util.Date;
  * @date   2013年7月13日 上午11:25:24
  * @version v1.0
  */
-public class CrmLinkman implements java.io.Serializable{
+public class CrmLinkman extends AbstractBaseDomain{
 
 	// Fields
 
-		/**
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -2518615930673700003L;
