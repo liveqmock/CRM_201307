@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hsdoc version="1.1.0">
+  <Windows>
+    <control-Window title="选择分享人" maximizable="true" height="400" autoScroll="true" name="noticeSelectorWin" width="700">
+      <Top/>
+      <Bottom>
+        <control-ButtonGroup name="userNoticeButtonGroup">
+          <layout-buttonGroup>
+            <control-Button name="groupAndUserSaveBtn" text="确定" width="50" icon="bizframe/images/icons/accept.png" tabIndex="2"/>
+            <control-Button name="groupAndUserCloseBtn" text="关闭" width="50" icon="bizframe/images/icons/cross.gif" tabIndex="3"/>
+          </layout-buttonGroup>
+        </control-ButtonGroup>
+      </Bottom>
+      <Left/>
+      <Right/>
+      <layout-border>
+        <control-Panel region="east" name="selectedPanel" width="350" split="true">
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+          <layout-border>
+            <control-Grid pageSize="10000" hasCheckColumn="true" region="center" autoload="false" width="300" enableCellTip="true" height="200" title="已经选择的共享用户" name="selectedGrid" autoScroll="true">
+              <layout-GridToolbar>
+                <control-GridItem align="left" width="164" title="用户名" sortable="true" name="name"/>
+                <control-GridItem align="left" width="132" title="用户Id" dataIndex="code" sortable="true" name="GridItem1"/>
+                <control-GridItem hidden="true" align="left" dataIndex="typecode" name="typecode" width="0" sortable="true"/>
+                <control-GridItem hidden="true" align="left" dataIndex="code" name="code" width="0" sortable="true"/>
+              </layout-GridToolbar>
+              <Top/>
+              <Bottom/>
+              <Left/>
+              <Right/>
+            </control-Grid>
+            <control-Panel region="west" width="44" height="200" name="btnPanle" border="false" autoScroll="true" frame="true">
+              <layout-absolute>
+                <control-Button width="25" x="-1" y="119" name="selectBtn" text="&gt;&gt;" tabIndex="4"/>
+                <control-Button x="-3" y="160" name="unselectBtn" text="&lt;&lt;" width="25" tabIndex="5"/>
+              </layout-absolute>
+              <Top/>
+              <Bottom/>
+              <Left/>
+              <Right/>
+            </control-Panel>
+          </layout-border>
+        </control-Panel>
+        <control-Panel region="center" border="false" title="未共享用户" autoScroll="true" name="userPanel">
+          <Top/>
+          <Bottom/>
+          <Left/>
+          <Right/>
+          <layout-fit>
+            <control-Grid pageSize="10000" hasCheckColumn="true" autoload="false" enableCellTip="true" width="300" height="200" dataSet="noticePartiDataSet" name="userGridPanel" columnFit="true" autoScroll="true">
+              <layout-GridToolbar>
+                <control-GridItem align="left" width="167" title="用户名" sortable="true" name="GridItem3"/>
+                <control-GridItem align="left" width="167" title="用户Id" sortable="true" name="GridItem2"/>
+              </layout-GridToolbar>
+              <Top/>
+              <Bottom/>
+              <Left/>
+              <Right/>
+            </control-Grid>
+          </layout-fit>
+        </control-Panel>
+      </layout-border>
+    </control-Window>
+  </Windows>
+  <Accessory>
+    <control-DataSet name="selectedDataSet" window="noticeSelectorWin">
+      <params/>
+      <fields>
+        <field name="code" type="String"/>
+        <field name="name" type="String"/>
+        <field name="typename" type="String"/>
+        <field name="typecode" type="String"/>
+      </fields>
+    </control-DataSet>
+    <control-DataSet start="start" name="noticePartiDataSet" limit="limit" usingServiceName="true" window="noticeSelectorWin">
+      <params>
+        <param name="taskId"><![CDATA[]]></param>
+      </params>
+      <fields>
+        <field name="id" type="String"/>
+        <field name="name" type="String"/>
+        <field name="businessEmail" type="String"/>
+      </fields>
+    </control-DataSet>
+  </Accessory>
+  <WindowScripts>
+    <WindowScript window="noticeSelectorWin"><![CDATA[
+    /*选中的grid中初始化数据*/
+    public  selectedinitdata="";/*已经选择的知会人*/
+    
+    public taskId=""/*根据任务id查询候选知会人*/
+   
+    public parentFrom = null;/*标识是谁在调用本公共窗体，默认为null，用于同一个父窗体中多处调用时区分，以便保存业务*/
+   
+    public function setParentFrom(parentFromTmp){
+    	parentFrom = parentFromTmp;
+    }
+   
+    public function setSelectedinitdata(data){
+    	selectedinitdata = data;
+    }
+    
+    public function setTaskId(data){
+    	taskId = data;
+    }
+   
+   event userPanel_afterrender(Ext.Component thisComp) {
+  		var param = {};
+		Ext.apply(param,{'taskId': taskId});
+		noticePartiDataSet.setParams(param);
+		noticePartiDataSet.load();
+   }
+
+
+	/*选中左边的数据,grid*/
+	event selectBtn_click(Button thisComp, Ext.EventObject e) {
+    	var dataname;/*名称，例如张三*/
+    	var dataid;/*编码，例如zhangsan*/
+    	var typecode;/*类型编码，例如user*/
+    	var typecodename;/*类型名称，例如用户*/
+    	
+    	
+    	/*选择用户的tabpanle*/
+    	var usergridpanel = userGridPanel;
+    	var selections  = usergridpanel.getSelectionModel().getSelections();
+		var len  = selections.length;
+		for(var i=0; i<len; i++){
+			typecode = 'user';
+    		typecodename = '用户';
+    		var user = selections[i].data;
+    		dataid = user.id;
+    		dataname = user.name;
+
+			var selectedobj = {'name':dataname,'code':dataid, 'typename':typecodename,'typecode':typecode};
+			if(isExists(selectedobj,selectedGrid) == false){
+    			selectedGrid.addRow(selectedobj);
+    		}
+		}
+		usergridpanel.getSelectionModel().clearSelections(); 	
+	}
+	
+	/*判断数据是否已经被选择过了*/
+	public function isExists(selectedobj, grid){
+		var len = grid.getStore().getCount();
+		if(len == 0) return false;
+		for(var i=0; i< len; i++){
+			var datatmp = grid.getStore().getAt(i).data;
+			if(selectedobj.code == datatmp.code 
+				&& selectedobj.typecode == datatmp.typecode){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/*删除选中的数据*/
+	event unselectBtn_click(Button thisComp, Ext.EventObject e) {
+		deleteSelectedObj();
+	}
+	
+	
+	/*删除选中的数据*/
+	event groupAndUserDeleteBtn_click(Button thisComp, Ext.EventObject e) {
+		deleteSelectedObj();
+	}
+	
+	/*删除选中的数据*/
+	public function deleteSelectedObj(){
+		var selections  = selectedGrid.getSelectionModel().getSelections();
+			var len  = selections.length;
+			if(len ==0){
+			}else{
+			
+				for(i=0; i<len; i++){
+					var record = selections[i].data;
+					var selectedobj = {'name': record.name, 'typename' : record.typename, 'typecode' : record.typecode, 'code' : record.code};
+					var todelobj = getRecordByData(selectedobj);
+					if(todelobj != null){
+						selectedGrid.removeRowByRecord(todelobj);
+					}
+				}
+			}
+	}
+	
+	/*关闭*/
+	event groupAndUserCloseBtn_click(Button thisComp, Ext.EventObject e) {
+     	close();
+     }
+     
+     /*返回需要保存数据，json格式*/
+     public function getAllSelectedData() {
+     	var len = selectedGrid.getAllData().length;
+     		
+     	var data=[];
+     	for(var i=0; i< len; i++){
+     		var recorddata = selectedGrid.getAllData()[i].data;
+     		var startertmp = {'typename': recorddata.typename, 'name' : recorddata.name, 'code' : recorddata.code, 'typecode' : recorddata.typecode};
+     		data.push(startertmp);
+     	}
+     	var dataStr = Ext.util.JSON.encode(data);
+     	return dataStr;	
+     }
+     
+     /*调用父窗体的保存方法，本公用窗体的关闭在父窗体中完成,所有父窗体中必须要有方法saveSelectData(strjson,userAndGroupWin)*/
+	event groupAndUserSaveBtn_click(Button thisComp, Ext.EventObject e) {
+     	var strjson = getAllSelectedData();
+     	if(!strjson || strjson.match(/\[\s*\]/g)){
+     		Ext.Msg.alert('提醒', '请选择至少一个用户！');
+     	} else {
+     		ParentWin.saveSelectData(strjson,parentFrom);
+     	}
+     }
+     	
+	/*根据data获取grid中的record*/
+    public function getRecordByData(obj){
+    		
+    	var data = selectedGrid.getAllData();
+		var len = selectedGrid.getAllData().length;
+		if(len == 0){
+			return null;
+		}
+		
+		for(var i=0; i< len ; i++){
+			var rectmp = data[i];
+			if(rectmp.data.code == obj.code && rectmp.data.typecode == obj.typecode){
+				return rectmp;
+			}
+		}
+		return null;
+    }
+	
+
+ 	/*加载初始数据*/
+	event noticeSelectorWin_complete() {
+	
+	}
+
+
+	event selectedPanel_afterrender(Ext.Component thisComp) {
+		
+		selectedDataSet.loadData(selectedinitdata);
+	
+	}
+	/*如果父窗口有关闭事件，则调用。方法：closeGroupAndUserWin()*/
+	event noticeSelectorWin_close(Ext.Panel p) {
+		if(ParentWin.closeGroupAndUserWin){
+			ParentWin.closeGroupAndUserWin();
+			
+		}
+		close();
+	}
+	
+	
+	
+]]></WindowScript>
+  </WindowScripts>
+</hsdoc>
