@@ -21,11 +21,12 @@ import java.util.List;
 import com.beyond.crm.bean.CrmCustomer;
 import com.beyond.crm.service.CrmCustomerService;
 import com.hundsun.crm.common.listener.AppStartListener;
+import com.hundsun.crm.common.plugin.IdentityUtils;
 import com.hundsun.crm.common.util.WrapperUtil;
 import com.hundsun.crm.wrapper.anotation.JresService;
+import com.hundsun.jres.impl.bizkernel.runtime.util.StringUtil;
 import com.hundsun.jres.interfaces.cep.context.IEventContext;
 import com.hundsun.jres.interfaces.share.dataset.IDataset;
-import com.hundsun.jres.interfaces.share.dataset.IDatasetMetaData;
 import com.hundsun.jres.interfaces.share.dataset.IDatasets;
 
 /**
@@ -52,17 +53,28 @@ public class CustomerCepImpl {
 		
 		return WrapperUtil.createListResult(list, CrmCustomer.class, list==null?0:list.size());
 	}
+	
 	@JresService(alias = "customer.serviceInterface.cust.findCustomerDetail", desc = "客户详情信息", value = "customer.service.cust.findCustomerDetail")
 	public IDatasets findCustomerDetail(IEventContext context,
 			IDataset request)  {
-		CrmCustomer obj = getObject("周星驰","男","星爷",30);
 		
-		return WrapperUtil.createObjectResult(obj, CrmCustomer.class);
+		return WrapperUtil.createObjectResult(null, CrmCustomer.class);
 	}
+	
 	@JresService(alias = "customer.serviceInterface.cust.insertCustomer", desc = "新增客户详情信息", value = "customer.serviceInterface.cust.insertCustomer")
 	public IDatasets insertCustomer(IEventContext context,
 			IDataset request)  {
-		
+		String userId = IdentityUtils.getUser(request);
+		CrmCustomer obj = setCustomerObject(request, userId);
+		this.customerService.save(obj);
+		return WrapperUtil.createSuccessResult();
+	}
+	/**
+	 * @param request
+	 * @param userId
+	 * @return
+	 */
+	private CrmCustomer setCustomerObject(IDataset request, String userId) {
 		String custNo = request.getString("custNo");             
 		String custName = request.getString("custName");           
 		String fullPinyinName = request.getString("fullPinyinName");     
@@ -98,33 +110,55 @@ public class CustomerCepImpl {
 		obj.setCity(city);
 		obj.setCountry(country);
 		obj.setCreateDate(new Date());
-		obj.setCreateUserId("admin");
+		obj.setCreateUserId(userId);
 		obj.setCustName(custName);
-		this.customerService.save(obj);
-		return WrapperUtil.createSuccessResult();
+		obj.setCreateUserName(request.getString("userName"));
+		obj.setCustAddr(custAddr);
+		obj.setCustBank(custBank);
+		obj.setCustBankAccount(custBankAccount);
+		obj.setCustBankroll(StringUtil.isNotBlank(custBankroll)?Double.parseDouble(custBankroll):null);
+		obj.setCustChieftain(custChieftain);
+		obj.setCustCredit(custCredit);
+		obj.setCustFax(custFax);
+		obj.setCustHot(StringUtil.isNotBlank(custHot)?Integer.parseInt(custHot):null);
+		obj.setCustLevel(custLevel);
+		obj.setCustLicenceNo(custLicenceNo);
+		obj.setCustLocalTaxNo(custLocalTaxNo);
+		obj.setCustNationalTaxNo(custNationalTaxNo);
+		obj.setCustNo(custNo);
+		obj.setCustRegion(custRegion);
+		obj.setCustSatisfy(custSatisfy);
+		obj.setCustSource(custSource);
+		obj.setCustStatus(StringUtil.isNotBlank(custStatus)?Integer.parseInt(custStatus):null);
+		obj.setCustTel(custTel);
+		obj.setCustTurnover(StringUtil.isNotBlank(custTurnover)?Double.parseDouble(custTurnover):null);
+		obj.setCustType(custType);
+		obj.setCustWebsite(custWebsite);
+		obj.setCustZipCode(custZipCode);
+		obj.setEmployeeTotal(StringUtil.isNotBlank(employeeTotal)?Integer.parseInt(employeeTotal):null);
+		obj.setFullPinyinName(fullPinyinName);
+		obj.setInvoiceAddress(invoiceAddress);
+		obj.setStockCode(stockCode);
+		obj.setUpdateDate(new Date());
+		obj.setUpdateUserId(userId);
+		obj.setProvince(province);
+		obj.setSimplePinyinName(simplePinyinName);
+		return obj;
 	}
 	@JresService(alias = "customer.serviceInterface.cust.updateCustomer", desc = "修改客户详情信息", value = "customer.service.cust.updateCustomer")
 	public IDatasets updateCustomer(IEventContext context,
 			IDataset request)  {
-		CrmCustomer obj = getObject("周星驰","男","星爷",30);
+		String userId = IdentityUtils.getUser(request);
+		CrmCustomer obj = setCustomerObject(request, userId);
+		this.customerService.update(obj);
 		
 		return WrapperUtil.createSuccessResult();
 	}
 	@JresService(alias = "customer.serviceInterface.cust.delCustomer", desc = "删除客户详情信息", value = "customer.service.cust.delCustomer")
 	public IDatasets delCustomer(IEventContext context,
 			IDataset request)  {
-		
+		String id = request.getString("custIds");
 		return WrapperUtil.createSuccessResult();
 	}
 
-	/**
-	 * @return
-	 */
-	private CrmCustomer getObject(String name,String sex,String nick,int age) {
-		CrmCustomer item = new CrmCustomer();
-		item.setCustName(name);
-		item.setInvoiceAddress("杭州市");
-		item.setCustAddr("是的范德萨发的");		
-		return item;
-	}
 }
