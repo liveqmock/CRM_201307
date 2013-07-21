@@ -61,7 +61,7 @@
 		<!-- 连接数据库的名字 -->
 		<username>root</username>
 		<!-- 连接数据库的密码 -->
-		<password>123456</password>
+		<password>leixl</password>
 		<!-- 密码是否加密 -->
 		<secretpassword>false</secretpassword>
 		<!-- dialect -->

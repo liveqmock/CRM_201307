@@ -7,7 +7,7 @@
     <typeAlias alias="customer" type="com.beyond.crm.bean.CrmCustomer"/>
     
     <resultMap id="customerResultMap" class="customer">
-        <result property="custId" column="cust_id" jdbcType="INTEGER"/>
+        <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="custNo" column="cust_no" jdbcType="VARCHAR"/>
         <result property="custName" column="cust_name" jdbcType="VARCHAR"/>
         <result property="fullPinyinName" column="full_pinyin_name" jdbcType="VARCHAR"/>
@@ -57,7 +57,7 @@
           <isNotEmpty prepend="and" property="customer.custName">
              c.cust_name like '%#customer.custName#%'
           </isNotEmpty>
-          order by c.cust_id desc limit #pageFrom#,#pageTo#
+          order by c.id desc limit #pageFrom#,#pageTo#
     </select>
     
     
@@ -67,13 +67,13 @@
              select last_insert_id() as value   
          </selectKey>
         insert into cst_customer 
-            (cust_id,cust_no,cust_name,full_pinyin_name,simple_pinyin_name,stock_code,invoice_address,cust_hot,
+            (id,cust_no,cust_name,full_pinyin_name,simple_pinyin_name,stock_code,invoice_address,cust_hot,
             cust_source,cust_type,employee_total,cust_region,cust_level,cust_satisfy,cust_credit,country,province,
             city,cust_addr,cust_zip_code,cust_tel,cust_fax,cust_website,cust_licence_no,cust_chieftain,cust_bankroll,
             cust_turnover,cust_bank,cust_bank_account,cust_local_tax_no,cust_national_tax_no,create_userid,
             create_username,create_date,update_userid,update_username,update_date,cust_status)
         values 
-            (#custId:integer#,#custNo:varchar#,#custName:varchar#,#fullPinyinName:varchar#,#simplePinyinName:varchar#,
+            (#id:integer#,#custNo:varchar#,#custName:varchar#,#fullPinyinName:varchar#,#simplePinyinName:varchar#,
             #stockCode:varchar#,#invoiceAddress:varchar#,#custHot:integer#,#custSource:varchar#,#custType:varchar#,#employeeTotal:integer#,
             #custRegion:integer#,#custLevel:varchar#,#custSatisfy:varchar#,#custCredit:varchar#,#country:varchar#,#province:varchar#,
             #city:varchar#,#custAddr:varchar#,#custZipCode:varchar#,#custTel:varchar#,#custFax:varchar#,#custWebsite:varchar#,
@@ -87,7 +87,7 @@
 	    update CST_CUSTOMER
 	    set CUST_NO = #custNo:VARCHAR#,
 	      CUST_NAME = #custName:VARCHAR#
-	    where CUST_ID = #custId:INTEGER#
+	    where ID = #id:INTEGER#
     </update>
     
     <!-- <delete id="deleteByIds" parameterClass="java.l" >

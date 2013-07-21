@@ -18,7 +18,7 @@ public class CrmCustomer extends AbstractBaseDomain{
 	 */
 	private static final long serialVersionUID = 641004926963038102L;
 	
-	private Integer custId;                                    //表主键
+	private Integer id;                                    //表主键
 	private String custNo;                                     //客户编号
 	private String custName;                                   //客户名称
 	private String fullPinyinName;                             //全拼
@@ -70,14 +70,14 @@ public class CrmCustomer extends AbstractBaseDomain{
 	/**
 	 * @return the custId
 	 */
-	public Integer getCustId() {
-		return custId;
+	public Integer getId() {
+		return id;
 	}
 	/**
 	 * @param custId the custId to set
 	 */
-	public void setCustId(Integer custId) {
-		this.custId = custId;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	/**
 	 * @return the custNo
