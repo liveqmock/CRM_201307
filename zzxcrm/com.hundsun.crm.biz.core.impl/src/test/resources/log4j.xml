@@ -10,13 +10,13 @@
 		</layout>
 		<!--过滤器设置输出的级别 -->
 		<filter class="org.apache.log4j.varia.LevelRangeFilter">
-			<param name="levelMin" value="INFO" />
+			<param name="levelMin" value="DEBUG" />
 			<param name="levelMax" value="ERROR" />
 			<param name="AcceptOnMatch" value="true" />
 		</filter>
 	</appender>
 
-	<appender name="cmbank-console" class="org.apache.log4j.ConsoleAppender">
+	<appender name="crm-console" class="org.apache.log4j.ConsoleAppender">
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern"
 				value="[CRM] [%d{HH:mm:ss,SSS\} %p] [%t] %c{4\} - %m%n" />
@@ -71,7 +71,7 @@
 	<!-- cmbank包下的所有信息都打印到控制台 -->
 	<logger name="com.beyond.crm" additivity="false">
 		<priority value="debug" />
-		<appender-ref ref="cmbank-console" />
+		<appender-ref ref="crm-console" />
 	</logger>
 
 	<logger name="URLRECORDER:" additivity="false">
@@ -98,7 +98,7 @@
 	</logger>
 	
 	<root>
-		<level value="INFO" />
+		<level value="DEBUG" />
 		<appender-ref ref="dailyBusiness" />
 		<appender-ref ref="dailyError" />
 		<appender-ref ref="console" /><!--打印到屏幕 -->

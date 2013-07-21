@@ -1,10 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
-    "http://www.ibatis.apache.org/dtd/sql-map-2.dtd">
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 
 <sqlMap namespace="com.beyond.crm.dao.CrmActivityDao">
 
-    <typeAlias alias="customer" type="com.beyond.crm.bean.CrmActivity"/>
-    
-    
+	<select id="find" resultClass="com.beyond.crm.bean.CrmActivity"
+		parameterClass="Integer">
+		SELECT * FROM CST_ACTIVITY t WHERE t.id = #id:INTEGER#
+	</select>
+
+	<delete id="delete" parameterClass="Integer">
+		DELETE FROM CST_ACTIVITY WHERE id = #id:INTEGER#
+	</delete>
+
+	<insert id="insert" parameterClass="com.beyond.crm.bean.CrmActivity">
+		INSERT INTO CST_ACTIVITY
+		(
+		TITLE
+		)
+		VALUES
+		(
+		#title:VARCHAR#
+		)
+		<selectKey keyProperty="id" resultClass="int">
+			SELECT LAST_INSERT_ID() as id
+		</selectKey>
+	</insert>
+
+	<update id="update" parameterClass="com.beyond.crm.bean.CrmActivity">
+		UPDATE CST_ACTIVITY t SET
+		t.TITLE = #title:VARCHAR#
+	</update>
+	
+	<delete id="deleteByIds" parameterClass="java.util.List">
+		DELETE FROM CST_ACTIVITY WHERE id in
+		<iterate open="(" close=")" conjunction="," property="ids">
+			#ids[]:INTEGER#
+		</iterate>
+	</delete>
+	
+	<select id="queryByParam" parameterClass="com.beyond.common.so.CrmActivitySO" resultClass="com.beyond.common.vo.CrmActivityVO">
+		SELECT * FROM CST_ACTIVITY t WHERE 1=1
+		<isNotEmpty prepend="AND" property="title">
+			t.title like concat('%',#title:VARCHAR#,'%') 
+		</isNotEmpty>
+		order by t.id DESC limit #pageFrom:INTEGER#,#pageTo:INTEGER#
+	</select>
 </sqlMap>

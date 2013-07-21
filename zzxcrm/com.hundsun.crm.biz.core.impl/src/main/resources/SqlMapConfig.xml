@@ -13,5 +13,5 @@ PUBLIC "-//iBATIS.apache.org//DTD SQL Map Config 2.0/" "http://ibatis.apache.org
   	/>
 	
 	<sqlMap resource="sqlmap/crm/CrmCustomerSQL.xml" />  	
-		
+	<sqlMap resource="sqlmap/crm/CrmActivitySQL.xml" />
 </sqlMapConfig>

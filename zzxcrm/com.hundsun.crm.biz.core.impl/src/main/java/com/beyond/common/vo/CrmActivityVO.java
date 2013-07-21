@@ -1,35 +1,16 @@
 /**
- * Project: com.hundsun.jres.biz.core.impl
  * 
- * File Created at 2013年7月13日
- * $Id$
- * 
- * Copyright 2013 beyond.com Croporation Limited.
- * All rights reserved.
- *
- * This software is the confidential and proprietary information of
- * www.beyond.com Company. ("Confidential Information").  You shall not
- * disclose such Confidential Information and shall use it only in
- * accordance with the terms of the license agreement you entered into
- * with  www.tuiqilai.com .
  */
-package com.beyond.crm.bean;
+package com.beyond.common.vo;
 
 import java.util.Date;
 
-import com.beyond.common.base.AbstractBaseDomain;
-
 /**
- * 
- * @author leixl
- * @email leixl0324@163.com
- * @date 2013年7月13日 上午11:27:30
- * @version v1.0
+ * @author liyue
+ *
  */
-public class CrmActivity extends AbstractBaseDomain {
-
-	private static final long serialVersionUID = -9142240356524575561L;
-
+public class CrmActivityVO extends BaseVO{
+	
 	private Integer id;
 	private String title;//行为主题
 	private String customerName;//客户名
@@ -46,7 +27,7 @@ public class CrmActivity extends AbstractBaseDomain {
 	private Double cost;//费用
 	private String stat;//状态。未开始、进行中、完成、等待、推迟
 	private String description;//详细描述
-//	private Date remaindTime;//提醒时间
+	
 	
 	public Integer getId() {
 		return id;

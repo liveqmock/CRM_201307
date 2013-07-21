@@ -4,6 +4,7 @@
 package com.beyond.common.base;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author liyue
@@ -11,11 +12,15 @@ import java.io.Serializable;
  */
 public interface BaseDao<T extends Serializable> {
 
-	T insert(T t);
-	
-	int update(T t);
-	
-	int delete(Long id);
-	
-	T find(Long id);
+	int insert(T t);
+
+	T update(T t);
+
+	int delete(Integer id);
+
+	T find(Integer id);
+
+	void batchInsert(List<T> paramObjects);
+
+	int deleteByIds(List<Long> ids);
 }

@@ -14,16 +14,22 @@
 package com.beyond.common.base;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.ibatis.SqlMapClientCallback;
 import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
+import org.springframework.util.CollectionUtils;
 
+import com.beyond.common.exception.QueryException;
 import com.beyond.common.utils.PageInfoUtil;
 import com.beyond.common.vo.PageInfo;
 import com.ibatis.sqlmap.client.SqlMapClient;
+import com.ibatis.sqlmap.client.SqlMapExecutor;
 
 /**
  * ibatis 基类
@@ -33,10 +39,12 @@ import com.ibatis.sqlmap.client.SqlMapClient;
  * @date 2013年7月16日 下午7:58:11
  * @version v1.0
  */
-abstract public class AbstractBaseDao<T extends Serializable> extends SqlMapClientDaoSupport {
+abstract public class AbstractBaseDao<T extends Serializable> extends
+		SqlMapClientDaoSupport {
 
 	private static final String PAGE_FROM = "pageFrom";
 	private static final String PAGE_TO = "pageTo";
+	private static final String ID = "id";
 
 	@Autowired
 	public void setSqlMapClientBase(SqlMapClient sqlMapClient) {
@@ -55,7 +63,8 @@ abstract public class AbstractBaseDao<T extends Serializable> extends SqlMapClie
 		if (total != null && total.longValue() > 0) {
 			paramObject.put(PAGE_FROM, (pageNum - 1) * pageSize);
 			paramObject.put(PAGE_TO, pageNum * pageSize);
-			result = getSqlMapClientTemplate().queryForList(getListStatementName, paramObject);
+			result = getSqlMapClientTemplate().queryForList(
+					getListStatementName, paramObject);
 		}
 		pageInfo.setResult(result);
 		pageInfo.setTotalRowSize(total);
@@ -65,37 +74,78 @@ abstract public class AbstractBaseDao<T extends Serializable> extends SqlMapClie
 	}
 
 	@SuppressWarnings("unchecked")
-	protected List<T> getObjectList(String statementName, int pageNum, int pageSize,
-			T t,String key) {
-		Map<String, Object> paramObject = new HashMap<String,Object>();
+	protected List<T> getObjectList(String statementName, int pageNum,
+			int pageSize, T t, String key) {
+		Map<String, Object> paramObject = new HashMap<String, Object>();
 		paramObject.put(PAGE_FROM, (pageNum - 1) * pageSize);
 		paramObject.put(PAGE_TO, pageNum * pageSize);
 		paramObject.put(key, t);
-		List<T> result = getSqlMapClientTemplate().queryForList(
-				statementName, paramObject);
+		List<T> result = getSqlMapClientTemplate().queryForList(statementName,
+				paramObject);
 		return result;
 	}
-	
+
 	protected String getStatementNamespace() {
-        Class<?> clazz = this.getClass().getInterfaces()[0];
-        return clazz.getName();
-    }
-	
-	@SuppressWarnings("unchecked")
-	protected T insert(T t){
-		return (T) getSqlMapClientTemplate().insert(getStatementNamespace() + ".insert", t);
+		Class<?> clazz = this.getClass().getInterfaces()[0];
+		return clazz.getName();
 	}
 	
-	protected int update(T t){
-		return getSqlMapClientTemplate().update(getStatementNamespace() + ".update", t);
+	public int insert(T t) {
+		try {
+			getSqlMapClientTemplate().insert(getStatementNamespace() + ".insert", t);
+			String id = BeanUtils.getProperty(t, ID);
+			return Integer.parseInt(id);
+		} catch (Exception err) {
+			throw new QueryException(err);
+		}
 	}
-	
-	protected int delete(Long id){
+
+	public T update(T t) {
+		getSqlMapClientTemplate().update(getStatementNamespace() + ".update", t);
+		return t;
+	}
+
+	public int delete(Integer id) {
 		return getSqlMapClientTemplate().delete(getStatementNamespace() + ".delete", id);
 	}
-	
+
 	@SuppressWarnings("unchecked")
-	protected T find(Long id){
+	public T find(Integer id) {
 		return (T) getSqlMapClientTemplate().queryForObject(getStatementNamespace() + ".find", id);
+	}
+	
+	public void batchInsert(final List<T> paramObjects){
+		if(CollectionUtils.isEmpty(paramObjects)){
+			throw new QueryException("Batch insert input is empty list.");
+		}
+		try {
+			getSqlMapClientTemplate().execute(new SqlMapClientCallback(){ 
+				public Object doInSqlMapClient(SqlMapExecutor executor)
+					throws SQLException {
+					executor.startBatch(); 
+					int batchSize = 0;
+					for (T t : paramObjects) {
+						executor.insert(getStatementNamespace() + ".insert", t);
+						batchSize++;
+						// every 200 commit
+						if(batchSize == 200){
+							executor.executeBatch();
+							batchSize = 0;
+						}
+					}
+					executor.executeBatch();
+				return null;
+			}});
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public int deleteByIds(List<Long> ids) {
+		if(CollectionUtils.isEmpty(ids)){
+			throw new QueryException("Batch delete input is empty.");
+		}
+		return getSqlMapClientTemplate().delete(getStatementNamespace() + ".deleteByIds", ids);
 	}
 }
