@@ -91,7 +91,7 @@ public class CrmCustomerTest {
 		bean.setCustLocalTaxNo("");
 		bean.setCustNationalTaxNo("");
 		bean.init();
-		crmCustomerService.saveCustomer(bean);
+		crmCustomerService.save(bean);
 	}
 
 //	@Test

@@ -33,28 +33,28 @@ public interface CrmCustomerService {
 	 * @param pageSize
 	 * @return
 	 */
-	public List<CrmCustomer> findCustomerPage(CrmCustomer bean,Integer pageNum, Integer pageSize);
+	public List<CrmCustomer> queryForPage(CrmCustomer bean,Integer pageNum, Integer pageSize);
 	
 	/**
 	 * 新增客户信息
 	 * @param bean
 	 * @return
 	 */
-	public CrmCustomer saveCustomer(CrmCustomer bean);
+	public Integer save(CrmCustomer bean);
 	
 	/**
 	 * 修改客户信息
 	 * @param bean
 	 * @return
 	 */
-	public CrmCustomer updateCustomer(CrmCustomer bean);
+	public CrmCustomer update(CrmCustomer bean);
 	
 	/**
 	 * 查看客户详细信息
 	 * @param custId
 	 * @return
 	 */
-	public CrmCustomer viewCustomer(Integer custId);
+	public CrmCustomer view(Integer custId);
 	
 	/**
 	 * 单条记录删除

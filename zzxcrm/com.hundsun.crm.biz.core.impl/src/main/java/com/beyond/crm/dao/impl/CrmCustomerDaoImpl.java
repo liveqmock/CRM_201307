@@ -12,22 +12,9 @@ import com.beyond.crm.dao.CrmCustomerDao;
 @Repository
 public class CrmCustomerDaoImpl extends AbstractBaseDao<CrmCustomer> implements CrmCustomerDao{
 	
-	public List<CrmCustomer> findCustomerPage(CrmCustomer bean,Integer pageNum, Integer pageSize) {
-		return getObjectList("CrmCustomerSQL.findCustomerPage", pageNum, pageSize, bean,"customber");
+	public List<CrmCustomer> queryForPage(CrmCustomer bean,Integer pageNum, Integer pageSize) {
+		return getObjectList(getStatementNamespace()+".findCustomerPage", pageNum, pageSize, bean,"customber");
 	}	
 
 	
-	public CrmCustomer saveCustomer(CrmCustomer bean){
-		getSqlMapClientTemplate().insert("CrmCustomerSQL.saveCustomer",bean);
-    	return bean;
-	}
-	
-	public CrmCustomer updateCustomer(CrmCustomer bean){
-		getSqlMapClientTemplate().update("CrmCustomerSQL.updateCustomer",bean);
-		return bean;
-	}
-	
-	public void deleteCustomer(Integer custId){
-		getSqlMapClientTemplate().delete("sysUserSQL.deleteCustomer",custId);
-	}
 }

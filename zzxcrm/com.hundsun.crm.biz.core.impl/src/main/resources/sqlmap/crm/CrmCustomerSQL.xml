@@ -62,7 +62,7 @@
     
     
     
-    <insert id="saveCustomer" parameterClass="customer">
+    <insert id="insert" parameterClass="customer">
         <selectKey keyProperty="custId" resultClass="int">   
              select last_insert_id() as value   
          </selectKey>
@@ -83,11 +83,16 @@
     </insert>
 
     
-    <update id="updateCustomer" parameterClass="customer" >
+    <update id="update" parameterClass="customer" >
 	    update CST_CUSTOMER
 	    set CUST_NO = #custNo:VARCHAR#,
 	      CUST_NAME = #custName:VARCHAR#
 	    where CUST_ID = #custId:INTEGER#
     </update>
+    
+    <delete id="deleteByIds" parameterClass="java.l" >
+    delete from POLICE_EQUIP
+    where POLICE_EQUIP_ID = #policeEquipId:DECIMAL#
+  </delete>
   
 </sqlMap>

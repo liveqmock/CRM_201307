@@ -48,7 +48,7 @@ public class CustomerCepImpl {
 		int start = request.getInt("start");
 		int limit = request.getInt("limit");
 		CrmCustomer crmCustomer = new CrmCustomer();
-		List<CrmCustomer> list = customerService.findCustomerPage(crmCustomer, start, limit);
+		List<CrmCustomer> list = customerService.queryForPage(crmCustomer, start, limit);
 		
 		return WrapperUtil.createListResult(list, CrmCustomer.class, list==null?0:list.size());
 	}
@@ -100,7 +100,7 @@ public class CustomerCepImpl {
 		obj.setCreateDate(new Date());
 		obj.setCreateUserId("admin");
 		obj.setCustName(custName);
-		this.customerService.saveCustomer(obj);
+		this.customerService.save(obj);
 		return WrapperUtil.createSuccessResult();
 	}
 	@JresService(alias = "customer.serviceInterface.cust.updateCustomer", desc = "修改客户详情信息", value = "customer.service.cust.updateCustomer")

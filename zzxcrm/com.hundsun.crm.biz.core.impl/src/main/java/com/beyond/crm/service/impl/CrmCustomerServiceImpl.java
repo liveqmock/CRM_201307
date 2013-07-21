@@ -38,22 +38,22 @@ public class CrmCustomerServiceImpl extends AbstractBaseService implements CrmCu
 	@Autowired
 	private CrmCustomerDao crmCustomerDao;
 	
-	public List<CrmCustomer> findCustomerPage(CrmCustomer bean,Integer pageNum, Integer pageSize){
-		return crmCustomerDao.findCustomerPage(bean,pageNum, pageSize);
+	public List<CrmCustomer> queryForPage(CrmCustomer bean,Integer pageNum, Integer pageSize){
+		return crmCustomerDao.queryForPage(bean,pageNum, pageSize);
 	}
 	
 	
-	public CrmCustomer saveCustomer(CrmCustomer bean){
+	public Integer save(CrmCustomer bean){
 		if(bean != null)
 		   bean.init();
-		return crmCustomerDao.saveCustomer(bean);
+		return crmCustomerDao.insert(bean);
 	}
 	
-	public CrmCustomer updateCustomer(CrmCustomer bean){
-		return crmCustomerDao.updateCustomer(bean);
+	public CrmCustomer update(CrmCustomer bean){
+		return crmCustomerDao.update(bean);
 	}
 	
-	public CrmCustomer viewCustomer(Integer custId) {
+	public CrmCustomer view(Integer custId) {
 		return null;
 	}
 	

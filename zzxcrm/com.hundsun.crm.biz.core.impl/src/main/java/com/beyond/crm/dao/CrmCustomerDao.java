@@ -14,9 +14,8 @@
 package com.beyond.crm.dao;
 
 import java.util.List;
-import java.util.Map;
 
-import com.beyond.common.vo.PageInfo;
+import com.beyond.common.base.BaseDao;
 import com.beyond.crm.bean.CrmCustomer;
 
 
@@ -27,7 +26,7 @@ import com.beyond.crm.bean.CrmCustomer;
  * @date   2013年7月13日 下午12:42:55
  * @version v1.0
  */
-public interface CrmCustomerDao {
+public interface CrmCustomerDao extends BaseDao<CrmCustomer>{
 	/**
 	 * 客户信息查询
 	 * @param pageInfo
@@ -36,24 +35,7 @@ public interface CrmCustomerDao {
 	 * @param paramMap
 	 * @return
 	 */
-	public List<CrmCustomer> findCustomerPage(CrmCustomer bean,Integer pageNum, Integer pageSize);
+	public List<CrmCustomer> queryForPage(CrmCustomer bean,Integer pageNum, Integer pageSize);
 	
-	/**
-	 * 
-	 * @param bean
-	 * @return
-	 */
-	public CrmCustomer saveCustomer(CrmCustomer bean);
 	
-	/**
-	 * 
-	 * @param custId
-	 */
-	public CrmCustomer updateCustomer(CrmCustomer bean);
-	
-	/**
-	 * 
-	 * @param custId
-	 */
-	public void deleteCustomer(Integer custId);
 }
