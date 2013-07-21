@@ -48,4 +48,39 @@ public interface CrmCustomerService {
 	 * @return
 	 */
 	public CrmCustomer updateCustomer(CrmCustomer bean);
+	
+	/**
+	 * 查看客户详细信息
+	 * @param custId
+	 * @return
+	 */
+	public CrmCustomer viewCustomer(Integer custId);
+	
+	/**
+	 * 单条记录删除
+	 * @param custId
+	 */
+	public boolean oneDel(Integer custId);
+	
+	/**
+	 * 多条记录删除
+	 * @param custIds
+	 */
+	public boolean bacthDel(Integer custIds);
+	
+	/**
+	 * 共享客户给其他用户
+	 * @param custIds 
+	 * @param userIds
+	 * @return
+	 */
+	public boolean share(Integer custIds[] , String userIds []);
+	
+	/**
+	 * 将当前的客户移交给其他用户
+	 * @param custIds  客户ids
+	 * @param userId   被移交客户主键
+	 * @return
+	 */
+	public boolean devolve(Integer custIds[] , String userId);
 }

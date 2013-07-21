@@ -1,5 +1,7 @@
 package com.beyond.crm.bean;
 
+import java.util.Date;
+
 import com.beyond.common.base.AbstractBaseDomain;
 
 /**
@@ -42,13 +44,29 @@ public class CrmCustomer extends AbstractBaseDomain{
 	private String custWebsite;                                  //网址
 	private String custLicenceNo;                                //工商执照号
 	private String custChieftain;                                //法人
-	private Long custBankroll;                                   //资金
-	private Long custTurnover;                                   //年营业额
+	private Double custBankroll;                                   //资金
+	private Double custTurnover;                                   //年营业额
 	private String custBank;                                     //签约银行
 	private String custBankAccount;                              //签约银行账号
 	private String custLocalTaxNo;                               //地税编号
 	private String custNationalTaxNo;                            //国税编号
-	private String custStatus;                                   //客户状态
+	private Integer custStatus;                                   //客户状态
+	
+	
+	
+	public void init(){
+		Date curr = new Date();
+		if(getCreateDate() == null){
+			setCreateDate(curr);
+		}
+		if(getUpdateDate() == null){
+			setUpdateDate(curr);
+		}
+		if(getCustStatus() == null){
+			setCustStatus(1);
+		}
+	}
+	
 	/**
 	 * @return the custId
 	 */
@@ -356,25 +374,25 @@ public class CrmCustomer extends AbstractBaseDomain{
 	/**
 	 * @return the custBankroll
 	 */
-	public Long getCustBankroll() {
+	public Double getCustBankroll() {
 		return custBankroll;
 	}
 	/**
 	 * @param custBankroll the custBankroll to set
 	 */
-	public void setCustBankroll(Long custBankroll) {
+	public void setCustBankroll(Double custBankroll) {
 		this.custBankroll = custBankroll;
 	}
 	/**
 	 * @return the custTurnover
 	 */
-	public Long getCustTurnover() {
+	public Double getCustTurnover() {
 		return custTurnover;
 	}
 	/**
 	 * @param custTurnover the custTurnover to set
 	 */
-	public void setCustTurnover(Long custTurnover) {
+	public void setCustTurnover(Double custTurnover) {
 		this.custTurnover = custTurnover;
 	}
 	/**
@@ -428,13 +446,13 @@ public class CrmCustomer extends AbstractBaseDomain{
 	/**
 	 * @return the custStatus
 	 */
-	public String getCustStatus() {
+	public Integer getCustStatus() {
 		return custStatus;
 	}
 	/**
 	 * @param custStatus the custStatus to set
 	 */
-	public void setCustStatus(String custStatus) {
+	public void setCustStatus(Integer custStatus) {
 		this.custStatus = custStatus;
 	}
 

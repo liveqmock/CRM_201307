@@ -13,7 +13,7 @@
  */
 package com.beyond.crm.test;
 
-import java.util.List;
+import java.util.Date;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -60,8 +60,37 @@ public class CrmCustomerTest {
 	@Test
 	public void testAdd(){
 		CrmCustomer bean = new CrmCustomer();
-		bean.setCustNo("00004");
-		bean.setCustName("客户甲");
+		bean.setCustNo("00006");
+		bean.setCustName("天宫一号");
+//		bean.setFullPinyinName();
+//		bean.setSimplePinyinName(String simplePinyinName)
+		bean.setStockCode("9080200");
+		bean.setInvoiceAddress("美国洛杉矶");
+		bean.setCustHot(1);
+		bean.setCustSource("");
+		bean.setCustType("");
+		bean.setEmployeeTotal(122);
+		bean.setCustRegion("");
+		bean.setCustLevel("一级");
+		bean.setCustSatisfy("");
+		bean.setCustCredit("");
+		bean.setCountry("中国");
+		bean.setProvince("浙江");
+		bean.setCity("杭州");
+		bean.setCustAddr("");
+		bean.setCustZipCode("");
+		bean.setCustTel("");
+		bean.setCustFax("");
+		bean.setCustWebsite(""); 
+		bean.setCustLicenceNo("");
+		bean.setCustChieftain(""); 
+		bean.setCustBankroll(1000.00);
+		bean.setCustTurnover(2000.00);
+		bean.setCustBank(""); 
+		bean.setCustBankAccount("");
+		bean.setCustLocalTaxNo("");
+		bean.setCustNationalTaxNo("");
+		bean.init();
 		crmCustomerService.saveCustomer(bean);
 	}
 
