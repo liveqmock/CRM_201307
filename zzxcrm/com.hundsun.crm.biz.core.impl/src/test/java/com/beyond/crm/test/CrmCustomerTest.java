@@ -90,10 +90,7 @@ public class CrmCustomerTest {
 		bean.setCustBankAccount("");
 		bean.setCustLocalTaxNo("");
 		bean.setCustNationalTaxNo("");
-		
-		Date date = new Date();
-		bean.setCreateDate(date);
-		bean.setCustStatus("1");
+		bean.init();
 		crmCustomerService.saveCustomer(bean);
 	}
 
