@@ -50,4 +50,34 @@ public class CrmCustomerServiceImpl extends AbstractBaseService implements CrmCu
 	public CrmCustomer updateCustomer(CrmCustomer bean){
 		return crmCustomerDao.updateCustomer(bean);
 	}
+	
+	public CrmCustomer viewCustomer(Integer custId) {
+		return null;
+	}
+	
+	public boolean oneDel(Integer custId){
+		boolean callback = false;
+		return callback;
+	}
+	
+	
+	public boolean bacthDel(Integer custIds){
+		boolean callback = false;
+		return callback;
+	}
+	
+	
+	public boolean share(Integer custIds[] , String userIds []){
+		boolean callback = false;
+		return callback;
+	}
+	
+	
+	public boolean devolve(Integer custIds[] , String userId){
+		boolean callback = false;
+		return callback;
+	}
+
+
+	
 }

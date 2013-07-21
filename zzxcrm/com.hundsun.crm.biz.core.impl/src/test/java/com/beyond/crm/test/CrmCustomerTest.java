@@ -13,8 +13,6 @@
  */
 package com.beyond.crm.test;
 
-import java.util.List;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
