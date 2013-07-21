@@ -19,7 +19,7 @@
         <result property="custType" column="cust_type" jdbcType="VARCHAR"/>
         <result property="employeeTotal" column="employee_total" jdbcType="INTEGER"/>
         <result property="custRegion" column="cust_region" jdbcType="VARCHAR"/>
-        <result property="custLevel" column="cust_level" jdbcType="INTEGER"/>
+        <result property="custLevel" column="cust_level" jdbcType="VARCHAR"/>
         <result property="custSatisfy" column="cust_satisfy" jdbcType="VARCHAR"/>
         <result property="custCredit" column="cust_credit" jdbcType="VARCHAR"/>
         <result property="country" column="country" jdbcType="VARCHAR"/>
@@ -37,7 +37,7 @@
         <result property="custBank" column="cust_bank" jdbcType="VARCHAR"/> 
         <result property="custBankAccount" column="cust_bank_account" jdbcType="VARCHAR"/>                
         <result property="custLocalTaxNo" column="cust_local_tax_no" jdbcType="VARCHAR"/>   
-        <result property="custNationalTaxNo" column="cust_national_tax_no" jdbcType="DECIMAL"/>   
+        <result property="custNationalTaxNo" column="cust_national_tax_no" jdbcType="VARCHAR"/>   
         
         <result property="createUserId" column="create_userid" jdbcType="VARCHAR"/> 
         <result property="createUserName" column="create_username" jdbcType="DECIMAL"/>                
@@ -64,10 +64,22 @@
     
     <insert id="saveCustomer" parameterClass="customer">
         <selectKey keyProperty="custId" resultClass="int">   
-             SELECT LAST_INSERT_ID() as value   
+             select last_insert_id() as value   
          </selectKey>
-        INSERT INTO CST_CUSTOMER (CUST_ID,CUST_NO,CUST_NAME)
-            VALUES (#custId:INTEGER#,#custNo:VARCHAR#,#custName:VARCHAR#)
+        insert into cst_customer 
+            (cust_id,cust_no,cust_name,full_pinyin_name,simple_pinyin_name,stock_code,invoice_address,cust_hot,
+            cust_source,cust_type,employee_total,cust_region,cust_level,cust_satisfy,cust_credit,country,province,
+            city,cust_addr,cust_zip_code,cust_tel,cust_fax,cust_website,cust_licence_no,cust_chieftain,cust_bankroll,
+            cust_turnover,cust_bank,cust_bank_account,cust_local_tax_no,cust_national_tax_no,create_userid,
+            create_username,create_date,update_userid,update_username,update_date,cust_status)
+        values 
+            (#custId:integer#,#custNo:varchar#,#custName:varchar#,#fullPinyinName:varchar#,#simplePinyinName:varchar#,
+            #stockCode:varchar#,#invoiceAddress:varchar#,#custHot:integer#,#custSource:varchar#,#custType:varchar#,#employeeTotal:integer#,
+            #custRegion:integer#,#custLevel:varchar#,#custSatisfy:varchar#,#custCredit:varchar#,#country:varchar#,#province:varchar#,
+            #city:varchar#,#custAddr:varchar#,#custZipCode:varchar#,#custTel:varchar#,#custFax:varchar#,#custWebsite:varchar#,
+            #custLicenceNo:varchar#,#custChieftain:varchar#,#custBankroll:double#,#custTurnover:double#,#custBank:varchar#,#custBankAccount:varchar#,
+            #custLocalTaxNo:varchar#,#custNationalTaxNo:varchar#,#createUserId:varchar#,#createUserName:varchar#,#createDate:date#,#updateUserId:varchar#,
+            #updateUserName:varchar#,#updateDate:date#,#custStatus:integer#)
     </insert>
 
     
